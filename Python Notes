@@ -1,0 +1,2264 @@
+input= information put in 
+output= information put out 
+
+
+Print
+
+print("Hello World")
+
+print("Hello", end='')
+print("World")
+#prints Hello World as one line
+
+print("Hi ", end='Rose')
+print(", how are you?")
+#prints: Hi Rose, how are you?, separated as /Hi /Rose/, how are you?
+
+.py should be the file type for python 
+python is an interpreted language
+
+python shells can be used to run/ test your code
+
+#This is a one-line comment
+
+'''
+This is a multiple line comment
+The marks are single quotes
+'''
+
+Variables
+variables can be named with letters and _, are case sensitive 
+
+my_variable = "Hello World"
+print(my_variable)
+
+python does not use the var keyword
+
+string_variable = "letters and symbols"
+#strings always have quotes
+
+boolean_variable = True
+print(boolean_variable)
+#booleans are either True or False (must be capitalized)
+
+integer_variable = 50
+#numbers without decimals, if you use comma it will register as a set of numbers
+
+float_variable = 5.05
+#numbers with decimals
+
+my_variable="float",3,9.9,True
+print(my_variable)
+#all variables can be used alongside eachother so long as the function allows it
+
+Arithmetic Operators
+
+a *= 2
+a /= 2
+a //=2
+a += 2
+a -= 2
+a **=2
+a %= 2
+
+
+
+a=3
+print(type(a))
+a=str(a)
+print(type(a))
+print(a)
+
+b="3"
+print(a+ int(b))
+
+strings can be added too, just like ints and floats
+int+float=float 
+
+a = 10
+b = True
+c = a - b
+print(c)
+
+output of 9 becuase true registers as 1 and false as 0
+
+a = 25
+b =5.1
+print(a / b)
+print(a//b)
+floor division^
+#always rounds down
+
+a =2
+b ="Hi "
+print (a * b)
+#print(ab) doesnt work
+
+a =4**2
+print(a) 
+#dont exponent a negative number
+square_root =25**.5
+print(square_root) 
+
+PEMDAS
+
+modulo = 5 % 2
+print(modulo)
+
+whole = 63
+divider = 5
+division = 63//5
+remainder = 63 % 5
+print(division)
+print(remainder)
+#negative whole returns negative division, positive remainder
+#negative divider returns both negative 
+
+
+Boolean Operators
+
+a = True
+b = 1
+print(a == b) 
+
+a = 5
+b = 1
+print(a != b)
+
+a = 9
+b = 17
+print(a > b)
+
+a = True
+b = False
+print(a > b)
+
+a=True
+b=True
+c=False
+d=False
+print(a and b)
+print(a and b and c)
+print(a and b and a and b)
+print(a or b)
+print(a or c)
+print(c or d)
+print(a or c or d)
+
+print(not True)
+
+calculate bools in order of not, and, then or 
+
+#Short Circuting- if Python knows something will be true before finishing, it wont finish 
+
+Error Codes:
+ValueError
+TypeError
+SyntaxError
+IndexError
+NameError
+ZeroDivisionError
+
+
+
+>>> print("hi"bob")
+  File "<stdin>", line 1
+    print("hi"bob")
+                 ^
+SyntaxError: unterminated string literal (detected at line 1)
+>>> print("hi\"bob")
+hi"bob
+>>>
+The \ will cancel the 1st ", its an escape
+
+>>> print("hi\bob")
+hob
+>>>HAHAHA
+
+anyways 
+use use end=' ' for any special characters
+
+teacher_name = "xi chen"
+
+Use TypeCast to change type of variable 
+
+# Converts a string to an integer
+var1 = int("123")
+var2 = 100
+print(var1 + var2) 
+
+>>> first_name =bool(first_name)
+>>> print(first_name)
+True
+>>>
+
+Input function
+>>> first = input("first name")
+first nameRose
+>>> print(first)
+Rose
+>>>
+#defaults to string 
+
+>>> numone =input()
+6
+>>> numtwo = input()
+3
+>>> numone + numtwo
+'63'
+>>> numone = int(numone)
+>>> numtwo = int(numtwo)
+>>> numone + numtwo
+9
+>>>#typecasting, ie 2
+
+cs + string("1400")
+
+Design:Yondu Udonta
+
+Strings 
+
+my_string = "Hello"
+length = len(my_string)
+print(length)
+#returns 5
+
+character = my_string[1]
+print(character)
+#string index/ referencing a character
+
+my_string = "Hello!"
+character = my_string[len(my_string)-1]
+character = my_string[-1] 
+print(character)
+#you gotta do -1 because character length starts at 1 but character index starts at 0
+#negative numbers count from the end, positive characters count from the front
+
+Index Error- you're trying to access something that does not exist
+
+Strings are immutable- you don't change just part of it you gotta assign the whole thing anew
+
+my_string = "Hello world! This is a very, very long string. \
+Even though this string is on three different lines, it should \
+print as one line. Notice how the line breaks are different."
+print(my_string)
+
+long_string = """Notice how this weird looking
+    string is being
+        printed.
+      WAPPPPP
+    WAAAPPPPP
+  WAAAAAAAAAA"""
+  #also works with single quotes
+print(long_string)
+
+in Operator
+
+my_string = "The brown dog jumps over the lazy fox."
+print("dog" in my_string)
+print(my_string in my_string)
+#return True
+
+slice Operator- includes the first number, excludes the second number 
+
+my_string = "The brown dog jumps over the lazy fox."
+my_slice = my_string[4:9] #brown 
+#slice length will always equal the difference between the parameters
+my_slice = my_string[1:1] #nothing
+print(my_slice)
+print(my_string[0:len(my_string)]) #everything
+my_slice(0:3:2) 
+#the 2 means step 2- use every other character within the parameters 
+
+they count starting at 0
+
+Escape characters
+
+my_string = "Hello\nworld"
+print(my_string)
+#Hello, new line, World 
+
+Enter in string \n 
+Tab in string \t 
+
+my_string = "And then she said, \"Hi there.\""
+print(my_string)
+
+\\	Prints a backslash                         	print("\\")
+\’	Prints a single quote                    	print("\'")
+\"	Prints a double quote                   	print("\"")
+\t	Prints a tab (spacing)                   	print("Hello\tworld")
+\uxxxx	Prints a hexidecimal unicode character	print("\u26BE")
+
+Formatting Strings /Interpolating Strings /string interpolation
+
+arms = 2
+fingers = 10
+print("I have " + str(arms) + " arms and " + str(fingers) + " fingers.")
+
+print("The type of {} is {}".format(param1, type(param1)))
+    print("The type of {} is {}".format(param2, type(param2)))
+    print("The type of {} is {}".format(param3, type(param3)))
+    print(f"The type of {} is {}"(param4, type(param4)))
+     
+for interpolating in a function
+
+
+.format 
+var1 = "Dream"
+var2 = "Sing"
+print("{} on, {} on, {} for the love and {} for the fear".format(var1,var1,var2,var2))
+
+print("{2} on, {2} on, {0} for the love and {0} for the fear".format(var1,var1,var2,var2))
+
+the index for the .format starts at 0
+
+f string / f-string
+
+var1 = 7
+var2 = "away"
+my_string = f"{var1} up and {var2}."
+print(my_string)
+
+this way automatically typecasts into string 
+
+name = "Rose"
+occupation = "farmer"
+sentence = f"My name is {name}. "\
+            f"I am a {occupation}."
+print(sentence)
+
+def print_parameter(pram, pram2, pram3):
+  """ Prints parameters interpolated"""
+  print("My first parameter is ", pram1)
+  print("My 2nd parameter is {}".format(pram2))
+  print(f"My 3rd parameter is {pram3}")
+
+print_parameter("fuck","bitch","cunt")
+
+
+
+var1 = "Up"
+var2 = "away"
+print("%s, up and %s" % (var1, var2))
+
+this way uses % to interpolate and s to type cast. it also works with i, f, but not b
+its the old way dont use it 
+
+select a chunk of code and do Ctrl / to comment it out
+
+snake casing is all lowercase letters and using _ as a space
+
+syntax is the rules for forming legal statements
+semantics is the meaning associated with the statement 
+
+we can use f"string{var}" to insert anything into a string- most importantly a function/return value
+ 
+
+number = 6.329874
+print(f"number is {number: .2f}")
+(prints the number with 2 decimal places)
+# number is 6.32
+
+PEP 8 recommends that you should limit all lines to >= 79 characters
+DocString
+
+if statement
+
+if True:
+    print("Execute if expression is True")
+
+print("Continue execute here)
+
+#four spaces = 1 indentation 
+#new indentation for every block of code 
+#even if you have an error, python will run the code up until the error
+
+checking if something is even:
+num = 1
+if num % 2 == 0:
+    print(f"{num} is even.")
+
+#if num % 2 == 1:
+#    print(f"{num} is odd")
+
+else: 
+    pass 
+
+#else if 
+elif num1 <= 0:
+    print("negative")
+
+if parameter one:
+    action
+elif parameter two: 
+    action
+else: (otherwise)
+    action or pass 
+
+Python will only run 1 if statement,
+ if it runs into a pass it will exit without doing anything
+
+import turtle
+turtle.setup(500, 500, 100, 0)
+
+turtle.forward(100)
+turtle.right(180)
+turtle.forward(50)
+
+turtle.end_fill()
+turtle.done()
+
+#loops
+
+for i in range(10):
+    print(i)
+
+for i in range(2,6) (four numbers: 2,3,4,5)
+    print(i)
+
+for i in range(1,5,2) (1,3)
+    print(i)
+
+total = 0
+incremental = 0 
+for i in range(6):
+    total += i
+    incremental += 1
+
+print(total)
+print(incremental)
+
+p_color = (0/255, 153/255, 204/255)
+
+for i in range (6)
+    turtle.forward(100)
+    turtle.right(360/6)
+
+turtle.end_fill()
+turtle.done()
+
+turtle.goto(20,20)
+turtle.penup()
+turtle.pendown()
+
+turtle.pencolor(p_color)
+
+use html color picker
+
+making functions
+
+def greet_twice():
+    print("Hello")
+    print("Hello")
+
+greet_twice()
+
+arguments: the input
+
+def draw_rect(f_color)
+    turtle.fillcolor(f_color)
+
+draw_rect("blue")
+(input goes in the parentheses)
+
+
+turtle.setup(1000, 500)
+
+p_color = (0/255, 153/255, 204/255)
+turtle.pencolor(p_color)
+turtle.fillcolor(p_color)
+
+for i in range(6)
+    turtle.forward(100)
+    turtle.right(360/4)
+turtle.end_fill
+
+turtle.done
+
+for i in range(5):
+    print("Hello")
+
+for i in range(5):
+    print("Loop #" + str(i))
+
+
+for i in range(10,0,-1):
+    print("Loop #" + str(i)) 
+
+loops
+turtles
+
+import turtle
+
+t = turtle.Turtle()
+
+
+# All of your turtle commands
+# go in this space here.
+
+
+
+t.forward(n)
+t.backward()
+t.rt(d)
+t.lt(d)
+
+turtle.mainloop() #ends turtle 
+
+ for i in range(360):
+...     t.forward(1)
+...     t.rt(1)
+...
+>>> for i in range(360):
+...     t.forward(.5)
+...     t.rt(1)
+...
+>>> for i in range(180):
+...     t.forward(1)
+...     t.rt(2)
+...
+>>> 115 takes us to the top of the base circle
+
+
+ def shortside():
+  File "<stdin>", line 5
+    def shortside():
+    ^^^
+SyntaxError: invalid syntax
+>>>
+>>> def shortside():
+...     for i in range(90):
+...             t.forward(1/squish_factor)
+...             t.rt(1)
+...
+>>> longside()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'longside' is not defined
+>>> shortside()
+>>>
+>>> shortside()
+>>> shortside()
+>>> shortside()
+>>> def longside():
+...     for i in range(90):
+...             t.forward(squish_factor)
+...             t.rt(1)
+...
+>>> t.lt(90)
+>>> shortside()
+>>> longside()
+>>> shortside()
+>>> longside()
+>>>
+
+def use_a_swear():
+  """Says a swear"""
+  print("bitch")
+
+help(use_a_swear)
+
+count = 0 # counting variable
+while count < 5:
+    print("Hello")
+    count = count + 1
+
+
+import random
+ 
+while True:
+    print("This is an infinite loop")
+    rand_num = random.randint(1, 101) # random integer between 1 and 100
+    if rand_num > 75:
+        print("The loop has ended")
+        break # stop the loop
+
+
+
+import turtle
+import random
+def draw_rect(f_color, length):
+    p_color = (0/255, 153/255, 204/255)
+    turtle.pencolor(p_color)
+    turtle.fillcolor(f_color)
+    turtle.begin_fill()
+    for i in range(4):
+        turtle.forward(length)
+        turtle.right(360/4)
+    turtle.end_fill()
+def move_toxy(x, y):
+    turtle.penup()
+    turtle.goto(x, y)
+    turtle.pendown()
+def main():
+    turtle.setup(1000, 500)
+    turtle.bgcolor("gray")
+    turtle.speed(0)
+    # for i in range(5):
+    #     x_val = random.randint(-400, 400)
+    #     y_val = random.randint(-200, 200)
+    #     move_toxy(x_val, y_val)
+    #     fill_color = (random.randint(0, 255) / 255, random.randint(0, 255) / 255,
+random.randint(0, 255) / 255)
+    #     draw_rect(fill_color, random.randint(20, 100))
+    i = 0
+    while i<5:
+        x_val = random.randint(-400, 400)
+        y_val = random.randint(-200, 200)
+        move_toxy(x_val, y_val)
+        fill_color = (random.randint(0, 255) / 255, random.randint(0, 255) / 255, 
+random.randint(0, 255) / 255)
+        draw_rect(fill_color, random.randint(20, 100))
+        i = i + 1
+    # draw_rect("blue", 100)
+    # move_toxy(-100, 150)
+    # draw_rect("blue", 50)
+    turtle.done()
+if __name__ =="__main__":
+    main()
+    # turtle.circle(100, 180)
+    # turtle.done()import turtle
+import random
+def draw_rect(f_color, length):
+    p_color = (0/255, 153/255, 204/255)
+    turtle.pencolor(p_color)
+    turtle.fillcolor(f_color)
+    turtle.begin_fill()
+    for i in range(4):
+        turtle.forward(length)
+        turtle.right(360/4)
+    turtle.end_fill()
+def move_toxy(x, y):
+    turtle.penup()
+    turtle.goto(x, y)
+    turtle.pendown()
+def main():
+    turtle.setup(1000, 500)
+    turtle.bgcolor("gray")
+    turtle.speed(0)
+    # for i in range(5):
+    #     x_val = random.randint(-400, 400)
+    #     y_val = random.randint(-200, 200)
+    #     move_toxy(x_val, y_val)
+    #     fill_color = (random.randint(0, 255) / 255, random.randint(0, 255) / 255,
+random.randint(0, 255) / 255)
+    #     draw_rect(fill_color, random.randint(20, 100))
+    i = 0
+    while i<5:
+        x_val = random.randint(-400, 400)
+        y_val = random.randint(-200, 200)
+        move_toxy(x_val, y_val)
+        fill_color = (random.randint(0, 255) / 255, random.randint(0, 255) / 255, 
+random.randint(0, 255) / 255)
+        draw_rect(fill_color, random.randint(20, 100))
+        i = i + 1
+    # draw_rect("blue", 100)
+    # move_toxy(-100, 150)
+    # draw_rect("blue", 50)
+    turtle.done()
+if __name__ =="__main__":
+    main()
+    # turtle.circle(100, 180)
+    # turtle.done()
+
+black doodles.py to format your code?
+
+#Guess the number game
+#random integers
+idk bro
+#arguments go in the parentheses
+
+return function - sets values out of the function for what is set in the function
+
+return_string = welcome(Hope, 10)
+if there is no return the return value is none 
+
+def get_num():
+    number = int(input("Number: "))
+    return number
+
+print(get_number())
+variable_ = (get_num())
+
+Parameters 
+
+def add_sub(num1, num2, num3):
+    """add_sub does the following:
+    Add the first two parameters
+    Subtract the third paramter
+    Print the result"""
+    print(num1 + num2 - num3)
+
+add_sub(10+5, 10, 15)
+>:)
+
+def subtract(num1, num2):
+    """Subtract the second parameter from the first"""
+    print(num1 - num2)
+    
+subtract(5, 2)
+subtract(2, 5)
+subtract(num2=2, num1=5)
+
+def parameter_types(param1, param2, param3, param4):
+    """Takes four parameters
+    Print the type of each element"""
+    print("The type of {} is {}".format(param1, type(param1)))
+    print("The type of {} is {}".format(param2, type(param2)))
+    print("The type of {} is {}".format(param3, type(param3)))
+    print("The type of {} is {}".format(param4, type(param4)))
+        
+parameter_types(1, 5.9, "Beatles", False)
+
+def print_parameter(pram, pram2, pram3):
+  """ Prints parameters interpolated"""
+  print("My first parameter is ", pram)
+  print("My 2nd parameter is {}".format(pram2))
+  print(f"My 3rd parameter is {pram3}")
+
+print_parameter("fuck","bitch","cunt")
+
+Try/except - put error codes in your code 
+
+def division(num1, num2):
+    try:
+        print(num1 / num2)
+    except ZeroDivisionError:
+        print("Division by zero is not allowed")
+
+def add_if_true(num1, num2, bool = True):
+    """Prints the sum of two numbers
+    if the variable bool is true"""
+    if bool:
+        print(num1 + num2)
+    else:
+        print("No addition, bool is false")
+
+add_if_true(5, 7)
+add_if_true(5, 7, False)
+
+def calc_sum(*nums):
+    """Calculate the sum of all of the parameters"""
+    total = 0
+    for num in nums:
+        total += num
+    print(total)
+    
+calc_sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+list parameters
+
+return values
+
+def add_five(num):
+    """Add five to the parameter num"""
+    return(num + 5)
+  
+print(add_five(10))
+
+my_num = 0
+
+global variables: 
+
+my_num = 0
+
+def add_5():
+    """Add 5 to my_num"""
+    global my_num
+    my_num += 5
+  
+for i in range(10):
+    add_5()
+    print(my_num)
+    
+print('The value of my_num is: {}'.format(my_num))
+
+vs 
+
+def add_5(num):
+    """Receive a number and return that number plus 5"""
+    return(num + 5)
+  
+for i in range(10):
+    print(add_5(i * 5))
+    
+print(f'The value of my_num is: {my_num}')
+
+the definition of the function is called the function header
+return lets an output leave the function 
+
+can you redefine funtions?
+you can import your personal library
+
+arguments are typically inputted positionally, but you can also pass them by declaring with the parameter name 
+keyword arguments 
+
+to make optional arguments, declare the variable in the function header for a default value 
+except can be declared as NameError, ZeroDivisionError 
+
+'tuple values:
+
+in the functionheader: (*var_name)
+
+in the call: (var1, var2, var2)
+
+will function as one variable 
+
+these are useful to unpack lists of variables into separated ones
+
+def get_info(*person):
+...     print(f"{person}, {type(person)}")
+...
+>>> print(__name__)
+__main__
+>>> if __name__ == "__main__":
+...     p1 = get_info("Hope",8)
+...     p2 = get_info("Rose", True)
+...     print(p1[1])
+('Hope', 8), <class 'tuple'>
+('Rose', True), <class 'tuple'>
+>>>
+
+the global keyword makes a parameter a global variable 
+
+to use an error message, use raise 
+
+    if w <= 0 or h <= 0:
+        raise ValueError("Width and height must be positive integers.")
+
+black doodles.py use to auto format your code
+
+list(value0, value1, value2)
+print(list[0])
+
+list_1 = ["red"]
+list_2 = list_1*3
+
+keyword none
+
+list_1 = [None]*10
+
+
+lists
+
+length = len(list)
+print(f"{list(len-1)}")
+
+list[1] = "new_value1"
+
+play around with lists- how to add to a list, how to print the entire list
+make password code 
+
+print(list + list2)
+#will print the two lists as one 
+
+print("value0" in list)
+
+slicing
+
+print(names[1:4])
+print(names[:4]) # will go from 0 - 4
+print(names[1:4:2])
+print[::-1] #prints the list in reverse order
+
+
+everything is an object, object- based coding. 
+
+file_obj = open("myfile.txt", "w")
+to open a file and write into it 
+file_obj.writelines("The first line\n")
+file.obj.close()
+
+write a list of strings into a file
+
+colors = ["red\n", "yellow\n", "blue\n"]
+
+with open("myfile.csv","w") as f_obj:
+    f_obj.writelines("Month, Adults, babies, total\n")
+
+'w' overwrites the content of the file, overwiting if the file exists
+'a' appends(adds) to existing file content 
+'x' is like w, but fails if the file already exists 
+
+f.write method also works, but only for strings
+f.writelines works for everything
+
+print(2+5, file = f.obj)
+
+prints to your own file instead of the terminal
+
+file address: 
+"directory_name/filename.txt", "w"
+
+if you have your directory open, you can copy files into different locations using
+its address
+
+file = var_name 
+
+list_name.append(method)("Method Parameters")
+
+adding/appending things to lists 
+
+s_list = []
+s_list.append("item_1")
+len(s_list)
+
+the pop function will change the original list
+used to take things out of a list
+
+
+my_list = [1,2,3,4]
+
+for i in range(4):
+    print(my_list)
+    my_list.pop()
+
+
+int_list = [1, 2, 3, 4, 5]
+string_list = ["John", "Paul", "George", "Ringo"]
+mixed_list = [0.87, "hello", True, 17]
+
+my_list = [i for i in range(1, 51)]
+#the list is all the numbers 1-50
+print(my_list)
+
+
+my_list = [i for i in range(50, 0, -1)]
+
+print(my_list)
+
+
+list operators 
+
+list_1 = [1, 2, 3]
+list_2 = [4, 5, 6]
+
+print(list_1 + list_2)
+print(list_1 + [4])
+(Concatenated)
+
+list repitition
+
+list_1 = ["Hi!"]
+
+print(list_1 * 4)
+
+in operator- a bool that checks whether something is in (case sensititve)
+
+my_list = ["red", "orange", "yellow", "green"]
+print("red" in my_list)
+
+list lengths
+
+list_1 = [12, 66, 52, 97, 28, 41, 7]
+list_2 = [68, True, 34, False, 41.897, "apple"]
+
+if len(list_1) > len(list_2):
+    print("list_1 is longer than list_2")
+elif len(list_1) == len(list_2):
+    print("list_1 and list_2 are the same length")
+else:
+    print("list_2 is longer than list_1")
+
+slices for lists
+my_list = ["red", "orange", "yellow", "green"]
+my_slice = my_list[0:2]
+
+print(my_slice)
+
+writing to a file
+
+There are three different
+ modes when opening a file: read ("r"), write ("w"), and append ("a"). 
+
+output_file = open("student_folder/text/practice1.txt", "w")
+output_file.writelines("Hello there")
+output_file.close()
+
+output_file = open("student_folder/text/practice2.txt", "w")
+output_file.writelines("Hello ")
+output_file.writelines("there\n")
+output_file.writelines("bitch")
+output_file.close()
+
+lines_to_write = ["First sentence.", "Second sentence.", "Third sentence."]
+output_file = open("student_folder/text/practice2.txt", "w")
+output_file.writelines(lines_to_write)
+output_file.close()
+
+appending text
+
+output_file = open("student_folder/text/practice3.txt", "w")
+output_file.writelines("First sentence")
+output_file.close()
+
+output_file = open("student_folder/text/practice3.txt", "a")
+output_file.writelines("Second sentence")
+output_file.close()
+
+with open("student_folder/text/practice3.txt", "a") as output_file:
+    output_file.writelines("Some new text!")
+
+the with keyword opens a file and closes it again once the indented code is finished
+
+Writing into files: the hard way:
+
+import os
+
+file_object = open('preferences.txt', 'w')
+file_object.write(f"I'm writing stuff. {os.linesep}")
+file.object.close()
+
+the easy way: with
+
+import math
+
+with open('numbers.txt', 'w') as file_object:
+    user_input = input('Please enter a number ("done" to exit): ')
+    while user_input != 'done':
+        number = float(user_input)
+        print(f'The square root of {number} is {math.sqrt(number)}', file=file_object)
+        user_input = input('Please enter another number ("done" to exit): ')
+
+
+Rabbits outline
+
+uuh function (pretend everything is indendted lol)
+with open rabbits.csv
+    beginning text
+    while rabbits are less than cages
+        update rabbit numbers and month
+        list rabbit numbers and months
+        print rabbit numbers and cages to rabbits.csv
+    ^I'll probably put this stuff into a function actually
+    end text
+
+(main) get rabbit input/cage input (optional)
+do some rabbit math
+run again?
+
+the sum function
+
+my_list = [1,2,3]
+total = sum(my_list)
+print(total)
+#this will print the sum of 1 2 3
+
+my_list = ["abc", "def", "ghi"]
+print(sum(my_list))
+#this will give you an error message. Dont sum strings
+
+the min function (the max function works the same way)
+
+my_list = [45, 12, 9, 1]
+smallest = min(my_list)
+print(smallest) 
+
+my_list = ["apple", "boy", "cat", "aaron"]
+smallest = min(my_list)
+print(smallest)
+#for strings, the min function returns the 1st in alphabetical order
+#but dont mix str and int
+
+
+append (add to list)
+my_list = [1, 2, 3]
+new_element = 4
+
+my_list.append(new_element)
+print(my_list)
+
+pop (remove from list)
+my_list = [1, 2, 3, 4]
+print(my_list)
+print(my_list.pop())
+print(my_list) 
+#if specified, will remove the certain index, otherwise just the last one
+#returns the removed value
+
+insert
+my_list = [1, 2, 3, 4]
+my_list.insert(2, "Hi")
+print(my_list)
+#inserts at a certain index
+
+remove
+my_list = [2, "red", 3]
+my_list.remove(2)
+print(my_list)
+#final list is "red", 3- removes the specified value
+
+>>> print(my_list)
+['Will', 'Mike', 'Hope', 'Cathy']
+>>> my_list.append("Will")
+>>> print(my_list)
+['Will', 'Mike', 'Hope', 'Cathy', 'Will']
+>>> my_list.remove("Will")
+>>> print(my_list)
+['Mike', 'Hope', 'Cathy', 'Will']
+>>> my_list.remove("Will")
+>>> print(my_list)
+['Mike', 'Hope', 'Cathy']
+#if you have 2 of the same value, it will remove the first one
+
+
+
+count 
+my_var = 2
+my_list = [2, "red", 2.0, my_var, "Red", 8 // 4]
+print(my_list.count(2))
+
+index
+my_list = ["dog", True, 16, "house", 55.9, False, 16]
+index = my_list.index("house")
+print(index)
+#gets the index of a certain value
+
+sort 
+my_list = [23, 55, 11, 7, 82.9, -14, 0, 34]
+print(my_list)
+my_list.sort()
+print(my_list)
+#sorts the list smallest to biggest or alphabetical
+#all capital letters come before lowercase letters
+my_list.sort(reverse=True)
+print(my_list)
+#don't combine str and int
+
+reverse - different from reverse sort
+#just reverses the list
+my_list = ["north", True, 45, 12, "red"]
+print(my_list)
+my_list.reverse()
+print(my_list)
+
+extend - like append, but for multiple values
+#append will add everything as one value
+userdb = ["Will","Mike"]
+my_list = userdb 
+my_list.extend(["Hope", "Cathy"])
+
+sorted
+sorted(my_list)
+returns what your list would look like sorted
+#dont mix int and str
+#does not change the original list
+
+list interation 
+
+numbers = [1, 2, 3, "hi"]
+for number in numbers:
+    print(number)
+prints every list item as a seperate line 
+more importantly, runs for every object in the list, no matter how long
+
+numbers = [1, 2, 3, 4]
+length = len(numbers)
+i = 0
+
+while i < length:
+    print(numbers[i])
+    i += 1
+same thing, but with a while loop
+
+2d lists, aka nesting lists
+my_2d_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(my_2d_list)
+
+Readable 2d lists:
+
+populous_cities = [
+                    ["USA", "New York City", "Los Angeles", "Chicago"],
+                    ["France", "Paris", "Marseille", "Lyon"],
+                    ["China", "Shanghai", "Beijing", "Chongqing"],
+                    ["India", "Mumbai", "Delhi", "Bangalore"]
+                  ]
+print(populous_cities)
+
+print(populous_cities[0])
+usa_cities = populous_cities[0]
+print(usa_cities[0])
+or
+
+print(colors[1][2])
+to extract a certain value from the 2d list 
+
+adding 2d lists:
+list_1 = [[1, 2, 3], [4, 5, 6]]
+list_2 = [[7, 8, 9], [10, 11, 12]]
+
+print(list_1 + list_2)
+[[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
+also works with append
+
+my_list = [["a", "b", "c"], ["d", "e", "f"]]
+another_list = ["g", "h", "i"]
+my_list.append(another_list)
+print(my_list)
+
+mylist = [1, 3, 5]
+mylist +=[7, 9]
+print(mylist)
+that worked
+
+mylist -= mylist[0]
+mylist -= [1, 3]
+print(mylist)
+that did not work
+
+To use if statements with 2d lists, nest the if statements/loops
+mountains = [
+              ["Mount Everest", "K2", "Kangchenjunga"],
+              ["Denali", "Mount Logan", "Pico de Orizaba"],
+              ["Mount Kilimanjaro", "Mount Kenya", "Mount Ngaliema"]
+            ]
+
+for row in range(3):
+  for column in range(3):
+    if len(mountains[row][column]) <= 6:
+      print(mountains[row][column])
+
+import random
+
+numbers = [[random.randint(1, 101) for columns in range(10)] for rows in range(10)]
+print(numbers)
+
+number is a 2d list with 10 rows & 10 columns that are all populated with 
+random numbers from 1 to 100
+
+symbols = [["*" for columns in range(5)] for rows in range(7)]
+print(symbols)
+this one's better cuz it doesn't have the random
+
+how to print 2d lists without extra brackets:
+import random
+
+numbers = [[random.randint(1, 101) for columns in range(5)] for rows in range(5)]
+for row in numbers:
+  for number in row:
+    print(f"{number} ", end="")
+  print()
+
+sorting 2d lists
+numbers = [
+            [6, 7, 10, 9, 8],
+            [12, 13, 14, 11, 15],
+            [20, 18, 17, 19, 16],
+            [1, 2, 3, 4, 5]
+          ]
+numbers.sort()
+# loop to print the 2D list
+for row in numbers:
+  print(row)
+This will sort the rows but not within them
+
+numbers = [
+            [6, 7, 10, 9, 8],
+            [12, 13, 14, 11, 15],
+            [20, 18, 17, 19, 16],
+            [1, 2, 3, 4, 5]
+          ]
+numbers.sort()
+# loop to sort and print the 2D list
+for row in numbers:
+  row.sort()
+  print(row)
+Will sort columns as well, but will not swap elements from one row to another
+
+
+addition in a 2d list
+numbers = [
+            [6, 7, 10, 9, 8],
+            [12, 13, 14, 11, 15],
+            [20, 18, 17, 19, 16],
+            [1, 2, 3, 4, 5]
+          ]
+total = 0
+
+# loop to add the sum of each inner list to total
+for row in numbers:
+  total += sum(row)
+print(total)
+
+for i in range(len(colors)):
+    print(f"{i} {colors[i]})
+
+for color in range(colors):
+    print(color)
+
+new_list = []
+for i in range(10):
+    new_list.append(i)
+print(new_list)
+
+print(list(range(10))) ^same , but generates instead of stores values
+
+list1 = [number for number in new_list]
+
+list2 = [2*number for number in range(10)]
+
+print lists without brackets separate
+>> print(*my_list, sep=", ")
+1, 2, 3
+>>>
+
+
+printing to a file from input
+with open("student_folder/csv/superheroes.csv", "w") as output_file:
+    writer = csv.writer(output_file, lineterminator="\n")
+    print("Enter 'stop' to quit the program")
+    while True:
+        name = input("Enter the superhero's name: ")
+        power = input("Enter their superpower: ")
+        if name == "stop" or power == "stop":
+            break
+        writer.writerow([name, power])    
+
+delimiters are what separates things in a read file
+
+I lost some notes :(
+
+reading from a file: 
+
+Reading a file that does not exist will cause an error. Writing or appending a file that does not exist will cause the creation of this file.
+
+with open("my_file.txt", "r") as read_file:
+    for line in read_file.readlines():
+        print(line)
+
+The readlines method reads all of the text file and returns all of the strings in a list.
+The readline method reads one string at a time.
+
+
+The variable that represents the text file is named my_file and the method 
+to find a specific character is seek. You are looking for the 35th character, 
+and the seek method starts with index 0. So the 35th character would be index 34.
+my_file.seek(34)
+
+with open("source.txt", "r") as source, open("dest.txt", "w") as dest:
+    for line in source.readlines():
+        dest.write(line)
+
+with open("story.txt", "r") as input_file:
+  lines = input_file.readlines()
+  for line in lines:
+    print(line, end='')
+
+
+with open("my_file.txt", "r") as input_file:
+    line = input_file.readline()
+    while line != "":
+        print(line)
+        line = input_file.readline()
+
+back to our regularly scheduled programming
+
+grabbing an index from a string
+   char_index = SYMBOLS.find(char)
+
+encryption and decryption: 
+with open("student_folder/text/encrypted.txt", "r") as source, open("student_folder/text/decrypted.txt", "w") as destination:   
+    key = 13
+    mode = "decrypt"
+    SYMBOLS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.-;"
+    new_text = ""
+
+    line = source.readline()
+    while line != "":
+        for char in line:
+          if char in SYMBOLS:
+            char_index = SYMBOLS.find(char)
+
+            if mode == "encrypt":
+              new_index = char_index + key
+            elif mode == "decrypt":
+              new_index = char_index - key
+
+            if new_index >= len(SYMBOLS):
+              new_index -= len(SYMBOLS)
+            elif new_index < 0:
+              new_index += len(SYMBOLS)
+          new_text += SYMBOLS[new_index]
+        destination.write(new_text)
+        line = source.readline()
+        break
+indentation is VERY IMPORTANT 
+
+
+with open("student_folder/text/encrypted.txt", "r") as source, open("student_folder/text/decrypted.txt", "w") as destination:   
+    key = 13
+    mode = "decrypt"
+    SYMBOLS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.-;"
+    new_text = ""
+
+    line = source.readline()
+    while line != "":
+        for char in line:
+          if char in SYMBOLS:
+            char_index = SYMBOLS.find(char)
+
+            if mode == "encrypt":
+              new_index = char_index + key
+            elif mode == "decrypt":
+              new_index = char_index - key
+
+            if new_index >= len(SYMBOLS):
+              new_index -= len(SYMBOLS)
+            elif new_index < 0:
+              new_index += len(SYMBOLS)
+          new_text += SYMBOLS[new_index]
+        destination.write(new_text)
+        line = source.readline()
+        break
+
+
+WORKING ON
+with open("student_folder/.labs/myanmar.txt", "r") as source, open("student_folder/text/new_myanamar.txt", "w") as dest:
+  line = source.readline()
+  
+  while line != "":
+    new_line = line.replace("Burma", "Myanmar")
+    dest.write(new_line)
+    line = source.readline()
+
+replacing in a file
+
+import sys
+
+test_file = sys.argv[1]
+
+line_count = 0
+char_count = 0
+
+with open(test_file, "r") as input_file:
+    line = input_file.readline()
+    while line != "":
+        line_count += 1
+        char_count += len(line)
+        line = input_file.readline()
+
+print("{} lines".format(line_count))
+print("{} characters".format(char_count))
+
+counting characters and lines in a file
+
+with open(test_file, "r") as source:
+  line = source.readline()
+  while line !="" :
+    print(line)
+    line = source.readline()
+
+base shit you need for reading files 
+
+with open(test_file, "r") as source:
+  line = source.readline()
+  listy_boi = []
+  while line !="" :
+    listy_boi = line.split()
+
+a surprise tool: splitting csv into a list per line
+
+APPARANTLY YOU CAN JUST IMPORT CSV 
+
+to pull columns/ rows from csv files
+sys sub language is for manipulating files library
+csv sub languages if for interpreting cvs files in columns and rows
+
+Comma Separated Value 
+
+in csv, you can pull each value as a value separated with commas 
+but you have to 1) import cvs, and 2, use the cvs reader
+
+import csv 
+reader = csv.reader(input_file)
+
+for example, 
+
+for num1, num2, num3, num4 in reader: 
+
+the line above is iterating through each line in a csv file,
+for any number of rows, 4 columns 
+it calls the column value in order for each row
+
+the lab in question:
+'''
+import sys, csv
+
+test_file = sys.argv[1]
+
+total1 = 0
+total2 = 0
+total3 = 0
+total4 = 0
+row_count = 0
+
+with open(test_file, "r") as input_file:
+    reader = csv.reader(input_file)
+    for num1, num2, num3, num4 in reader:
+        row_count += 1
+        total1 += int(num1)
+        total2 += int(num2)
+        total3 += int(num3)
+        total4 += int(num4)
+
+print("{} {} {} {}".format(total1/row_count, total2/row_count, total3/row_count, total4/row_count))
+
+'''
+
+import sys, csv
+
+test_file = sys.argv[1]
+
+# print(csv, end="")
+
+# with open("/usr/lib/python3.6/csv.py", "r") as source:
+#   line = source.readline()
+#   while line != "":
+#      print(line, end="")
+#      line = source.readline()
+
+t = 0
+tt = 0
+ttt = 0
+tttt = 0
+row_count = 0
+
+with open(test_file, "r") as source:
+  row = csv.reader(source)
+  
+  for column1, column2, column3, column4 in row:
+    row_count += 1
+    t += int(column1)
+    tt += int(column2)
+    ttt += int(column3)
+    tttt += int(column4)
+
+  av1 =t/row_count
+  av2 =tt/row_count
+  av3 =ttt/row_count
+  av4 =tttt/row_count
+
+  print(av1, av2, av3, av4)
+  
+#I am going to scream
+
+reversing
+my code: 
+
+import sys
+
+test_file = sys.argv[1]
+
+line_list = []
+with open(test_file, "r") as source:
+  line = source.readline()
+  while line != "":
+    line_list.append(line)
+    line = source.readline()
+  line_list.reverse()
+  for i in line_list:
+    print(i, end='')
+
+
+my teacher's code:
+import sys
+
+test_file = sys.argv[1]
+
+with open(test_file, "r") as input_file:
+    lines = input_file.readlines()
+    lines.reverse()
+    for line in lines:
+        print(line)
+
+
+import sys, csv
+
+test_file = sys.argv[1]
+
+delimiter= "\t"
+
+highest = 0
+
+with open(test_file, "r",) as source:
+  row = csv.reader(source, delimiter="\t")
+  next(row)
+
+  for column1, column2, column3 in row:
+    if int(column2) > highest:
+      highest = column2
+    else:
+      pass
+  print(highest)
+
+
+import sys, csv
+
+test_file = sys.argv[1]
+
+delimiter= "\t"
+
+highest = 0
+
+with open(test_file, "r",) as source:
+  row = csv.reader(source, delimiter="\t")
+  next(row)
+
+  for column1, column2, column3 in row:
+    if int(column2) > highest:
+      highest = column2
+    else:
+      pass
+  print(highest)
+
+import sys, csv
+
+test_file = sys.argv[1]
+
+cities = []
+with open(test_file, "r",) as source:
+  my_reader = csv.reader(source)
+  next(my_reader)
+
+  for eeny, meeny, miney, moe in my_reader:
+    num = int(miney)
+    if num < 0:
+      cities.append(eeny)
+    else:
+      pass
+    
+
+print("The following cities are in the Southern Hemisphere: ", end='')
+print(*cities, sep=", ", end=".")
+
+
+Strings in files
+
+to put all of a file's contents in one string, separated with \n, 
+use the read() method
+lines = file_object.read()
+
+to put each line as a separate item in a list, use the readlines() method
+lines = file_object.read()
+
+or you can use a for loop to append them one at a time, and also 
+use the strip() method to get rid of extra stuff
+lines = []
+with open(yknow)
+    for line in file_object:
+        lines.append(line.strip())
+
+or, more consisely,
+lines = [line.strip() for line in file_object]
+
+with open('coconuts.txt', 'r') as file_object:
+    words = file_object.read().split()
+will take the entire document and divide it by word
+
+import os
+
+with open('coconuts.txt', 'r') as file_object:
+    lines = file_object.read().strip().split(os.linesep)
+will split the document by line 
+
+with open('values.csv', 'r') as file_object:
+    rows = [row.split(',') for row in file_object]
+gets a 2d list from a csv file, but it's messy
+
+with open('values.csv', 'r') as file_object:
+    rows = [[int(value.strip()) for value in row.split(',')] for row in file_object]
+same thing, but cleaner
+
+unpacking a list:
+list_a = ["Hope", "January 2nd", 26]
+name, birthday, age = list_a 
+
+list_b =["Don", 36, 51, 79]
+name, *scores = list_b 
+
+when you readline() for lines that you don't have, it returns an empty string
+
+while line != "":
+    line = f_obj.readline()
+    new_list = line.split()
+    print(new_list)
+
+for line in f_obj:
+    print(line)
+
+print(list("Hello"))
+#[H,e,l,l,o]
+
+print(list(f_obj))
+will print the entire file as a list divided by lines
+
+you can only access each element in a read file 1x, so set new variables
+if you need them more than once
+
+new_list = [ float(score) for score in scores]
+typecasting a whole list
+sum(list)
+
+
+
+import math
+
+def radius(x1, y1, x2, y2):
+    """Distance formula to determine the radius of a circle"""
+    return(math.sqrt((x2 - x1)**2 + (y2 - y1)**2))
+  
+def area(x1, y1, x2, y2):
+    """Area of a circle function"""
+    return(math.pi * radius(x1, y1, x2, y2)**2)
+
+print(area(0, 0, 4, 4))
+
+print(radius(0,0,4,4)**2*math.pi)
+
+Here we have two functions that use the same parameters, one to find
+the radius of a circle and one to find an area, based on two coordinates
+center of circle and a point on the edge
+
+import math
+  
+def area(x1, y1, x2, y2):
+    """Area of a circle function"""
+    def radius(x1, y1, x2, y2):
+        """Distance formula to determine the radius of a circle"""
+        return math.sqrt(math.pow(x2 - x1, 2) + math.pow(y2 - y1, 2))
+    
+    return(math.pi * math.pow(radius(x1, y1, x2, y2), 2))
+  
+print(area(0, 0, 4, 4))
+
+Same thing, but with a one function nested inside the other. 
+
+you could also write area(radius(0,0,4,4)) but with the one under here
+radius() is a helper function because its used as a calc in anther function
+
+import math
+
+def area(r):
+    """Area of a circle"""
+    return(math.pi * math.pow(r, 2))
+
+def radius(x1, y1, x2, y2):
+    """Distance formula to calculate the radius"""
+    return(math.sqrt(math.pow(x2 - x1, 2) + math.pow(y2 - y1, 2)))
+
+print(area(radius(0, 0, 4, 4)))
+
+helper functions will only be used in user-defined functions
+
+def force(dv, time, mass):
+    """Calculate force"""
+    def acceleration(dv, time):
+        """Calculate acceleration"""
+        return(dv / time)
+    return(mass * acceleration(dv, time))
+
+Internal Helper function, with math you know 
+
+Variable Scope
+local variables- can only be seen within their function
+global variable- public/ can be seen by anywhere 
+
+two local variables:
+def function_1():
+    my_var = "Hello"
+    print(my_var)
+    
+def function_2():
+    my_var = "Bonjour"
+    print(my_var)
+    
+function_1()
+function_2()
+
+global variable:
+greeting = "Hello"
+
+def say_hello():
+    """Print a greeting"""
+    print(greeting)
+
+say_hello()
+
+greeting = "howdy"
+
+def say_hello():
+    """Demonstrate how to use the global keyword"""
+    global greeting
+    greeting = "Bonjour"
+    print(greeting)
+
+say_hello()
+print(greeting)
+
+this prints bonjour twice 
+
+greeting = "howdy"
+
+def say_hello():
+    """Demonstrate how to use the global keyword"""
+    # global greeting
+    greeting = "Bonjour"
+    print(greeting)
+
+say_hello()
+print(greeting)
+
+this prints bonjour then howdy
+
+if both local and global are the same variable, local takes precedence
+
+my_var = "global scope"
+
+def print_scope():
+    """Demonstrate local scope vs global scope"""
+    my_var = "local scope"
+    print(my_var)
+
+print_scope()
+print(my_var)
+
+When you have a local and global variable with the same name 
+and there is no global keyword, the local
+scope variable takes precedence.
+When you have a local and global variable with the same name 
+and the global keyword is being used, the global
+scope variable takes precedence.
+
+import csv
+
+movie_csv = "student_folder/.labs/movie_data.csv"
+
+def fetch_movie_data(movie_csv):
+    """Return movie data from a CSV file"""
+    with open(movie_csv, "r") as movie_file:
+      reader = csv.reader(movie_file)
+      movie_info = []
+      for row in reader:
+        movie_info.append(row)
+      return movie_info
+
+def print_movie_data(data):
+  '''print the movie data legibly'''
+  for title, genre, tomato, gross, year in data:
+    print("{:5} {}     {}   ${}   {}".format(title, genre, tomato, gross, year))
+
+
+movie_data = fetch_movie_data(movie_csv) 
+print_movie_data(movie_data)
+
+import csv, operator
+
+movie_csv = "student_folder/.labs/movie_data.csv"
+
+def fetch_movie_data(movie_csv):
+    """Return movie data from a CSV file"""
+    with open(movie_csv, "r") as movie_file:
+      reader = csv.reader(movie_file)
+      movie_info = []
+      for row in reader:
+        movie_info.append(row)
+      return movie_info
+
+def print_movie_data(data):
+  '''print the movie data legibly'''
+  for title, genre, tomato, gross, year in data:
+    print("{:5} {}     {}   ${}   {}".format(title, genre, tomato, gross, year))
+
+def sort_movie_data(data, index):
+  """ sort the data based on an index""" 
+  header = data[0]
+  sorted_movies = data[1:]
+  if index == 3:
+    sorted_movies.sort(key=get_money)
+  else:
+    sorted_movies.sort(key=operator.itemgetter(index))
+  sorted_movies.insert(0, header)
+  return sorted_movies
+
+def get_money(gross):
+  return float(gross[3])
+
+
+movie_data = fetch_movie_data(movie_csv) 
+print_movie_data(sort_movie_data(movie_data, 3))
+
+sorting by a specific parameter using operator.itemgetter(parameter)
+
+
+import csv, operator
+
+movie_csv = "student_folder/.labs/movie_data.csv"
+
+def fetch_movie_data(movie_csv):
+    """Return movie data from a CSV file"""
+    with open(movie_csv, "r") as movie_file:
+      reader = csv.reader(movie_file)
+      movie_info = []
+      for row in reader:
+        movie_info.append(row)
+      return movie_info
+
+def print_movie_data(data):
+  '''print the movie data legibly'''
+  for title, genre, tomato, gross, year in data:
+    print("{:5} {}     {}   ${}   {}".format(title, genre, tomato, gross, year))
+
+def sort_movie_data(data, index, descending):
+  """ sort the data based on an index""" 
+  header = data[0]
+  sorted_movies = data[1:]
+
+  if index == 3:
+    sorted_movies.sort(key=get_money)
+  else:
+    sorted_movies.sort(key=operator.itemgetter(index))
+  
+  if descending:
+    sorted_movies.reverse()
+  
+  sorted_movies.insert(0, header)
+  return sorted_movies
+
+def get_money(gross):
+  return float(gross[3])
+
+
+movie_data = fetch_movie_data(movie_csv) 
+print_movie_data(sort_movie_data(movie_data, 0, True))
+
+added descending 
+
+
+def to_upper(text):
+  try:
+    new_string = text.upper()
+    return new_string
+  except ValueError:
+    print("Please input a string")
+
+
+Tuples !
+tuples are immutable lists, defined by ()
+numbers = (1, 2, 3, 4)
+
+empty_tuple = ()
+print(empty_tuple)
+
+We can also create tuples which contain only one element (the comma following the element is necessary):
+
+number = (1, )
+print(number)
+
+indexing tuples
+words = ('peanut', 'car', 'friend', 'eat', 'movie', 'box')
+
+print("Original Tuple:", words)
+print("Index Value 4 in Tuple called 'words':", words[4])
+print("Index Value -2 in Tuple called 'words':", words[-2])
+
+sports = ('Softball', 'Football', 'Volleyball', 'Basketball')
+print("Slicing Tuple 'sports' to retrieve the elements at Index Values 1 and 2:", sports[1:3])
+print("Slicing Tuple 'sports' to retrieve the elements at Index Values 1 and 2", sports[1:-1])
+
+packing and unpacking tuples:
+
+#packing tuples:
+var1 = 2
+var2 = 3
+var3= 4
+
+tuple1 = (var1, var2, var3, 5, 6, 7)
+print(tuple1)
+
+tuple2 = ("yeet ", "yoink")
+
+#unpacking tuples
+
+yin, yang = tuple2
+print(yin + yang)
+
+var4 = tuple1[3]
+var5 = tuple1[4]
+print(var5)
+
+unpacking function:
+jada_grades = ("Jada", "A", "B+")
+
+def student_grades_by_line(tuple_name):
+  (student_name, math_grade, history_grade) = tuple_name
+  print("Student's Name:", student_name,
+  "\nStudent's Math Grade:", math_grade,
+  "\nStudent's History Grade:", history_grade)
+  return("")
+
+print(student_grades_by_line(jada_grades))
+
+tuples are very strict about how many elements you have in them
+
+def unpacker(tuple_name):
+  for i in tuple_name:
+    print(i)
+
+also returns all the values in a tuple, but has an extra None value
+
+
+deleting delete anything, including tuples:
+
+xyz = ("x", "y", "z")
+print("Before Deleting Tuple:", xyz)
+
+del(xyz)
+print("After Deleting Tuple:")
+# print(xyz)
+
+x = 3
+
+print(x)
+
+del(x)
+# print(x)
+just unalives it
+
+delete things within immutable objects by redefining it as a slice of itself
+
+alphabet = ('t', 'u', 'v', 'w', 'x', 'y', 'z', 'x', 'y', 'z')
+print("Original Elements in 'alphabet':", alphabet)
+
+alphabet = alphabet[:7]
+print("Corrected Elements in 'alphabet':", alphabet)
+
+tuples can be added with + 
+colors = ('red', 'orange', 'kangaroo', 'yellow', 'green', 'blue', 'purple', 'pink')
+colors = (colors[0:2] + colors[3:8])
+print(colors)
+
+tuples can be zooted into lists, and vice versa
+fabrics = ('denim', 'satin')
+fabrics_list = list(fabrics)
+print("Fabrics Tuple:", fabrics, "\nFabrics List:", fabrics_list)
+
+fabrics = tuple(fabrics_list)
+print(fabrics)
+
+and with that use all our list functions
+
+
+Tuples	Lists	Sets	Dictionaries
+immutable	mutable	mutable	mutable
+ordered	ordered	unordered	unordered
+allows duplicate element values	allows duplicate element values	does not allow duplicate element values	does not allow duplicate keys
+represents a collection of ordered elements	represents a collection of ordered elements	represents a collection of elements	represents a collection of keys and their corresponding values
+(element1, element2, …)	[element1, element2, …]	{element3, element1, element2, …}	{key1 : value1, key2 : value2, …}
+
+Dictionaries:
+
+dictionary_var = {key1: value1, key2: value2, key3: value3}
+dictionaries are mutable, unordered, and doesn't allow duplicates
+
+>>> numbers = [1, 2, 3, 4, 5]
+>>> number_dic = {number: number**2 for number in numbers}
+>>> print(number_dic)
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+>>>
+>>> num_dic = {number:number**2 for number in numbers if number%2 == 0}
+>>> print(num_dic)
+{2: 4, 4: 16}
+>>>
+
+>>> for item in number_dic:
+...     print(item)
+...
+1
+2
+3
+4
+5
+>>>
+>>> print(number_dic[1])
+1
+>>> the index for dictionaries starts at 1
+
+list1 = ["UofU", "UVU", "BYU"]
+list2 = ["SLC", "Orem", "Provo"]
+
+print(list(zip(list1, list2)))
+
+for school, city in zip(list1,list2)
+    data_dict[school] = 
+    
+Nested dictionaries 
+actor = {
+  'first_name' : 'Denzel',
+  'last_name' : 'Washington',
+  'films' : {
+    'Malcolm X' : 1992,
+    'The Hurricane' : 1999,
+    'Training Day' : 2001,
+    'Fences' : 2016
+  }
+}
+
+print(actor)
+
+actor = {
+  'first_name' : 'Denzel',
+  'last_name' : 'Washington',
+  'films' : [
+    ('Malcolm X', 1992),
+    ('The Hurricane',  1999),
+    ('Training Day', 2001),
+    ('Fences', 2016)
+  ],
+  'oscars' : [{
+    'award' : 'Best actor in a supporting role',
+    'film' : 'Glory',
+    'year' : 1990
+  }, {
+    'award' : 'Best actor in a leading role',
+    'film' : 'Training Day',
+    'year' : 2002
+  }]
+}
+
+print(actor)
+
+import pprint
+pprint.pprint(actor)
+pprint.pprint(actor, width=40)
+
+prints legibly^
+
+movie = actor['films'][0][0]
+pprint.pprint(movie) 
+accessing things in nested dictionary 
+movie = actor['oscars'][0]['film']
+
+pprint.pprint(actor.items())
+pprint.pprint(list(actor.items())) 
+
+import pprint
+import copy
+
+actor = {
+  'first_name' : 'Denzel',
+  'last_name' : 'Washington',
+  'films' : [
+    ('Malcolm X', 1992),
+    ('The Hurricane',  1999),
+    ('Training Day', 2001),
+    ('Fences', 2016)
+  ],
+  'oscars' : [{
+    'award' : 'Best actor in a supporting role',
+    'film' : 'Glory',
+    'year' : 1990
+  }, {
+    'award' : 'Best actor in a leading role',
+    'film' : 'Training Day',
+    'year' : 2002
+  }]
+}
+
+actor_copy = copy.copy(actor)
+actor_copy['films'][3] = ('Remember the Titans', 2000)
+#shallow copy. nested var doesnt change
+
+actor_copy = copy.deepcopy(actor)
+actor_copy['films'][3] = ('Remember the Titans', 2000)
+#deep copy. everything changes
+
+# print('Original Dictionary')
+# print('-------------------')
+# pprint.pprint(actor, width=40)
+
+# print('\nCopied Dictionary')
+# print('-----------------')
+# pprint.pprint(actor_copy, width=40)
+
+print(f'Actor: {id(actor)}')
+print(f' Copy: {id(actor_copy)}')
+
+print(f'Actor: {id(actor["films"])}')
+print(f' Copy: {id(actor_copy["films"])}')
+#printing the memory address of the data or location 
+
+// 20220411141008
+// https://musicbrainz.org/ws/2/artist/5b11f4ce-a62d-471e-81fc-a69a8278c7da?fmt=json
+
+{
+  "end_area": null,
+  "name": "Nirvana",
+  "gender-id": null,
+  "ipis": [
+    
+  ],
+  "end-area": null,
+  "begin_area": {
+    "type-id": null,
+    "sort-name": "Aberdeen",
+    "name": "Aberdeen",
+    "id": "a640b45c-c173-49b1-8030-973603e895b5",
+    "disambiguation": "",
+    "type": null
+  },
+  "life-span": {
+    "ended": true,
+    "end": "1994-04-05",
+    "begin": "1988-01"
+  },
+  "disambiguation": "90s US grunge band",
+  "id": "5b11f4ce-a62d-471e-81fc-a69a8278c7da",
+  "isnis": [
+    "0000000123486830",
+    "0000000123487390"
+  ],
+  "begin-area": {
+    "type-id": null,
+    "sort-name": "Aberdeen",
+    "name": "Aberdeen",
+    "id": "a640b45c-c173-49b1-8030-973603e895b5",
+    "disambiguation": "",
+    "type": null
+  },
+  "sort-name": "Nirvana",
+  "gender": null,
+  "type": "Group",
+  "area": {
+    "sort-name": "United States",
+    "name": "United States",
+    "disambiguation": "",
+    "iso-3166-1-codes": [
+      "US"
+    ],
+    "id": "489ce91b-6658-3307-9877-795b68554c98",
+    "type-id": null,
+    "type": null
+  },
+  "country": "US",
+  "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b"
+}
+the json file
+JavaScript Object Notation 
+
+import json
+
+with open('data/music.json') as music_json:
+  music_data = json.load(music_json)
+
+print(type(music_data))
+jsons can translate to dictionaries 
+
+import json
+
+with open('data/music.json') as music_json:
+  music_data = json.load(music_json)
+
+print(json.dumps(music_data, indent=1))
+
+reading json file 

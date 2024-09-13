@@ -1,0 +1,4363 @@
+Notes for C++
+
+prof. Gabriel Raymer
+TA Tyler Rees
+
+email the prof. 
+
+Late work- keep it within reason and you'll get credit
+Don't be late on projects 
+code pretty fires
+
+cobol is used in banking
+
+zybooks- paid for (:
+)-has 6 projects
+
+c is the basic assembly
+c sharp is an open-source programming language
+c+ and c++ have more 
+
+internet has been a normal thing since 1995 
+
+Module 1:
+
+hello world, user input
+
+source file > compile > object file > link > executable file 
+
+cout << (output to console)
+cin >> (input from console)  
+
+developing with repl.it 
+
+static and dynamic typing- python is dynamic, c++ is static
+you declare the type of the variable up front
+size is determined at compile time
+
+
+
+Variables and Assignments
+
+built-in: bool, char, int, float, double
+integers- short, long, longlong, unsigned, __int8, int16, in32, etc
+double replaces float- different bit count ( 32f v 64d )
+long double has maximum precision
+
+#include <iostream>
+#inclue <iomanip>
+#include <math>
+
+using namespace std;
+
+int main(){
+    double sphereVolume;
+    double sphereRadius;
+
+    cin >> sphereRadius;
+}
+
+Numeric Literals- can use ' as a group separator
+0b1011'0011'0001'1000   binary
+0xB318                  hex
+1'000'000               decimal
+1.23e5                  decimal
+
+integer division- if both operands are integers, the remainder is dropped
+if either is a floating-point, the remainder is kept
+    if you cast as integer- it is dropped< narrowing conversion
+
+be careful with compiling too much stuff- you can put everythin in 1 folder tho
+
+int main(){
+    int n = 3/2;
+    auto m = 3/2.0;
+    int k {3/2};
+    cout << n << ", " << m << ", " << k << endl;
+}
+
+math with large integers can overflow- silent error
+
+signed int - cut the size of the int in half to include its counterparts in negative
+unsigned int- normal positive int with a set size 
+
+int main(){
+    singed int n = INT_MAX
+    cout << n << endl;
+    cout << n+1 << endl;
+
+    unsigned int n = INT_MAX
+    cout << n << endl;
+}
+
+floats are limited to 32 bits, doubles are 64 bits 
+as numbers grows bigger, they are spaced further apart
+
+the computer skips integers when numbers get really really big- rounding error
+^floating put
+
+
+
+Control Flow AKA Switches and IF statements
+
+code-cotta- practicing the same code over and over to get muscle memory for coding
+
+We'll start doing projects will start in February
+
+watchlist- watch the variables to see what it's set to
+call stack- where code resides in memory 
+use your compiler!!
+
+if..else if..else
+the condition must be in parentheses
+If you have multiple lanes in a branch, use blocks:
+{
+    <line 1>
+    <line 2>
+}
+
+Order of evaluation:
+() ! */% +- <><=>= ==!= && ||
+
+m<x<n is not allowed, use m<x && x<n
+when in doubt, use parentheses
+
+Bitwise operations
+used to access bits of a variable 
+-to control aspects of your operating systems hardware
+-can save memory in certain applications
+
+| or & and ^ xor ~ not >> shift right << shift left 
+be careful to not lose bits 
+xor is one or the other but not both 
+
+switches and cases
+if / if else / else 
+
+switch (a) {
+    case 0:
+        //
+        break;
+    case 1:
+        //
+        break;
+    default:
+        //
+        break;
+}
+if you don't have a break statement, it'll read the block and go to the next one 
+until it reaches a break 
+
+to get a char at pos k from str s 
+s.at(k)  <<checks that the position is valid
+s[k]
+
+ternary operators: _?_:_   <Condition>? <TrueResult>:<FalseResult> 
+shorthand for an if else that yields a value and can nest
+
+recursion 
+
+fact(n):{
+    n==1? cout<<n:fact(n-1);
+}
+
+
+ok lets break down a hello world
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello World";
+    cout << endl;
+}
+
+#include <iostream>
+//variable values mostly go in <> I think idk ask later
+using namespace std;
+// import statements. idk we'll get into it later
+
+char main() {
+//char is the return value is supposed to be a character. can also be int or whatever
+//main is the main function. most c languages have main every time
+//parentheses to denote a function. as per usual
+//open curly brackets- anything in the curly brackets is in the function
+    cout << "Hello World";
+    //cout (c-out) for characters out- basically the print statement
+    //the pointer points to the direction the variable is going to 
+    //so the "Hello World" variable will go into the cout function 
+    cout << endl;
+    //another cout to end the line. you could also put in the same line as the first but whatevs
+    //technically endl starts a new line 
+    //always end your line with ;
+}
+//always end your func with close curly bracket 
+
+"string literal"
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int drivingYear;
+   int drivingAge;
+   int numStates; 
+    //declaring some variables here
+
+   drivingYear = 2014;
+   drivingAge = 18;
+   numStates = 10; 
+    //and setting them some values. No you cannot declare them and set them in the same line
+
+   cout << "In " << drivingYear << " the driving age is " << drivingAge << "." << endl;
+    // you can put more stuff in one line by using more pointers
+   cout << numStates << " states have exceptions." << endl;
+  
+
+   return 0;
+}
+
+//single line comment
+
+/*
+mulitline or block comment
+*/
+
+ERRORS
+
+syntax error aka compile time error:
+
+main.cpp:6:27: error: expected ';' after expression
+   cout << "Traffic today" 
+                          ^
+                          ;
+
+the compiler will give you all the errors it finds in numerical order 
+but some errors are side effects of previous errors
+so start with the first one it gives you
+
+other errors include logic errors- aka bugs
+
+compilers turn c-language into executable binary code 
+
+
+Loops 
+
+while- the condition must be in parentheses
+do while- the condition is checkd after the loop body runs 
+good for undetermined amount of runs
+
+for -start/condition/step or range-based loop 
+good for a determined amount of runs 
+
+int i;
+while (cin >> i)
+  cout << "You entered "<<i<<endl; 
+//this code just returns the int you put into it
+
+ctr d to exit loops and stuff 
+
+check your input with while loops 
+
+int i;
+cout<<"Enter a number btwn 1-5: ";
+cin>>n;
+while(n<1||n>5) {
+    cout << "Enter num 1-5" ;
+    cin >> n;
+}
+cout << "You entered: " << n << endl:
+
+int n;
+do {
+    cout<<"Enter a number btwn 1-5:";
+    cin>>n;
+} while (n<1||n>5) {
+    whatever;
+}
+
+for loop is technically a shorthand for a while loop 
+the scope of loop variables are always contrained to inside the loop 
+
+equivalent loops 
+
+for( int i= 0; i<5; ++i)
+    cout<<i<<""; 
+    cout<<endl;
+
+string s = "hello";
+for (char c:s)
+    cout<<c<<endl;
+//c is the loop variable it takes on each value of the sequence in turn 
+
+for (char c:input_word) {
+    if(isalpha(c)) {
+        ++num_letters
+    }
+}
+
+Truthiness Idiom - a numeric expression is true when it is non-zero 
+isalpha nad other <cctype> functions don't return true when its argument is a letter 
+as a general rule check for false rather than true 
+
+functions tolower and toupper - they return ints!
+to print as characters- cast to char or store in char variable 
+
+break and continue 
+break exites the closest enclosing loop
+continue cycles on the closest enclosing loop 
+^more for error handling 
+
+all named values have a scope - the region where it is visible 
+{
+    //arbitrary scope
+    ::i //global variable 
+}
+
+enums are compile-time constants 
+enum is like a fancy array /dict 
+
+The syntax for outputting the double myFloat with two digits after the decimal point is
+cout << fixed << setprecision(2) << myFloat;
+Though C++ does not attempt to output the full value of pi,
+ by default, 5 digits after the decimal are output.
+fixed and setprecision() are manipulators that need only be written once if the 
+desired number of digits after the decimal point is the same for multiple floating-point numbers. Ex:
+
+cout << fixed << setprecision(3) << 3.1244 << endl;
+cout << 2.1 << endl;
+outputs 3.124 and 2.100.
+
+scientific notation is written using an e preceding the power-of-10 exponent, as in 6.02e23 to represent 6.02 x 1023.
+ The e stands for exponent. Likewise, 0.001 is 1 x 10-3 and can be written as 1.0e-3.
+
+A few common math functions from the math library.
+Function	Behavior	          Example
+sqrt(x)	    Square root of x	  sqrt(9.0) evaluates to 3.0.
+pow(x, y)	Power:                pow(6.0, 2.0) evaluates to 36.0.
+fabs(x)	    Absolute value of x   fabs(-99.5) evaluates to 99.5.
+
+modulo % is only for integers- it returns the remainder 
+anything % 0 is undefined 
+
+randNum % 10
+Yields 0 - 9 
+
+
+Sequences and Functions - Vectors and Arrays
+
+std::vector (like a list in python)
+a generic container (variables)
+can hold obhects of any type, but ony one type at a time
+holds them in a sequence, and can grow at runtime to hold more items
+can use indexing and iterators 
+vector<int> = (v[0], v[1], v[2] ...)
+
+vectors allocate more memory than needed, so you don't have to reallocate memory everytime you add an element
+when memory is exhausted, more memory is allocated
+functions: elem space last alloc 
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main () {
+    double time1;
+    double time2;
+    double time3;
+    double time4;
+    double time5;
+
+    cin >> time1;
+    cin >> time2;
+    cin >> time3;
+    cin >> time4;
+    cin >> time5;
+
+    vector <double> walkingTime = {time1, time2, time3, time4, time5}; 
+      //natively C++ doesn't have the = assignment operator 
+
+    for (i = 0; i < walkingTime.size();, ++1) {
+        cout << walkingTime.at(i) << " ";
+    }
+    cout << endl;
+}
+
+    vector <int> swimmingListings (numPeople); //a list with the amount of stuff numPeople 
+    swimmingListings.at(0) = firstPerson;
+    swimmingListings.at(numPeople - 1) = lastPerson;
+
+    //
+    cin >>numTime;
+    vector <int> bikingLobs(numTime);
+
+    for (i = 0; i < bikingLobs.size(); ++i) {
+        cin >> bikingLobs.at(i);
+    }
+
+    for (i = 0; i < bikingLobs.size(); ++i) {
+        if bikingLobs.at(i) != 9{
+            cout << bikingLobs.at(i) << endl;
+        }
+    }
+
+    //
+    for (i = 0; i < numStudents.size(); ++i) {
+        if (walkingListings.at(i) % 2 == 0) {
+            cout << walkingListings.at(i) << "-";
+        }
+    }
+    cout << endl;
+
+    for (i = 0; i < numStudents.size(); ++i) {
+        if (walkingListings.at(i) % 2 == 1) {     //example used != 0
+            cout << walkingListings.at(i) << "-";
+        }
+    }
+    cout << endl;
+
+vector<int> v(5); // [0,0,0,0,0] 
+to avoid pain points: initalize things with 0 or empty strings as much as possible 
+
+int main(){
+    vector<int> myVect(5):
+    for (int n:myVect)
+        cout << n << ' ';
+    cout << endl;
+}
+
+cout streams everything into a strings
+vector::resize grows a vector 0 for numbers, "" for strings 
+    resize  can also shrink your vectors, and extra stuff may or may not stay in memory 
+reserve is more efficient, it allowcates memory space to grow your vector 
+
+    vector<int> v = {1,2,3,4,5};
+    v.reserve(10);
+    for (auto n: v)
+        cout << n << endl;
+
+vector::push_back 
+    automatically expands the vector if the current memory allocation is exhausted 
+
+    while (f >> num)
+        v.push_back(f):
+
+modifying vector element- at or [i]
+
+for (int& n:v)
+    n += 2; //passby reference- it edits the variable directly
+
+The keyword auto tells the compiler to determine the variable's type using the initial value given.
+auto w = 0.5;	w	double
+const auto x = 7;	x	const int
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  auto x = 4.5;
+
+  cout << typeid(x).name();
+
+  return 0;
+}
+
+The static_cast operator (static_cast<type>(expression)) converts the expression's value to the indicated type. 
+Ex: If myIntVar is 7, then static_cast<double>(myIntVar) converts int 7 to double 7.0.
+convert to string: to_string(int)
+convert to int stoi(string)
+convert to double stod(string)
+
+   int kidsInFamily1;       // Should be int, not double
+   int kidsInFamily2;       // (know anyone with 2.3 kids?)
+   int numFamilies; 
+   
+   double avgKidsPerFamily; // Expect fraction, so double
+
+   kidsInFamily1 = 3;
+   kidsInFamily2 = 4;
+   numFamilies = 2; 
+   
+   avgKidsPerFamily = static_cast<double>(kidsInFamily1 + kidsInFamily2)
+                      / static_cast<double>(numFamilies); 
+
+Binary
+you can use binary literals using th 0b prefix
+
+int n = 0b101;
+cout << n << endl;  // 5
+
+number = placeValue*base^placePosition (counting down to 1)
+
+Decimal Numbers:
+base = 10
+212 - 2*10^2 + 1*10^1 + 2*10^0
+    =    200 +   10   +   2   = 212 
+
+Binary Numbers:
+Base 2
+1101 - 1*2^3 + 1*2^2 + 0*2^1 + 0*2^0
+     =    8  +   4   +   0   +  1   = 13
+
+1 2 4 8 16 32 64 128 256 512 1024 2048
+
+A variable of char type, as in char myChar;, can store a single character like the letter m. 
+A character literal is surrounded with single quotes, as in myChar = 'm';.
+
+   char arrowBody;
+   char arrowHead;
+
+   arrowBody = '-';
+   arrowHead = '>';
+
+BINARY IN ASCII STANDARD 
+
+010 0000	32	space
+010 0001	33	!
+010 0010	34	"
+010 0011	35	#
+010 0100	36	$
+010 0101	37	%
+010 0110	38	&
+010 0111	39	'
+010 1000	40	(
+010 1001	41	)
+010 1010	42	*
+010 1011	43	+
+010 1100	44	,
+010 1101	45	-
+010 1110	46	.
+010 1111	47	/
+011 0000	48	0
+011 0001	49	1
+011 0010	50	2
+011 0011	51	3
+011 0100	52	4
+011 0101	53	5
+011 0110	54	6
+011 0111	55	7
+011 1000	56	8
+011 1001	57	9
+011 1010	58	:
+011 1011	59	;
+011 1100	60	<
+011 1101	61	=
+011 1110	62	>
+011 1111	63	?
+100 0000	64	@
+100 0001	65	A
+100 0010	66	B
+100 0011	67	C
+100 0100	68	D
+100 0101	69	E
+100 0110	70	F
+100 0111	71	G
+100 1000	72	H
+100 1001	73	I
+100 1010	74	J
+100 1011	75	K
+100 1100	76	L
+100 1101	77	M
+100 1110	78	N
+100 1111	79	O
+101 0000	80	P
+101 0001	81	Q
+101 0010	82	R
+101 0011	83	S
+101 0100	84	T
+101 0101	85	U
+101 0110	86	V
+101 0111	87	W
+101 1000	88	X
+101 1001	89	Y
+101 1010	90	Z
+101 1011	91	[
+101 1100	92	\
+101 1101	93	]
+101 1110	94	^
+101 1111	95	_
+110 0000	96	`
+110 0001	97	a
+110 0010	98	b
+110 0011	99	c
+110 0100	100	d
+110 0101	101	e
+110 0110	102	f
+110 0111	103	g
+110 1000	104	h
+110 1001	105	i
+110 1010	106	j
+110 1011	107	k
+110 1100	108	l
+110 1101	109	m
+110 1110	110	n
+110 1111	111	o
+111 0000	112	p
+111 0001	113	q
+111 0010	114	r
+111 0011	115	s
+111 0100	116	t
+111 0101	117	u
+111 0110	118	v
+111 0111	119	w
+111 1000	120	x
+111 1001	121	y
+111 1010	122	z
+111 1011	123	{
+111 1100	124	|
+111 1101	125	}
+111 1110	126	~
+
+Arrays 
+arrays are part of the language, you don't have to #include anything 
+they are efficieint but harder to manage- the size is fixed, they can't expand 
+
+vectors are part of the library #include<vector> 
+they have more overhead than arrays  
+
+Arrays do not grow- once it's compiled it won't grow 
+Vectors have overhead to manage automatic expansion 
+
+you must remember the array size /keep track of the array size 
+
+const int NUM_VALS = 4;
+int courseGrades[NUM_VALS];
+int i;
+
+for (i = 0; i < NUM_VALS; ++i) {
+    cin >> courseGrades[i]
+}
+
+countdown loop:
+for (i = NUM_VALS; i >= 0; --i) {}
+
+by default arrays have no initialization 
+you can zero-initalize it with {}
+If you don't initiaize it and you try to call it, you'll get whatever garbage is in that memory spot 
+
+int c[] = {1,2,3};
+for (auto i: c)
+    cout << i << endl;
+
+arrays can use indexing but you must not go out of bounds 
+or use a range-based for loop 
+functions strip arrays when you pass them in
+if you go out of bounds at low level, you'll corrupt the surrounding memory
+
+Dimensional Arrays- arrays can be nested/ have multiple dimensions 
+higher dimensions are harder to visualize 
+
+int a[2][3] = {{1,2,3}, {4,5,6}}
+
+sizeof(myarray) in an array calculates the number of bites allocated to it //an int is 4 bites 
+myarray.size() in an array tells you how many things are in the array 
+
+c-style strings aka an array of characters 
+uses \0 to mark the end of the string 
+<cstring> library 
+
+char name[4] = "Amy" ( A m y \0)
+
+strlen strcmp strcpy strncpy strcat strncat (cstring functions) 
+stoi (str to int) stof stod 
+
+can be dangerous! 
+
+RUNNING CODE 
+run code/ compile code
+g++ playground.cpp -o b 
+cd C:\Users\cosse\Desktop\msys2\ucrt64\bin\projects\helloworld\ 
+.\b.exe
+
+Escape sequence	    Char
+\n	                newline
+\t	                tab
+\'	                single quote
+\"	                double quote
+\\	                backslash
+
+STRINGS 
+
+character literals use '' string literals use ""
+needs #include <string>
+
+to get a input into a string including spaces:
+getline(cin, firstString);
+getline(cin, secondString);
+
+   cout << "Enter first name:" << endl;
+   getline(cin, firstName); // Gets entire line up to ENTER
+   // Skip newline
+    getline(cin, tmpStr);
+    getline(cin, str2);
+
+Numbers
+
+INT Overflow- don't try to store a number larger than 2 billion in an int it will overflow and
+ only store the overflow amount 
+^results in a compiler warning
+
+if you're using something that big, use a long long (that can overflow too if given a high enough value)
+
+(*int) Unfortunately, int's size is the processor's "natural" size, and not necessarily 32 bits. 
+Fortunately, nearly every compiler allocates at least 32 bits for int.
+
+Numerical Variable Types:
+Declaration	        Size	      Supported number range	             Standard-defined minimum size
+char myVar;	        8 bits	      -128 to 127	                                            8 bits
+short myVar;	    16 bits	      -32,768 to 32,767	                                        16 bits
+long myVar;	        32 bits	      -2,147,483,648 to 2,147,483,647	                        32 bits
+long long myVar;	64 bits	      -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807	64 bits
+int myVar;	        32 bits	      -2,147,483,648 to 2,147,483,647	                        16 bits
+
+float x;	        32 bits	      -3.4x1038 to 3.4x1038
+double x;	        64 bits	      -1.7x10308 to 1.7x10308
+
+        mantissa is limited to about 7 significant digits for float and about 16 significant digits for double. 
+        Anything with more values is truncated
+        Floats store a sign(+/-), exponent(where the decimal is), and mantissa (the numerical values)
+
+unsigned char myVar;	    8 bits	    0 to 255	                                    8 bits
+unsigned short myVar;	    16 bits	    0 to 65,535	                                    16 bits
+unsigned long myVar;	    32 bits	    0 to 4,294,967,295	                            32 bits
+unsigned long long myVar;	64 bits	    0 to 18,446,744,073,709,551,615 	            64 bits
+unsigned int myVar;	        32 bits	    0 to 4,294,967,295	                            16 bits
+
+Order of Operations 
+
+Operator/Convention	Description	                                    Explanation
+( )             	Items within parentheses are evaluated first	In (a * (b + c)) - d, the + is evaluated first, then *, then -.
+!	                ! (logical NOT) is next	! x || y is evaluated as (!x) || y
+* / % + -	        Arithmetic operators (using their precedence rules; see earlier section)	z - 45 * y < 53 evaluates * first, then -, then <.
+<   <=   >   >=	    Relational operators	x < 2 || x >= 10 is evaluated as (x < 2) || (x >= 10) because < and >= have precedence over ||.
+==   !=	            Equality and inequality operators	x == 0 && x != 10 is evaluated as (x == 0) && (x != 10) because == and != have precedence over &&.
+== and !=           have the same precedence and are evaluated left to right.
+&&	                Logical AND	x == 5 || y == 10 && z != 10 is evaluated as (x == 5) || ((y == 10) && (z != 10)) because && has precedence over ||.
+||	                Logical OR	|| has the lowest precedence of the listed arithmetic, logical, and relational operators.
+
+basically P!EMDAS, Alligators, ANDS, and ORS
+
+& and | are bitwise operators and should only be used in bitwise expressions
+
+|   bitwise-OR                  
+&   bitwise-AND              
+^   bitwise-XOR
+~   bitwise-NOT
+>>  shift-right (multiply by 2)
+<<  shift-left (divide by 2)
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    auto x = byte(0b00101101);      // 45
+    cout << int(x) << endl;
+    auto y = byte(0b01101010);      // 106
+    cout << int(y) << endl;
+    cout << int(x | y) << endl;     // 01101111 = 64+32+8+4+2+1 = 111
+    cout << int(x & y) << endl;     // 00101000 = 32+8 =40
+    cout << int(x ^ y) << endl;     // 01000111 = 64+4+2+1 = 71
+
+    cout << int(~x) << endl;        // 11010010 = 128+64+16+2 = 210
+}
+
+/* Output:
+45
+106
+111
+40
+71
+210
+*/
+
+double bang idiom:
+ auto bitval = !!(n & mask);     // !32 == 0, !(!32) == !0 == 1
+ to change a mask or an int into a true/false value
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n = 0; //orig 32
+    auto b = !n;        // b == false (boolean)
+    auto not_b = !b;    // not_b == true (boolean)
+    cout << boolalpha;  // Print bools as words
+    cout << "b: " << b << ", as int: " << int(b) << endl;
+    cout << "not_b: " << not_b << ", as int: " << int(not_b) << endl;
+    cout << "!!n == " << !!n << ", as int: " << int(!!n) << endl;
+}
+
+To extract the lower k bits of an integer you need a mask with the lower k bits set. This is easily obtained by the expression:
+
+    mask = (1 << k) - 1
+
+#include <bitset>
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Enter an integer to extract from: ";
+    unsigned int n;
+    cin >> n;
+    cout << "n = " << n << " = " << bitset<32>(n) << endl;
+
+    cout << "Enter the number of lower bits: ";
+    unsigned int k;
+    cin >> k;
+
+    unsigned int mask = (1 << k) - 1;
+    auto result = n & mask;
+    cout << "lower " << k << " bits unchanged: " << bitset<32>(result) << endl;
+}
+
+/*  Sample execution:
+Enter an integer to extract from: 60000
+n = 60000 = 00000000000000001110101001100000
+Enter the number of lower bits: 10
+lower 10 bits unchanged: 00000000000000000000001001100000
+*/
+
+You can extract any contiguous sequence of bits from an integer my shifting the 
+ mask to the appropriate position, ANDing to extract the bits, and then shifting the results back so it is right aligned at position 0, giving the number the extracted bits represent.
+
+Suppose, for example, the you want to extract bits 5 through 11. Remember that bit position 11 is to the left of bit position 5. The number of bits to be extracted is 
+. The first step, therefore, is to create a mask with the lower 7 bits set:
+
+mask = (1 << 7) - 1 == 00000000000000000000000001111111
+Now shift to the left 5 positions so that the mask is right-aligned in bit position 5:
+
+mask <<= 5 == 00000000000000000000111111100000
+Then AND this mask with the number, getting a result of the following pattern:
+
+temp = n & mask == 00000000000000000000#######00000
+where the hash signs represent the bits extracted from the number. Finally, to get this result as a number in its own right, shift to the left 5 places to align over bit position 0:
+
+result = temp >> 5 == 0000000000000000000000000#######
+Not that it would be very readable, but you could extract bits 
+ through 
+ from the number n all at once as follows:
+
+(n & (((1 << (m-k+1)) - 1) << k)) >> k
+
+// Illustrate bitwise ops
+#include <iostream>
+using namespace std;
+
+int main() {
+    unsigned int n = 0x0a0b0c0d;    // = 0b0000'1010'0000'1011'0000'1100'0000'1101 = 1,684,961,410
+    cout << hex;
+
+    // Print each nybble left-to-right
+    unsigned int mask = 0xf0000000;
+    for (int i = 0; i < 8; ++i) {
+        auto bits = mask & n;
+        cout << (bits >> ((7-i)*4));   // 7-i = 8-(i+1), and there are 8 nibbles in a 32-bit int
+        mask >>= 4;
+    }
+    cout << endl;
+
+    // Print each bit left-to-right after flipping n's bits
+    mask = 0x80000000;
+    n = ~n;
+    for (int i = 0; i < 32; ++i) {
+        auto bits = mask & n;
+        cout << !!bits;     // The first ! gives 0 or 1, the second flips to 1 or 0
+        mask >>= 1;
+    }
+    cout << endl;
+}
+
+/* Output:
+0a0b0c0d
+11110101111101001111001111110010
+*/
+
+Desired Effect
+Code
+Test (read) the bit in position k	
+n & (1 << k)
+Set (to 1) the bit in position k	
+n |= (1 << k)
+Reset (to 0) the bit in position k	
+n &= ~(1 << k)
+Toggle (flip) the bit in position k	
+n ^= (1 << k)
+Extract the lower k bits as a new number	
+n & ((1 << k) - 1)
+Read the bits in positions k through m as a
+number	Get a mask with 
+ ones in its lower bits:
+unsigned int mask = (1 << (m-k+1)) - 1;
+Move the mask into position:
+mask <<= k;
+Do the AND:
+result = n & mask
+Right-align the result:
+result >>= k
+Same as above but all at once (not very readable)	
+(n & (((1 << (m-k+1)) - 1) << k)) >> k
+
+switch statements!!!
+
+//the expression (a) should be an int or a char 
+//ALWAYS have a default case 
+switch (a) {
+  case 0:
+     // Print "zero"
+     break;
+
+  case 1:
+     // Print "one"
+     break;
+
+  case 2:
+     // Print "two"
+     break;
+
+   default:
+     // Print "unknown"
+     break;
+}
+
+if statements:
+
+if (dogYears == 0) {           // Like case 0
+   // Print 0..14 years
+}
+else if (dogYears == 1) {      // Like case 1
+   // Print 15 years
+}
+...
+else if (dogYears == 5) {      // Like case 5
+   // Print 37 years 
+}
+else {                         // Like default case
+   // Print unknown
+}
+
+//falling through- if you don't put a break statement, the code will run the next case until it hits a break
+#include <iostream>
+using namespace std;
+
+int main() {
+   int dogAgeYears;
+   int dogAgeMonths;
+
+   cout << "Enter dog's age (in years): ";
+   cin >> dogAgeYears;
+
+   if (dogAgeYears == 0) {
+      cout << "Enter dog's age in months: ";
+      cin  >> dogAgeMonths;
+
+      switch (dogAgeMonths) {
+         case 0:
+         case 1:
+         case 2:
+            cout << "That's 0..14 human months." << endl;
+            break;
+
+         case 3:
+         case 4:
+         case 5:
+         case 6:
+            cout << "That's 1..5 human years." << endl;
+            break;
+
+         case 7:
+         case 8:
+            cout << "That's 5..9 human years." << endl;
+            break;
+
+         case 9:
+         case 10:
+         case 11:
+         case 12:
+            cout << "That's 9..15 human years." << endl;
+            break;
+
+         default:
+            cout << "Invalid input." << endl;
+            break;
+      }
+   }
+   else {
+      cout << "FIXME: Do earlier dog year cases." << endl;
+      switch (dogAgeYears) {
+      }
+   }
+
+   return 0;
+}
+
+Booleans!!
+a variable that is either set to true or false
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int waitTime;
+   int partySize;
+   char day;
+   bool isLargeParty;
+   bool isWeekend;
+   
+   // Get day of reservation
+   cout << "Day of reservation (T/W/R/F/S/U): ";
+   cin >> day;
+   if (day == 'F' || day == 'S' || day == 'U') {
+      isWeekend = true;
+   }
+   else {
+      isWeekend = false;
+   }
+   
+   // Get party size
+   cout << "Enter party size: ";
+   cin  >> partySize;
+   isLargeParty = (partySize > 6);
+   
+   // Determine wait time based on day of week and party size
+   if (isWeekend && !isLargeParty) {
+      waitTime = 30;
+   }
+   else if (!isWeekend && !isLargeParty) {
+      waitTime = 10;
+   }
+   else if (isWeekend && isLargeParty) {
+      waitTime = 45;
+   }
+   else {
+      waitTime = 15;
+   }
+   
+   cout << "Restaurant wait time is " << waitTime
+        << " minutes." << endl;
+   
+   return 0;
+}
+
+string equality- if it's identical or not
+string relational comparisons- goes in alphabetical order, capitals first 
+    if the existing characters are equal, the smaller string is less than 
+
+indexing strings:
+cout << userWord[3]; //does not check the validity of the index 
+cout << userWord.at(3); //checks the validity, returns an error if not
+
+replace a character in a string:
+userWord.at(replaceIndex) = '*';
+
+s1.size() returns s1's length
+
+userCaption.append("."); //add to a string, must use a string value
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+   string userCaption;
+   char lastChar;
+   int lastIndex;
+
+   cout << "Enter a caption: ";
+   getline(cin, userCaption);
+
+   lastIndex = userCaption.size() - 1;
+   lastChar  = userCaption.at(lastIndex);
+
+   if ( (lastChar != '.') && (lastChar != '!') && (lastChar != '?') ) {
+      // User's caption lacked ending punctuation, so add a period
+      userCaption.append("."); //add to a string 
+   }
+
+   cout << "New: ";
+   cout << userCaption << endl;
+
+   return 0;
+}
+
+userText[7] = '!' may write to another variable's location and cause bizarre program behavior.
+
+One caveat with toupper and tolower: they return integers! It is crucial in Example 3.15.1 above that the result of toupper was stored in a char variable. Otherwise, it would have printed an integer value corresponding to the character. See below:
+
+string s = "David";
+
+// First attempt: print letters as upper case
+for (char c: s)
+    cout << toupper(c);
+cout << endl;
+
+// Fix: Cast to char
+for (char c: s)
+    cout << char(toupper(c));
+cout << endl;
+Output:
+
+6865867368
+DAVID
+
+#include <cctype> 
+
+isalpha(c)	true if alphabetic:
+a-z or A-Z	
+isalpha('x') // true
+isalpha('6') // false
+isalpha('!') // false
+
+toupper(c)	Uppercase version	
+letter = toupper('a')  // A
+letter = toupper('A')  // A
+letter = toupper('3')  // 3
+
+isdigit(c)	true if digit: 0-9.	
+isdigit('x') // false
+isdigit('6') // true
+
+tolower(c)	Lowercase version	// to upper and to lower do not modify the original value 
+letter = tolower('A')  // a
+letter = tolower('a')  // a
+letter = tolower('3')  // 3
+
+isspace(c)	true if whitespace.	
+isspace(' ')  // true
+isspace('\n') // true
+isspace('x')  // false
+
+find()	find(item) returns index of first item occurrence, 
+else returns string::npos (a constant defined in the string library). 
+Item may be char, string variable, string literal (or char array).
+
+find(item, indx) starts at index indx.	
+// userText is "Help me!"
+    userText.find('p')    // Returns 3 
+    userText.find('e')    // Returns 1 (first occurrence of e only) 
+    userText.find('z')    // Returns string::npos 
+    userText.find("me")   // Returns 5
+    userText.find('e', 2) // Returns 6 (starts at index 2)
+
+substr()	substr(index, length) returns substring starting at index and having length characters.	
+    // userText is "http://google.com"
+    userText.substr(0, 7)                     // Returns "http://"
+    userText.substr(13, 4)                    // Returns ".com"
+    userText.substr(userText.size() - 4, 4)   // Last 4: ".com"
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+   string emailText;
+   int atSymbolIndex;
+   string emailUsername;
+
+   cout << "Enter email address: ";
+   cin  >> emailText;
+
+   atSymbolIndex = emailText.find('@');
+   if (atSymbolIndex == string::npos) {
+      cout << "Address is missing @" << endl;
+   }
+   else {
+      emailUsername = emailText.substr(0, atSymbolIndex);
+      cout << "Username: " << emailUsername << endl;
+   }
+
+   return 0;
+}
+
+push_back()	push_back(c) appends character c to the end of a string.	
+    // userText is "Hello"
+    userText.push_back('?'); // Now "Hello?" 
+    userText.size();         // Returns 6
+
+insert()	insert(indx, subStr) Inserts string subStr starting at index indx.	
+    // userText is "Goodbye"
+    userText.insert(0, "Well "); // Now "Well Goodbye" 
+    // userText is "Goodbye"
+    userText.insert(4, "---");   // Now "Good---bye"
+
+replace()	replace(indx, num, subStr) replaces characters at indices indx to indx+num-1 with a copy of subStr.	
+    // userText is "You have many gifts"
+    userText.replace(9, 4, "a plethora of"); 
+    // Now "You have a plethora of gifts"
+
+str1 + str2
+    Returns a new string that is a copy of str1 with str2 appended.
+    If one of str1, str2 is a string, the other may be a character (or character array).	
+    // userText is "A B"
+    myString = userText + " C D";
+    // myString is "A B C D"
+    myString = myString + '!';
+    // myString now "A B C D!"
+    myString = myString + userText;
+    // myString now "A B C D!A B"
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+   string userName;
+   string greetingText;
+   int itemIndex;
+   
+   itemIndex = 0;
+   
+   cout << "Enter name: ";
+   getline(cin, userName);
+   
+   // Combine strings using +
+   greetingText = "Hello " + userName;
+   
+   // Append a period (could have used +)
+   greetingText.push_back('.'); // '' not ""
+   cout << greetingText << endl;
+   
+   // Insert Mr/Ms before user's name
+   greetingText.insert(6, "Mr/Ms ");
+   cout << greetingText << endl;
+   
+   // Replace occurrence of "Darn" by "@$#"
+   if (greetingText.find("Darn") != string::npos) { // Found
+      itemIndex = greetingText.find("Darn");
+      greetingText.replace(itemIndex, 4, "@#$");
+   }
+   cout << greetingText << endl;
+   
+   return 0;
+}
+
+An if-else statement can be written as a conditional expression.
+if (condition) {
+  myVar = expr1;
+}
+else {
+  myVar = expr2;
+}
+
+myVar = (condition) ? expr1 : expr2;
+A conditional expression has the form condition ? exprWhenTrue : exprWhenFalse.
+
+numMeters = 0.7;  
+numMeters = numMeters - 0.4;
+numMeters = numMeters - 0.3;
+       
+// numMeters expected to be 0, 
+// but is actually -0.0000000000000000555112 
+if (numMeters == 0.0) {
+   // Equals 0.
+}
+else {
+   // Does not equal 0.
+}
+Bug
+if (fabs(numMeters - 0.0) < 0.001) {
+   // Equals 0.
+}
+else {
+   // Does not equal 0.
+}
+      
+operand1 && operand2	true && operand2 	If the first operand evaluates to true, operand2 is evaluated.
+false && operand2	If the first operand evaluates to false, the result of the AND operation is always false, so operand2 is not evaluated.
+operand1 || operand2	true || operand2	If the first operand evaluates to true, the result of the OR operation is always true, so operand2 is not evaluated.
+false || operand2	If the first operand evaluates to false, operand2 is evaluated.
+
+range-based for loops
+
+When traversing a collection of some sort, like a string, an array, or vector, it is often more convenient to use the range-based for loop. The following example prints the individual characters of a string.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string s = "hello";
+    for (auto c: s)
+        cout << c << endl;
+}
+
+/* Output:
+h
+e
+l
+l
+o
+*/
+Since s is a string, the auto keyword causes c to be a char,
+ which is an individual element of a string. c is the loop variable, which takes on the value of 
+ each element of the target collection in turn. 
+We could have declared c to be a char, but using auto for traversing sequences is idiomatic in C++.
+
+for (initialExpression; conditionExpression; updateExpression) {
+  // Loop body
+}
+// Statements after the loop
+
+while loops
+
+int i;
+i = 0;
+while (i < 5) {
+    // Loop body
+    i = i + 1;
+}
+
+for loop key- standard way to loop N times
+
+int i;
+...
+for (i = 0; i < N; ++i) {
+   ...
+}
+
+++i, with ++ known as the increment operator. (Likewise, -- is the decrement operator,)
+
+Actually two increment operators exist: ++i (pre-increment) and i++ (post-increment). 
+++i increments before evaluating to a value, while i++ increments after. 
+Ex: If i is 5, outputting ++i outputs 6, while outputting i++ outputs 5 (and then i becomes 6). 
+This material primarily uses ++i for simplicity and safety, 
+although many programmers use i++, especially in for loops.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   double initialSavings;  // User-entered initial savings
+   double interestRate;    // Interest rate
+   double currSavings;     // Current savings with interest
+   int i;                  // Loop variable
+
+   cout << "Enter initial savings: ";
+   cin  >> initialSavings;
+
+   cout << "Enter interest rate: ";
+   cin  >> interestRate;
+
+   cout << endl << "Annual savings for 10 years: " << endl;
+
+   currSavings = initialSavings;
+   for (i = 0; i < 10; ++i) {
+      cout << "$" << currSavings << endl;
+      currSavings = currSavings + (currSavings * interestRate);
+   }
+
+   return 0;
+}
+
+for	Number of iterations is computable before the loop, like iterating N times.
+while	Number of iterations is not (easily) computable before the loop, 
+like iterating until the input is 'q'.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int numInput;
+   int value;
+   int i;
+
+   cin >> numInput;
+
+   for (i=0; i < numInput; ++i) {
+         cin >> value;
+         cout << "Read = " << value << endl;
+   }
+   
+   return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+// Outputs max of list of integers
+// First value indicates list size
+// Ex: 4 -1 9 0 3  yields 9
+
+int main() {
+   int maxSoFar;
+   int currValue;
+   int numValues;
+   int i;
+   
+   cin >> numValues;
+   
+   for (i = 0; i < numValues; ++i) {
+      cin >> currValue;
+      
+      if (i == 0) { // First iteration
+         maxSoFar = currValue;
+      }
+      else if (currValue > maxSoFar) {
+         maxSoFar = currValue;
+      }
+   }
+   
+   if (numValues > 0) {
+      cout << "Max: " << maxSoFar << endl;
+   }
+   
+   return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int currC;
+   double equivalentF;
+   
+   for (currC = -10; currC <= 40; currC += 5) {
+      equivalentF =  (currC * 9.0 / 5.0) + 32.0;
+
+      cout << currC << " C is ";
+      cout << equivalentF << " F";
+      cout << endl;
+   }
+   
+   return 0;
+}
+
+Loops and strings
+iterate through a string using a loop
+
+for (char c: inputWord)
+    if (isalpha(c))
+        ++numLetters;
+
+find/replace in a string:
+ isdigit()- checks if a char is a number
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+   string userText;
+   int usaIndex;
+
+   cout << "Enter text: ";
+   getline(cin, userText);
+
+   // At least one occurrence exists
+   while (userText.find("U.S.A.") != string::npos) {
+      // Get index of first instance
+      usaIndex = userText.find("U.S.A.");
+
+      // U.S.A. is 6 long
+      userText.replace(usaIndex, 6, "USA");
+   }
+
+   cout << "New text: " << userText<< endl;
+
+   return 0;
+}
+
+A nested loop is a loop that appears in the body of another loop. 
+The nested loops are commonly referred to as the inner loop and outer loop.
+
+Nested loops have various uses. One use is to generate all combinations of some items. 
+For example, the following program generates all two-letter .com Internet domain names
+
+#include <iostream>
+using namespace std;
+
+/* Output all two-letter .com Internet domain names */
+
+int main() {
+   char letter1;
+   char letter2;
+   
+   cout << "Two-letter domain names:" << endl;
+   
+   letter1 = 'a';
+   while (letter1 <= 'z') {
+      letter2 = 'a';
+      while (letter2 <= 'z') {
+         cout << letter1 << letter2 << ".com" << endl;
+         ++letter2;
+      }
+      ++letter1;
+   }
+   
+   return 0;
+}
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int numAsterisk;  // Number of asterisks to print
+   int i;            // Loop counter
+   
+   numAsterisk = 0;
+
+   while (numAsterisk >= 0) {
+      cout << "Enter an integer (negative to quit): ";
+      cin >> numAsterisk;
+      
+      if (numAsterisk >= 0) {
+         cout << "Depicted graphically:" << endl;
+         for (i = 1; i <= numAsterisk; ++i) {
+            cout << "*";
+         }
+         cout << endl << endl;
+      }
+   }
+   
+   cout << "Goodbye." << endl;
+
+   return 0;
+}
+
+do-while loops 
+does the thing, then checks the condition before repeating
+so it will always run at lease once
+
+do {
+   // Loop body
+} while (loopExpression);
+
+break and continue 
+break immediatly throws you out of the loop
+continue statements jump to the next iteration
+^ can be used to replace nesting
+
+for (numTacos = 0; numTacos <= maxTacos; ++numTacos) {
+      for (numEmpanadas = 0; numEmpanadas <= maxEmpanadas; ++numEmpanadas) {
+         
+         mealCost = (numEmpanadas * EMPANADA_COST) + (numTacos * TACO_COST);
+         
+         // Find first meal option that exactly matches user money
+         if (mealCost == userMoney) {
+            break;
+         }
+      }
+      
+      // If meal option exactly matching user money is found, 
+      // break from outer loop as well
+      if (mealCost == userMoney) {
+         break;
+      }
+   }
+
+   for (numTacos = 0; numTacos <= maxTacos; ++numTacos) {
+      for (numEmpanadas = 0; numEmpanadas <= maxEmpanadas; ++numEmpanadas) {
+         
+         // Total items purchased must be equally 
+         // divisible by number of diners
+         if ( ((numTacos + numEmpanadas) % numDiners) != 0) {
+            continue;
+         }
+         
+         mealCost = (numEmpanadas * EMPANADA_COST) + (numTacos * TACO_COST);
+         
+         if (mealCost == userMoney) {
+            cout << "$" << mealCost << " buys " << numEmpanadas
+                 << " empanadas and " << numTacos 
+                 << " tacos without change." << endl;
+            numOptions = numOptions + 1;
+         }
+      }
+   }
+
+Variable name scope:
+any variable's scope starts where it is declared and ends at the end of the block its declared in 
+
+Enumerations
+enumerations are a variable that have a set of specific possible values 
+enum TvChannels {TC_CBS = 2, TC_NBC = 5, TC_ABC = 7};
+
+int main() {
+   enum LightState {LS_RED, LS_GREEN, LS_YELLOW, LS_DONE};
+   LightState lightVal;
+   char userCmd;
+
+   lightVal = LS_RED;
+   userCmd = '-';
+
+   cout << "User commands: n (next), r (red), q (quit)." << endl  
+}
+
+The example illustrates the idea of a state machine that is sometimes used in programs, 
+especially programs that interact with physical objects, 
+wherein the program moves among particular situations ("states") depending on input;
+
+They're safer than just using strings because they will throw an error at invalid input 
+
+The Indexing Operator
+You can also use the indexing operator (square brackets) to access or change a vector element. The following are (almost) equivalent:
+
+itemCounts.at(0) = 122;
+itemCounts[0] = 122;
+The difference between the two is that the at member function will cause an error if the 
+index is out of range of the actual data in the vector. 
+The indexing operator does no such checking, so it is faster.
+
+Vectors
+
+vector<dataType> vectorName(numElements); 
+
+{ } are braces. < > are angle brackets, or chevrons. In a vector access, 
+the number in .at() parentheses is called the index of the corresponding element. 
+The first vector element is at index 0.
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> itemCounts(3);
+
+    itemCounts.at(0) = 122;
+    itemCounts.at(1) = 119;
+    itemCounts.at(2) = 117;
+
+    cout << itemCounts.at(1);
+
+    return 0;
+}
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+   vector<int> oldestPeople(5);  
+   int nthPerson;               // User input, Nth oldest person
+
+   oldestPeople.at(0) = 122; // Died 1997 in France
+   oldestPeople.at(1) = 119; // Died 1999 in U.S.
+   oldestPeople.at(2) = 117; // Died 1993 in U.S. 
+   oldestPeople.at(3) = 117; // Died 1998 in Canada
+   oldestPeople.at(4) = 116; // Died 2006 in Ecuador
+
+   cout << "Enter N (1..5): ";
+   cin  >> nthPerson;
+
+   if ((nthPerson >= 1) && (nthPerson <= 5)) {
+      cout << "The #" << nthPerson << " oldest person lived ";
+      cout << oldestPeople.at(nthPerson - 1) << " years." << endl;
+   }
+
+   return 0;
+}
+
+A vector's size() function returns the number of vector elements. 
+Ex: In the program below, userVals.size() is 8 because the vector was declared with 8 elements.
+
+All of a vector's elements may be initialized to another single value. 
+Ex: vector<int> myVector(3, -1); creates a vector named myVector with three elements, 
+each with value -1.
+
+A programmer may initialize each vector element with different values by specifying the 
+initial values in braces {} separated by commas. Ex: vector<int> carSales = {5, 7, 11}; 
+creates a vector of three integer elements initialized with values 5, 7, and 11. 
+Such vector declaration and initialization does not require specifying the vector size, 
+because the vector's size is automatically set to the number of elements within the braces. 
+
+For a larger vector, initialization may be done by first declaring the vector, 
+and then using a loop to assign vector elements.
+
+testfile.cpp:12: error: ISO C++ forbids declaration of vector with no type
+testfile.cpp:12: error: expected ; before < token
+^this is the error if you forget to #include <vector>
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+   const int NUM_VALS = 8;         // Number of elements in vector
+   vector<int> userVals(NUM_VALS); // User values
+   unsigned int i;                 // Loop index
+   
+   cout << "Enter " << NUM_VALS << " integer values..." << endl;
+   for (i = 0; i < userVals.size(); ++i) {
+      cout << "Value: ";
+      cin >> userVals.at(i);
+   }
+   
+   cout << "You entered: ";
+   for (i = 0; i < userVals.size(); ++i) {
+      cout << userVals.at(i) << " ";
+   }
+   cout << endl;
+   
+   return 0;
+}
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+   const int NUM_ELEMENTS = 3;
+   vector<int> userVals(NUM_ELEMENTS);
+   unsigned int i;
+
+   userVals.at(0) = 3;
+   userVals.at(1) = 6;
+   userVals.at(2) = 7;
+
+   for (i = 0; i < userVals.size(); ++i) {
+      cout << userVals.at(i) << endl;
+   }
+
+   return 0;
+}
+
+range based for loop with vectors (and arrays)
+
+vector<int> v = {1,2,3,4,5};
+    for (auto n: v)
+        cout << n << endl; 
+
+// Iterating through myVector
+for (i = 0; i < myVector.size(); ++i) {
+   // Loop body accessing myVector.at(i)
+}
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+   const int NUM_ELEMENTS = 8;         // Number of elements in vector
+   vector<int> userVals(NUM_ELEMENTS); // User values
+   unsigned int i;                     // Loop index
+   int sumVal;                         // For computing sum
+   
+   cout << "Enter " << NUM_ELEMENTS << " integer values..." << endl;
+   for (i = 0; i < userVals.size(); ++i) {
+      cout << "Value: ";
+      cin >> userVals.at(i);
+      cout << endl;
+   }
+   
+   // Determine sum
+   sumVal = 0;
+   for (i = 0; i < userVals.size(); ++i) {
+      sumVal = sumVal + userVals.at(i);
+   }
+   cout << "Sum: " << sumVal << endl;
+   
+   return 0;
+}
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+   const int NUM_VALS = 8;         // Number of elements in vector
+   vector<int> userVals(NUM_VALS); // User values
+   unsigned int i;                 // Loop index
+   int maxVal;                     // Computed max
+   
+   cout << "Enter " << NUM_VALS << " integer values..." << endl;
+   for (i = 0; i < userVals.size(); ++i) {
+      cout << "Value: ";
+      cin >> userVals.at(i);
+   }
+   
+   // Determine largest (max) number
+   maxVal = userVals.at(0);        // Largest so far
+   for (i = 0; i < userVals.size(); ++i) {
+      if (userVals.at(i) > maxVal) {
+         maxVal = userVals.at(i);
+      }
+   }
+   cout << "Max: " << maxVal << endl;
+   
+   return 0;
+}
+
+terminate called after throwing an instance of 'std::out_of_range'
+  what():  vector::_M_range_check
+Abort
+^error message when you try to access an index that is out of range 
+
+use parallel vectors to pair values together/ do other fun stuff / replace dictionaries
+
+vector resize:
+grow vector 
+v.resize(int);
+
+When growing a vector, the new elements are default-initialized:
+
+    vector<int> v = {1,2,3,4,5};
+    v.resize(10);
+    for (auto n: v)
+        cout << n << endl;
+Output:
+1
+2
+3
+4
+5
+0
+0
+0
+0
+0
+
+resize() can be called multiple times. If the new size is larger, 
+resize() adds elements at the end. If smaller, resize() deletes elements from the end. 
+
+A programmer can append a new element to the end of an existing vector using a vector's 
+push_back() function. Ex: dailySales.push_back(521) creates a new element at the end of the 
+vector dailySales and assigns that element with the value 521
+^like the opposite of the pop function 
+
+push_back()   	void push_back(const int newVal);     Append new element having value newVal.
+                playersList.push_back(77);
+back()	        int back();               Returns vector's last element. Vector is unchanged.
+                cout << playersList.back();
+pop_back()	    void pop_back();                                    Removes the last element.
+                playersList.pop_back();
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main() {
+   vector<string> groceryList; // Vector storing shopping list
+   string groceryItem;         // Individual grocery items
+   string userCmd;             // User input
+   
+   // Prompt user to populate shopping list
+   cout << "Enter grocery items or type done." << endl;
+   cin >> groceryItem;
+   while (groceryItem != "done") {
+      groceryList.push_back(groceryItem);
+      cin >> groceryItem;
+   }
+   
+   // Display shopping list
+   cout << endl << "Enter any key for next item." << endl;
+   while (groceryList.size() > 0) {
+      groceryItem = groceryList.back();
+      groceryList.pop_back();
+      cout << groceryItem << "   ";
+      cin >> userCmd;
+   }
+   cout << endl << "Done shopping." << endl;
+   
+   return 0;
+}
+
+You can also use a range-based for loop to modify vector elements 
+if you make the loop variable a reference (with &):
+
+    vector<int> v = {1,2,3,4,5};
+    for (auto& n: v)   // Note the & (meaning n refers to the memory location of each element)
+        n += 2;
+    for (auto n: v)
+        cout << n << endl;
+Output:
+3
+4
+5
+6
+7
+
+   // Convert negatives to 0
+   for (i = 0; i < userVals.size(); ++i) {
+      if (userVals.at(i) < 0) {
+         userVals.at(i) = 0;
+      }
+   }
+
+SWAPPING SWAPPY NOODLES 
+switching two values, trading
+The swap algorithm
+If you #include <algorithm>, you can use the swap function:
+
+    int x = 1, y = 2;
+    swap(x,y);
+    cout << x << ", " << y << endl;
+Output:
+2, 1
+The arguments to swap must refer to non-const memory.
+
+A common method for swapping uses a temporary variable. 
+A temporary variable is a variable used briefly to store a value.
+
+You can also swap vector values
+swap(revVctr.at(i), revVctr.at(revVctr.size() - 1 - i))
+
+// Reverse
+   for (i = 0; i < revVctr.size(); ++i) {
+      revVctr.at(i) = revVctr.at(revVctr.size() - i); // Swap
+   }
+
+Arrays :D 
+like vectors but built in so theyre less cool 
+(lists)
+
+dataType arrayName[numElements]; 
+[ ] are brackets. { } are braces. In an array access, the number in brackets is called the 
+index of the corresponding element. The first array element is at index 0.
+
+userNums[i] uses the value held in the int variable i as the index. As such, an array is 
+useful to easily lookup the Nth item in a list.
+An array's index must be an integer type. The array index cannot be a floating-point type, 
+even if the value is 0.0, 1.0, etc.
+
+loops and arrays 
+you can iterate through arrays 
+#include <iostream>
+using namespace std;
+
+int main() {
+   const int NUM_ELEMENTS = 8;  // Number of elements in array
+   int userVals[NUM_ELEMENTS];  // User numbers
+   int i;                   // Loop index
+   
+   cout << "Enter " << NUM_ELEMENTS << " integer values..." << endl;
+   for (i = 0; i < NUM_ELEMENTS; ++i) {
+      cout << "Value: ";
+      cin >> userVals[i];
+   }
+   
+   cout << "You entered: ";
+   for (i = 0; i < NUM_ELEMENTS; ++i) {
+      cout << userVals[i] << " ";
+   }
+   cout << endl;
+   
+   return 0;
+}
+
+An array's elements are not automatically initialized during the variable declaration and 
+should be initialized before being read. A programmer may initialize an array's elements in 
+an array variable declaration by specifying the initial values in braces {} separated by commas.
+ Ex: int myArray[3] = {5, 7, 11}; initializes element at index 0 with 5, element at index 1 with
+  7, and element at index 2 with 11. For larger arrays, a loop may be used for initialization.
+
+Like other variables, the keyword const may be prepended to an array variable declaration to 
+prevent changes to the array. Thus, const int YEARS[3] = {1865, 1920, 1964}; followed by 
+YEARS[0] = 2000; yields a compiler error.
+
+You can also iterate through an array with the range-based for loop, as shown below.
+
+for (auto n: someArray)
+    cout << n << endl;
+//This is only valid within the scope of the definition of the array; 
+//When you pass an array to a function, this does not work.
+
+// Iterating through myArray
+for (i = 0; i < numElements; ++i) {
+   // Loop body accessing myArray[i]
+}
+
+A write to an array with an out-of-range index may simply write to a memory location of a 
+different variable X residing next to the array in memory. Later, when the program tries to 
+read X, the program encounters incorrect data. For example, a program may write X with the 
+number 44, but when reading X later in the program X may be 2533, with X never (intentionally)
+ written by any program statement in between.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   const int NUM_ELEMENTS = 8; // Number of elements
+   int userVals[NUM_ELEMENTS]; // User numbers
+   int i;                      // Loop index
+   int sumVal;                 // For computing sum
+   
+   // Prompt user to populate array
+   cout << "Enter " << NUM_ELEMENTS << " integer values..." << endl;
+   
+   for (i = 0; i < NUM_ELEMENTS; ++i) {
+      cout << "Value: ";
+      cin >> userVals[i];
+   }
+   
+   // Determine sum
+   sumVal = 0;
+   for (i = 0; i < NUM_ELEMENTS; ++i) {
+      sumVal = sumVal + userVals[i];
+   }
+   
+   cout << "Sum: " << sumVal << endl;
+   
+   return 0;
+}
+
+Programmers commonly use multiple same-sized arrays to store related lists.
+
+#include <iostream>
+using namespace std;
+
+int main () {
+   const int NUM_ELEMENTS = 14;
+   // Weights in ounces
+   double letterWeights[NUM_ELEMENTS] = {1.0, 2.0, 3.0, 3.5, 4.0, 5.0, 6.0,
+                                         7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0};
+   // Costs in cents (usps.com 2017)
+   int postageCosts[NUM_ELEMENTS] = {49, 70, 91, 112, 161, 182, 203,
+                                     224, 245, 266, 287, 308, 329, 350};
+   double userLetterWeight;
+   bool foundWeight;
+   int i;
+   
+   // Prompt user to enter letter weight
+   cout << "Enter letter weight (in ounces): ";
+   cin >> userLetterWeight;
+   
+   // Postage costs is based on smallest letter weight greater than
+   // or equal to mailing letter weight
+   foundWeight = false;
+   
+   for (i = 0; (i < NUM_ELEMENTS) && (!foundWeight); ++i) {
+      if (userLetterWeight <= letterWeights[i]) {
+         foundWeight = true;
+         cout << "Postage for USPS first class mail is ";
+         cout << postageCosts[i] << " cents" << endl;
+      }
+   }
+   
+   if( !foundWeight ) {
+      cout << "Letter is too heavy for USPS first class mail." << endl;
+   }
+   
+   return 0;
+}
+
+------------modifying/copying /changing/swapping/ reading arrays
+
+// Convert negatives to 0
+for (auto& n: userVals) // Note the &
+    if (n < 0)
+        n = 0;
+
+// Convert negatives to 0
+   for (i = 0; i < NUM_ELEMENTS; ++i) {
+      if (userVals[i] < 0) {
+         userVals[i] = 0;
+      }
+   }
+
+for (i = 0; i < NUM_ELEMENTS; ++i) {
+      copiedVals[i] =  userVals[i];
+   }
+
+swap(userVals[I], userVals[NUM_ELEMENTS - 1 - i]);
+
+for (i = 0; i < (NUM_ELEMENTS / 2); ++i) {
+      tempVal = userVals[i];                        // Temp for swap
+      userVals[i] = userVals[NUM_ELEMENTS - 1 - i]; // First part of swap
+      userVals[NUM_ELEMENTS - 1 - i] = tempVal;     // Second complete
+   }
+
+2d Arrays/ 2d Lists
+
+An array can be declared with two dimensions. int myArray[R][C] represents a table 
+of int variables with R rows and C columns, so R*C elements total. For example, 
+int myArray[2][3] creates a table with 2 rows and 3 columns, for 6 int variables total. 
+Example accesses are myArray[0][0] = 33; or num = myArray[1][2].
+
+initializing 2d arrays:
+// Initializing a 2D array
+int numVals[2][3] = { {22, 44, 66}, {97, 98, 99} };
+
+// Use multiple lines to make rows more visible
+int numVals[2][3] = {
+   {22, 44, 66}, // Row 0
+   {97, 98, 99}  // Row 1
+};
+
+or you can do it the hard way:
+   int drivingDistances[3][3]; // Driving distances
+
+   // Initialize distances array
+   drivingDistances[0][0] = 0;
+   drivingDistances[0][1] = 960;  // Boston-Chicago
+   drivingDistances[0][2] = 2960; // Boston-Los Angeles
+   drivingDistances[1][0] = 960;  // Chicago-Boston
+   drivingDistances[1][1] = 0;
+   drivingDistances[1][2] = 2011; // Chicago-Los Angeles
+   drivingDistances[2][0] = 2960; // Los Angeles-Boston
+   drivingDistances[2][1] = 2011; // Los Angeles-Chicago
+   drivingDistances[2][2] = 0;
+
+Arrays of three or more dimensions can also be declared, as in int myArray[2][3][5] 
+
+    FYI -- How vectors really work under the hood
+    Arrays are built into the C++ language, whereas vector is implemented in C++ code and provided in the <vector> header. Vectors are actually implemented internally by using arrays with the following procedure:
+
+    Define an array with some default size (depends on who wrote the C++ compiler)
+    When the user wants to add an element at the end of the vector:
+    Check if there is an empty space in the currently allocated underlying array
+    If there isn't a space, then reallocate a new, bigger array, and copy the elements in use to it; then delete the old array
+    Add the element in the first free space at the end of the array
+
+C++ supports two kinds of ordered list types:
+
+Arrays: declared as int myList[10], accessed as myList[i].
+Vectors: declared as vector<int> myList(10), accessed as myList.at(i).
+Arrays have a simpler syntax than vectors, but vectors are safer to use. 
+Thus, using vectors rather than arrays is good practice.
+
+Vectors are safer because the access v.at(i) is checked during execution to ensure the index 
+is within the vector's valid range. An array access a[i] involves no such check. 
+Such checking is important; trying to access an array with an out-of-range index is a very 
+common error, and one of the hardest errors to debug.
+
+Char Arrays/ C Strings 
+
+A programmer can use an array to store a sequence of characters, known as a string. 
+char movieTitle[20] = "Star Wars";. Because a string can be shorter than the character array, 
+a string in a char array must end with a special character known as a null character, 
+written as '\0'. Given a string literal like "Star Wars", the compiler automatically appends 
+a null character.
+
+If a char array is initialized when declared, then the char array's size may be omitted, 
+as in char userName[] = "Hellen"; . The compiler determines the size from the string literal, 
+in this case 6 + 1 (for the null character), or 7.
+
+An array of characters ending with a null character is known as a null-terminated string.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   char cityName[20] = "Forest Lake"; // Compiler appends null char
+
+   // In each cout, printing stops when reaching null char
+   cout << "City:" << endl;           // Compiler appends null char to "City:"
+   cout << cityName << endl; 
+
+   return 0;
+}
+
+after a cstring is declared, you can't just reassign it as in movieTitle = "Indiana Jones";. 
+That statement tries to assign a value to the char array variable itself, 
+rather than copying each character from the string on the right into the array on the left.
+
+  // The following is an ERROR.
+   // May print chars it shouldn't.
+   // Problem: doesn't stop at null char.
+   cout << "\""; // Print opening "
+   for (i = 0; i < 20; ++i) { // Print each char
+      cout << userStr[i];
+   }
+   cout << "\"" << endl;      // Print closing "
+   
+   
+   // The following is an even WORSE ERROR.
+   // Accesses beyond valid index range.
+   // Program may crash.
+   cout << "\""; // Print opening "
+   for (i = 0; i < 30; ++i) {
+      cout << userStr[i];
+   }
+   cout << "\"" << endl; // Print closing "
+   
+#include <iostream>
+using namespace std;
+
+int main() {
+   char userStr[10]; // Input string
+   int i;
+   
+   // Prompt user for string input
+   cout << "Enter string (<10 chars): ";
+   cin >> userStr;
+   
+   // Print 1 char at a time
+   cout << endl;
+   for (i = 0; userStr[i] != '\0'; ++i) {
+      cout << userStr[i] << endl;
+   }
+   cout << endl;
+   
+   return 0;
+}
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   char nameArr[5];
+
+   nameArr[0] = 'A';
+   nameArr[1] = 'l';
+   nameArr[2] = 'a';
+   nameArr[3] = 'n';
+   nameArr[4] = '\0'; // Null character
+
+   cout << nameArr << endl;
+
+   nameArr[4] = '!';         // Oops, overwrote null char
+   cout << nameArr << endl; // *Might* still work
+
+   return 0;
+}
+
+C++ provides functions for working with C strings, presented in the cstring library. 
+To use those functions, the programmer starts with: #include <cstring>.
+
+C String Functions:
+
+strcpy()	strcpy(destStr, sourceStr)  Copies sourceStr (up to and including null character) 
+                                        to destStr.
+
+strncpy()	strncpy(destStr, sourceStr, numChars)  Copies up to numChars characters.
+
+strcat()	strcat(destStr, sourceStr) Copies sourceStr (up to and including null character) 
+                                    to end of destStr (starting at destStr's null character).
+
+strncat()	strncat(destStr, sourceStr, numChars)  Copies up to numChars characters 
+                                                to destStr's end, then appends null character.
+
+strchr()	strchr(sourceStr, searchChar) Returns NULL if searchChar does not exist in sourceStr.
+                                        (Else, returns address of first occurrence, discussed 
+                                        elsewhere).
+                                        NULL is defined in the cstring library.
+
+strlen()	size_t strlen(sourceStr)  Returns number of characters in sourceStr up to, but not 
+                                        including, first null character. size_t is integer type.
+
+strcmp()	int strcmp(str1, str2) Returns 0 if str1 and str2 are equal, non-zero if they differ.
+
+Character: check if a character is x thing: 
+#include <cctype> 
+(some of this info can be found above)
+
+isalpha(c) -- Returns true if c is alphabetic: a-z or A-Z.
+isdigit(c) -- Returns true if c is a numeric digit: 0-9.
+isalnum(c) -- Returns true if c is alphabetic or a numeric digit. 
+isspace(c) -- Returns true if character c is a whitespace.
+islower(c) -- Returns true if character c is a lowercase letter a-z.
+isupper(c) -- Returns true if character c is an uppercase letter A-Z.
+isblank(c) -- Returns true if character c is a blank character, include spaces and tabs.
+isxdigit(c) -- Returns true if c is a hexadecimal digit: 0-9, a-f, A-F.
+ispunct(c) -- Returns true if c is a punctuation character !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+isprint(c) -- Returns true if c is a printable character: alphanumeric, punctuation, and space.
+iscntrl(c) -- Returns true if c is a control character: are all characters that are not printable.
+
+Character conversions:
+
+toupper(c) -- If c is a lowercase alphabetic character (a-z), returns the uppercase version (A-Z).
+              If c is not a lowercase alphabetic character, just returns c.
+
+tolower(c) -- If c is an uppercase alphabetic character (A-Z), returns the lowercase version (a-z). 
+                If c is not an uppercase alphabetic character, just returns c.
+
+stoi(s)	Converts the string s to an int
+stof(s)	Converts the string s to an float
+stod(s)	Converts the string s to an double
+
+
+There are times when you want a quoted string literal to be interpreted as a 
+std::string instead of a char array. 
+To do this, #include the <string> header and place an s after the string literal:
+
+#include <iostream>
+#include <string>
+#include <typeinfo>
+using namespace std;
+
+int main() {
+    auto s1 = "Hello";
+    cout << s1 << " is a " << typeid(s1).name() << endl;
+    auto s2 = "Goodbye"s;
+    cout << s2 << " is a " << typeid(s2).name() << endl; //notice how i get the type 
+}
+
+/* Output from Visual Studio:
+Hello is a char const *
+Goodbye is a class std::basic_string<char,struct std::char_traits<char>,
+class std::allocator<char> >
+*/
+
+principle- parts of an object must be initialized begore assembling the whole object
+if you have datat members of some class type, they will automatically be initialized by their default constructor
+if you want to send initial data to the data members constructor, a special operation is necessary 
+
+
+you can intitialize with a default initializer, and have a second initializer that takes in arguments
+or insert code after a : with initialization lists 
+
+you should always use constuctor initializer lists for data members of class type that you
+ want initialized with arguments
+member objects are always default initialized
+member objects requiring constructor argumetns should always appear in the initializer list 
+and not the constuctor body
+
+8.12 in class 
+
+Lecture::Lecture() : status(Unavailable), amount(100), whatevs(-) {}
+
+you can initialize non static data members as they are defined in situ 
+ the code executes before any constructor 
+
+struct Part {
+   int n = 0;
+   Part() {
+      cout << "constructor";
+   }
+}
+
+Deconstructors- called at the end of the life of an object 
+the opposite of initializing 
+start with ~ 
+always has no parameters and no return 
+
+~Employee () {}
+
+the default constuctor is used to initialze all array objects- there must be one 
+elements are destroyed in revers order when an element goes out of scope 
+
+an array is a pointer to the first object in the array 
+uml- unified modifying language -a way to diagram code before you write it 
+
+class vs struct 
+no setters- private vs setters public 
+
+Unit testing
+A unit test is typically conducted by creating a testbench, a.k.a. test harness, which is a 
+separate program whose sole purpose is to check that a function returns correct output values 
+for a variety of input values. Each unique set of input values is known as a test vector.
+
+   cout << "Testing started" << endl;
+   
+   assert(HrMinToMin(0, 0)  == 0);
+   assert(HrMinToMin(0, 1)  == 1);
+   assert(HrMinToMin(0, 99) == 99);
+   assert(HrMinToMin(1, 0)  == 60);
+   assert(HrMinToMin(5, 0)  == 300);
+   assert(HrMinToMin(2, 30) == 150);
+   // Many more test vectors would be typical...
+   
+   cout << "Testing completed" << endl;
+
+using an if statement:
+if ( HrMinToMin(0, 0) != 0 ) {
+   cout << "0:0, expecting 0, got: " << HrMinToMin(0, 0) << endl;
+}
+
+Good test vectors also include border cases 
+
+A pass by reference parameter does not create a local copy of the argument, 
+but rather the parameter refers directly to the argument variable's memory location. 
+Appending & to a parameter's data type makes the parameter pass by reference type.
+
+pass all built-in types by value (things you don't need an #include for, like int, double, char, bool)
+pass everything else by reference, like string, vector, etc. (by const reference if the function 
+shouldn't change the argument passed, which is most of the time)
+
+const can be prepended to a function's vector or string parameter to prevent the function from 
+modifying the parameter.
+
+. A function declaration specifies the function's return type, name, and parameters, ending with 
+a semicolon where the opening brace would have gone. A function declaration is also known as a 
+function prototype.
+
+A function can have a default parameter value for the last parameter(s)
+void PrintDate(int currDay, int currMonth, int currYear, int printStyle = 0)
+
+Sometimes a program has two functions with the same name but differing in the number or types of
+parameters, known as function name overloading or just function overloading. The following two
+functions print a date given the day, month, and year. The first function has parameters of 
+type int, int, and int, while the second has parameters of type int, string, and int.
+The compiler determines which function to call based on the argument types.
+
+  void PrintDate(int currDay, int currMonth, int currYear) {
+   cout << currMonth << "/" << currDay << "/" << currYear;
+}
+
+void PrintDate(int currDay, string currMonth, int currYear) {
+   cout << currMonth << " " << currDay << ", " << currYear;
+}
+
+int main() {
+   
+   PrintDate(30, 7, 2012);
+   cout << endl;
+   
+   PrintDate(30, "July", 2012);
+   cout << endl;
+   
+   return 0;
+}
+
+preprocessor is a tool that scans the file from top to bottom 
+ looking for any lines that begin with #
+ such line being known as a preprocessor directive
+ #include, known as an include directive. 
+ include directs the compiler to replace that line by the contents of the given filename
+ #include "myfile.h" causes the preprocessor to look for the file in the same folder/directory
+ #include <stdfile> causes the preprocessor to look in the system's standard library
+
+ Separating part of a program's code into a separate file can yield several benefits.
+ One benefit is preventing a main file from becoming unmanageably large. 
+ Another benefit is that the separated part could be useful in other programs.
+ Use prototype function declarations to declare functions when theyre in another file
+
+header files- #include "threeintsfcts.h".
+
+#ifndef FILENAME_H
+#define FILENAME_H
+
+// Header file contents
+
+#endif
+
+constant member functions- a function that won't change its value 
+double Point::get_x() const {
+   return x;
+}
+basically don't use const if you're updating or changing things 
+
+header files usually end in .h
+use header files to put functions and stuff that is used across different files 
+
+the compiler makes 4 magical things for you (usually)
+default constructor
+   Point() = default;
+copy constructor
+   copies all members from an existing object to the new one
+   created automatically unless you provide your own (override)
+copy-assignment operator
+   assigns all members from one existing object to another existing obecet-
+   overwrite the existing object
+   unless you create your own 
+   MyClass& operator=(const MyClass& other)
+destructor 
+
+Header files dont always have all the needed code- its the blueprint
+speeds up compilation time 
+
+set fire off multiple files:
+g++ -std=c++17 -o tpoint3 tpoint3.cpp tpoint2 tpoint2.cpp 
+
+in header files:
+   dont use using namespace std, use the std:: or using std::vector 
+   dont define function bodies/ global data unless you declare them inline
+   minimize names global namespace 
+
+Operator overloading
+use operator<opr> syntax:
+operator*, operator<, operator==, operator<<
+dont mess with binary operators, use Decimal
+
+Fraction Fraction operator+(const Fraction& rhs) const {
+   int new_num = num + rhs.num;
+   return new_num;
+}
+
+Friend Functions 
+Sometime functions can't be member functions 
+stream output operator << and >>
+^they can be chained
+^they still belong to the abstract data type - its a language technicality 
+^So, we make them friends- regular functions that have private access
+
+Implicit Conversions 
+a feature of constructors that can be called wiith a single argument
+allows miced-mode operations, like f1 + 1 
+but 1 + f1 will not compile 
+the object on the left should be more specific (invoke a member function)
+so, we make it a friend function 
+
+friend Fraction operator+(const Fraction& lhs, const Fraction& rhs) const {
+   int newnum = num.lhs*rhs.den + rhs.num*den;
+   int new_den = den*rhs.den;
+   return
+}
+
+frind ostream& operator <<(ostream& os, const Fraction & f) {
+   os << f.num << '/' << f.den;
+}
+
+namespaces- a way of packaging names together 
+can be the names of variables, functions, and classes
+you access the name with the :: operator 
+   ie std::vector 
+to create a namespace:
+namespace myns{...} 
+Scope and Names are important to orient yourself in your code !! 
+
+namespace std - this is how all standard library headers are laid out 
+
+multiple files ccan belong to the same namespace, unlike Python 
+
+accessing Namespace Items;
+Fully qualified - std::cout << x << stdd::endl; 
+Using declaration - using std::cout; //thereafter just use cout 
+using directive - using namespace std; //everything #included can be used without std:: 
+
+the anon namespace - global variables are automatically public 
+- to privatize them, but them in a namespace 
+we call these variables "file static" (like scope)
+
+Ch. 9- Exceptions 
+
+to swallow- to ignore an exception and keep running code 
+if you have an exception thrown, it's taking cycles away from something else 
+
+they separate the source of the error from its solution
+They tell you that something is wrong. it sometimes tells you what is wrong. 
+
+An exception is an object. it is a string that is thrown or raised when the error happens. 
+
+defined in <stdexcept> 
+   logic_error -for programmer errors- preventable
+      domain_error, invalid_argument, length_error, out_of_range
+   runtime_error -usually based on input
+      range_error, overflow_error, enderflow_error
+
+unit testing can work with/alongside exceptions to check that your code works 
+
+defined in <exception>: exception 
+
+use a try-block to call functions that can fail 
+exception handlers introduced with catch-blocks 
+
+try {
+   Fraction fraction1(1, 0);
+}
+catch (logic_error& exc) { // invalid_argument is a logic_error 
+   cout << esc.what() << endl;
+}
+
+Fraction (int n = 0, int d = 1) {
+   if (d = 0)
+      throw invalid_argument("zero denominator not allowed");
+}
+
+More Exceptions:
+//checking the sides of a triangle 
+
+cin >> s1 >> s2 >> s3;
+
+double tr_area(double s1, double s2, double s3) {
+   if (s1 <= 0 || s2 <= 0 || s3 <= 0) {
+      throw runtime_error("sides must be greater than 0);
+   }
+   else if {
+      throw invalid_argument("any two sides must be greater than the third");
+   }
+
+   double semi_p = (s1 + s2 + s3)/2;
+   return sqrt(semi_p * (semi_p - s1) * (semi_p - s2) * (semi_p - s3));
+}
+
+try {
+   double area = tr_area (s1, s2, s3);
+}
+catch (out_of_range& ex) {
+   cout << "Exception caught: " << ex.what << endl;
+}
+catch (invalid_argument& ex) {
+   cout << "exception caught: " << ex.what << endl;
+}
+
+exceptions use a lot of memory, even if its never thrown 
+cin.exceptions(ios::failbit)
+call stacks keep track of where you are in a nest /code 
+
+An algorithm is a sequence of steps for solving a problem. 
+Some problems can be solved using a recursive algorithm. A recursive algorithm is an algorithm 
+that breaks the problem into smaller subproblems and applies the same algorithm to solve the 
+smaller subproblems.
+
+ Each function call places a new stack frame on the stack, for local parameters, 
+ local variables, and more function items. Upon return, the frame is deleted.
+
+Deep recursion could fill the stack region and cause a stack overflow, meaning a stack frame 
+extends beyond the memory region allocated for stack. Stack overflow usually causes the program 
+to crash and report an error like: segmentation fault, access violation, or bad access.
+
+Structs
+
+We typically pass structs to functions by reference.
+
+Struct basics:
+struct TimeHrMin {
+   int hourValue;
+   int minuteValue;
+};
+
+TimeHrMin ConvHrMin(int totalTime) {
+   TimeHrMin timeStruct;
+
+   timeStruct.hourValue  = totalTime / 60;
+   timeStruct.minuteValue = totalTime % 60;
+
+   return timeStruct;
+}
+   cout << travelTime.hourValue << " hrs ";
+   cout << travelTime.minuteValue << " mins";
+
+structs can hold any data types and can be put in vectors 
+
+struct CountryTvWatch {
+   string countryName;
+   int tvMinutes;
+};
+vector<CountryTvWatch> countryList(NUM_COUNTRIES);
+
+Objects
+ In programming, an object is a grouping of data (variables) 
+ and operations that can be performed on that data (functions).
+
+Abstraction means to have a user interact with an item at a high-level, with lower-level 
+internal details hidden from the user (aka information hiding or encapsulation). 
+Ex: An oven supports an abstraction of a food compartment and a knob to control heat. 
+An oven's user need not interact with internal parts of an oven.
+
+Objects strongly support abstraction, hiding entire groups of functions and variables, 
+exposing only certain functions to a user.
+
+An abstract data type (ADT) is a data type whose creation and update are constrained to 
+specific well-defined operations. A class can be used to implement an ADT.
+
+The class construct defines a new type that can group data and functions to form an object. 
+A class' public member functions indicate all operations a class user can perform on the object.
+The power of classes is that a class user need not know how the class' data and functions are 
+implemented, but need only understand how each public member function behaves. The animation 
+below shows a class' public member function declarations only; the remainder of the class 
+definition is discussed later.
+
+class Restaurant {                          // Info about a restaurant   
+   public:                                          
+      void SetName(string restaurantName);  // Sets the restaurant's name              
+      void SetRating(int userRating);       // Sets the rating (1-5, with 5 best)      
+      void Print();                         // Prints name and rating on one line   
+
+   ...
+};
+
+Declaring a variable of a class type creates an object of that type. Ex: Restaurant 
+favLunchPlace; declares a Restaurant object named favLunchPlace.
+
+The "." operator, known as the member access operator, is used to invoke a function on an 
+object. Ex: favLunchPlace.SetRating(4) calls the SetRating() function on the favLunchPlace 
+object, which sets the object's rating to 4.
+
+int main() {
+   Restaurant favLunchPlace;
+   Restaurant favDinnerPlace;
+
+   favLunchPlace.SetName("Central Deli");
+   favLunchPlace.SetRating(4);
+
+   favDinnerPlace.SetName("Friends Cafe");
+   favDinnerPlace.SetRating(5);
+
+   cout << "My favorite restaurants: " << endl;
+   favLunchPlace.Print();
+   favDinnerPlace.Print();
+
+   return 0;
+}
+
+string is a class- here are some string public member functions:
+char& at(size_t pos); // Returns a reference to the character at position pos in the string.
+size_t length() const; // Returns the number of characters in the string
+void push_back(char c); // Appends character c to the string's end (increasing length by 1).
+
+While you can define class data members as public, this is almost never done. One purpose of 
+a class is to provide users an interface (a set of public member functions) that manages data 
+for them. It is important for the class to directly control the data, not the end user.
+
+In addition to public member functions, a class definition has private data members: 
+variables that member functions can access but class users cannot. Private data members appear 
+after the word "private:" in a class definition.
+
+class Restaurant {                          // Keeps a user's review of a restaurant
+   public:                                    
+      void SetName(string restaurantName);  // Sets the restaurant's name        
+      void SetRating(int userRating);       // Sets the rating (1-5, with 5 best)    
+      void Print();                         // Prints name and rating on one line 
+   private:
+      string name;
+      int rating;
+};
+
+A programmer defining a class first declares member functions after the word "public:" 
+in the class definition. A function declaration provides the function's name, return type, 
+and parameter types, but not the function's statements.
+
+The programmer must also define each member function. A function definition provides a class 
+name, return type, parameter names and types, and the function's statements. A member function 
+definition has the class name and two colons (::), known as the scope resolution operator, 
+preceding the function's name. A member function definition can access private data members.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Restaurant {                          // Info about a restaurant
+   public:
+      void SetName(string restaurantName);  // Sets the restaurant's name
+      void SetRating(int userRating);       // Sets the rating (1-5, with 5 best)
+      void Print();                         // Prints name and rating on one line
+   
+   private:
+      string name;
+      int rating;
+};
+
+// Sets the restaurant's name
+void Restaurant::SetName(string restaurantName) {
+   name = restaurantName;
+}
+
+// Sets the rating (1-5, with 5 best)
+void Restaurant::SetRating(int userRating) {
+   rating = userRating;
+}
+
+// Prints name and rating on one line
+void Restaurant::Print() {
+   cout << name << " -- " << rating << endl;
+}
+
+int main() {
+   Restaurant favLunchPlace;
+   Restaurant favDinnerPlace;
+   
+   favLunchPlace.SetName("Central Deli");
+   favLunchPlace.SetRating(4);
+   
+   favDinnerPlace.SetName("Friends Cafe");
+   favDinnerPlace.SetRating(5);
+   
+   cout << "My favorite restaurants: " << endl;
+   favLunchPlace.Print();
+   favDinnerPlace.Print();
+   
+   return 0;
+}
+
+Some C++ programmers always use this-> so that readers know that a data member is involved. 
+This is purely personal taste.
+
+Within a member function, the implicitly-passed object pointer is accessible via the name this. 
+In particular, a member can be accessed as this->member. The -> is the member access operator 
+for a pointer, similar to the "." operator for non-pointers.
+
+Using this-> makes clear that a class member is being accessed and is essential if a data 
+member and parameter have the same identifier. In the example below, this-> is necessary to 
+differentiate between the data member sideLength and the parameter sideLength.
+
+void ShapeSquare::SetSideLength(double sideLength) {
+   this->sideLength = sideLength;
+   // Data member      Parameter
+}
+
+Inline functions have a useful feature: the compiler inserts the needed code directly into the 
+executable, avoiding an actual function call when used at runtime. This skips pushing a new 
+stack frame for the called function, branching to its code, and returning to the calling code. 
+For a function that is called often, like in a loop, this can save a lot of execution time.
+
+Any function, not just member functions, can have this property by declaring them with the 
+inline keyword:
+
+inline
+int f(int m) {
+    ...
+}
+Although it is not efficient for large projects as far as build time goes, you can define 
+all of your member functions inline if you like, like other object-oriented programing 
+languages do. This can speed up runtime.
+
+not inline:
+class MyClass {
+   public:
+      void Fct1();
+   private:
+      int numA;
+};
+void MyClass::Fct1() {
+   numA = 0;
+}
+
+inline:
+class MyClass {
+   public:
+      void Fct1() {
+         numA = 0;
+      }
+   private:
+   int numA;
+};
+
+class Restaurant {                          // Info about a restaurant
+   public:
+      void SetName(string restaurantName) { // Sets the restaurant's name
+         name = restaurantName;
+      }
+      void SetRating(int userRating) {      // Sets the rating (1-5, with 5 best)
+         rating = userRating;
+      }
+      void Print();                         // Prints name and rating on one line
+   
+   private:
+      string name;
+      int rating;
+};
+
+// Prints name and rating on one line
+void Restaurant::Print() {
+   cout << name << " -- " << rating << endl;
+}
+
+A function name along its parameter list is called its signature. So you place const after a 
+member function's signature. If you separate the declaration of a member function from its 
+definition (that is, you don't declare it inline), you must use const after the signature in 
+both places, and it comes before the opening brace of the function body in its definition.
+
+A function's signature does not include its return type.
+
+Only member functions, not regular stand-alone functions, can be declared const, because the 
+const applies to the object/instance in use.
+
+A class' public functions are commonly classified as either mutators or accessors.
+
+A mutator function may modify ("mutate") a class' data members.
+An accessor function accesses data members but does not modify a class' data members.
+Commonly, a data member has two associated functions: a mutator for setting the value, and an 
+accessor for getting the value, known as a setter and getter function, respectively
+
+Accessor (getter) functions usually are defined as const to make clear that data members won't 
+be changed.
+
+class Restaurant {
+   public:
+      void   SetName(string restaurantName); // Mutator
+      void   SetRating(int userRating);      // Mutator
+      string GetName() const;                // Accessor
+      int    GetRating() const;              // Accessor
+      void   Print() const;                  // Accessor
+
+   private:
+      string name;
+      int rating;
+};
+
+void Restaurant::SetName(string restaurantName) {
+   name = restaurantName;
+}
+
+void Restaurant::SetRating(int userRating) {
+   rating = userRating;
+}
+
+string Restaurant::GetName() const {
+   return name;
+}
+
+int Restaurant::GetRating() const {
+   return rating;
+}
+
+void Restaurant::Print() const {
+   cout << name << " -- " << rating << endl;
+}
+
+A programmer commonly creates private functions, known as private helper functions, 
+to help public functions carry out tasks.
+
+class MyClass {
+   public:
+      void Fct1(); 
+   private:
+      int numA;
+      int FctX();
+};
+
+void MyClass::Fct1() {
+   numA = FctX();
+
+}
+
+int MyClass::FctX() {
+   ...
+}
+
+The in-class initialization occurs before the constructor runs.
+A good practice is to initialize all variables when declared. 
+This section deals with initializing the data members of a class when a variable of the 
+class type is declared.
+
+Since C++11, a programmer can initialize data members in the class definition. 
+Any variable declared of that class type will initially have those values.
+
+class Restaurant {
+   public:
+      void SetName(string restaurantName);
+      void SetRating(int userRating);
+      void Print();
+   
+   private:
+      string name = "NoName";  // NoName indicates name was not set
+      int rating = -1;         // -1 indicates rating was not set
+};
+
+C++ has a special class member function, a constructor, called automatically when a variable 
+of that class type is declared, and which can initialize data members. A constructor callable 
+without arguments is a default constructor, like the Restaurant constructor below.
+
+If a class has no programmer-defined constructor, then the compiler implicitly defines a 
+default constructor having no statements.
+
+class Restaurant {
+   public:
+      Restaurant();
+      void SetName(string restaurantName);
+      void SetRating(int userRating);
+      void Print();
+   private:
+      string name;
+      int rating;
+};
+
+Restaurant::Restaurant() {  // Default constructor
+   name = "NoName";         // Default name: NoName indicates name was not set
+   rating = -1;             // Default rating: -1 indicates rating was not set
+}
+
+You should always use constructor initializer lists for data members of class type that you 
+want initialized with arguments. As explained above, member objects are always 
+default-initialized unless they appear in the initializer list. Initializing them in the body 
+of the constructor means that they get "initialized" twice: first they are automatically 
+default-initialized, and then they are reassigned by your assignment statements in the 
+constructor body.
+
+Member objects requiring constructor arguments should ALWAYS appear in the initializer list 
+(and not in the constructor body).
+
+A constructor initializer list is an alternative approach for initializing data members in 
+a constructor, coming after a colon and consisting of a comma-separated list of 
+variableName(initValue) items.
+
+class SampleClass {
+   public:
+      SampleClass();
+}
+
+SampleClass::SampleClass() {
+   field1 = 100;
+   field2 = 200;
+}
+
+SampleClass::SampleClass() : field1(100), field2(200) {
+}
+
+The keyword static indicates a variable is allocated in memory only once during a program's 
+execution. Static variables are allocated memory once and reside in the program's static memory 
+region for the entire program. Thus, a static variable retains a value throughout the program.
+
+In a class, a static data member is a data member of the class instead of a data member of 
+each class object. Thus, static data members are independent of any class object, and can be 
+accessed without creating a class object.
+
+A static data member is declared inside the class definition, but must also be defined outside 
+the class declaration. Within a class function, a static data member can be accessed just by 
+variable name. A public static data member can be accessed outside the class using the scope 
+resolution operator: ClassName::variableName.
+
+class Store {
+   public:
+      Store(string storeName, string storeType);
+      int getId();
+      static int nextId;   // Declare static member variable  
+   private:
+      string name = "None";
+      string type = "None";
+      int id = 0;
+};
+
+Store::Store(string storeName, string storeType) {
+   name = storeName;
+   type = storeType;
+   id = nextId;   // Assign object id with nextId
+      
+   ++nextId;      // Increment nextId for next object to be created
+}
+...
+int Store::nextId = 101; // Define and initialize static data member
+
+A static member function is a class function that is independent of class objects. 
+Static member functions are typically used to access and mutate private static data members 
+from outside the class. Since static methods are independent of class objects, the this 
+parameter is not passed to a static member function. So, a static member function can only 
+access a class' static data members.
+
+class Store {
+public:
+   Store(string storeName, string storeType);
+   int getId();
+   static int getNextId();
+}
+
+int Store::getNextId() {
+   return nextId;
+}
+
+There are some exceptions to the advice above:
+
+For a class such as StoreItem above, where the member functions are small in number and size, 
+and easily inlined, it is usually preferable to inline all function definitions and place 
+everything in the .h file. Separate compilation is for code that is long and complicated, and 
+which is difficult for the compiler to make inline. (Note: Recursive functions cannot be 
+inlined.)
+
+For class templates, covered later in the course, all code must be placed in a .h file. 
+There is no separate compilation for templates.
+
+Programmers typically put all code for a class into two files, separate from other code.
+
+ClassName.h contains the class definition, including data members and member function declarations.
+ClassName.cpp contains member function definitions.
+
+StoreItem.h 
+   #ifndef STOREITEM_H
+   #define STOREITEM_H
+
+   class StoreItem {
+      public:
+         void SetWeightOunces(int ounces);
+         void Print() const;
+      private:
+         int weightOunces;
+   };
+
+   #endif
+
+StoreItem.cpp 
+   #include <iostream>
+   using namespace std;
+
+   #include "StoreItem.h"
+
+   void StoreItem::SetWeightOunces(int ounces) {
+      weightOunces = ounces;
+   }
+
+   void StoreItem::Print() const {
+      cout << "Weight (ounces): " << weightOunces << endl;
+   }
+
+main.cpp 
+   #include <iostream>
+   using namespace std;
+
+   #include "StoreItem.h"
+
+   int main() {
+      StoreItem item1;
+
+      item1.SetWeightOunces(16);
+      item1.Print();
+
+      return 0;
+   }
+
+compilation: (run code) 
+% g++ -Wall StoreItem.cpp main.cpp
+% a.out
+Weight (ounces): 16
+
+Like a chef who tastes food before serving, a class creator should test a class before 
+allowing use. A testbench is a program whose job is to thoroughly test another program 
+(or portion) via a series of input/output checks known as test cases. Unit testing means 
+to create and run a testbench for a specific item (or "unit") like a function or a class.
+
+Features of a good testbench include:
+
+Automatic checks. Ex: Values are compared, as in testData.GetNum1() != 100. 
+   For conciseness, only fails are printed.
+Independent test cases. Ex: The test case for GetAverage() assigns new values, vs. relying on 
+   earlier values.
+100% code coverage: Every line of code is executed. 
+A good testbench would have more test cases than below.
+Includes n
+
+   // Check set/get num1
+   testData.SetNum1(100);
+   if (testData.GetNum1() != 100) {
+      cout << "   FAILED set/get num1" << endl;
+   }
+
+Regression testing means to retest an item like a class anytime that item is changed; 
+if previously-passed test cases fail, the item has "regressed".
+
+A testbench should be maintained along with the item, to always be usable for regression 
+testing. A testbench may be in a class' file, or in a separate file as in MyClassTest.cpp 
+for a class in MyClass.cpp.
+
+Testbenches may be complex, with thousands of test cases. Various tools support testing, 
+and companies employ test engineers who only test other programmers' items. A large percent, 
+like 50% or more, of commercial software development time may go into testing.
+
+An erroneous unit test may fail even if the code being tested is correct. 
+
+If you provide any constructor at all for a class, the compiler will not provide a 
+default constructor; otherwise it will. If you do not provide a default constructor, 
+you can't create any objects unless you provide arguments for your non-default constructor(s).
+
+If the default constructor the compiler would have generated for you does what you want it 
+to in such a case, then you can explicitly ask the compiler to provide it:
+
+class Restaurant {
+   public:
+      Restaurant(string initName, int initRating);
+      Restaurant() = default;   // Note the default keyword
+      ...
+};
+
+int main() {
+   Restaurant foodPlace;        // This is okay now         
+}
+Not all classes need a default constructor (like Employee).
+
+Programmers often want to provide different initialization values when creating a new object. 
+A class creator can overload a constructor by defining multiple constructors differing in 
+parameter types. A constructor declaration can have arguments. The constructor with matching 
+parameters will be called.
+
+class Restaurant {
+   public:
+      Restaurant();
+      Restaurant(string initName, int initRating);
+
+   ...
+};
+
+// Default constructor
+Restaurant::Restaurant() {
+   name = "NoName";
+   rating = -1;
+}
+
+// Another constructor
+Restaurant::Restaurant(string initName, int initRating) {
+   name = initName;
+   rating = initRating;
+}
+
+int main() {
+   Restaurant foodPlace;              // Calls default constructor
+
+   Restaurant coffeePlace("Joes", 5); // Calls another constructor
+
+   ...
+}
+If a programmer defines any constructor, the compiler does not implicitly define a default 
+constructor, so good practice is for the programmer to also explicitly define a default 
+constructor so that a declaration like  MyClass x; remains supported. *or*
+
+class Restaurant {
+   public:
+      Restaurant(string initName = "NoName", int initRating = -1);
+      void Print();
+
+    private:
+      string name;
+      int rating;
+};
+
+C++ allows a programmer to redefine the functionality of built-in operators like +, -, and *, 
+to operate on programmer-defined objects, a process known as operator overloading
+
+class TimeHrMn {
+public:
+   TimeHrMn(int timeHours = 0, int timeMinutes = 0);
+   void Print() const;
+   TimeHrMn operator+(TimeHrMn rhs) ;
+private:
+   int hours;
+   int minutes;
+};
+
+// Overload + operator for TimeHrMn
+TimeHrMn TimeHrMn::operator+(TimeHrMn rhs) {
+   TimeHrMn timeTotal;
+   
+   timeTotal.hours   = hours   + rhs.hours; //rhs sstands for right hand side 
+   timeTotal.minutes = minutes + rhs.minutes;
+   
+   return timeTotal;
+}
+
+you can overload doubly so long as the parameters are different so the compiler knows which one to pick
+
+   TimeHrMn operator+(TimeHrMn rhs);
+   TimeHrMn operator+(int rhsHours);
+
+for equality operators, use
+bool operator==(const Restaurant lhs, const Restaurant rhs)
+
+// Equality (==) operator for two Review objects
+bool operator==(const Review& lhs, const Review& rhs) {
+   return (lhs.GetRating() == rhs.GetRating()) && 
+          (lhs.GetComment() == rhs.GetComment());
+}
+
+// Less-than (<) operator for two Review objects
+bool operator<(const Review& lhs, const Review& rhs) {
+   return lhs.GetRating() < rhs.GetRating();
+}
+//can be outside of the class declaration or inside
+
+A common approach is to first overload the == and < operators and then overload other 
+comparison operators using == and <.
+
+Overloading != using ==:
+
+bool operator!=(const Review& lhs, const Review& rhs) { return !(lhs == rhs); }
+
+Overloading >, <=, and >= using <:
+
+bool operator>(const Review& lhs, const Review& rhs)  { return rhs < lhs;    }
+bool operator<=(const Review& lhs, const Review& rhs) { return !(lhs > rhs); }
+bool operator>=(const Review& lhs, const Review& rhs) { return !(lhs < rhs); }
+
+It should be clear to you at this point that vector and string are just normal classes, 
+written in C++, just like any other class, including your own. They just happen to be 
+provided for you by the C++ standard library.
+
+The standard template library (STL) defines classes for common Abstract Data Types (ADTs). 
+A vector is an ADT of an ordered, indexable list of items. The vector ADT is implemented as a 
+class, actually a class template that supports different types such as vector<int> or 
+vector<string>
+
+VECTOR FUNCTIONS:
+at()	at(size_type n) 
+   Accesses element n.	
+   teamNums.at(3) = 99;    // Assigns 99 to element 3 
+   x = teamNums.at(3);     // Assigns element 3's value 99 to x
+
+size()	size_type size() const; 
+   Returns vector's size.	
+   if (teamNums.size() > 0) {  // Size is 5 so condition is true
+      ...
+   }
+   
+empty()	bool empty() const; 
+   Returns true if size is 0.	
+   if (teamNums.empty()) {  // Size is 5 so condition is false
+      ...
+   }
+
+clear()	Removes all elements. Vector size becomes 0.	
+   teamNums.clear();         // Vector now has no elements
+   cout << teamNums.size();  // Prints 0
+   teamNums.at(3) = 88;      // Error; element 3 does not exist
+
+push_back()	void push_back(const T& x);  
+   Copies x to new element at vector's end, increasing size by 1. Parameter is pass by reference to avoid making local copy, but const to make clear not changed.	
+   // Assume vector is empty
+   teamNums.push_back(77);  // Vector is: 77 
+   teamNums.push_back(88);  // Vector is: 77, 88
+   cout << teamNums.size(); // Prints 2
+
+erase()	iterator erase (iteratorPosition); 
+   Removes element from position. Elements from higher positions are shifted back to fill gap. Vector size decrements.	
+   // Assume vector is 77, 33, 88
+   teamNums.erase(teamNums.begin() + 1); // Now 77, 88
+   // (Strange position indication explained below)
+
+insert()	iterator insert(iteratorPosition, const T& x);
+   Copies x to element at position. Items at that position and higher are shifted over to make room. Vector size increments.	
+   // Assume vector is 77, 88
+   teamNums.insert(teamNums.begin() + 1, 33); // Now 77, 33, 88
+
+There are 3 ways to access items defined in a namespace:
+
+using namespace std;, or, using namespace imperial;. This makes all declared names in the 
+#included headers defining that namespace visible in the program being compiled. Never do 
+this in a header file, because any users of that header will have all those names visible, 
+potentially leading to name conflicts. It is okay to do this in a .cpp file, but think twice.
+
+using std::cout;, or using imperial::BiggerUnit;. This only makes visible the individual 
+names specified.
+
+Never use the using keyword and always fully qualify names: std::cout << n << std::endl;. 
+This can be tedious, but it is safest. This is how the C++ standard library implements its code.
+
+A namespace defines a region (or scope) used to prevent name conflicts. Above, the auditorium 
+seat class code can be put in an auditorium namespace, and airplane seat class code in an 
+airplane namespace. The scope resolution operator :: allows specifying in which namespace 
+to find a name, as in: auditorium::Seat concertSeat; and airplane::Seat flightSeat;.
+
+All items in the C++ standard library are part of the std namespace (short for standard). 
+To use classes like string or predefined objects like cout, a programmer can use one of two 
+approaches:
+
+Scope resolution operator (::): A programmer can use the scope resolution operator to specify 
+the std namespace before C++ standard library items. Ex: std::cout << "Hello"; or std::string 
+userName;
+Namespace directive: A programmer can add the statement using namespace std; to direct the 
+compiler to check the std namespace for any names later in the file that aren't otherwise 
+declared. Ex: For string userName;, the compiler will check namespace std for string.
+For code clarity, most programming guidelines discourage using namespace directives except 
+perhaps for std.
+
+EXEPTIONS 
+
+Note that we always catch exceptions by reference. One reason is that exceptions tend to be 
+objects of class type, and it is more efficient to not copy them. Another reason has to do with 
+inheritance, discussed later in the course.
+
+An exception is a circumstance that a program was not designed to handle, such as if the user 
+enters a negative height.
+
+Naively adding error-checking code using if-else statements obscures the normal code
+
+The language has special constructs, try, throw, and catch, known as exception-handling 
+constructs, to keep error-checking code separate and to reduce redundant checks.
+
+// ... means normal code
+...
+try {
+   ...   
+   // If error detected
+      throw objectOfExceptionType;
+   ...
+}
+catch (exceptionType excptObj) {
+   // Handle exception, e.g., print message
+}
+
+A try block surrounds normal code, which is exited immediately if a throw statement executes.
+A throw statement appears within a try block; if reached, execution jumps immediately to the 
+  end of the try block. The code is written so only error situations lead to reaching a throw. 
+  The throw statement provides an object of a particular type, such as an object of type 
+  "runtime_error", which is a class defined in the stdexcept library. The statement is said 
+  to throw an exception of the particular type. A throw statement's syntax is similar to a 
+  return statement.
+A catch clause immediately follows a try block; if the catch was reached due to an exception 
+  thrown of the catch clause's parameter type, the clause executes. The clause is said to catch 
+  the thrown exception. A catch block is called a handler because it handles an exception.
+
+catch (runtime_error& excpt) {
+      // Prints the error message passed by throw statement
+      cout << excpt.what() << endl;
+      cout << "Cannot compute health info." << endl;
+}
+
+common exception types:
+bad_alloc	         Failure in allocating memory
+ios_base::failure	   Failure in a stream (Ex: cin, stringstream, fstream)
+logic_error	         To report errors in a program's logic. Ex: out_of_range error 
+                     (index out of bounds)
+runtime_error	      To report errors that can only be detected at runtime. Ex: overflow_error 
+                     (arithmetic overflow)
+
+Defined in <stdexcept>:
+• logic_error (for programmer errors--preventable)
+• domain_error; invalid_argument;
+• length_error; out_of_range;
+• runtime_error (for end-user errors)
+• range_error; overflow_error;
+• underflow_error;
+• logic_error and runtime_error are often sufficient
+• Defined in <exception>:
+• exception (the base class for all exceptions; rarely used)
+
+int main() {
+   int packageWidth;
+
+   cin >> packageWidth;
+
+   try {
+      if (packageWidth <= 0) {
+         throw runtime_error("Your input cannot be processed");
+      }
+      cout << "Package's width received: " << packageWidth << endl;
+   }
+   catch (runtime_error& excpt) {
+      cout << "Error: " << excpt.what() << endl;
+   }
+
+   return 0;
+}
+
+If no handler is found going up the call hierarchy, then terminate() is called, which typically 
+aborts the program.
+
+Different throws in a try block may throw different exception types. Multiple handlers may 
+exist, each handling a different type. The first matching handler executes; remaining handlers 
+are skipped.
+
+catch(...) is a catch-all handler that catches any type, which is useful when listed as the 
+last handler.
+
+// ... means normal code
+...
+try {
+   ...
+   throw objOfExcptType1;
+   ...
+   throw objOfExcptType2;
+   ...
+   throw objOfExcptType3;
+   ...
+}
+catch (ExcptType1& excptObj) {
+   // Handle type1
+}
+catch (ExcptType2& excptObj) {
+   // Handle type2
+}
+catch (...) {
+   // Handle others (e.g., type3)
+}
+... // Execution continues here
+
+A thrown exception may also be caught by a catch block meant to handle an exception of a base 
+class. If in the above code, ExcptType2 is a subclass of ExcptType1, then objOfExcptType2 will 
+always be caught by the first catch block instead of the second catch block, which is typically 
+not the intended behavior. A common error is to place a catch block intended to handle 
+exceptions of a base class before catch blocks intended to handle exceptions of a derived 
+class, preventing the latter from ever executing.
+
+STREAMS
+
+any cpp program takes input and produces and output 
+
+A stream is a general name given to a flow of data
+a stream is a sequence of bytes
+the source stream that provides data to programs is called input stream
+the destination stream receives output from the program is called output stream
+
+in header <iostream> a set of class is defined that supports I/O operations
+the classes used for input/output to the devices are declared in IOSTREAM file 
+The classes used for a disk file are declare in the FSTREAM file 
+
+Input device > Input Stream > Program > Output Stream > Output Device 
+
+ios (input output stream) -class
+   pointer to streambuf 
+      interface with physical devices
+   pointer to istream class
+      extraction operator >>, get(), getline(), and read()
+   pointer to ostream class 
+      Insertion operator <<, put(), write()
+
+      iostream is child of istream and ostream 
+         inherits from ^^
+         ios declared as the virtual base class so only one copy is inherited by iostream 
+
+      istream_withassign, iostream_withassign, ostream_withassign
+         adds assignment operators to its base classes 
+
+Reading and Writing to/from a file 
+
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+int main() {
+    fstream new_file;
+    
+    // Open a file to perform a write operation using a file object.
+    new_file.open("xyz.txt", ios::out); 
+    
+    // Checking whether the file is open.
+    if (new_file.is_open()) {
+        new_file << "My Function \n"; // Inserting text.
+        new_file.close(); // Close the file object.
+    }
+    
+    // open a file to perform read operation using file object.
+    new_file.open("xyz.txt", ios::in); 
+    
+    // Checking whether the file is open.
+    if (new_file.is_open()) { 
+        string sa;
+        // Read data from the file object and put it into a string.
+        while (getline(new_file, sa)) { 
+            // Print the data of the string.
+            cout << sa << "\n"; 
+        }
+        
+        // Close the file object.
+        new_file.close(); 
+    }
+}
+
+Pointers and Streams- Module 4
+
+a pointer is a variable that holds a memory address 
+use the & unary operator to get a variables address 
+commonly used for memory that changes at runtime 
+   ie vectors that may grow 
+to get at the value at the pointed-to address: 
+  use the dereference operator (unary*)
+& and * are two ways to get the memory address 
+
+int main()
+{
+   int i = 1;
+   int* p = &i;
+   cout << *p << " at " << p << endl;
+   int j = 2;
+   p = &j;
+   cout << *p << " at " << p << endl; 
+}
+
+Output:
+1 at 0x7ffee2cwhatever
+2 at 0x7ffee2cwhateva
+
+When you have a pointer within an array, you can add (subtract) and integer to it 
+the result is a pointer that many elements past (before)
+not bytes
+
+array decay- when you pass an array to a function, you pass the pointer to the first element, 
+but not how big the array is
+
+p[i] == *(p+i) aka &p[i] == p+i
+
+int a[] = {1,2,3,4,5};
+int* p = a; 
+sizeof(a) == 20
+sizeof(p) == 8
+*(p+2) == 3
+p[2] == a[2]
+p = a + 4;
+//count backwards from there 
+
+dereference
+var* - pass a pointer as a parameter or declare a new pointer 
+*var or var[i] dereference a pointer [array] 
+
+void copy(char* to, const char* from) {
+   while((*to++ = *from++) != '\0')
+      ;
+}
+
+cool trick. dont do it 
+
+subtracting pointers- make sure you have a base case
+a == &a[0]
+
+swap - switches the memory locations of two variables
+   void swap(int* a, int*b) {
+      int temp = *a; 
+      *a = *b;
+      *b = temp;
+   }
+
+
+int main() {
+   int x = 1;
+   int y = 2;
+   swap(x, y);
+   cout << x << ' ' << y;
+}
+
+data segment- where and local statics are stored, fixed addresses for the life of the program 
+runtime stack- where function parameters and non static local variableds go, exists only during the activation of one function call 
+the heap- memory explicitly requested during runtime, under programmer control 
+
+implementing vectors 
+a vector<var> manages a dynamic array of vars 
+located in the heap 
+elem is a pointer to a dynamic array of ints 
+requested from a bvector with the new operator 
+
+heap operators 
+new 
+   retunrs a pointer to a newly allocated item 
+   if an array, returns a pointer to the first element 
+delete 
+   returns memory to the heap 
+    can no longer be used 
+   if an array use delete [] ptr;
+   often called in class destructors 
+
+a string is also a cynamic array of characters 
+ using a terminating null byte '\0' as a delimiter 
+
+when a class instance goes out of scope meaning the scope it was defined in terminates 
+its destructor is called automatically 
+which by default calls destructors of each of its elements 
+ garbage collection 
+
+ Destructors and Exceptions
+Remember: Destructors execute when an object goes out of scope 
+if an exception occurs?
+    destructors are called anyway
+    called stack unwinding
+    we don't want to leave things undone 
+
+vlc- download videos and stuff 
+
+class Foo {
+    int* p;
+public:
+    Foo(int x) {
+        p = new int(x);      //allocate heap memory
+        cout << *p << "allocated\n";
+    }
+    ~Foo() {
+        cout << *p << "deallocated\n";
+        delete p;
+        p = nullptr; //by classmate- do this or p may have wierd behavior 
+    }
+};
+
+void g() {
+    Foo b(2);
+    cout << "g\n"; //wont print
+}
+
+void f() {
+    Foo a(1);
+    g();
+    throw runtime_error("I give up!");
+}
+
+int main() {
+    try {
+        f();
+        cout << "this wont print\n";
+    }
+    catch(runtime_error& exc) {
+        cout << exc.what() << endl;
+    }
+}
+
+destructors should never throw exceptions!!
+    this breaks the whole idea of exceptions and memory
+    the exception is probably supposed to go somewhere else
+
+when exceptions occur
+    excecution checks for local handler
+    if not handled:
+        executes local destructors 
+
+exceptions and heap pointers 
+pointers do not have destructors
+but the objects they point to can 
+when an exception occurs 
+    the destructor will not be executed
+to the rescue- uniquie_ptr
+    places your pointer in an object with a destructor 
+    which will call delete on your pointer
+
+unique_ptr<Foo> p(new Foo(2));
+
+Shallow Copy- makes a copy of the pointer 
+    bad- changing one changes the other 
+    multiple deletes (error!) 
+
+Rule of Three 
+When classes manage resources (memory)
+need:
+    copy constructor- initialized from another object
+    assignment operator- overwritten from another object- delete things
+    destructor- frees resources
+
+heap objects 
+constructor called when allocated by the new operator
+delete operator calls the destructors 
+
+friend ostream& operator<<(ostream& os const Foo& f) { return os << f.n; }
+
+dry principle- don't repeat yourself
+ loosely couple things, make functions
+
+pointers and const (reference/dereferenced)
+
+const char* p = "the";
+   means that the character is const 
+   you can't say *p = 'c'
+
+char* const p = "the";
+   means that the pointer is const 
+   can't do ++p but you can do p[i]
+
+const char* const p = "the";
+   both are const
+
+the this-> pointer points to a const instance 
+   ^ itself is always const
+   dont change the address of an instance
+
+void f(int n) -> void f(C* const this, int n) 
+void f(int n) const -> void f(const C* const this, int n)
+member = value -> this->member = value 
+
+php, sql, mysql, javascript
+
+recursive definition for array dimentions 
+base case- a 0 dimentional array is a single value (scalar)
+general case- an n-dimentional arra is an array of n-1 dimensional arrays 
+
+array of arrays 
+int a[2][3] 
+    an array of 2 elements
+    each element is an array of 3 ints 
+    a is an array of 2 arrays of 3 ints 
+    sizeof(a[0]) = 12 (4*3)
+
+
+auto p = new int[2][3][4]; 
+int ***p = new int[2][3][4]; 
+int(*p)[3][4] = new int[2][3][4]; 
+
+Array Types 
+the size of an array is part of its type
+int a[3] and int a[4] are distinct types 
+pointer decay and array decay are common bc of this 
+   A3_i -> Pi 
+
+typeid(obj).name() typing things 
+
+pass an array to a function/ method 
+
+void print_array(int (&a)[5]) {
+   cout << sizeof(a) << endl;
+   for (int k: a) 
+      {cout << k << endl;}
+}
+
+template<size_t N>                  // with this you can have any size of array because the template tells it the size that 
+void print_array(int (&a)[N]) {     // is associated with the array
+   cout << sizeof(a) << endl;
+   for (int k: a) 
+      {cout << k << endl;}
+}
+
+for (const auto &row: a) {
+   cout << "sizeof(row):"
+}
+
+multi-dimensional arrays and range- based loops 
+loops iteterate though top level elements 
+
+multidimentional arrays require using reference loop variables 
+   except on innermost values 
+
+declare on the heap:
+   int (*p)[3] = new int[2][3]
+   auto p = new int [2][3]
+   sizeof(p) 
+   typeid(p) 
+   sizeof(*p)
+   typeid(*p)
+
+Linked Lists- data structure for flexible ordering 
+faster to insert elements in the middle than arrays - vectors/ arrays have to shuffle 
+a linked list is a sequence of nodes 
+each node contains 2 items: the data element and a pointer to the next node 
+   (like dictionaries)
+to insert, simiply rearrange the pointers 
+there's a head and and a tail. 
+
+Streams Class Heirarchy 
+
+std::ios 
+   std::istream- getline, get, read, >>
+        ifstream- open, close
+        istringstream- str 
+   std::ostream- put, write, <<
+        ofstream- open, close
+        ostringstream- str 
+   Stream State:
+      good
+      fail (no data)
+      eof (end of file)- fail flag 
+      bad - fail flag, usually a device error
+
+      !fail = good 
+      reset with .clear() 
+
+      (const istream& is ) { is.fail() //bool }
+
+FILE STREAMS 
+   the constructor automatically opens the file 
+   the destructor auto closes the file 
+   you gotta check the stream state when you use files 
+
+   istringstream input_line(line); // is a data type
+   int id;
+   iss >> id >> first >> last; //breaks the line into id, first, last delimited by a space 
+   emps.emplace_back(id, first, last);
+
+   the operator<< is pretty easy to overload (output)
+   the operator>> is harder bc you need to set the streams state and make sure its good for 
+      every iteration
+
+command-line arguments, similar to sys.argv in python 
+   in c++ they are optional arguments to main:
+   int main(int argc, char* argv[]) 
+      argc is how many flags you want 
+      argv is the flag names 
+
+                  //count        vector
+      int main(int argc, char*argv[]) {
+         if (argc == 3) {
+            vector<int> data = atoi(argv[0]);
+            read_data(argv[1], data);
+            write_data(argv[2], data);
+         }
+      }
+
+      (then in the terminal)
+      ./args.exe (arguments) 
+
+EXAM 2 
+no return on structs
+static data belongs to the class 
+in situ- inline
+scope :: operator 
+constructor initializer lists 
+   insert code after a ";" but befor the constructor body 
+a class instance is composed of its data members 
+synthesized copy constructor is created automatically
+& location *unary address 
+deterministic scope- early garbage collection 
+heap objects new/delete 
+abstract base classes 
+
+1- inheritance is a, composition has a 
+2- interface to hide the implementation 
+3- initialization 
+4- polymorphism 
+5- virtual functions 
+
+#include <iostream> 
+using namespace std; 
+
+class School { 
+   public: 
+      School() { y++; } 
+      static int getY() {return y;} 
+   private:
+      static int y;
+}; 
+
+int School::y = 0; 
+
+int main() { 
+   cout << School::getY() << " "; 
+   School t[5]; 
+   cout << School::getY(); 
+}
+
+module 5
+
+inheritance
+
+uml - new project :DDDD
+soccer roster 
+
+base class >
+derived class 
+
+substitutablilty 
+
+don't instantiate abstact classes, only leaf classes 
+
+class Circle : public Shape {}
+child class
+
+polymorphisim- in the heap 
+gotta use pointers 
+declaring the same function but with different parameters
+
+vtable-pointers to itss function implementations
+vptr-
+they have the ability to see stuff, more backend stuff
+
+protected- in between public and private 
+allows family members to edit but no one else /members of the hierarchy
+
+overload- same name different signature 
+override- same name same signature different implementation
+
+polymorphism is usuing virtual functions in an abstract way
+keyword override
+
+deleting needs to be polymorphic too 
+
+virtual ~Circle() {} 
+encapsulation
+
+Module 6 
+ 
+turn stuff in!!!!
+
+parrallelism- not in zybooks 
+
+you can make type a parameter with a template 
+for any function that the logic is the same across types 
+
+template<typename T>
+void swap(T& x, T& y) {//swap values
+   T temp = x;
+   x= y;
+   y= temp;
+}
+
+ints a, b = 1, 2;
+swap(a, b);
+
+string s("one"), t("two");
+swap(s, t);
+
+the compiler creates separate copies of the function based on what you input into it 
+(only pay for what you use)
+
+templates can have multiple template parameters (parameters can be types or integers)
+it infers separate function template parameters based on the call
+
+a class template- 
+   argumetns must be specified
+   a safe array class template
+   fixed size no memory overhead
+   but checks for access errors
+
+template<typename T, size_t N>
+class Array {
+   T data[N] = {};
+   
+   T set () {};
+
+   T* begin () {}
+}
+
+template<typename T, size_t N> 
+void print_array(Array<T,N>& arr) {
+   cout << N << " elements of type " << T&
+}
+
+a template is not a type- it's a blueprint for instantiating functions or classes 
+
+vector<int> is a type, vector<T> is a generic type 
+
+template code 100% goes in the .h file 
+ including function bodies 
+ templates are not code, but instructions for generating code 
+ you can make templates inline 
+
+recommended- create a template for your header files and your source files 
+keep a toolbelt 
+
+
+getting a pointer to a class:
+
+int main(void) {
+   Box Box1(3.3, 1.2, 1.5);    // Declare box1
+   Box Box2(8.5, 6.0, 2.0);    // Declare box2
+   Box *ptrBox;                // Declare pointer to a class.
+
+   // Save the address of first object
+   ptrBox = &Box1;
+
+   // Now try to access a member using member access operator
+   cout << "Volume of Box1: " << ptrBox->Volume() << endl;
+
+   // Save the address of second object
+   ptrBox = &Box2;
+
+   // Now try to access a member using member access operator
+   cout << "Volume of Box2: " << ptrBox->Volume() << endl;
+  
+   return 0;
+}
+
+Declare a vector of pointers like this: vector<MyClass*> vec; 
+
+creating classes in a loop:
+enemyClass* someNewEnemyObjectPointer = new someNewEnemyObject();
+vectorOfEnemies.push_back(someNewEnemyObjectPointer);
+
+
+a computer simplified:
+
+input > CPU (Control Unit, Logic Unit) > Output
+        V  ^
+      Memory Unit
+
+CPU's are always much faster than i/o
+so if you have a faster CPU, it will idle waiting on the i/o 
+while the cpu is waiting, we can give it other things to work on, supported by the programming language 
+however, if the program takes LOTS of computation, 
+newer computers have multiple cpu cores- then we can take advantage of the multiple cores (let the os manage it)
+
+Ctr + Shift + Esc to pull up task manager
+
+Concurrency
+   when multiple independent tasks are logicallh active at the same time, they may still take turns 
+   this is possible on a single-processor, in which case it is colled cooperative multitasking 
+
+Parallelism 
+   multiple independent tasks actually running simultaneously- a special case of concurrency. this requires 
+   multiple processors and cores 
+
+
+single thread of execution 
+Threads 
+A piece of code (usually a function) that can run concurrently with other threads 
+multiple tasks- they can share the same CPU, taking turns while waiting for i/o 
+they can run at the same time on separate cpus 
+
+Programmatically, it's the same mechanism
+   we let the operating system or hardware to do the actual assigning of tasks 
+
+create a thread object 
+   you pass it the name of the function for that task 
+   the constructor launches a system thread immediately 
+   the main prgram continues to run 
+      now you have 2 threads 
+   
+Join 
+eventurally you have to wait for a thread to finish 
+the calling thread waits for its child thread to finish 
+call .join() to wait for the child thread to finish 
+- join can halt your entire thread so be careful with it 
+
+int main() {
+   thread t1{func_name, "It's a Dessert Topping"}
+   t1.join()
+}
+
+shared resources- input and output streams, data in memory that is shared
+when one thread is using a resource, we must block other threads from using it. 
+
+Mutexes (mutual exclusion) 
+has lock and unlock operatoins 
+only one thread at a time can hold the lock 
+effectively synchronizes blocks of code 
+the mutex must exist outside the scope of the threas functions 
+you can have as many mutexes as you want 
+
+mutex m;
+
+void func () {
+   m.lock()
+   //code
+   m.unlock()
+}
+
+int main() {
+   thread t1{func_name, "It's a Dessert Topping"}
+   t1.join()
+}
+
+
+locks and exception safety- if you have an exception, unlock will not be called!
+RAII - resource aquisition is initialization 
+
+void func () {
+   lock_guard<mutex> lck(m)
+   //code
+}
+
+deadlocks are evil, use Ctr + C to break out of them 
+
+this_thread::sleep_for(chrono::milliseconds(300));
+
+lock(mtx1, mtx2);
+lock_guard<mutex> lock1 (mtx1, adopt_lock);
+lock_guard<mutex> lock2 (mtx2, adopt_lock);
+
+dining philosophers- 
+
+Generic Algorithms 
+
+function templates that have type parameters 
+commonly needed behavior for handling data 
+   they use begin and end iterators to travers data 
+   work for any sequence, including arrays 
+   binary_search, copy, find, sort, transform 
+almost 100 algorithms in the standard c++ library 
+minimizes the number of loops you need to write 
+
+iterators 
+act like pointers to elements in a sequence 
+begin- 0, end -n 
+different containers have different tupes of iterators 
+
+std:: find()
+returns the iterator for the first occurrence of the seach key 
+iter = find(authorList.begin(), authorList.end(), "Dazai"); 
+cout << *iter << endl;
+
+find_if()
+iter = find(authorList.begin(), authorList.end(), isGay); 
+                                          function^ (must take the vector/list type and return bool)
+               
+sort()
+sorts a contiguous sequence in place 
+can give it a comparison functio to alter the order 
+default is ascending 
+
+sort(nums.begin(), nums.end())
+sort(nums.begin(), nums.end(), sortDescending)
+
+bool sortDescending(int i, int j) {return i > j;}
+
+back_inserter 
+turns writing a vector into appending 
+
+map
+to write lambda functions within line- [](int n){return n % 2 == 0} //is even
+
+
+istream_iterator 
+
+vector<int> nums{istream_iterator<int>(ifs), istream_iterator<int>()}; 
+sort(begin(nums), end(nums), gt); 
+
+funcion objects- objects that can be called as functions 
+
+struct gt_n {
+   int key;
+   gt_n(int key) {
+      this->key = key;
+   }
+   bool operator() (int n) {
+      return n > key;
+   }
+}
+
+while ((iter = find_if(iter, v.end(), gt10)) != v.end()) {} 
+
+lambda expressions:
+[](int n){return n > 15;} 
+[] - capture directive
+
+in the code: 
+while ((iter = find_if(iter, v.end(), [](int n){return n > 15;})) != v.end()) {}
+
+auto even = [](int num) {return num % 2 == 0;} 
+
+string is a container- it comes with an iterator 
+
+lambda capture - 
+Another advantage with function objects is that the 
+comparison key can be input from the user or from some other source:
+
+Standard C++ Containers 
+   sequences- vector, list, deque, array 
+      array 
+         at
+         operator[ ]
+         Access an element with bounds checking
+         Access an element without bounds checking
+         front	Access first array element ([0]), for both reading and writing
+         back	Access last array element ([size()-1]) for both reading and writing
+         begin
+         end	The usual behavior for container iterators
+         empty	Is size( ) == 0?
+         size	Returns the number of elements in the allocation
+         relational operators	array-wise <, <=, >, >=, ==, !=
+      list - doubly linked list (and forward_list)
+         front()	
+         exList.front();  // returns 6
+         back()	
+         exList.back(); // returns 1
+         push_back()	void push_back(newElement)
+
+         Adds newElement to the end of the list. List's size is increased by one.	
+         // Assume list is empty
+         exList.push_back(4);    // List is: 4 
+         exList.push_back(5);    // List is: 4, 5
+         push_front()	void push_front(newElement)
+
+         Adds newElement to the beginning of the list. List's size is increased by one.	
+         // Assume list is empty
+         exList.push_front(7);    // List is: 7 
+         exList.push_front(9);    // List is: 9, 7
+         size()	size()
+
+         Returns the number of elements in the List.	
+         // Assume list is empty
+         exList.size(); // returns 0
+
+         exList.push_back(25);
+         exList.push_back(13);
+         // List is now: 25, 13
+
+         exList.size(); // returns 2
+         pop_back()	void pop_back()
+
+         Removes element from the end of the list. List's size is decreased by one.	
+         // Assume list is: 3, 11, 6, 6
+         exList.pop_back();    // List is: 3, 11, 6
+         exList.pop_back();    // List is: 3, 11
+         pop_front()	void pop_front()
+
+         Removes element from the front of the list. List's size is decreased by one.	
+         // Assume list is: 3, 11, 6, 6
+         exList.pop_front();    // List is: 11, 6, 6
+         exList.pop_front();    // List is: 6, 6
+         remove()	void remove(existingElement)
+
+         Removes all occurrences of elements which are equal to existingElement. List's size is decreased by number of existingElement occurrences.	
+         // Assume List is: 3, 11, 6, 6
+         exList.remove(6); // List is now: 3, 11   
+         exList.remove(11); // List is now: 3
+      Pairs and Tuples
+         .first and .second 
+         as loop indexes
+
+         using triple = tuple<int, string, double>;
+         triple t(1, "tree", 2.5);
+         auto y = get<0>(t);
+
+         std::pair<std::string, std::string> aPair = std::make_pair(s1, s2);
+         std::pair<std::string, std::string> *p = &aPair;
+         record.wait_list.push_back(p);
+
+      set - 
+         allows no duplicates 
+         orders by less than
+
+         set<string> words;
+         words.insert(word); 
+      multiset aka bag 
+         can hold duplicates
+         useful for checking for subsets 
+      map 
+         stores key, value pairs 
+         ordered container 
+         map<string, string> mymap;
+         ++mymap["hello"];
+         mymap["greet"] = "hello";
+         
+   specialized containers-  
+
+
+class Person {
+   public:
+      virtual void PrintInfo() = 0;
+      void PrintInformation() {
+         cout << "In Base Class People" << endl;
+      }
+   protected:
+      string name;
+      int age;
+};
+class Teacher : public Person {
+   public:
+      void PrintInfo() {
+         cout << "In Child Class Teacher" << endl;
+   }
+   private:
+      int experience;
+};
+
+
+string formatting or fstring 
+#include <format>
+format("Hello {}!\n", "world");
+
+FINAL EXAM REVIEW 
+thursday - saturday 
+
+
+Inheritance 
+class relationships 
+   encapsualtes data adn behavior to create objects
+is-a (inheritance)
+   one class is a specialization of another 
+   a car is a vehicle
+has a (composition)
+   a car has a wheel 
+classes can also just collaborate 
+   one clas uses another's methods 
+inheritance 
+   implements is a relationships
+
+the ubiquitous shape hierarchy
+   hierarchical relationships 
+   code shareing 
+   all comman data and functions are defined once and shared by all derived classes 
+abstract base classes 
+   not meant to be instantiated 
+   establish interfase for the users of the class
+the leaf classes are concrete
+   they are meant to be instantiated 
+    has things specific to it 
+
+abstract member functions should be overridden in child classes 
+polymorphism 
+   determining what to run based on data types 
+   can be used with pointers or references 
+
+Pointers often point to heap memory 
+   new operator 
+   
+virtual functions 
+   each instance has a vptr 
+   use protected access (in between public and private )
+   allows derived classes access 
+
+base class constructors
+initialize via the construcor initializer list  
+
+destructors need to be polymorphic too 
+remember to deconstruct your pointers 
+\
+templates<typenameT>  
+class templates must be instantiated explicitly
+
+vector is not a type but vector<int> is 
+template code whould be 100% in .h file 
+all template code should be inline 
+
+threads  
+a piece of code that can run concurrently with other threads 
+used becuase cpus are way faster than i/o  
+mutex to lock and unlock so they dont step on eachother
+call join() to finish off a thread 
+
+each thread has its own copy of local variables 
+race conditions - threads stepping on eachother 
+lock_guard- RAII wrapper for mutexes 
+when you have multiple locks its easy to deadlock - the chinese finger trap of code 
+
+generic algorithms 
+use begin() and end() 
+use iterators 
+
+find, sort, back_inserter
+istreamer 
+
+lambda [](parameters){function body}
+can capture by value or reference 
+
+containers 
+vector, list, array 
+ordered and unordered containers 
+pairs and tuples 
+set- allows no duplicates 
+map- key, value pairs
+
+----------
+order of operations 
+switch /case statements
+loop 
+pay attention 
+vectors and vector functions 
+follow the logic, say things out loud  
+polymorphisim and how mutable 
+complete the program 
+scoping 
+whats the output?
+exceptions 
+find the error in the code 
+uml diagrams 
+49 questions 

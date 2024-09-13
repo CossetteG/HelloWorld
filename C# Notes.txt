@@ -1,0 +1,576 @@
+# UVU_DGM1610_Summer2022
+Scripting for Gaming and Animation
+
+I may just use this page to keep track of my notes teehee
+I have taken this class before so I have most of the software downloaded 
+but it was during COVID and I was taking too many classes at the time and I hella failed it
+I think I'll do better this time :)
+
+ok so when you click on a committed file, it'll open it up and you can read what it says
+you can also see all the files in this commit to the right
+to make a new file, you can right click on the files box where it's empty and just make a new file
+to edit an existing file, right click on it
+
+when you're editing file contents, make an initial change and then save it with ctrl save
+this will put the file into WIP mode, Unstaged but editable 
+This is called a File Diff
+then make all your changes 
+when you're done editing, stage and commit and push
+
+Always save your file before exiting out of it, but Git will prompt you
+To edit a Diff, you'll click to view it, and then hit Edit File to make another change
+
+what happens if you make a mistake?
+
+You can undo a commit or a staging (or maybe even a push idk) by using the fancy little undo button. 
+You can unstage certain lines if you just want to get rid of them
+or you can go into the text and just edit it as if it was never committed
+
+Now I'm going to simulate a pull function
+These lines were written in Git Hub
+To get here, I went to GitHub- this repo- Code- this file- and Edit with the little pencil icon
+
+Then in Git Kraken, I use Fetch (under Pull) to check for new files from Git Hub, and Then Pull to add them to my repo
+
+Now we're going to branch?
+
+This change was made in the secondary branch. this way we can make changes and pull requests without corrupting the original file
+To merge this branch to the main branch, you can just drag and drop them together, and then push it
+
+SIKE it actually merged into the Main branch so we're good lol
+
+I tried to change the name and now I have two files so now I'm going to delete notes and just make a new notes file
+There it is
+
+Learning Git: without GitHub or Git Kraken, using Git Terminal
+    Download Git from git-scm.com 
+    update it by opening the terminal and writing https://gitgithub.com/git/git 
+    "git init" will create a new repo 
+    "git status" will show you what files you have in your repository
+    "git add <file name>" 
+    "git commit -m "<commit message>" " to commit the currect version of your file
+    "git branch <branch name>" will create a new branch in git
+    "git branch" will show you all the branches that git currently has 
+    "git checkout <branch name>" wil make it so you're working in that branch's version of the files
+    "git checkout -b <branch name>" will create a branch and switch to it
+    "git add ." will add everything you have changed to the branch
+    "git commit -n "commit message" "to make a commit
+    "git merge <branch name>" will merge the branch you mentioned to the branch you're currently in 
+    "git branch <branch name> -d" will delete the branch
+    "git branch <branch name> - D" will force delete the branch
+    "git log" shows us all our commits
+        copy whichever git ID you need to use
+    "git revert <commit ID>" will undo your work until that specific version of it
+
+    to make something git won't see 
+        create a new document called .gitignore
+        within .gitignore, put /<folder name> to tell git to ignore that folder and
+        write the file name to tell git to ignore that file
+
+    If you want git to ignore a file it already has commits for, you'll need to delete cache first
+    "git rm --cached <file name>"
+    then add the file to .gitignore
+
+GitHub tutorials
+    creating repositories
+    "git add remote origin <URL of Git Repo>.git" will clone and connect the online and local repositories
+    "git push origin <branch name>"
+        it will prompt you for login info
+    to make a new commit:
+        stage with git add .
+        commit with git commit -m "commit message"
+        push with git push -u origin master
+        username and password
+
+    ReadMe files: welcome and rules and organization for your repository
+    Git clone (pulling)
+    open the repo you want
+    copy the repo link
+    "git clone <github URL>"
+
+that guy's voice was annoying smh
+
+Links!!
+https://github.com/anthonyromrell/CSharpEssentials (.)
+https://dotnetfiddle.net/ 
+w3schools.com/cs/cs_intro.php
+
+Class:
+    public class ClassExample
+        C Sharp is object oriented
+        public - keyword, meaning accessible
+        class declares a class
+        ClassExample is just the name of the class
+        denote a class by putting curly brackets underneath:
+    public class ClassExample
+    {
+        public int number;
+    }
+        now we fill the object with variables
+        int is integer, a number value
+        number is the name of the variables
+        always end your lines with a ;
+
+
+
+Names are one word only
+Class names start with capital letters
+Variable names start with lowercase letters
+both use CamelCasing
+functions go within classes alongside variables
+to declare that it is a function, it needs () after it, then you put curly brackets underneath to tell the function what to do
+a function declaration is the top line (), a funtcion call is the body of the function {}
+
+public class Health
+{
+    public int healthNum;
+    public int strengthNum;
+}
+
+public means it can be veiwed from anywhere
+int is a number variables
+"healthNum" and "strengthNum" are variable names
+
+public class Character
+{
+    public Health playerHealth;
+
+    public void RunExample()
+    {
+        Console.WriteLine("Hello World");
+    }
+}
+
+You can put one class in another and it registers as an object
+example of a function
+
+public class Weapons
+{
+    public int ammoCount = 10;
+    public string weaponName = "Mini Gun"
+    public float firePower = 11.5f; 
+}
+
+string is a abc variable
+a float is a numeric variable with a decimal 
+float variables always come in units of f
+
+using System;
+
+public class Program
+{
+    public Weapon miniGun;
+
+    public void Main()
+    {
+        miniGun = new Weapon();
+        Console.WriteLine(miniGun.weaponName + "has an ammo count of" + miniGun.ammoCount);
+    }
+}
+
+Weapon is the object
+the first line only declares the object
+within the function is the connector from miniGun to the Weapon body
++ can string together sentences, just an and
+
+public class Program
+{
+    public Weapon miniGun;
+    public PowerUp WeaponPowerUp;
+
+    public void Main()
+    {
+        miniGun = new Weapon();
+        miniGun.ammoCount++;
+
+        WeaponPowerUp = new PowerUp;
+        miniGun.firePower += WeaponPowerUp.powerLevel;*
+
+        Console.WriteLine(miniGun.weaponName + "has an ammo count of" + miniGun.ammoCount);
+        Console.WriteLine("Firepower is now" + miniGun.firePower);
+    }
+}
+
+++ operaters will add 1 to your numeric variable
+-- subtracts one
+miniGun.ammoCount = 30 will change the value to 30
++= will add however many more
+-= will subtract however many more
+The long way to do this is:
+miniGun.ammoCount = miniGun.ammoCount + 40; 
+
+public class PowerUp
+{
+    public float powerLevel = 2.5f;
+}
+
+(added powerup stuff)
+you can pull info from other classes easy
+*name of the object . name of the variable in its class, add to it: name of the object . name of the variable within its class
+
+Types of variables
+    int - whole numbers and negative whole numbers - 4 bytes
+        int myNum = 5;
+    long - whole numbers but they're bigger/ negative numbers but they're smaller - 8 bytes
+        long myLongNum = 10L;
+    float - decimal numbers - 4 bytes
+        float myFloatyBoi = 5.5F;
+    double - decimal numbers, but with more decimal places - 8 bytes  
+        double myBadonkerSize = 12.21D;
+    floats and doubles may also be scientific numbers like 12e4 (120000)
+    char - single character with single quotes - 2 bytes
+        char myLetter = 'D';
+    string - text with normal quotes- 2 bytes per characters
+        string myWords = "ahh no betrayal";
+    bool - a value that is either true or false - 1 bit
+        bool myBool = true;
+
+Syntax:
+type(of variable) variableName = value; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    string name = "Black*Star";
+    int myNum = 1;
+Console.WriteLine(whatever you're writing lol + whatever else you wanna say haha);
+    Console.WriteLine(myNum)
+    Console.WriteLine("A human called me a possom. I am not a possom")
+variableName = value; (after you've declared it once)
+    myNum = 8;
+    (variables will = the latest declared value)
+
+Operators
+do stuff with the variables (subject and predicate deal)
+type variableName (operator) value or other variable [(operater) value or other variable]
+    int value0 = 10;
+    int value1 = 100 + 50;
+    int value2 = value1 + 30;
+    int value3 = value1 + value2;
+    int value0 ++;
+    int value1 += 50;
+
+    int value4 = 4;
+    int value5 = 2 + 2;
+    Console.WriteLine(value4 == value5);
+    //returns true because they are equal
+
+    (value4 == value5 && value4 != 0)
+    //returns true, because value4 is equal to value5 AND value4 is not equal to 0
+
+Arithmetic Operators
+    + Adds together two values;
+    - subtracts one value from another;
+    * multiplies two values;
+    / divides one value from another;
+    % (Modulus) returns the division remainder;
+    ++ (Increment) Increases the Value by one;
+    -- (Decrement) Decreases the Value by one;
+Assignment Operators 
+    = assigns a value;
+    += adds a value to a variable;
+    -= subtracts '';
+    *= multiplies '';
+    /= divides '';
+    %= modules '';
+    &= witchcraft. will make your numbers smaller, likley go to 0. values are interchangeable AND
+    |= also witchcraft. will make your number some value up to the += value. OR
+        these have to do with the number in binary as well as AND and OR logical statements.
+        they are inverses of eachother
+    ^= Sorcery, but numbers come in triplets (in 9, 16, 25, any two will return the other) pythagoras bitch
+    >>= Shrink Ray. responds well to exponetial relationships
+    <<= Growth Ray. greater than addition but less than exponetial
+Comparison Operators (will return true or false)
+    == is equal to;
+    != is not equal to;
+    > greater than;
+    < less than;
+    >= greater than or equal to;
+    >= less than or equal to;
+Logical Operators (returns true or false)
+    && AND / true if both statements are true;
+    || OR / true if either statement is true;
+    ! NOT / uno reverse card
+
+Commas can be used anywhere where one variable is expected to put multiple variables in
+    int x = 4, y = 5, z = 3;
+    Console.WriteLine(x, y, z);
+
+VOID FUNCTIONS
+void functions just do work
+void means no return. to be used in functions. 
+
+"System" in "using System" is a Microsoft.net library
+libraries give us access to its functions and objects
+(class) Program, (function) Main, and Console.Writeline are part of the library System
+
+var is short for variable, you can use it to declare a variable
+
+Syntax: 
+public void FunctionName ()
+{
+    var number = 2;
+    Console.WriteLine(number);
+}
+
+in order to get a function to work that is not Main, you must CALL it
+Within the Main function, write:
+    FunctionName();
+
+within the function (), you can put in a little variable called an ARGUMENT
+    public void Main ()
+    {
+        FunctionName(8);
+        FunctionName(9);
+    }
+    public void FunctionName (int value)
+    {
+        var number = value + 2;
+    }
+
+The number in the Main function argument will be put into the fucntion argument
+Also, the fucntion will be run twice because it was put into Main twice. You can reuse functions as many times as you want
+
+You can also put in 2 arguments if you want, you just have to remember to put in two arguments in the Main function as well
+
+Conditions and IF statements
+within a function, you can put an if statement written as so:
+public void Compare(value1, value2)
+    if(value1 == value2) 
+    {
+        Console.WriteLine("true");
+    } else 
+    {
+        Console.WriteLine("false");
+    }
+
+the else statement denotes to do something if the if statement returns false- it is optional
+Romrell does another example where he checks a password with a string variable
+
+Operators- 3 things:
+an Operator will be its own class in which you put functions
+    public class Operations
+    {
+        public void DoMath();
+    }
+in the Main function, declare the operation the way you would a function
+        myOperator1 = new Operations();
+then, in the Main Function, you can tell any Operation to run by using periods
+        myOperator1.DoMath;
+and that'll tell the System to run that operation
+
+if- will run the code if the condition is true
+else- will run the code if the condition is false
+else if- used to specify a new condition to test, if the first condition is false
+switch-Use to specify many alternative blocks of code to be executed
+        if (condition)
+    {
+        //block of code to be executed if condition is true
+    }
+    else if (condition2)
+    {
+        //block of code to be executed if condition is false and condition2 is true
+    }
+    else
+    {
+        //block of code to be executed if the condition is false
+    }
+
+the Shorthand version can be written as:
+    variable = (condition) ? expressionTrue : expressionFalse;
+    string result = (time < 18) ? "Good day." : "Good evening";
+    Console.WriteLine(result);
+
+enum- new kind of variable, it's like a labelling system
+switch- allows you to test different cases and tell you to do something for each case
+case- an if statement within a switch, you can have as many of these as you want
+break tells it to stop running the code, basically ends the case
+
+public enum States 
+{
+    Starting.
+    Playing.
+    Ending.
+}
+
+public States currentState = States.Starting;
+
+public void CheckState ()
+{
+    switch (currentState)
+    {
+        case States.Starting:
+            Console.WriteLine("Starting");
+            break;
+    }
+}
+if the variable States is States.Starting, then Console will write "Starting"
+right now it does becuase the public State was declared to be Starting on 392
+
+to call, declare "public GameStates gameStates; (public NameofClass newVariableName) in the Program
+and in Main write gameStates = new GameStates(); / gameStates.CheckState; (variableName = new NameofClass();)
+you can easily change your game state by saying gameStates.currentState = GameStates.Ending
+
+the sytax for switch statements is:
+    switch(expression)
+    {
+        case x:
+            //code block
+            break;
+        case y:
+            //code block
+            break;
+        default:
+            //code block
+            break;
+    }
+
+default is the else statement within a switch, in the case that none of the cases hit
+
+ARRAYS AND LOOPS
+
+Arrays 
+make sure static is taken off
+Arrays are like variables but they can hold multiple things
+
+denote an array with square brackets []
+    public void Main()
+    {
+        string train = "FrontRunner";
+        string[] cars = {"Batmobile", "Racecar", "Jeep"};
+    }
+
+each thing in array is called an element
+
+    Console.WriteLine(cars[0]);
+
+To Use an array, it's written like this^, with the array name and then which element you want to use
+The counting for arrays always starts with 0, so this WriteLine would write Batmobile.
+
+    Console.WriteLine(cars.Length);
+
+This returns the number 3, because there are 3 things in the array.
+
+    foreach (var car in cars)
+    {
+        Console.WriteLine(car);
+    }
+
+foreach is a loop that runs for every element in the array. it's a read-only
+in means to use all the variables within a given array
+syntax: foreach (var(variabletype) newVariableName in arrayName) {}
+
+    string[] playerTypes = {"Pawn", "Pawn", "Pawn"};
+    
+    playerTypes[1] = "Queen"
+    for (var i = 0; i < playerTypes.Length ; i ++)
+    {
+        playerTypes[i] = "Queen";
+    }
+
+    foreach(var playerType in playerType)
+
+the for loop can loop its function within each thing in an array
+the line within the parentheses declares a variable as 0, checks to make sure that variable is less than the number of items within the array, and then it adds one to the variable every time it runs.
+basically it makes sure it runs 1x per item in the array
+
+using System;
+
+public class Program
+{
+public static void Main()
+{
+    book[] libraryObj = {new book(), new book(), new book()};
+    libraryObj[1].bookName = "Attack on Titan";
+    libraryObj[2].bookName = "Pot the Harry";
+
+    for(var i=0;i<libraryObj.Length;i++)
+    {
+        
+        libraryObj[i].popularityLevel = 2;
+    }
+
+    foreach(var item in libraryObj)
+    {
+        Console.WriteLine(item.bookName);
+        Console.WriteLine(item.popularityLevel);
+    }
+}
+}
+
+public class book
+{
+    public string bookName = "All the Light I Cannot See";
+    public int popularityLevel = 1;
+}
+
+//this code works lol
+
+
+while (condition)
+{
+    //code block to be executed
+}
+//for example
+int p = 0;
+while (p < 5)
+{
+    Console.WriteLine(p);
+    p++;
+}
+// the while loop does something while a condition is true. be careful to not make it go forever
+
+do
+{
+    //code block to be executed
+}
+while (condition);
+//for example
+int p = 0;
+do
+{
+    Console.WriteLine(p);
+    p++;
+}
+while (p < 5);
+//like the while loop except it does the code and then checks the condition so it's guaranteed to run at least once
+
+for (statement 0; statement 1; statement 2;)
+{
+    //code bock to be executed
+}
+for(declare a var; relate var to relevant int; var++)
+{
+    Console.WriteLine(var)
+
+    change something about relevant int
+    Console.WriteLine(relevant int)
+}
+//relevant in can be an array, variable, or straight number
+//statement 1 is usually a less than relationships
+for (int i = 0; i < 5; i++)
+{
+    Console.WriteLine(i);
+}
+//for statements run code in this specific way and are usually used with arrays.
+for (int i = 0; i < 10; i = i + 2)
+{
+    Console.WriteLine(i);
+}
+//alternatively, this adds 2 every loop
+
+foreach (type variableName in arrayName)
+{
+    //code block to be executed
+}
+//for example
+string[] cars = {"Volvo", "BMW",};
+foreach (string i in cars)
+{
+    Console.WriteLine(i);
+}
+//another for function, specifically for arrays
+
+Array.Sort(cars)
+will sort your array? test later lol
+
+The new Unity Project is called UnityProject1
+it's in Documents/ GitKrakenFiles/ UVU_DGM1610_Summer2022 (this repo)/ New Unity Project
+
+
