@@ -1,0 +1,1648 @@
+ok python notes will go here
+
+Review: 
+
+string: "word" or 'words' or """lots
+    of words"""
+int: whole number
+float: real number
+bool: True or False
+
+
+
+
+file: with open("filename.py", "r,w,a"):
+    do stuff with the file: readline, writeline, for loop
+
+list: ["ordered", "mutable",]
+tuples: ("immutable", "ordered")
+sets: {"unordered", "mutable", "does not allow duplicates}
+dict: {"key": "value", "very": "fun", "unordered": "and mutable"} 
+    aka lookup table,  hashtable, map
+
+append: adds to the end of a list
+_.append("element")
+extend: adds a list to the end of another list
+_.extend(other list) or you can add with +
+insert: inserts and element in a specific place in a list
+_.insert(index, element)
+pop: _.pop() or _.pop(index) returns the value that is removed from the list
+in: checks if something is in a list, returns true or false
+for n in (): ..... if n in (): 
+index: returns an elements position or an error if not found
+_.index(n) 
+sort: will rearrange a list to be in alphabetical order, must be one data type
+_.sort() will return None and then sort the original list
+sorted(): kinda the same as sort but better for creating new lists
+sorted(_, key=_) 
+remove: removes the first instance of it from a list 
+_.remove("element")
+
+^most are illegal for immutables: tuples, sets, dict
+finding things in a dict: find by key only 
+dict_name["key"]
+get: finding things but with a default value in case it isnt there 
+dict_name.get(key, default_value)
+pop: for dict- input is the key, return is the value, and it will be deleted
+pop(key, default=) default is optional in case its not there
+to print all the values: for key in dict_name: print key, grades[key]
+return key-value pairs: list(dict_name.items())
+return keys: list(dict_name.keys())
+return values: list(dict_name.values())
+len: finds the length of an iterable, starts the count at 1
+len(iterable)
+clear: removes all the keys in a dict idk
+adding to a dict with a loop: dict_name[key] = value
+    dict_name.get(key, default value) + 1 #counts how many of that key is in the original list
+
+Sets are like dicts but keys and values are 1 and allows set operations and no duplicates
+Union: |, intersection &, and difference -- 
+x,y = {'a','b','c'}, {'c','d','e’}
+print(x | y)
+{'d', 'e', 'b', 'c', 'a’}
+print(x & y)
+{'c’}
+print(x – y)
+{'a', 'b’}
+print(y – x)
+{'e', 'd’}
+x |= {'f',’g’}
+print(x)
+{'f', 'g', 'b', 'c', 'a'}
+
+
+split: takes every word in a string and turns it into a list of words
+s.split() or s.split('-')
+
+_ = use the previous variable that we been using 
+
+join: joins a split string into one string again
+'-'.join(_)
+
+strip: removes outside whitespace 
+_.strip()
+
+help: get help with a certain definition
+help(_)
+
+find: searches for substrings, returns -1 if not there
+_.find("-")
+
+substring: a piece inside a string, character by character
+
+slice: taking a piece of a string or list
+_[start:stop]
+start is inclusive, stop is not
+strides: skipping every other how many
+_[start:stop:step]
+if step is negative, it will start from the end and go backwards
+_[len(s)-1] the last character, aka _[-1]
+
+open(<filename>,<mode>)
+f = open("my_file.txt", 'w')
+f.close() always close your file when you're done with it
+    'w' is for write, will create a new file or overwrite an existing file
+        f.write("text\n moretext")
+        print("text\n moretext", file=f)
+        \n is for newline within a string
+    'r' is for read, can only read existing files
+        f.read() reads the whole file in one string
+        f.readline() reads one line
+        f.readlines() reads a list of lines or all the lines in a with
+        with a loop: 1 line per iteration.
+    'a' is for append, will add onto an existing file 
+with: automatically closes at end of block 
+with open("my_file.txt", "w")
+
+loops: iterate over iteratable things
+for loop- a set number of iterations
+for line in f:
+    print(line, end='')
+while loop- will go until false
+while True:
+    line = f.readline()
+    if line == '':
+        break
+    print(line, end='')
+
+
+zip: combines lists into a list of tuples
+list(zip(list_1), list_2))
+if you zip by itself it gives you zip obj at whatever location, you have to typecast into a list
+
+typecasting: making one variable into another type of variable, must be compatible
+a= "1"
+int(a)
+
+print: prints (obv)
+    file=   writes to a specific file
+    sep=    uses this as a separator
+    end=    use this instead of newline
+f-strings: formmatting outputs
+print(f"this is the context for {x} variable")
+
+a += b (edits the same list) can be different than a = a + b (creates a new list)
+concatenation
+
+operator.itemgetter: creates a key function for you. idk look it up 
+I think it goes back to sorting
+composite key: sorts by returning a tuple 
+operator.itemgetter(1,0)
+
+None: what to return if your function gets a dead end
+called a destructive mutator
+Bool False: equivalent to 0, "", [], and None
+Bool True: equivalent to 1, "_", [_], and not None
+and: checks for a false 
+or: checks for a true
+!=: not equal to
+==: is equal to 
+aliasing: two identifiers pointing to the same object
+first = _,  second = first
+copy: will have a new variable with same info in a different location
+third = first.copy()
+is: tests for the same object 
+not: uno reverse card, aka ! (is not tests for different object)
+
+comprehension: generating an iterable from another iterable
+[expression for variable in expression2 if condition]
+i.e. [sq for sq in sqares if sq %2==0]
+confusing but more consise 
+i.e. [(x,y) for x in set1 for y in set2 if x!=b if y<3] 
+dict comprehension: creating dictionaries- constructs pairs
+{expression><input sequence><optional condition}
+i.e. {x:y for x,y in zip(keys,values)} or dict(zip(keys,values))
+
+lazy iterators (generator expressions) data is generated when called, not defined,
+ ^can iterate through them or call with next (range(_) is a generator)
+next: will give you the next generated object from a generator
+g = (2*n for n in range(1,11))
+print(g)
+<generator object <genexpr> at 0x103ea2050>
+print(next(g))
+2
+
+open and similar calls don't do things themselves, they call upon operating system language
+high-level language(python) is more user-friendly, low-level language is more machine friendly
+
+ASCII - characters in a string (just a shape)
+{x*1.06:.2f} .2f is 2 decimal places, 2 floating points
+del deletes things
+del _ 
+
+size tells you how big a file is
+width, height = image.size 
+
+
+commands:
+ls :shows us all the files in the current folder
+pwd :shows us the full path 
+. .. :one step up in file folders
+
+----------
+
+Classes and Objects
+all object- oriented systems use class 
+
+ADT - Abstract Data Type 
+    stack (fuse) data types to create new data types 
+
+s = "I am a string"
+print(type(s))
+<class str> string is the class, the variable is the object
+
+something you do to the variable is called a method 
+s.__add__("!") 
+    the double _ (dender) is a convention for simple methods (not required)
+    add is a built- in method to the string class, adds to the string
+s.__sizeof__() - tells you how much memory that obj uses
+s.startswith("I") - tells you t/f if it starts with that string 
+print(dir(str)) will give you all the methods available for the string class
+will also give you stuff for copy and such that are imported
+
+Class: a collection of data and actions that can modify the data. Classes
+    make data less abstract and they act as a blueprint for individual objects 
+    ie the instructions to make a tree or an animal, if building a forest
+Object: are constructed according to the blueprint that is the class.
+    the specific object that takes up space and is an instance of a class. 
+Instance: Another way to refer to a specific object
+Instantiation: creating an instance of an object 
+
+creating a class:
+class Student:
+    pass 
+
+best_student = Student()
+best_student.first_name = "Cossette"
+best_student.last_name = "Gomez"
+
+adding methods to classes:
+    __init__ is the built in function to construct classes (the constructors)
+class Actor:
+    """Define"""
+    def __init__(self):
+        self.first_name = "Helen"
+        self.last_name = "Mirren"
+
+helen = Actor() - the parentheses automatically call the dender init __init__ 
+print(f"{helen.first_name} is an actress")
+
+or you can add attributes as parameters that you pass through the class 
+
+    def __init__(self, firstname, lastname, etc)
+        self.first_name = firstname 
+        self.last_name = lastname 
+
+helen = Actor("Helen", "Mirren")
+
+you can add default parameters to classes as well, 
+however default parameters must always come after all the required parameters
+
+the def __init__ must always have self as the first parameter 
+
+
+class attributes are defined above the init for object attributes. 
+theyre delcared like normal variables but manifest as an attribute the same for every variable 
+they can be altered for an individual object by doing 
+    instance.class_attribute = "whatever"
+
+for an unchangable attribute- class attribute
+for an optionally changeable attribute- optional parameter in init__ 
+for a unique to every object attribute- normal parameter in init__ 
+
+forget what you put in a class? no worries just use 
+    print(help(<class_name>)) 
+
+class Actor:
+    """Define the actor class"""
+    union = "Screen Actors Guild"
+    def __init__
+
+you can also change a class attribute after the fact, but that will change it for all instances of the class
+    class Student:
+    """lol """
+    boob = "yes"
+    def __init__(self, grade="A"):
+        self.grade_ = grade
+    noob = "no"
+
+    best_student = Student()
+    best_student.first_name = "Cossette"
+    best_student.last_name = "Gomez"
+
+    Student.noob = "maybe"
+
+    ok_student = Student()
+
+    print(best_student.first_name, best_student.noob)
+    print(ok_student.noob)
+
+
+Shallow vs Deep copies
+
+a shallow copy gives another name to the same variable 
+    a = Actor()
+    a.name = "billy joe"
+    b = a 
+
+a deep copy creates a new instance with the same attributes as the first 
+    import copy 
+
+    a = Actor()
+    a.name = "billy joe"
+    b = copy.deepcopy(a)
+    
+
+Changing Objects with Method 
+
+Instance Methods
+create a instance method by adding a function after the __init__ function within the method
+then call the method by using instance_name.method_name()
+    class Player:
+        """Simple player class"""
+        def __init__(self, health=100, score=0, level=1):
+            self.health = health
+            self.score = score
+            self.level = level
+            self.powerups = []
+        
+        def print_player(self):
+            if self.health <=0:
+                print("dead lol")
+            else:
+                print(self.health)
+
+        def add_powerup(self, pu):
+            self.powerups.append(pu)
+
+    mario = Player() #the __init__ is called magically 
+    mario.print_player()
+
+both functions and methods can change something about an instance of a class 
+Instance Methods always have self as the first parameter, whereas in functions the object is passes as a parameter
+    def increase_level(player):
+        player.level += 1
+        print(f"You are at level {player.level}")
+
+    increase_level(peach) 
+
+Class Methods and Static Methods
+
+class methods change something about the entire class, including every instance of the class
+they are notated with the @classmethod decorator and take cls as the first parameter, 
+then place in the same block as instance parameters 
+    @classmethod
+    def change_salary_cap(cls, new_cap):
+        cls.salary_cap = new_cap
+    
+    NFLteam.change_salary_cap(199000000)
+
+or you could do this but its not as good 
+    class Student:
+        """lol """
+        boob = "yes"
+        noob = "no"
+    
+    Student.noob = "maybe"
+
+Alternate constructors: 
+Factory Method:
+having a method within the class that creates an instance with a common set of parameters
+    @classmethod
+    def method_name(cls):
+        """"""
+        return Class_name("the parameters you want)
+    
+    object = Class_name.method_name() 
+
+Static Method:
+creating a function that is specific to that class,
+usually you can put an instance of itself in as a parameter, but has no required parameters
+    @staticmethod
+    def method_name(obj1, obj2):
+        """"""
+        return obj1.attribute += obj2.attribute
+    
+    x = Class_name.method_name(obj1, obj2) 
+    y = obj1.method_name(obj1, obj2) 
+both class and static methods can be called from either a class or an instance of a class, with the same result 
+
+Functions:
+not methods 
+classes are mutable so you can pass stuff through parameters and do all kinds of stuff
+    def print_player(p):
+    """Print the status of a player"""
+        if p.health <= 0:
+            print(f"whatever")
+        else:
+            print(f"whatever.")
+
+    print_player(player1)
+
+
+basically
+instance methods do stuff to an instance (singular)
+class methods do stuff to the whole class
+factory methods make instances 
+static methods do something with an instance (plural)
+functions can do all of the above, but outside the class declaration 
+
+
+
+class Dinosaur:
+  def __init__(self, size, weight):
+    self.size = size
+    self.weight = weight
+    
+class Carnivore:
+  def __init__(self, diet):
+    self.diet = diet
+    
+#bottom to top, left to right 
+class Tyrannosaurus(Dinosaur, Carnivore):
+  def __init__(self, size, weight, diet):
+    Dinosaur.__init__(self, size, weight)
+    Carnivore.__init__(self, diet)
+    #pass the Tyrannosaurus self as a paramenter in the dinosaur and carnivore constructors 
+
+    
+tiny = Tyrannosaurus(12, 14, "whatever it wants")
+#print(tiny.diet)
+
+
+class A:
+  def hello(self):
+    print("Hello from A")
+
+class B:
+  def hello(self):
+    print("Hello from B")
+
+  def break_my_computer(self):
+    print("Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. The rats make me crazy")
+    B().break_my_computer()
+
+class C(A, B):
+  #overriding
+  def hello(self):
+    B().hello()
+    #you do need the parentheses after B
+    #overrides the hello() in A because A is the first inherited hello() function
+
+  #extending
+  def bonjour(self):
+    print("Bonjour")
+
+#multiple inheritance is debatable on whether on or not its a good design strategy
+#some languages support it and some don't
+obj = C()
+obj.hello()
+#super does not work with multiple inheritance because Python doesnt know what its referring to
+
+#cohesion refers to how related data is to eachother
+#classes increase cohesion
+#multiple inheritences lower cohesion
+
+#New Module: Encapsulation, Getters and Setters
+#methods and data are encapsulated in their class - can be described by venn diagrams
+#Python usually has no data restrictions - accessible from anywhere. Most languages don't allow this
+#public = no restrictions 
+#private = restricted 
+class Phone:
+    def __init__(self, model, megapixels, storage):
+      self.model = model
+      self._megapixels = megapixels
+      #the underscore is a conventional way to notate a private variable in Python
+      #it will not throw an error if you try to access it publicly tho
+      self.__storage = storage
+      #the dender makes it look like a private thing, it's just invisible to the outside 
+      #for any dender the compiler adds the object name to it
+
+    def helper(self):
+      #use self.storage
+
+    def __private_method(self):
+        return "I am a private method"
+
+my_phone = Phone("iPhone", 12)
+print(my_phone.model)
+print(my_phone._megapixels) 
+
+# print(my_phone.__storage)
+#throws an error that says it doesn't exist. 
+
+print(my_phone.__private_method)
+#throws an error because again the name changed 
+print(my_phone._Phone__private_method)
+#changed from name 
+
+print(my_phone.__dict__)
+#^useful function to show all the stuff declared in a class 
+
+for all languages, there are getters and setters 
+2 ways to use -property or get and set 
+
+using methods is not the "python way" lol 
+
+DATA VALIDATION
+-------
+
+polymorphism is when one call can call different things 
+ie + is an integer adder and a string concatenator 
+
+Magic Operators that can be polymorphed:
+Operator	Method Name
++	object.__add__(self, other)
+-	object.__sub__(self, other)
+*	object.__mul__(self, other)
+/	object.__truediv__(self, other)
+//	object.__floordiv__(self, other)
+<	object.__lt__(self, other)
+<=	object.__le__(self, other)
+==	object.__eq__(self, other)
+!=	object.__ne__(self, other)
+>	object.__gt__(self, other)
+>=	object.__ge__(self, other)
+
+
+from abc import ABC, abstractmethod
+
+class Superclass(ABC):
+    @abstractmethod
+    def area(self): pass 
+
+    @abstractmethod
+    def perimeter(self): pass 
+
+#an abstract class / method cannot be instantiated, it is only for using to build subclasses
+class Subclass:
+    def __init__(self, side):
+        self.__side = side 
+
+shape = Shape() #will not work 
+sqaure = Subclass(4) #you can do this if you don't have any abstract methods
+
+class Median:
+  def average(self, num_1, num_2):
+    return (num_1 + num_2)/2
+
+  def calculate_median(self, num1, num2, num3=None, num4=None, num5=None): 
+    if type(num5) == int:
+      num_list = sorted([num1, num2, num3, num4, num5]) 
+      return num_list[2]
+    elif type(num4) == int:
+      num_list = sorted([num1, num2, num3, num4]) 
+      return self.average(num_list[1], num_list[2])
+    elif type(num3) == int:
+      num_list = sorted([num1, num2, num3]) 
+      return num_list[1]
+    elif type(num2) == int:
+      return self.average(num1, num2)
+    else:
+      return "To find the median, input 2-5 integers"
+
+
+m = Median()
+
+print(m.calculate_median(3, 5, 1, 4, 2))
+print(m.calculate_median(8, 6, 4, 2))	
+print(m.calculate_median(9, 3, 7))
+print(m.calculate_median(2, 5)) 
+
+Unit Testing 
+
+# calculator.py
+class Calculator:
+    def add(self, a, b):
+        return a + b
+
+    def subtract(self, a, b):
+        return a - b
+
+# test_calculator.py
+import unittest
+from calculator import Calculator
+
+class TestCalculator(unittest.TestCase):
+    def setUp(self):
+        self.calc = Calculator()
+
+    def test_add(self):
+        self.assertEqual(self.calc.add(2, 3), 5)
+        self.assertEqual(self.calc.add(-1, 1), 0)
+
+    def test_subtract(self):
+        self.assertEqual(self.calc.subtract(5, 3), 2)
+        self.assertEqual(self.calc.subtract(3, 5), -2)
+
+if __name__ == '__main__':
+    unittest.main()
+
+# calculator_doctest.py
+class Calculator:
+    def add(self, a, b):
+        """
+        Add two numbers.
+        >>> calc = Calculator()
+        >>> calc.add(2, 3)
+        5
+        >>> calc.add(-1, 1)
+        0
+        """
+        return a + b
+
+    def subtract(self, a, b):
+        """
+        Subtract two numbers.
+        >>> calc = Calculator()
+        >>> calc.subtract(5, 3)
+        2
+        >>> calc.subtract(3, 5)
+        -2
+        """
+        return a - b
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+
+------------------
+
+def greet(name: str) -> str:
+    return "Hello, " + name
+
+print(greet("Rose"))
+
+print(greet(26))
+
+help(str)
+
+'''
+class str(object)
+ |  str(object='') -> str
+ |  str(bytes_or_buffer[, encoding[, errors]]) -> str
+ |
+ |  Create a new string object from the given object. If encoding or
+ |  errors is specified, then the object must expose a data buffer
+ |  that will be decoded using the given encoding and error handler.
+ |  Otherwise, returns the result of object.__str__() (if defined)
+ |  or repr(object).
+'''
+
+# This file is the class definition
+
+from typing import List, Tuple, Dict, Any, Union, Optional
+
+age: int = 30
+
+def greet(name: str) -> str:
+    return "Hello, " + name
+
+greet("Rose")
+
+def find_user(user_id: int) -> Optional[str]:
+  pass
+    # Implementation here
+    # Return a username or None if not found
+
+
+def process_data(data: List[int]) -> Tuple[str, Dict[str, int]]:
+  pass
+    # Implementation here
+
+class User:
+  pass
+    # Class implementation
+
+def get_users() -> List[User]:
+  pass
+    # Implementation here
+
+from typing import Callable
+
+def apply(func: Callable[[int, int], int], x: int, y: int) -> int:
+    return func(x, y)
+
+from typing import List
+
+UserList = List[str]
+
+def get_usernames() -> UserList:
+    # Implementation here
+
+from typing import NewType
+
+UserId = NewType("UserId", int)
+
+def get_user(user_id: UserId) -> str:
+    # Implementation here
+
+#pip install mypy
+#mypy your_script.py
+
+-------------------------
+
+protocol classes 
+
+from typing import Protocol
+
+class Drawable(Protocol):
+    def draw(self) -> None:
+        """Draws the object on the screen"""
+
+class Circle:
+    def __init__(self, x: float, y: float, radius: float):
+        self.x = x
+        self.y = y
+        self.radius = radius
+
+    def draw(self) -> None:
+        print(f"Drawing a circle at ({self.x}, {self.y}) with radius {self.radius}")
+
+class Rectangle:
+    def __init__(self, x: float, y: float, width: float, height: float):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+
+    def draw(self) -> None:
+        print(f"Drawing a rectangle at ({self.x}, {self.y}) with dimensions {self.width} x {self.height}")
+
+from typing import List
+
+def draw_shapes(shapes: List[Drawable]) -> None:
+    for shape in shapes:
+        shape.draw()
+
+circle = Circle(10, 20, 5)
+rectangle = Rectangle(30, 40, 15, 25)
+
+draw_shapes([circle, rectangle])  # Works fine, as both Circle and Rectangle implement Drawable
+
+#protocol classes with property 
+from typing import Protocol
+
+class AreaCalculable(Protocol):
+    @property
+    def area(self) -> float:
+        """Returns the area of the object"""
+
+from typing import Union
+
+class Draggable(Protocol):
+    def drag(self, x: float, y: float) -> None:
+        """Drags the object to a new location"""
+
+def perform_actions(shape: Union[Drawable, Draggable]) -> None:
+    shape.draw()
+    shape.drag(10, 20)
+
+checking protocol with mypy:
+class SupportsBlah(Protocol):
+    # ...snip...
+
+class Foobar:
+    # ...snip...
+
+_supports_blah: SupportsBlah = Foobar()
+-or-
+class SupportsBlah(Protocol):
+    def foo(self) -> int:
+        ...
+
+class Foobar:
+    def _(self) -> SupportsBlah:
+        return self  # error ✅ 
+#idk try them 
+
+Exceptions:
+try:
+    # code that may raise an exception
+except ExceptionType:
+    # code to handle the Exceptions
+
+Multiple Exceptions:
+try:
+    num1 = int(input("Enter a number: "))
+    num2 = int(input("Enter another number: "))
+    result = num1 / num2
+    print(f"The result is: {result}")
+except ZeroDivisionError:
+    print("Error: Division by zero is not allowed.")
+except ValueError:
+    print("Error: Please enter a valid integer.")
+-or-
+try:
+    num1 = int(input("Enter a number: "))
+    num2 = int(input("Enter another number: "))
+    result = num1 / num2
+    print(f"The result is: {result}")
+except (ZeroDivisionError, ValueError):
+    print("Error: Invalid input or division by zero.")
+
+try:
+    # code that may raise an exception
+except ExceptionType:
+    # code to handle the exception
+else:
+    # code to run if no exception was raised
+finally:
+    # code to run regardless of whether an exception was raised or not
+
+Reprompting:
+while True:
+    try:
+        x = int(input(x))
+    except:
+        ValueError:
+            print(x is not an int)
+    else:
+        break 
+print(x+1) 
+
+Custom Exceptions:
+class NegativeNumberError(Exception):
+    pass
+
+def square_root(num):
+    if num < 0:
+        raise NegativeNumberError("Cannot compute the square root of a negative number.")
+    return num ** 0.5
+
+try:
+    num = float(input("Enter a number: "))
+    result = square_root(num)
+    print(f"The square root of {num} is {result}")
+except NegativeNumberError as e:
+    print(e)
+
+
+AssertionError	        Raised when an assert statement fails.
+AttributeError	        Raised when attribute assignment or reference fails.
+EOFError	            Raised when the input() function hits end-of-file condition.
+FloatingPointError	    Raised when a floating point operation fails.
+GeneratorExit	        Raise when a generator's close() method is called.
+ImportError	            Raised when the imported module is not found.
+IndexError	            Raised when the index of a sequence is out of range.
+KeyError	            Raised when a key is not found in a dictionary.
+KeyboardInterrupt	    Raised when the user hits the interrupt key (Ctrl+C or Delete).
+MemoryError	            Raised when an operation runs out of memory.
+*NameError	            Raised when a variable is not found in local or global scope.
+NotImplementedError	    Raised by abstract methods.
+OSError	                Raised when system operation causes system related error.
+OverflowError	        Raised when the result of an arithmetic operation is too large to be represented.
+*ParseError             Raised when you make an error in the Syntax 
+ReferenceError	        Raised when a weak reference proxy is used to access a garbage collected referent.
+RuntimeError	        Raised when an error does not fall under any other category.
+StopIteration	        Raised by next() function to indicate that there is no further item to be returned by iterator.
+*SyntaxError	        Raised by parser when syntax error is encountered.
+IndentationError	    Raised when there is incorrect indentation.
+TabError	            Raised when indentation consists of inconsistent tabs and spaces.
+SystemError	            Raised when interpreter detects internal error.
+SystemExit	            Raised by sys.exit() function.
+*TypeError	            Raised when a function or operation is applied to an object of incorrect type.
+UnboundLocalError	    Raised when a reference is made to a local variable in a function or method, but no value has been bound to that variable.
+UnicodeError	        Raised when a Unicode-related encoding or decoding error occurs.
+UnicodeEncodeError	    Raised when a Unicode-related error occurs during encoding.
+UnicodeDecodeError	    Raised when a Unicode-related error occurs during decoding.
+UnicodeTranslateError	Raised when a Unicode-related error occurs during translating.
+*ValueError	            Raised when a function gets an argument of correct type but improper value.
+ZeroDivisionError	    Raised when the second operand of division or modulo operation is zero.
+
+
+Basics of Programming: Design, Construct, Debug 
+design, start small, keep improving 
+to debug, use Error messages and print statements 
+Code Review: reading code to manually find problems with it
+IDE: Integrated Developing Envrionment
+
+import logging 
+logging.basicConfig(level=logging.DEBUG)
+
+def buggy_function(a, b):
+    result = a*b 
+    logging.debug(f"a: {a}, b: {b}, result = {result})
+    return result 
+
+print(buggy_function(2, 3))
+
+use break points in your code:
+import pdb 
+
+def buggy_function(a, b):
+    result = a*b 
+    pdb.set_trace()
+    return result 
+
+
+total = 0 
+for i in range(1, 101):
+    total += i 
+    print(sum) 
+
+
+Sorting Objects 
+
+class Student:
+    def __init__(self, name, age):
+        self.name = name 
+        self.age = age 
+
+    def __str__(self):
+        pass
+
+    def __gt__(self, other):
+        return self.age > other.age 
+
+def get_age(student):
+    return student.age 
+
+mike = Student("Mike", 18)
+jp = Student("JP", 50)
+
+students = [mike, jp, Student("Alice", 25)]
+
+sorted_students = sorted(students, key=get_age)
+sorted_studentss = sorted(students, key=lambda student: student.age)
+sorted_studentss = sorted(students, key=lambda student: (student.age, student.name))
+
+for student in sorted_students:
+    print(student) 
+
+The C3 Linearization Algorithm 
+bottom to top left to right 
+
+override is for inherited class
+    override uses the first on it finds bottom to top left to right
+overload is for same class 
+    overload uses the last one in the indented block 
+
+
+class Vector:
+    def __init__(self, x, y)
+        self.x = x
+        self.y = y 
+    
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y, other.y) 
+
+    def __mul__(self, scaler):
+        if type(scaler) == Vector:
+            return Vector(self.x * scaler.x, self.y * scaler.y)
+        else:
+            return Vector(self.x * scaler.x, self.y * scaler.y)
+
+
+
+    def __str__(self):
+        return f"< {self.x}, {self.y} >"
+    
+v1 = Vector(1,2)
+v2 = Vector(3,4)
+
+
+__lt__ 
+__eq__ 
+__gt__ 
+__ge__ 
+__neq__
+__le__
+
+def test_hypothetical(self):
+    mylist = []
+    mylist.append(self.hhelper())
+    print(mylist) 
+
+def hhelper(self):
+    onelist = ["one"]
+    twolist = ["two"]
+    return onelist, twolist 
+
+#prints a list of a tuple with 2 lists 
+
+
+from typing import Protocol, runtime_checkable
+
+@runtime_checkable
+class Foo(Protocol):
+    x: int
+
+class Bar(object):
+    def __init__(self, x):
+        self.x = x
+
+assert isinstance(Bar(10), Foo)
+assert not isinstance(Bar(10.), Foo)  # This fails, which I didn't expect
+
+change a directory:
+PS C:\Users\cosse\Desktop\Panda3D-1.10.13-x64> cd C:\Users\cosse\Desktop\Panda3D-1.10.13-x64\colormaze
+PS C:\Users\cosse\Desktop\Panda3D-1.10.13-x64\colormaze> 
+
+-------------------------------
+decorators 
+
+import time
+
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"{func.__name__} took {end_time - start_time:.5f} seconds to execute.")
+        return result
+
+    return wrapper
+
+@timing_decorator
+def slow_function():
+    time.sleep(2)
+
+slow_function()
+
+-----------------------------------------
+
+def log_decorator(method):
+    def wrapper(self, *args, **kwargs):
+        print(f"Calling {method.__name__}...")
+        result = method(self, *args, **kwargs)
+        print(f"{method.__name__} called.")
+        return result
+
+    return wrapper
+
+class MyClass:
+    @log_decorator
+    def my_method(self):
+        print("Inside my_method.")
+
+obj = MyClass()
+obj.my_method()
+
+--------------
+
+import datetime
+
+def add_creation_time(class_):
+    class Wrapper(class_):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.created_at = datetime.datetime.now()
+
+    return Wrapper
+
+@add_creation_time
+class MyClass:
+    def __init__(self, name):
+        self.name = name
+
+    def display_name(self):
+        print(f"My name is {self.name}")
+
+obj = MyClass("John")
+print(f"Created at: {obj.created_at}")
+obj.display_name()
+
+=-------------
+
+class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+def get_age(student):
+    return student.age
+
+students = [Student("Alice", 25), Student("Bob", 22), Student("Charlie", 23)]
+
+sorted_students = sorted(students, key=get_age)
+
+---
+
+sorted_students = sorted(students, key=lambda student: (student.age, student.name))
+
+----------------
+generators
+
+# List comprehension
+squared_list = [x**2 for x in range(10)]
+
+# Generator expression
+squared_gen = (x**2 for x in range(10))
+
+>>> def even_numbers(n):
+...     for i in range(n):
+...             if i % 2 == 0:
+...                     yield i
+...
+>>> even_gen = even_numbers(10)
+>>> odd_gen = even_numbers(10) + 1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for +: 'generator' and 'int'
+>>> odd_gen = even_numbers(10)
+>>> for num in in even_gen:
+  File "<stdin>", line 1
+    for num in in even_gen:
+               ^^
+SyntaxError: invalid syntax
+>>> for num in even_gen:
+...     print(num)
+...
+0
+2
+4
+6
+8
+>>> for num in odd_gen:
+...     print(num + 1)
+...
+1
+3
+5
+7
+9
+>>> my_gen = int(even_numbers(6))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'generator'
+>>>
+
+import random
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def random_numbers():
+    while True:
+        yield random.randint(1, 10**6)
+
+# Testing the is_prime function with a generator of random numbers
+random_gen = random_numbers()
+for _ in range(1000):
+    num = next(random_gen)
+    print(f"{num} is prime? {is_prime(num)}")
+
+-----------------------
+Database: SQLAlchemy 
+sql: Select Query Language 
+select..from..where 
+
+pip install sqlalchemy 
+
+from sqlalchemy import Column, Integer, String 
+from sqlalchemy.orm import declarative_base 
+#from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine 
+from sqlalchemy.orm import sessionmaker 
+
+Base = declarative_base()
+
+class User(Base):
+    __tablename__="users"
+
+    id = Column(Integers, primary_key=True)
+        #primary_key must be unique 
+    name = Column(String)
+    age = Column(Integer)
+    email = Column(String)
+    #components are columns, instances are rows 
+
+engine= create_engine('sqlite:///example.db')
+#if not in a server/url, it will be saved to the local computer 
+
+Base.metadata.create_all(engine) 
+
+Session = sessionmaker(bind=engine) 
+session = Session()
+
+#CRUD- Create, Read, Use, Delete 
+
+new_user1 = User(name='June', age=10, email='saasdfasdf@asdf.mom')
+
+session.add(new_user1)
+
+session.commit()
+session.close()
+----------
+session = Session()
+users = session.query(User).all()
+for user in users:
+    print(user.id, user.name, user.age, user.email)
+
+older_users = session.query(User).filter(User.age>25).all()
+
+
+you cant read database files directly but you can downloand a database browser to get stuff from it 
+
+import time
+
+def trytoprint():
+    print("hellooooo")
+
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"{func.__name__} took {end_time - start_time:.5f} seconds to execute.")
+        return result
+
+    return wrapper
+
+
+@timing_decorator
+def slow_function():
+    time.sleep(2)
+    print("done") 
+    
+
+Method Resolution Order 
+
+class A:
+    pass
+
+class B(A):
+    pass
+
+class C(A):
+    pass
+
+class D(B, C):
+    pass
+The MRO for class D is calculated as follows:
+MRO(D) = D + Merge(MRO(B), MRO©, BC)
+MRO(B) = B + Merge(MRO(A), A)
+MRO© = C + Merge(MRO(A), A)
+
+Operator Overloading
+
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+    
+    def __sub__(self, other):
+        return Vector(self.x - other.x, self.y - other.y)
+
+Magic Method List 
+
+Initialization and Construction
+__new__: To get called in an object’s instantiation.
+__init__: To get called by the __new__ method.
+__del__: It is the destructor.
+
+Numeric magic methods
+__trunc__(self): Implements behavior for math.trunc()
+__ceil__(self): Implements behavior for math.ceil()
+__floor__(self): Implements behavior for math.floor()
+__round__(self,n): Implements behavior for the built-in round()
+__invert__(self): Implements behavior for inversion using the ~ operator.
+__abs__(self): Implements behavior for the built-in abs()
+__neg__(self): Implements behavior for negation
+__pos__(self): Implements behavior for unary positive 
+
+Arithmetic operators
+__add__(self, other): Implements behavior for math.trunc()
+__sub__(self, other): Implements behavior for math.ceil()
+__mul__(self, other): Implements behavior for math.floor()
+__floordiv__(self, other): Implements behavior for the built-in round()
+__div__(self, other): Implements behavior for inversion using the ~ operator.
+__truediv__(self, other): Implements behavior for the built-in abs()
+__mod__(self, other): Implements behavior for negation
+__divmod__(self, other): Implements behavior for unary positive 
+__pow__: Implements behavior for exponents using the ** operator.
+__lshift__(self, other): Implements left bitwise shift using the << operator.
+__rshift__(self, other): Implements right bitwise shift using the >> operator.
+__and__(self, other): Implements bitwise and using the & operator.
+__or__(self, other): Implements bitwise or using the | operator.
+__xor__(self, other): Implements bitwise xor using the ^ operator.
+
+String Magic Methods
+__str__(self): Defines behavior for when str() is called on an instance of your class.
+__repr__(self): To get called by built-int repr() method to return a machine readable representation of a type.
+__unicode__(self): This method to return an unicode string of a type.
+__format__(self, formatstr): return a new style of string.
+__hash__(self): It has to return an integer, and its result is used for quick key comparison in dictionaries.
+__nonzero__(self): Defines behavior for when bool() is called on an instance of your class. 
+__dir__(self): This method to return a list of attributes of a class.
+__sizeof__(self): It return the size of the object.
+
+Comparison magic methods
+__eq__(self, other): Defines behavior for the equality operator, ==.
+__ne__(self, other): Defines behavior for the inequality operator, !=.
+__lt__(self, other): Defines behavior for the less-than operator, <.
+__gt__(self, other): Defines behavior for the greater-than operator, >.
+__le__(self, other): Defines behavior for the less-than-or-equal-to operator, <=.
+__ge__(self, other): Defines behavior for the greater-than-or-equal-to operator, >=.
+
+Attribute Descriptors 
+class MinValue:
+    def __init__(self, minimum):
+        self.minimum = minimum
+        
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.name]
+        
+    def __set__(self, instance, value):
+        if value < self.minimum:
+            raise ValueError("Value is too small")
+        instance.__dict__[self.name] = value
+        
+    def __set_name__(self, owner, name):
+        self.name = name
+
+class MyClass:
+    x = MinValue(0)
+
+
+Map Filter Reduce
+
+map(function, iterable)
+Example:
+def square(x):
+    return x * x
+
+numbers = [1, 2, 3, 4, 5]
+squares = list(map(square, numbers))
+print(squares)
+# Output: [1, 4, 9, 16, 25] 
+
+filter(function, iterable)
+Example:
+def is_even(x):
+    return x % 2 == 0
+
+numbers = [1, 2, 3, 4, 5]
+even_numbers = list(filter(is_even, numbers))
+print(even_numbers)
+# Output: [2, 4]
+
+functools.reduce(function, iterable[, initializer])
+Example:
+import functools
+
+def add(x, y):
+    return x + y
+
+numbers = [1, 2, 3, 4, 5]
+sum_of_numbers = functools.reduce(add, numbers)
+print(sum_of_numbers)
+# Output: 15 
+
+Manually compare objects:
+
+class MyClass:
+    def __init__(self, attr1, attr2):
+        self.attr1 = attr1
+        self.attr2 = attr2
+
+def compare_objects(obj1, obj2):
+    if not isinstance(obj1, MyClass) or not isinstance(obj2, MyClass):
+        return False
+
+    return obj1.attr1 == obj2.attr1 and obj1.attr2 == obj2.attr2
+
+# Create objects
+obj1 = MyClass(1, 'A')
+obj2 = MyClass(1, 'A')
+obj3 = MyClass(2, 'B')
+
+# Compare objects
+print(compare_objects(obj1, obj2))  # Output: True
+print(compare_objects(obj1, obj3))  # Output: False
+
+euclidian distance
+measures the distance between the endpoints of 2 3D vectors, 
+influenced by the length of the vectors 
+
+distance = sqrt(sum((a_i - b_i)^2 for i in range(len(a))))
+Example:
+import math
+
+def euclidean_distance(a, b):
+    return math.sqrt(sum((a_i - b_i)**2 for a_i, b_i in zip(a, b)))
+
+vector_a = [1, 2, 3]
+vector_b = [4, 5, 6]
+distance = euclidean_distance(vector_a, vector_b)
+print(distance)
+# Output: 5.196152422706632 
+
+Cosine similarity 
+measures the difference in angle between 2 3D Vectors
+length doesn't play a factor
+on a scale from -1 to 1 
+
+similarity = dot(a, b) / (norm(a) * norm(b))
+Example:
+import numpy as np
+
+def cosine_similarity(a, b):
+    dot_product = np.dot(a, b)
+    norm_a = np.linalg.norm(a)
+    norm_b = np.linalg.norm(b)
+    return dot_product / (norm_a * norm_b)
+
+vector_a = [1, 2, 3]
+vector_b = [4, 5, 6]
+similarity = cosine_similarity(vector_a, vector_b)
+print(similarity)
+# Output: 0.9746318461970762 
+
+jaccard similarity 
+measures the similarity of two sets
+on a scale from 0 to 1 
+
+intersection / union 
+similarity = |A ∩ B| / |A ∪ B|
+
+Example:
+def jaccard_similarity(a, b):
+    set_a = set(a)
+    set_b = set(b)
+    intersection = set_a.intersection(set_b)
+    union = set_a.union(set_b)
+    return len(intersection) / len(union)
+
+list_a = [1, 2, 3, 4, 5]
+list_b = [4, 5, 6, 7, 8]
+similarity = jaccard_similarity(list_a, list_b)
+print(similarity)
+# Output: 0.2857142857142857
+
+-------------------------
+DATABASES
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+Base = declarative_base()
+
+class User(Base):
+  __tablename__ = 'users'
+
+  id = Column(Integer, primary_key = True)
+  name = Column(String)
+  age = Column(Integer)
+  email = Column(String)
+
+engine = create_engine('sqlite:///example.db')
+Base.metadata.create_all(engine)
+
+# CREATING (adding)
+#session factory
+Session = sessionmaker(bind=engine) 
+#new session
+session = Session()
+#user object 
+new_user = User(name='John Doe', age=20, email='s;oaifn;oeisdcn voicesgfhdcksh')
+#add user to session
+session.add(new_user)
+# commit
+session.commit()
+#Close the session 
+session.close()
+
+# QUERY
+# Create a new session
+session = Session()
+# Query all users from the database
+users = session.query(User).all()
+
+# Print the users
+for user in users:
+    print(user.id, user.name, user.age, user.email)
+# Filter users by age
+older_users = session.query(User).filter(User.age > 25).all()
+# Print the older users
+for user in older_users:
+    print(user.id, user.name, user.age, user.email)
+# Close the session
+session.close()
+
+# UPDATE
+# Create a new session
+session = Session()
+# Query a specific user
+user = session.query(User).filter(User.id == 1).first()
+# Update the user's email
+user.email = 'updated.email@example.com'
+# Commit the changes
+session.commit()
+# Close the session
+session.close()
+
+# DELETE 
+# Create a new session
+session = Session()
+# Query a specific user
+user = session.query(User).filter(User.id == 1).first()
+# Delete the user
+session.delete(user)
+# Commit the changes
+session.commit()
+# Close the session
+session.close()
+
+engine.dispose()
+-----------------------
+
+python GUI with Kivy 
+change the environment variable
+
+pip install kivy 
+
+from kivy.app import App 
+from kivy.ui.label import Label
+from kivy.lang import Builder
+
+class HelloWorldApp(App):
+    def build(self):
+        # return Label(text='Hello, World')
+        return Builder.load_file('main.kv')
+
+# main.kv
+BoxLayout:
+    orientation: 'vertical'
+
+    Label:
+        text: 'Enter your name:'
+
+    TextInput:
+        id: user_input
+        multiline: False
+
+    Button:
+        text: 'Greet'
+        on_press: output_label.text = 'Hello, ' + user_input.text
+
+    Label:
+        id: output_label
+        text: 'Welcome!'
+
+
+if __name__ == "__main__":
+    HelloWorldApp().run()
+    # print("done")
+
+'''
+kv Widgets:
+Labels: show text 
+Button: on_press do something
+TextInput: hint_text, multiline: False 
+Box Layout: orientation 
+    CheckBox: id:dheck_box, active: True
+Slider:
+    min: max: value: 
+Switch
+ProgressBar
+Image
+    source: "path"
+    allow_stretch
+    keep_ratio
+GridLayout
+FloatLayout 
+ScreenManager 
+
+class Customer:
+    def __init__(self, name):
+        self.customer_name = name
+        self.order_history = []
+
+    def add2history(self, order):
+        self.order_history.append(order)
+
+'''
+
+from kivy.app import App 
+from kivy.ui.label import Label
+from kivy.lang import Builder
+
+class HelloWorldApp(App):
+    def build(self):
+        # return Label(text='Hello, World')
+        return Builder.load_file('main.kv')
+
+# main.kv
+BoxLayout:
+    orientation: 'vertical'
+
+    Label:
+        text: 'Enter your name:'
+
+    TextInput:
+        id: user_input
+        multiline: False
+
+    Button:
+        text: 'Greet'
+        on_press: output_label.text = 'Hello, ' + user_input.text
+
+    Label:
+        id: output_label
+        text: 'Welcome!'
+
+
+if __name__ == "__main__":
+    HelloWorldApp().run()
+    # print("done")
+
+'''
+kv Widgets:
+Labels: show text 
+Button: on_press do something
+TextInput: hint_text, multiline: False 
+Box Layout: orientation 
+    CheckBox: id:dheck_box, active: True
+Slider:
+    min: max: value: 
+Switch
+ProgressBar
+Image
+    source: "path"
+    allow_stretch
+    keep_ratio
+GridLayout
+FloatLayout 
+ScreenManager 
+
+class Customer:
+    def __init__(self, name):
+        self.customer_name = name
+        self.order_history = []
+
+    def add2history(self, order):
+        self.order_history.append(order)
+
+'''
+
