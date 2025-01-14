@@ -1,3 +1,57 @@
+Web Programming
+
 single line comments: //comment whatever 
 
 new file: Ctrl K , J 
+
+FTP (File Transfer Protocol) was an early way to transfer files over the internet
+
+Berners-Lee named his creation the World Wide Web made of 
+    Text files, known as HTML files, containing links to other text files.
+    A program, known as a browser, for viewing HTML files.
+    A set of rules, known as the HTTP protocol, for transferring HTML files among computers.
+webpage or web page is a document that is viewed in a web browser
+A collection of related webpages are organized into a website. 
+A web server is a program that serves webpages to web browsers
+
+HyperText markup language (HTML) is the standard markup language for web documents
+  Hypertext is text that has links to other text (and today to images, videos, and more)
+  markup is special markings in the document that provide additional information about links, 
+    formatting, and images
+  metadata, such as search engine keywords, author information, and language. 
+
+web browser is a program that downloads an HTML document from a web server, 
+  displays the document to the user with the appropriate formatting, 
+  and allows the user to interact with the document, such as by 
+  clicking hyperlinks to access other documents
+
+
+HTML defines the structure and content of a webpage.
+CSS specifies the layout and visible appearance.
+JavaScript describes the dynamic behaviors and actions of a webpage.
+
+IP address (short for Internet Protocol address) is a computer's unique address on the internet
+
+domain name is a name for an IP address, such as the name wikipedia.org
+DNS is short for Domain Name System
+Thirteen main DNS servers (called root servers) exist in the world
+top-level domains (TLD), such as .com, .net, .org, .edu
+country code top-level domain (ccTLD) like .uk (United Kingdom)
+
+URL (Uniform Resource Locator) is the location of a web resource on the web
+web resource is any retrievable item, like an HTML file, image, video, CSS stylesheet, etc.
+  Scheme - Characters at the beginning of a URL followed by a colon ":" or a colon and double 
+    slashes "://". Common URL schemes include http, https, mailto, and file. Ex: In 
+    https://www.cdc.gov/alcohol, the scheme is "https". 
+    Scheme is also commonly called protocol
+  Hostname - The complete domain name following the scheme in a URL. Ex: In 
+    https://www.cdc.gov/alcohol, the hostname is "www.cdc.gov".
+  Path - The characters to the right of the hostname in a URL. Ex: 
+    In https://www.cdc.gov/alcohol, the path is "/alcohol"
+  Query string - Optional characters to the right of the question mark (?) in a URL that provide 
+    data for the web server. In https://www.youtube.com/watch?v=uu7XCEMdSHg, the characters after 
+    the ? tells YouTube's server to play a video having code uu7XCEMdSHg.
+  Fragment - Optional characters at the end of a URL that start with a hash character (#) and refer 
+    to a certain location within a webpage. In https://en.wikipedia.org/wiki/URL#History, the 
+    fragment "#History" refers to the webpage's History section.
+
