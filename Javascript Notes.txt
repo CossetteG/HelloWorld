@@ -1,8 +1,10 @@
 Web Programming
 
-single line comments: //comment whatever 
+single line comments JavaScript: //comment whatever 
 
 new file: Ctrl K , J 
+
+html syntax: <element attribute="variable"> Text </element>
 
 FTP (File Transfer Protocol) was an early way to transfer files over the internet
 
@@ -55,3 +57,678 @@ web resource is any retrievable item, like an HTML file, image, video, CSS style
     to a certain location within a webpage. In https://en.wikipedia.org/wiki/URL#History, the 
     fragment "#History" refers to the webpage's History section.
 
+HyperText Transfer Protocol (HTTP) is a networking protocol that runs over TCP/IP and governs 
+  communication between web browsers and web servers
+Transmission Control Protocol/Internet Protocol (TCP/IP) is a protocol suite that governs how 
+  data packets are transferred over the internet from one machine to another
+HTTP request is a message sent from the web browser to the web server. Often the request asks 
+  the web server to send back a web resource like an HTML file, image, CSS stylesheet, JavaScript 
+  file, or video
+HTTP response is a message sent from the web server back to the web browser in response to an 
+  HTTP request. Often the response contains the requested web resource.
+
+DNS - TCP open - HTTP request - HTTP response - TCP close 
+
+http request/response:
+  Start line specifies the HTTP version being used. 
+    A request's start line includes a request type and path; 
+    a response's start line includes a status code and phrase.
+  Header field is a keyword followed by a colon and a value. 
+    Header fields supply additional information about the request or response
+  A blank line
+  Message body contains data being transferred between a web browser and web server. 
+    In a request, the message body may be empty or contain submitted form data. 
+    In a response, the message body may contain the requested resource.
+
+HTTP request method indicates the desired action to perform on a resource
+    GET 	Request a representation of the specified resource.
+    HEAD 	Request a response identical to GET but without the response body.
+    POST 	Create a new resource with the contents of the message body.
+    PATCH 	Modify an existing resource with the contents of the message body.
+    PUT 	Replace an existing resource with the contents of the message body.
+    DELETE 	Delete an existing resource.
+
+HTTP response codes 
+    200 	OK 	Standard response for a successful request.
+    301 	Moved Permanently 	The resource should always be requested at a different URL.
+    302 	Found 	The resource should temporarily be requested at a different URL.
+    304 	Not Modified 	The resource has not been modified since the last time the resource was requested.
+    403 	Forbidden 	The web browser does not have permission to access the resource.
+    404 	Not Found 	The resource could not be located.
+    500 	Internal Server Error 	Something unexpected happened on the web server.
+
+URL shortening is a technique to create shorter URLs that redirect to longer URLs
+browser cache is an area on the computer's file system where web content can be stored 
+  by the web browser for quick retrieval later
+entity tag (ETag) is an identifier for a specific version of a web resource
+
+network sniffer is software that monitors network traffic and allows users to inspect HTTP requests 
+  and responses. HTTPS encrypts HTTP traffic between a browser and web server so a network sniffer 
+  cannot intercept sensitive information
+Transport Layer Security (TLS), which uses asymmetric public keys to encrypt data between the browser 
+  and web server
+
+An HTML tag is a markup instruction identified by <, the tag name, and >.
+
+    An opening tag indicates the element's starting point in the document.
+    A closing tag indicates the element's ending point in the document.
+    A void element is an element that only needs an opening tag.
+
+An element attribute provides additional information about the element and is included only in 
+   the opening tag. An attribute has a name and a value, specified using the form: name="value". 
+
+minimal parts of an HTML document:
+
+    The <!DOCTYPE html> declaration instructs the web browser about what type of document follows.
+
+    The <html> element encloses everything but the <!DOCTYPE html> declaration. <html lang="en"> indicates that the document's language is English.
+
+    The <head> element contains the document title, document metadata, and various other elements that are typically not displayed in the webpage.
+
+    The <meta> element specifies metadata, which is data that describes the document's data. <meta charset="UTF-8"> describes how characters are represented in the HTML document. Additional <meta> tags may be used to indicate when the document was saved, who the author is, etc.
+
+    The <title> element specifies the document's name. The title is usually displayed in the browser's titlebar, is used by search engines, and is used for bookmarking.
+
+    The <body> element encloses all elements and content to be rendered in the browser.
+
+open an html page from browser using Ctr O 
+
+ELEMENTS: <em>emphasis</em>
+
+<p>        element creates a paragraph in an HTML document </p>    you cannot nest paragraphs
+<br>       element creates a line break in a paragraph    does not close 
+<section>  section is a collection of related content created with a <section> element </section>
+<h1>       Heading elements exist for six levels of sections: <h1>, <h2>, <h3>, <h4>, <h5>, and <h6> 
+<em>       element indicates emphasized text, italics by default
+<strong>   element indicates text that has strong importance, and is bolded by default
+<cite>     element denotes a title, such as a book or song title, and is italicized by default.
+<mark>     element denotes important content that should be highlighted by default 
+<b>        element renders the text in bold
+<i>        element is rendered using italics
+<u>        element is underlined by default
+<var> 	 	 variable 	Definition of a variable in a computer program
+<kbd>      Keyboard input
+<code>	   Computer code
+<samp>   	 Sample output from a computer
+
+html comments: <!--comments cannot be nested-->
+
+unordered list is usually indented and shown using bullets, created with the <ul> element
+Each list item is created with the <li> element.
+ordered list is a sequenced collection of items <ol type="1"> 
+  type="1" Numbers (default)
+  type="A" Uppercase letters
+  type="a" Lowercase letters
+  type="I" Uppercase Roman numerals
+  type="i" Lowercase Roman numerals
+you can nest lists
+
+<table> element that organizes data into rows and columns
+  <caption> element
+  <tr> element creates a table row,
+    <th> element creates a table cell containing table header
+    <td> element creates a table cell containing table data
+spanning rows/columns : <td colspan="3">Warmup</td>
+<thead> element specifies the table header.
+<tbody> element specifies the table body.
+<tfoot> element specifies the table footer.
+
+<input type="text" name="title"> <input> allows the user to put input
+
+<img> element is a void element that displays an image in a webpage, it has two required attributes:
+  does not require a closing tag
+  src attribute specifies the URL of the image file to display.
+  alt attribute provides a text description to use as an alternative to displaying the image.
+  <img src="cat.jpg" alt="cat">
+
+  width and height attribute are optional <img> attributes that tell how many pixels the image should occupy
+  <img src="logo.png" alt="Logo" width="200" height="100"> 
+
+  JPEG (Joint Photographic Experts Group) image format is commonly used for digital photographs
+    JPEG 	.jpg 	Photographs 	Lossy 	24-bit 	Opaque 	Still
+  PNG (Portable Network Graphics) image format is commonly used for line art, screenshots, or images requiring transparency.
+    PNG 	.png 	Line art and screenshots 	Lossless 	24-bit 	Transparent 	Still
+  GIF (Graphics Interchange Format) image format is commonly used for simple animated images
+    GIF 	.gif 	Animated images 	Lossless 	8-bit 	Transparent 	Animated
+
+<a> element, or anchor element, defines a hyperlink in a webpage
+  href attribute specifies the hyperlink's URL
+  <a href="https://wikipedia.org/">Wikipedia</a>
+  
+  href    href attribute specifies the hyperlink's URL
+  https   HTTPS is a secure protocol that encrypts requests and responses
+  http    HTTP is an unencrypted protocol for sending requests and responses
+  mailto  Indicates that the browser should use an email program to send a message.
+  file    Indicates that the browser should look for a file on the user's computer
+  ftp     The FTP protocol is used to transfer a file from the web server to the web browser
+
+  absolute URL is a complete URL. Ex: <a href="http://example.com/test.html">test</a>
+  relative URL specifies the relative path to the web resource Ex: <a href="test.html">test</a> 
+  A URL can point to a fragment of a document by adding a hash tag (#) and a fragment identifier 
+    at the end of the URL. 
+    https://en.wikipedia.org/wiki/Computer_science#History
+  Adding the id attribute to any element creates a fragment identifier
+    <a href="#Ch1">Chapter 1</a> (links to that part of the section)
+    <section id="Ch1">           (section tag)
+
+  graphical hyperlink or image link uses an image inside a hyperlink instead of text
+  <a href="http://www.akc.org/"><img src="dog.jpg" alt="Link to AKC using an image of a dog."></a>
+
+  target attribute indicates how the browser should display the link when clicked
+   The _self attribute value is the default and indicates the browser will open the link in the same tab or window.
+   The _blank attribute value indicates the browser will open the link in a new tab or window.
+
+Entity: a mechanism for writing special characters or symbols in HTML. Three ways to write:
+  Entity name 	&copy; 	          © 	HTML defines names for common well-known entities, which are typically English abbreviations for the symbol.
+  Decimal number 	&#169; 	        © 	Every HTML entity has a unique number, which can be specified as a decimal value.
+  Hexadecimal number 	&#x000A9; 	© 	Every HTML entity has a unique hexadecimal number, which is the hexadecimal equivalent to the entity's decimal number. 
+
+  non-breaking character is an inter-word character that permits treating the words on both sides to be one word
+    non-breaking hyphen, &#8209;
+    non-breaking space, &nbsp;   5&nbsp;km displays "5 km" on the same line; also useful for displaying more than one space
+
+A wireframe is a blueprint, showing where the future content will be arranged. Should include mobile, tablet and desktop
+
+setting a background color
+<body style="background-color: rgb(229, 198, 250);" >
+
+setting hyperlinks to only be styled on mouse over
+<a href="http://www.tolkien.co.uk/index.html" 
+  style="text-decoration:none" onmouseover="style='text-decoration:underline'" onmouseout="style='text-decoration:none'">J.R.R. Tolkien</a>
+
+container is any element in a web document body that has opening and closing tags
+  parent container is the container in which another element resides.
+  <header> 	Container for introductory content
+  <footer> 	Container for content descriptive information about the webpage like author, copyright, or date modified
+  <address> 	Container for person's or organization's contact information
+  <main> 	Container for the document's primary content
+  <section> 	Container for distinct parts of a document, such as a chapter
+  <article> 	Container for self-contained content that can be reused independently, such as a news article
+  <nav> 	Container for content relating to website navigation
+  <aside> 	Container for content not directly related to the main topic of a document
+  <div> 	Generic element for creating block containers
+  <span> 	Generic element for creating inline containers
+
+block element (sometimes called a block-level element) fills the width of the element's parent container and can contain other block 
+ elements, inline elements, and text. Block elements include <h1>, <table>, and <p>
+ <div> element is a generic element for creating block containers. 
+
+inline element fills the minimum space possible in the element's parent container and can only contain text or other inline elements
+ <span> element is a generic inline element.
+
+
+CSS (Cascading Style Sheets) is a textual language for describing how a webpage is styled for visual presentation
+ CSS rule consists of a selector followed by a declaration block between braces ({}). 
+   selector specifies the HTML element(s) to which the specific style rule applies.
+   declaration block contains one or more declarations separated by semicolons (;)
+   declaration is a CSS property followed by a colon (:) and the property value. 
+   property is a reserved word, or multiple words separated by dashes (-), that represents a specific element style or attribute. 
+   h1 {
+    color: black;
+    }
+
+  inline style places CSS declarations inside an element's style attribute.
+  embedded stylesheet places CSS rules in an HTML document's head using a <style> element. 
+  external stylesheet places CSS rules in a separate file that is imported into an HTML document with a <link> element. 
+    inline style overrides the embedded or external stylesheet's declaration
+    !important rule may be used on a style declaration to override other declarations and disregard specificity
+    inherit keyword, which specifies that a property should inherit the parent element's value 
+
+
+SELECTORS
+element selector matches elements with the specified element names
+  p { color: blue; }
+class selector, specified with a period character followed by the class name, matches elements that have the specified class name.
+ .notice { color: blue; }
+ID selector, specified with a hash character followed by the ID name, matches the element that has the specified ID
+ #byLine { color: blue; }
+
+descendant selector, specified with a selector followed by a space and another selector 
+
+      ul strong {
+        background-color: gold;
+      }
+
+      <p>
+        Some common <strong>idioms</strong>:
+      </p>
+
+      <ul>
+        <li>The <strong>ball</strong> is in your <strong>court</strong>.</li>
+        <li>Break a <strong>leg</strong>.</li>
+        <li>It's the best thing since <strong>sliced bread</strong>.</li>
+        <li>Jump on the <strong>bandwagon</strong>.</li>
+      </ul>
+      
+pseudo-class selector, specified with a colon character followed by a pseudo-class name, matches elements based on user behavior or 
+  element metainformation
+    :disabled - Element is disabled.
+    :hover - Mouse is hovering over the element.
+    :empty - Element has no child elements.
+    :lang(language) - Element contains text in a specified language.
+    :nth-child(n) - Element is the parent element's nth child.
+
+      table {
+        font-family: Arial;
+        border: 2px solid black;
+      }
+
+      tr:nth-child(even){
+        background-color: lavender;
+      }
+
+      th:hover {
+        color: orange
+      }
+
+universal selector, specified using an asterisk character (*), matches all elements in the webpage.
+multiple selector, specified using a comma (,) Ex. ul, ol {}
+child selector, specified using a greater than character (>) between two selectors, matches any elements where 
+ the second element is a direct child of the first element.
+general sibling selector, specified using a tilde character (~) between two selectors, matches the second element 
+ if the second element occurs after the first element and both elements are siblings.
+adjacent sibling selector, specified using a plus character (+) between two selectors, matches an element that 
+ immediately follows another element, where both elements have the same parent.
+attribute selector, specified with an attribute name and optional value comparison enclosed in square brackets 
+ ([ and ]), matches elements with the specified attribute or the specified attribute and value. 
+ Ex: a[target] selector matches anchor elements with a target attribute specified
+   = 	Attribute has exact value 	[target="_blank"] 	<a target="_blank">
+   ~= 	Attribute contains whole word 	[alt~="sad"] 	<img src="sad.png" alt="a sad face">
+   ^= 	Attribute begins with value 	[class^="nav"]  <ul class="nav-level0"> <ul class="navigation item">
+pseudo-element selector, specified with two colon characters (::) followed by a pseudo-element, matches parts of elements.
+  ::after 	Add content after the matched element. 	li::after { content: "<" }
+  ::before 	Add content before the matched element. 	li::before { content: "***" }
+  ::first-line 	Match the first line of text in a block element. 	p::first-line { color: red }
+  ::first-letter 	Match the first letter of text in a block element. 	p::first-letter { font-size:200% }
+  ::selection 	Matches the text selected by user. 	::selection { background: yellow }
+
+
+Common Properties
+color CSS property changes the text color to a specified color value
+  RGB color value specifies a color using the rgb(red, green, blue) rgb(0, 0, 0)
+  hexadecimal color specifies a color using the #RRGGBB  #000000 
+  HSL color value specifies a color using the hsl(hue, saturation, lightness) hsl(0, 0%, 0%)
+  The RGB and HSL color values can add an alpha value to allow for transparency.
+    RGBA color value specifies a color using the rgba(red, green, blue, alpha) 
+    HSLA color value specifies a color using the hsla(hue, saturation, lightness, alpha)
+The background property is shorthand for setting several of the element's background properties at the same time.
+  The background-color property specifies the background color.
+  The background-image property specifies a background image. specified with the none value or the url('URL') function
+   background image is rendered on top of the color.
+float property specifies whether the element will float to the right or left of the element's parent container,    style="float:left">
+ allowing text to flow around the element.
+   none - Element does not float (default value)
+   left - Element floats to parent container's left side
+   right - Element floats to parent container's right side
+clear property moves elements below previously floated elements. Values for the clear property include:
+    none - Element allowed to float (default value)
+    left - Stop floating on parent container's left side
+    right - Stop floating on parent container's right side
+    both - Stop floating on both sides
+display property controls the layout of the element on a webpage. Values for the display property include
+    inline - Displays the element as an inline element, like span or a elements.
+    block - Displays the element as a block element, like p, h1, or div elements.
+    none - Hides the element from being displayed, like style elements.
+    inline-block - Displays the contents of the element as a block element, but formats the element as an inline element.
+    list-item - Displays the contents of the element as a list item element.
+font property is shorthand for setting several font properties at the same time. Ex: font: italic 12pt Georgia, serif;
+  The font-family property specifies the font family, such as "Times New Roman" or serif.
+  The font-size property changes the font size, such as 120%, small, or 12px.
+  The font-weight property specifies the font weight, such as normal or bold.
+  The font-style property changes the text style, such as normal, italic, or oblique.
+  The font-variant property specifies the variant of the text, such as normal or small-caps.
+    family name is the name of a specific font, like "Times New Roman", "Arial", or "Georgia"
+    generic family is a general group of fonts, like serif, sans-serif, cursive, fantasy, or monospace
+      Serif 	"Embellishments" like finishing strokes or flare ends 	Garamond, Georgia, Times New Roman
+      Sans-Serif 	Plain stroke ends 	Arial, Helvetica, Verdana
+      Cursive 	Cursive or calligraphy characteristics like joined strokes 	Brush Script MT, Comic Sans MS, Lucida Handwriting
+      Fantasy 	Decorative 	Impact, Luminari, 
+      Monospace 	Constant width for letters, punctuation, and space 	Consolas, Courier New
+    font size can be specified using a predefined size name, a relative size name, or a number with an absolute or relative size unit
+      predefined size names are xx-small, x-small, small, medium, large, x-large, and xx-large
+      absolute sizes are cm, mm, in, px, pt, pc (1px = 1/96in) (1pt = 1/72in) (1pc = 12pt)
+      relative size are
+        em - Relative to the element's font size. Ex: 2em = 2 × current font size.
+        rem - Relative to the root element's font size. Ex: 1.5rem = 1.5 × <html> element's font size.
+        vw - 1% of the viewport's width. Ex: 10vw = 10% of browser's width.
+        vh - 1% of the viewport's height. Ex: 5vh = 5% of browser's height.
+        % - Percentage of the element's font size. Ex: 120% = 20% larger than the current font size.
+text-align property changes the horizontal alignment of text for an element. 
+ left, right, center, and justify.
+text-decoration property can add or remove text decorations like underlining or a line-through. 
+ overline, line-through, underline, and none.
+text-transform property converts letters to UPPERCASE, lowercase, or Capitalizes Initial Letters. 
+ uppercase, lowercase, and capitalize.
+text-indent property specifies the first line's indentation amount
+
+
+A CSS variable is a custom CSS property that defines a value.
+A CSS variable can have global scope by declaring the variable in the :root selector
+  CSS variable is defined with two dashes preceding the variable name. Ex: --my-variable: red;
+  CSS variable is accessed with the var() function. Ex: var(--my-variable);
+
+
+box model describes the size of each element as a series of nested boxes.
+    Content: The innermost box contains the content of the element, such as text and images.
+    Padding: The padding box contains the content box and adds a transparent area around the content.
+      padding property specifies the padding thickness. Ex: padding: 5px;
+    Border: The border box contains the padded content and adds an optionally colored area around the padding.
+      border property specifies the border's thickness, style, and color. Ex: border: 2px solid blue;
+    Margin: The margin box contains all three boxes and adds a transparent area around the border.
+      margin property specifies the margin thickness. Ex: margin: 10px; creates a 10 pixel margin. 
+      Vertical margins of two elements can sometimes combine or collapse into a single vertical space. 
+  padding and margin properties may have from 1 to 4 values:  top, right, bottom, and left thickness. if 1 value is added, it will be uniform 
+
+  width and height property specifies the content's width. Ex: width: 20px;- only for block elements or inline-block
+        <style>
+        #nopadding {
+          width: 200px;
+          height: 100px;
+          background-color: lightgreen;
+          font-size: 30px;
+        }
+
+        #padding {
+          padding: 50px;
+          width: 200px;
+          height: 100px;
+          background-color: khaki;
+          font-size: 30px;
+        }
+        </style>
+
+        <div id="nopadding">Controlling the content size</div>
+        <div id="padding">Controlling the content size</div>
+  
+border property combines the border width, style, and color.
+  border-width property specifies the border's width. Ex: border-width: 5px; specifies a border that is 5px thick.
+  border-style property specifies the border's style. Ex: border-style: dashed; specifies a border that is dashed.
+  border-color property specifies the border's color. Ex: border-color: green; specifies a border that is green. 
+    solid 	border: 2px solid black; 	
+    dashed 	border: 2px dashed red; 	
+    dotted 	border: 2px dotted blue; 	
+    none 	border: 2px none green; 	
+    double 	border: 5px double gray; 	
+    groove 	border: 5px groove orange; 	
+    ridge 	border: 5px ridge pink; 	
+    inset 	border: 5px inset brown; 	
+    outset 	border: 5px outset yellow; 	
+
+HTML AND CSS EXAMPLE:
+
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+<head>
+   <link href="styles.css" rel="stylesheet">
+   <title>5 Things to Know About Rattlesnakes and Their Babies</title>
+</head>
+<body>
+   <img src="UniversityLogo.png" alt="The University of Arizona logo">
+
+   <h1>5 Things to Know About Rattlesnakes and Their Babies</h1>
+
+   <p id="author-name-and-date">UA College of Pharmacy | Aug. 6, 2014</p>
+
+   <p>Arguably, snake season is year-round in Arizona, a state known for its rattlers. But baby rattlesnakes are born in July and August, making these two months especially dangerous for hikers, gardeners, children and others at high risk of exposure to rattlesnake bites.</p>
+
+   <img src="SnakeBite.jpg" alt="Foot shows rattlesnake puncture wounds">
+
+   <p>So far this year, 74 rattlesnake bites to humans have been reported to the Arizona Poison and Drug Information Center. Based at the University of Arizona College of Pharmacy, the center serves the entire state of Arizona with the exception of Maricopa County, providing free and confidential poison and medication information to callers around the clock.</p>
+
+   <p>Specialists answering the phones at the center regularly receive calls from Arizonans of all ages who don't realize they were bitten by a rattler. The poison center urges anyone who feels a mysterious sting, pinch or bite while outdoors to immediately call the center at 800-222-1222.</p>
+
+   <p>"We will ask a few questions that will help you either identify possible snakebite or eliminate it," said Keith Boesen, director of the Arizona Poison and Drug Information Center. "With snakebite, the sooner the medical treatment, the better the outcome, so calling us right away can make a very big difference for the victims and the medical teams treating them."</p>
+
+   <p>The center advises anyone who might come cross paths with rattlesnakes to be aware of these five things:</p>
+
+   <ol>
+      <li>Baby rattlesnakes range in length from 6 to 12 inches and are easily camouflaged by brush and grass.</li>
+      <li>Baby rattlesnakes are rattleless until they first shed their skins, so there will be no infamous "chica-chica" sound before they strike.</li>
+      <li>Despite their impish size, baby snakes have enough venom to be very dangerous if they bite a human.</li>
+      <li>Adult rattlesnakes do not always rattle an audible warning before or while they are biting.</li>
+      <li>It's a good idea to call the poison center if you notice an unidentified small cut or wound, even if you feel no pain. With the lack of telltale rattle warning, people can be bitten without knowing what has happened until they notice their symptoms and attribute them to a snakebite.</li>
+   </ol>
+
+   <p>Share: <a href="https://twitter.com/">Twitter</a> <a href="https://www.facebook.com/">Facebook</a> <a href="https://www.linkedin.com/">LinkedIn</a></p>
+</body>
+</html>
+
+/*styles.css*/
+img {
+   width: 300px;
+}
+
+h1 {
+  padding: 5px;
+  font-family: "Arial";
+  font-size: 24px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255,0,0);
+}
+
+#author-name-and-date {
+   font-family: "Arial";
+   font-size: 12px;
+   color: gray;
+}
+
+p, ol {
+   font-family: "Times New Roman";
+   font-size: 16px;
+   color: rgb(47, 79, 79)
+}
+
+a {
+   font-family: 'Arial';
+   font-size: 12px;
+   color: blue;
+}
+
+
+CSS Positioning animation and effects
+
+position property gives developers more control over where elements should appear in the browser.
+  specify top bottom left or right 
+
+  static - Static positioning is the default positioning.
+  relative - Relative positioning positions the element relative to the element's default position.
+  fixed - Fixed positioning positions the element relative to the viewport in a fixed location.
+    fixed location in the viewport, and scrolling does not move the element.
+  absolute - Absolute positioning positions the element relative to the nearest positioned ancestor.
+
+    img {
+      position: relative; 
+      left: 30px;
+    }
+
+A viewport is the visible area of a webpage.
+
+absolute: 
+      #container {
+        border: solid 2px green;
+        position: relative;
+        height: 60px;
+        width: 150px;
+      }
+
+      #cheer {
+        position: absolute;
+        left: 40px;
+        top: 30px;
+      }
+
+      --or--
+      #container {
+        border: solid 2px green;   
+        /* No positioning */ 
+        height: 60px;
+        width: 150px;
+      }
+
+      #cheer {
+        position: absolute;
+        left: 40px;
+        top: 30px;
+      }
+
+z-index property is used to specify a relative distance that orders the appearance of elements
+what layer it is on. higher # on top
+When all z-index values are equal, the browser renders each square in the order the squares appear in the HTML
+    #orange {
+      background-color: orange;
+      z-index: 3;
+      left: 10px;
+      top: 10px;
+    }
+
+text-shadow property adds shadow to text, accepts 4 values:
+    offset-x - Horizontal pixel offset of shadow
+    offset-y - Vertical pixel offset of shadow
+    blur-radius - Optional shadow blur (default is 0)
+    color - Optional shadow color (default is usually the current CSS color)
+
+    <p style="text-shadow: -5px -5px 1px green;">Example 3</p> 
+
+box-shadow property adds a shadow to the box around an element using the following properties: 
+    inset - Optional value that draws the shadow inside the box (default is outside the box)
+    offset-x - Horizontal pixel offset of shadow
+    offset-y - Vertical pixel offset of shadow
+    blur-radius - Optional shadow blur (default is 0)
+    spread-radius - Positive value causes shadow to grow, negative values to shrink (default is 0)
+    color - Optional shadow color (default is usually the current CSS color)
+
+
+border-radius property rounds corners 
+    Single value - All four corners are equally rounded
+    Two values - First value is top-left and bottom-right corners, second value is top-right and bottom-left corners
+    Three values - First value is top-left, second is top-right and bottom-left, third is bottom-right
+    Four values - First value is top-left, second is top-right, third is bottom-right, fourth is bottom-left
+    --or--
+    border-top-left-radius
+    border-top-right-radius
+    border-bottom-left-radius
+    border-bottom-right-radius
+
+    border-radius: 40px 20px;
+
+border-image renders an element's border using sections of an image. 
+    border-image-source - Image URL
+    border-image-slice - Image section size
+    border-image-repeat - "repeat" to repeat the image section, "round" to repeat the image section but 
+     resize the image if needed to fit, or "stretch" to stretch an image section
+    
+
+linear-gradient(color1, color2) creates a linear gradient that transitions from color1 to color2 
+  when moving from the top edge to the bottom edge.
+  Direction - A direction of left, right, top, or bottom with the word to in front
+    background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet)
+    background: linear-gradient(to bottom right, black, red);
+  repeating-linear-gradient() function repeats a linear gradient where the color values are supplied an optional percent.
+    background: repeating-linear-gradient(to right, blue, yellow, green 20%);
+
+radial-gradient(color1, color2), which creates an ellipse-shaped gradient that begins with color1 in the center 
+  and ends with color2 on the perimeter
+  same other parameters
+    closest-side - Circle touches the rectangle's side closest to the circle's center. Ellipse touches the vertical and horizontal sides closest to the ellipse's center.
+    farthest-side - Circle touches the rectangle's side farthest from the circle's center. Ellipse touches the vertical and horizontal sides farthest from the ellipse's center.
+    closest-corner - Circle or ellipse touches the corner closest to the shape's center.
+    farthest-corner - Circle or ellipse touches the corner farthest from the shape's center. (Default behavior.)
+
+flexbox to change the order of things 
+
+animation-* properties in the figure below use the keyframe lowerAd to lower the advertisement onto the screen by
+ changing the advertisement's top property from -80px to 40px over a 1 second duration. The animation-fill-mode:
+  forwards declaration makes the advertisement retain the top:40px value from the animation. 
+
+    <div id="advertisement">
+      <a href="about.html">Add your advertisement here!</a>
+    </div>
+
+
+    @keyframes lowerAd {
+      from { top: -80px; }   
+      to { top: 40px; }
+    }
+
+    #advertisement {
+      animation-name: lowerAd;
+      animation-duration: 1s;
+      animation-delay: 2s;
+      animation-fill-mode: forwards;      
+      position: fixed;
+      right: 30px;
+      top: -80px;
+      width: 100px;
+      background: linear-gradient(lightgreen, white);
+      box-shadow: 5px 5px;
+      padding: 10px;
+      border-radius: 4px; 
+      transition: all 200ms ease-in-out; 
+    }
+
+    #advertisement:hover {
+      transform: scale(1.2, 1.2);
+    }
+
+cursur: pointer 
+  Most browsers by default only show the pointer icon when hovering on top of links, 
+  but displaying the pointer icon when hovering on buttons is a common practice. 
+
+animation transforms an element's styles over a set time period, producing an animation.
+  @keyframes rule, which contains a keyframe list. 
+  keyframe list has a name and contains the keyframes or the properties and values that will be animated
+    from - The animation starting state
+    to - The animation ending state
+    Percentages may be used. 0% is equivalent to from and 100% is equivalent to to
+  must have:
+    animation-name - Names the keyframe list associated with the animation
+    animation-duration - Length of the animation in seconds (s) or milliseconds (ms)
+
+  animation-delay is used to delay the start of the animation. 
+  animation-timing-function property controls an animation's speed between keyframes.
+    ease - Slow start, then fast, then slow end (default)
+    linear - Same speed throughout
+    ease-in - Slow start
+    ease-out - Slow end
+    ease-in-out - Slow start and end
+    cubic-bezier(n1,n2,n3,n4) - Specify numbers that control speed based on a Bezier curve
+  animation-iteration-count - Indicates the number of times the animation will run. 
+    The value infinite runs the animation repeatedly 
+  animation-direction - Indicates animation direction
+    normal - Normal direction (default)
+    reverse - Reverse direction
+    alternate - Alternate between normal and reverse
+    alternate-reverse - Alternate between reverse and normal
+  animation - Shorthand: animation: move 3s linear 2s infinite normal.
+
+transition animates an element's transition from one state to another when an element's CSS property changes value
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+      transition: width 1s, height 1s;
+    }
+
+    div:hover {
+      width: 120px;
+      height: 120px;
+    }
+
+ transition-timing-function property controls the speed of the transition.
+    ease - Slow start, then fast, then slow end (default)
+    linear - Same speed throughout
+    ease-in - Slow start
+    ease-out - Slow end
+    ease-in-out - Slow start and end
+    cubic-bezier(n1,n2,n3,n4) - Specify numbers that control speed based on a Bezier curve
+  transition-delay property delays the transition's start. 
+
+
+transform property applies a 2D or 3D transformation to an element.
+  translate(x, y) 	Moves an element on the x-axis x distance and along the y-axis y distance 	
+    /* Moves right 10px and up 20px */translate(10px, -20px)
+  scale(x, y) 	Increases (values > 1) or decreases (values < 1) the width and height by the x and y multiplier 	
+    /* Halves the width, doubles the height */scale(0.5, 2)
+  rotate(angle) 	Rotates clockwise by angle 	
+    /* Rotates clockwise 45 degrees */rotate(45deg)
