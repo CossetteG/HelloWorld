@@ -715,7 +715,7 @@ transition animates an element's transition from one state to another when an el
       height: 120px;
     }
 
- transition-timing-function property controls the speed of the transition.
+transition-timing-function property controls the speed of the transition.
     ease - Slow start, then fast, then slow end (default)
     linear - Same speed throughout
     ease-in - Slow start
@@ -732,3 +732,32 @@ transform property applies a 2D or 3D transformation to an element.
     /* Halves the width, doubles the height */scale(0.5, 2)
   rotate(angle) 	Rotates clockwise by angle 	
     /* Rotates clockwise 45 degrees */rotate(45deg)
+
+          #answer {
+            color: black;
+            width: 100px;
+   
+            animation-name: moveFraction;
+            animation-delay: 1s;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+   
+           }
+         
+         
+         @keyframes moveFraction {
+                  0% {color: yellow; transform: translate(-355px, 60px);}
+                  50% {transform:translate(0px, 60px);}
+                  100% {color: red; transform: translate(0px, 0px);}
+               }
+   
+   
+         #question {
+            transition: transform .6s ease-in-out;
+         }
+   
+         #question:hover {
+            transform: scale(.9);
+   
+         }
+
