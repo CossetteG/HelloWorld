@@ -269,7 +269,7 @@ Quicksort(numbers, lowIndex, highIndex) {
 
 Merge Sort 
 
-paeritions by position recursively then rebuilds the array
+paritions by position recursively then rebuilds the array
 The merge sort algorithm's runtime is O(N log N)
 Merge sort requires O(N) additional memory elements for the temporary array of merged elements
 

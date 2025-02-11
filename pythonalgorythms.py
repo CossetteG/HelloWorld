@@ -1,76 +1,163 @@
-from random import seed, sample
-
-def make_data(data_size):#DO NOT REMOVE OR MODIFY THIS FUNCTION
-    '''A generator for producing data_size random values
-    '''
-    seed(0)
-    data = sample(range(data_size * 3), k=data_size)
-    data.sort()
-    while True:
-        yield data
-
-def linear_search(lyst, target, comparisons=0):
-    for i in lyst:
-        comparisons +=1
-        if (target == i):
-            return [True,comparisons]
-            
-    return [False, comparisons]
-
-def binary_search(lyst, target, comparisons=0):
-    comparisons +=1
-    mid = lyst[len(lyst)//2]
-    
-
-    if (mid == target):
-        return [True, comparisons]
-    elif (len(lyst) == 1):
-        return [False, comparisons]
-    elif (mid > target):
-        return binary_search(lyst[0:len(lyst)//2], target, comparisons)
-    elif (mid < target):
-        return binary_search(lyst[len(lyst)//2: len(lyst)], target, comparisons)
-            
-
-def jump_search(lyst, target):
-    skip = 4
-    section = 0
-    comparisons = 0
-
-    if (target > lyst[len(lyst)-1]):
-        return [False, 1]
-    elif (target < lyst[0]):
-        return [False, 1]
-    
-    while (lyst[section] <= target):
-        comparisons +=2
-        if (lyst[section] == target):
-            return [True, comparisons]
+def valid_list(lyst):
+    if type(lyst) != list:
+        raise TypeError("lyst must be a list")
         
-        section += skip
-        if (section >= len(lyst)):
-            break
-    
-    return linear_search(lyst[section-skip:section], target, comparisons)
+    for item in lyst:
+        if type(item) != int:
+            raise TypeError("all list elements must be an integer")
 
-def tests(lyst, target):
-    print(f"The list is {lyst}, the target is {target}")
-    
-    linear = linear_search(lyst, target)
-    binary = binary_search(lyst, target)
-    jump = jump_search(lyst, target)
+    return lyst
 
-    print(f"Linear Search: Target found- {linear[0]} --- Comparisons made- {linear[1]}")
-    print(f"Binary Search: Target found- {binary[0]} --- Comparisons made- {binary[1]}")
-    print(f"Jump Search: Target found- {jump[0]} --- Comparisons made- {jump[1]}")
+def is_sorted(lyst):
+    j = -1
+    
+    for i in (lyst):
+        if j == -1:
+            pass
+        elif i < lyst[j]:
+            #print(i, lyst[j]) #this is to see the comparison
+            return False
+            
+        j += 1
+        
+    return True
+    
+def quicksort(lyst):
+    copy = valid_list(lyst)
+    comparisons = 0
+    swaps = 0
+
+    
+    def partition(section):
+        high_idx = len(section)-1
+        low_idx = 0
+        midpoint = (high_idx + low_idx) // 2
+        nonlocal swaps
+        nonlocal comparisons
+        pivot = section[midpoint]
+        
+        done = False
+        while (done==False):
+            while (section[low_idx] < pivot):
+                comparisons += 1
+                low_idx += 1
+                
+            while (section[high_idx] > pivot):
+                comparisons +=1
+                high_idx -= 1
+                
+            if (low_idx >= high_idx):
+                done = True
+            else:
+                temp = section[low_idx]
+                section[low_idx] = section[high_idx]
+                section[high_idx] = temp
+                swaps += 1
+        
+        if (len(section) > 2):
+            low_section = partition(section[0:low_idx])
+            high_section = partition(section[high_idx:])
+            return low_section + high_section
+        else:
+            return section
+
+    return (partition(lyst), comparisons, swaps)
+
+def selection_sort(lyst):
+    copy = valid_list(lyst)
+    comparisons = 0
+    swaps = 0
+    
+    size = len(lyst)
+    
+    for i in range(size):
+        smol = i
+        
+        for j in range(i+1, size):
+            comparisons += 1
+            if lyst[smol] > lyst[j]:
+                smol = j
+        
+        if (lyst[i] != lyst[smol]):
+            swaps += 1
+            temp = lyst[i]
+            lyst[i] = lyst[smol]
+            lyst[smol] = temp
+        
+    return (lyst, comparisons, swaps)
+    
+    
+def insertion_sort(lyst):
+    copy = valid_list(lyst)
+    comparisons = 0
+    swaps = 0
+    
+    size = len(lyst)
+    
+    for i in range(1, size):
+        j = i
+        
+        while ((j > 0) and (lyst[j-1] > lyst[j])) :
+            comparisons += 1
+            swaps += 1
+            
+            temp = lyst[j]
+            lyst[j] = lyst[j-1]
+            lyst[j-1] = temp
+            j -= 1
+        
+        comparisons += 1
+    
+    return (lyst, comparisons, swaps)
+    
+def mergesort(lyst):
+    copy = valid_list(lyst)
+    comparisons = 0
+    swaps = 0
+    
+    def merge_partxn(lyst):
+        size = len(lyst)
+        midpoint = size // 2
+        nonlocal comparisons
+        nonlocal swaps
+        
+        if (size <= 2):
+            return lyst
+        
+        left = []
+        right = []
+        
+        for i in lyst:
+            comparisons +=1
+            if (i < lyst[midpoint]):
+                left = left + [i]
+            else:
+                right = right + [i]
+    
+        return merge_partxn(left) + merge_partxn(right)
+    
+    result = merge_partxn(lyst)
+    for i in range(0, len(lyst)-1, 2):
+        if (result[i] > result[i+1]):
+            swaps +=1
+            temp = result[i]
+            result[i]= result[i+1]
+            result[i+1] = temp
+
+    return (result, comparisons, swaps)
+
 
 def main():
-    data = [1,2,2,5,6,8,9,13,14,17,18,19]
-    tests(data, 5)
-    tests(data, 19)
-    tests(data, 20)
+    testlyst1 = [6, 5, 4, 3, 1, 2]
+    testlyst2 = [1, 2, 3, 4, 0]
+    testlyst3 = 'a'
+    testlyst4 = [8, 'a', 5]
+    
+    # print(is_sorted(testlyst1))
+    # print(is_sorted(testlyst2))
+    # print(quicksort(testlyst2))
+    print(mergesort(testlyst2))
+
 
 if __name__ == "__main__":
     main()
-
-
