@@ -761,3 +761,98 @@ transform property applies a 2D or 3D transformation to an element.
    
          }
 
+
+
+FLEXBOX 
+Flexible Box or flexbox is a CSS layout mode that provides an efficient way to lay out elements in a 
+ container so the elements behave predictably when the container is resized or viewed on different screen sizes
+flex container is an element that has the CSS property display set to flex 
+ <div style="display: flex">
+Flex containers hold flex items
+ flex item is a child element of a flex container that is positioned and sized according to various flexbox properties
+    <div id="container">
+      <div>A</div>
+      <div>B</div>
+      <div>C</div>
+    </div>
+
+    #container {
+      display: flex;
+      border: 1px green solid;
+      padding: 5px;
+    }
+
+    /* flex items */
+    #container > div {
+      padding: 10px;
+      border: 1px blue solid;
+    }
+
+flex-direction property defines the direction of flex items within the container using values: 
+  row (default), row-reverse, column, column-reverse
+gap property defines the space between flex items 
+  gap: 10px;
+justify-content property justifies the flex items within the container using values:
+  flex-start (default), flex-end, center, space-between, space-around, space-evenly
+flex-wrap property determines if or how flex items wrap onto multiple rows when the container is not wide enough
+  nowrap (default), wrap, wrap-reverse
+flex-basis property sets the initial length of a flex item
+  auto (the default), a percentage, or a length unit. 
+  The default value auto makes the flex item the same initial length as the content. 
+flex-grow property sets a proportion that determines how much of the available container space should be assigned to the item
+  default is 0, meaning the size should be based on the item's content
+flex-shrink property sets a proportion that determines the item's minimum size
+  The default is 1, meaning the size should shrink at the same rate as other items when the container width shrinks. 
+  A value of 0 means the item should not change sizes when the container width shrinks.
+flex specifies flex-grow, flex-shrink, and flex-basis together
+  flex: 0 1 auto;
+
+
+Grid layout is a CSS layout mode that divides a webpage into a rectangular grid in which to position page elements
+grid container is an element that has the CSS property display set to grid
+grid item is a child element of a grid container that is by default placed into a single grid cell
+grid-template-columns property defines the grid container's number of columns and optionally the width of each column
+  grid-template-columns: 50px 90px auto auto;
+  specifies 4 values that create 4 columns: the first is 50px wide, the second is 90px wide, and the 
+   third and fourth columns are automatically sized to fit the remainder of the grid width
+gap property defines the gap between each grid row and column. 
+ Ex: gap: 5px 25px;
+grid-template-rows property defines the height of each row. 
+ Ex: grid-template-rows: 20px 40px;
+justify-content property horizontally aligns the grid items inside the grid container using values: 
+  start, end, center, stretch, space-around, space-between, space-evenly
+align-content property vertically aligns the grid items inside the grid container using values: 
+  start, end, center, stretch, space-around, space-between, space-evenly
+  justify-content and align-content properties have no effect unless the grid width or height is 
+  less than the grid container's width or height. 
+
+grid-row property lists the grid item's starting and ending row line numbers
+  grid-row: 1 / 3; 
+  makes the grid item start at row line 1 and end at row line 3, so the grid item spans 2 rows.
+grid-column property lists the grid item's starting and ending column line numbers
+  grid-column: 1 / 4;
+grid-area property lists the grid item's starting and ending row and column numbers.
+  grid-area: 1 / 2 / 3 / 4; 
+  makes the grid item start at row line 1 and column line 2 and end at row line 3 and column line 4, 
+   so the grid item spans 2 rows and 2 columns.
+  Grid items may be assigned names with the grid-area property
+grid-template-areas property specifies the grid layout using the named grid items. 
+  A single period can be used in a grid-template-areas value to represent an empty grid cell
+    body {
+      background: black;
+      font-size: 2em;
+      text-align: center;
+      
+      display: grid;
+      grid-template-columns: 150px auto 150px;
+      grid-template-rows: 60px, 180px, 40px;
+      grid-template-areas:
+          "head head head"
+          "nav article aside"
+          "foot foot foot"
+    }
+
+    header {
+      background: cornflowerblue;
+      grid-area: head;
+    }

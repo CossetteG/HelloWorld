@@ -378,3 +378,191 @@ Radix sort 	      O(N) 	Yes
 
 element comparison sorting algorithm is a sorting algorithm that operates on an array of elements that can be compared to each other.
 ^all except radix sort 
+
+List abstract Data Type 
+
+list operations: 
+Append(list, x) 	        Inserts x at end of list 	Append(list, 44), list: 99, 77, 44
+Prepend(list, x) 	        Inserts x at start of list 	Prepend(list, 44), list: 44, 99, 77
+InsertAfter(list, w, x)   Inserts x after w 	InsertAfter(list, 99, 44), list: 99, 44, 77
+Remove(list, x) 	        Removes x 	Remove(list, 77), list: 99
+Search(list, x) 	        Returns item if found, else returns null 	Search(list, 99), returns item 99
+Search(list, 22),          returns null
+Print(list) 	           Prints list's items in order 	Print(list) outputs: 99, 77
+PrintReverse(list) 	     Prints list's items in reverse order 	PrintReverse(list) outputs: 77, 99
+Sort(list) 	              Sorts the lists items in ascending order 	list becomes: 77, 99
+IsEmpty(list) 	           Returns true if list has no items 	For list 99, 77, IsEmpty(list) returns false
+GetLength(list) 	        Returns the number of items in the list 	GetLength(list) returns 2 
+
+
+singly-linked list is a data structure where each node has data and a pointer to the next node
+   first node: head
+   last node: tail
+   singly-linked list is a type of positional list: A list where elements contain pointers to the next and/or previous elements in the list.
+   null is a special value indicating a pointer points to nothing. 
+
+Append operation for a singly-linked list inserts the new node after the list's tail node
+      ListAppend(list, newNode) {
+         if (list⇢head == null) { // List empty
+            list⇢head = newNode
+            list⇢tail = newNode
+         }
+         else{
+            list⇢tail⇢next = newNode
+            list⇢tail = newNode
+         }
+      }
+
+Prepend operation for a singly-linked list inserts the new node before the list's head node
+      ListPrepend(list, newNode) {
+         if (list⇢head == null) { // list empty
+            list⇢head = newNode
+            list⇢tail = newNode
+         }
+         else {
+            newNode⇢next = list⇢head
+            list⇢head = newNode
+         }
+      }
+
+InsertAfter operation for a singly-linked list inserts the new node after a provided existing list node
+  curNode is a pointer to an existing list node, but can be null when inserting into an empty list.
+      ListInsertAfter(list, curNode, newNode) {
+         if (list⇢head == null) { // List empty
+            list⇢head = newNode
+            list⇢tail = newNode
+         }
+         else if (curNode == list⇢tail) { // Insert after tail
+            list⇢tail⇢next = newNode
+            list⇢tail = newNode
+         }
+         else {
+            newNode⇢next = curNode⇢next
+            curNode⇢next = newNode
+         }
+      }
+
+RemoveAfter operation removes the node after the specified list node
+      ListRemoveNodeAfter(list, curNode) {
+         // Special case, remove head
+         if (curNode is null) {
+            sucNode = list⇢head⇢next
+            list⇢head = sucNode
+
+            if (sucNode is null) { // Removed last item
+               list⇢tail = null
+            }
+         }
+         else if (curNode⇢next is not null) {
+            sucNode = curNode⇢next⇢next
+            curNode⇢next = sucNode
+
+            if (sucNode is null) { // Removed tail
+               list⇢tail = curNode
+            }
+         }
+      }
+
+Search algorithm returns the first node whose data matches that key, or returns null if a matching node was not found
+      ListSearch(list, key) {
+         curNode = list⇢head
+         while (curNode is not null) {
+            if (curNode⇢data == key) {
+               return curNode
+            }
+            curNode = curNode⇢next
+         }
+         return null
+      }
+
+
+doubly-linked list is a data structure for implementing a list ADT, where each node has data, 
+  a pointer to the next node, and a pointer to the previous node\
+ doubly-linked list is a type of positional list: A list where elements contain pointers to the 
+  next and/or previous elements in the list
+
+Append operation for a doubly-linked list inserts the new node after the list's tail node
+  
+Appending an item to an empty list updates the list's head and tail pointers.
+      ListAppend(list, newNode) {
+         if (list⇢head == null) { // List empty
+            list⇢head = newNode
+            list⇢tail = newNode
+         }
+         else {
+            list⇢tail⇢next = newNode
+            newNode⇢prev = list⇢tail
+            list⇢tail = newNode
+         }
+      }
+
+Prepend operation of a doubly-linked list inserts the new node before the list's head node and points the head pointer to the new node. 
+
+InsertAfter operation for a doubly-linked list inserts the new node after a provided existing list node
+
+Remove operation for a doubly-linked list removes a provided existing list node
+      ListRemove(list, curNode) {
+         sucNode = curNode⇢next
+         predNode = curNode⇢prev
+
+         if (sucNode is not null) {
+            sucNode⇢prev = predNode
+         }
+
+         if (predNode is not null) {
+            predNode⇢next = sucNode
+         }
+
+         if (curNode == list⇢head) { // Removed head
+            list⇢head = sucNode
+         }
+
+         if (curNode == list⇢tail) { // Removed tail
+            list⇢tail = predNode
+         }
+      }
+
+list traversal algorithm visits all nodes in the list once and performs an operation on each node.
+      ListTraverse(list) {
+         curNode = list⇢head // Start at head
+
+         while (curNode is not null) { 
+            Print curNode's data        
+            curNode = curNode⇢next
+         }
+      }
+ reverse traversal visits all nodes starting with the list's tail node and ending after visiting the list's head node.
+      ListTraverseReverse(list) {
+         curNode = list⇢tail // Start at tail
+
+         while (curNode is not null) { 
+            Print curNode's data        
+            curNode = curNode⇢prev
+         }
+      }
+ Forward traversal through a linked list can be implemented using a recursive function that takes a node as an argument
+      ListTraverse(list) {
+         ListTraverseRecursive(list⇢head)
+      }
+      ListTraverseRecursive(node) {
+         if (node is not null) {
+            Visit node
+            ListTraverseRecursive(node⇢next)
+         }
+      }
+
+recursive linked list search:
+      ListSearch(list, key) {
+         return ListSearchRecursive(key, list⇢head)
+      }
+
+      ListSearchRecursive(key, node) {
+         if (node is not null) {
+            if (node⇢data == key) {
+               return node
+            }
+            return ListSearchRecursive(key, node⇢next)
+         }
+         return null
+      }
+
