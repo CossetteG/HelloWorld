@@ -856,3 +856,24 @@ grid-template-areas property specifies the grid layout using the named grid item
       background: cornflowerblue;
       grid-area: head;
     }
+
+@media - put in css files to account for different devices.
+    @media (min-width: 900px) {
+      .call-outs-container {
+        display:flex;
+        justify-content: space-between;
+      }
+    }
+
+Display: flex for the parent element;
+Flex: 1; will fill the remaining space, equally. 
+Flex 2; will make that particular element 2x as big as flex 1
+order:1 ; will order left to right
+Align-items: bottom; different heights aligned at bottom
+Width: % flex-basis % - changes size
+Justify-content how the margin is divided.
+Flexbox likes to keep everything in 1 row, unless you change flex-diretion to column
+Flex-wrap: wrap; will allow things to get booted to the next row.
+Margin: auto; will center vert and horiz. Margin is just powerful
+Flex boxes can be nested
+Flex box is good for 1d, grid is good for 2d
