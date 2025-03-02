@@ -1,336 +1,188 @@
 
-class SList:
+class Stack:
 
-    class SListNode:
-        def __init__ (self, value = None):
+    class StackNode:
+        def __init__(self, value):
             self.value = value
             self.next = None
-            # self.index = 0
 
-    def __init__ (self):
-        self._head = None
-        self._tail = None
+    def __init__(self):
+        self._top = None
         self._size = 0
-        self._iterator = None
-
-    # def assign_index(self):
-    #     curr = self._head
-    #     for i in range(self._size):
-    #         curr.index  = i
-    #         curr = curr.next
-
-    '''Insert a new value in the list. Maintain nondecreasing ordering of elements'''
-    def insert(self, value):
-        curr = self._head
-        prev = self._head
-        inserting = self.SListNode(value)
-
-        if (self._head == None):
-            self._head = inserting
-            self._tail = inserting
-            self._size += 1
-            # self.assign_index()
-            return
-        elif(value < self._head.value): 
-            inserting.next = self._head
-            self._head = inserting
-            self._size += 1
-            return
-            
-
-        while(value >= curr.value):
-            if (curr == self._tail):
-                break
-            prev = curr
-            curr = curr.next
-
-        if ((curr == self._tail) and (value >= curr.value)):
-            self._tail.next = inserting
-            self._tail = inserting
-        else:
-            prev.next = inserting
-            inserting.next = curr
-
-        self._size += 1
-        # self.assign_index()
-            
     
-    '''Search for a value in the list, return it if found, None otherwise'''
-    def find(self, value):
-        curr = self._head
-        for i in range(self._size):
-            if (curr.value == value):
-                return curr
-            curr = curr.next
-        return None
-
-    '''Remove the first occurance of value.'''
-    def remove(self, value):
-        curr = self._head
-        prev = self._head
-
-        while(value != curr.value):
-            if (curr == self._tail):
-                print("remove: item not found")
-                return None
-            prev = curr
-            curr = curr.next
-
-        if (curr == self._head):
-            self._head = self._head.next
-        elif (curr == self._tail):
-            self._tail = prev
+    def push(self, item):
+        if (item == ' '):
+            pass
         else:
-            prev.next = curr.next
-            
-        self._size -= 1
-        return curr.value
-        
+            init = self.StackNode(item)
+            if (self._size == 0):
+                self._top = init
+            else:
+                init.next = self._top 
+                self._top = init 
+            self._size +=1
 
-    '''Remove all instances of value'''
-    def remove_all(self, value):
-        curr = self._head
-        prev = self._head
-        size = int(self._size)
-
-        for i in range(size):
-            if (curr.value == value):
-                if (curr == self._head):
-                    self._head = self._head.next
-                elif (curr == self._tail):
-                    self._tail = prev
-                else:
-                    prev.next = curr.next
-                self._size -= 1
-            else: 
-                prev = curr 
-            curr = curr.next
-
-        return None
-
-    '''Convert the list to a string and return it'''
-    def __str__(self):
-        strbuild = "["
-        curr = self._head
-
-        if (self._size == 0):
-            return "(empty list)"
-        else:
-            for i in range(self._size):
-                if (curr == self._tail):
-                    strbuild += str(curr.value)
-                    strbuild += "]"
-                else:
-                    strbuild += str(curr.value)
-                    strbuild += ", "
-                curr = curr.next
-
-        return strbuild
-
-    '''Return an iterator for the list'''
-    def __iter__(self):
-        self._iterator = self._head
-        return self
     
-    def __next__(self):
-        if (self._iterator == self._tail):
-            raise StopIteration
-        elif (self._iterator == self._head): 
-            temp = self.SListNode("fakenode")
-            temp.next = self._head.next 
-            self._iterator = temp
-            return self._head.value
+    def pop(self):
+        if (self._size <= 0):
+            raise IndexError("pop- Stack is empty")
         else:
-            self._iterator = self._iterator.next
-            return self._iterator.value
-
-    '''Return the item at the given index, or throw an exception if invalid index'''
-    def __getitem__(self, index):
-        try:
-            curr = self._head
-            for i in range(index):
-                curr = curr.next
-            return curr.value
-        except: 
-            print("Index Error: index out of range or not int type")
-
+            self._size -=1
+            popped = self._top
+            self._top = self._top.next
+            return popped.value
+    
+    def top(self):
+        if (self._size <= 0):
+            raise IndexError("top- Stack is empty")
+        else:
+            return self._top.value
+    
     def size(self):
         return self._size
     
+    def clear(self):
+        self._top = None
+        self._size = 0
 
-''' Course Class for Project 4 of CS 2420 '''
-
-class Course:
-    ''' Course object '''
-    def __init__(self, number=0, name="", credit_hour=0.0, grade=0.0):
-        self._number = self.validate(number, "int")
-        self._name = self.validate(name, "str")
-        self._credit_hour = self.validate(credit_hour, "float")
-        self._grade = self.validate(grade, "grade")
+    def __str__(self):
+        str_bld = ""
+        curr = self._top
+        for char in range(self._size):
+            str_bld += str(curr.value)
+            str_bld += " "
+            curr = curr.next
+        return str_bld
         
 
+# from stack import Stack
 
-    def validate(self, value, typ):
-        if (typ == "int"):
-            if (type(value) != int):
-                raise ValueError("must be int type")
-            elif (value < 0):
-                raise ValueError("must be greater than 0")
-            else:
-               return value
-        elif (typ == "float"):
-            if (type(value) != float):
-                raise ValueError("must be float type")
-            elif (value < 0.0):
-                raise ValueError("must be greater than 0")
-            else:
-                return value
+def eval_postfix(expr):
+    postack = Stack()
+
+    for char in expr:
+        if char in "0123456789":
+            postack.push(float(char))
+        elif(char == ' '):
+            pass
+        else:
+            oper1 = postack.pop()
+            oper2 = postack.pop()
+            match char:
+                case '+':
+                    postack.push(oper1 + oper2)
+                case '-':
+                    postack.push(oper2 - oper1)
+                case '*':
+                    postack.push(oper1 * oper2)
+                case '/':
+                    postack.push(oper2 / oper1)
                 
-        elif (typ == "grade"):
-            if (type(value) != float):
-                    raise ValueError("must be float type")
-            elif (value < 0.0 or value > 4.0):
-                raise ValueError("must be greater than 0 and less than 4")
-            else:
-                return value
-        elif (typ == "str"):
-            if (type(value) != str):
-                raise ValueError("must be string type")
-            else:
-                return value
+    return postack.pop()
 
-    def number(self):
-        return self._number
-    
-    # def number(self, value):
-    #     self._number = self.validate(value, "int")
-    #     return None
-    
-    def name(self):
-        return self._name 
-    
-    # def name(self, value):
-    #     self._name = self.validate(value, "str")
-    #     return None
-    
-    def credit_hr(self):
-        return self._credit_hour
-    
-    # def credit_hr(self, value):
-    #     self._credit_hour = self.validate(value, "float")
-    #     return None
-    
-    def grade(self):
-        return self._grade 
-    
-    # def grade(self, value):
-    #     self._grade = self.validate(value, "grade")
-    #     return None
-  
-    def __eq__(self, other):
-        if (self._number == other.number()):
-            return True 
-        else:
-            return False
-      
-    def __ne__(self, other):
-        if (self._number != other.number()):
-            return True 
-        else:
-            return False
-      
-    def __lt__(self, other):
-        if (self._number < other.number()):
-            return True 
-        else:
-            return False
-      
-    def __gt__(self, other):
-        if (self._number > other.number()):
-            return True 
-        else:
-            return False
-      
-    def __le__(self, other):
-        if (self._number <= other.number()):
-            return True 
-        else:
-            return False
-      
-    def __ge__(self, other):
-        if (self._number >= other.number()):
-            return True 
-        else:
-            return False
-      
-    def __str__(self):
-        strbuild = "cs"
-        strbuild += str(self._number)
-        strbuild += " "
-        strbuild += self._name
-        strbuild += " Grade: "
-        strbuild += str(self._grade)
-        strbuild += " Credit Hours: "
-        strbuild += str(self._credit_hour)
-        return strbuild
+def in2post(expr):
+    post = ""
+    pstack = Stack()
 
-# from slist import SList
-# from course import Course
-
-def calculate_gpa(courseList):
-    sumGrades = 0
-    credits = 0
-    for course in courseList:
-        sumGrades += course.grade() * course.credit_hr()
-        credits += course.credit_hr()
-    if credits == 0:
-        return 0
-    return sumGrades / credits
-
-def is_sorted(lyst):
-    for i in range(0, lyst.size()  - 1):
-        if lyst[i] > lyst[i + 1]:
+    def check_prec(char):
+        if ((char == '/') or (char == '*')):
             return False
-    return True
+        elif ((pstack.top() == '/') or (pstack.top() == '*')):
+            return True
+        else:
+            return True 
+
+    for char in expr:
+        if (char == '('):
+            pstack.push(char) 
+        elif (char in "0123456789"):
+            post += char
+            post += ' '
+        elif (char in "/*-+"):
+            while (pstack.size() > 0):
+                if ((pstack.top() != '(') & check_prec(char)):
+                    post += pstack.pop() 
+                    post += ' '
+                else:
+                    break
+            pstack.push(char)
+        elif (char == " "):
+            pass 
+        else: 
+            if (char == ')'): 
+                post += pstack.pop()
+                post += ' '
+                while (pstack.top() != '('):
+                    post += pstack.pop()
+                    post += ' '
+                pstack.pop()
+
+    while (pstack.size() > 0):
+        post += pstack.pop()
+        post += ' '
+
+    return post 
 
 def main():
-    mylist = SList()
-    mylist.insert(1)
-    mylist.insert(6)
-    mylist.insert(3)
-    mylist.insert(6)
-    mylist.insert(4)
-    mylist.insert(0)
 
-    print(mylist)
+    # with open("data.txt", "r") as read_file:
+        # for expression in read_file.readlines():
+        #     postfix = in2post(expression)
+        #     answer = eval_postfix(postfix)
+        #     print(f"infix: {expression}postfix: {postfix}")
+        #     print(f"answer: {answer}")
+        #     print()
 
-    mylist.remove_all(8)
-    print(is_sorted(mylist))
 
-    print(mylist)
+    # TESTING
+    # ma_stack = Stack()
 
-    course1 = Course(1234, "taking care of birds", 3.0, 3.5)
-    print(course1)
-    print(str(course1))
+    # ma_stack.push(9)
+    # ma_stack.push(8)
+    # ma_stack.push('a')
 
-    # print(course1.name())
-    # print(course1.number())
-    # print(course1.grade())
-    # print(course1.credit_hr())
+    # print(ma_stack)
+    # print(ma_stack.pop())
+    # print(ma_stack.pop())
+    
+    # print(ma_stack.top())
+    # print(ma_stack.top())
 
-    course2 = Course(2345, "taking care of cats", 3.0, 3.0)
-    course3 = Course(567, "taking care of dogs", 3.0, 4.0)
+    # print(ma_stack.size())
 
-    courselist = SList()
-    courselist.insert(course1)
-    print(courselist)
+    # ma_stack.clear()
+    # print(ma_stack.top())
 
-    courselist.remove(course1)
-    print(courselist)
+    expr1 = "((8+3)*(2-7))"
+    expr2 = "((8+3)*2)-7"
+    expr3 = "(8*5)+((3-2)-7*3)"
+    expr4 = "((8*5+3)-7)-(5*3)"
+    expr5 = "7*9+7-5*6+3-4"
+    expr6 = "8 * (5+3)"
+    
+    sol1= in2post(expr1)
+    sol2= in2post(expr2)
+    sol3= in2post(expr3)
+    sol4= in2post(expr4)
+    sol5= in2post(expr5)
+    sol6= in2post(expr6)
 
-    print(course3 == course2)
-    print(course3 != course2)
+    print(sol1)
+    print(sol2)
+    print(sol3)
+    print(sol4)
+    print(sol5)
+    print(sol6)
 
-  
-if __name__ == "__main__":
+    print(eval_postfix(sol1))
+    print(eval_postfix(sol2))
+    print(eval_postfix(sol3))
+    print(eval_postfix(sol4))
+    print(eval_postfix(sol5))
+    print(eval_postfix(sol6))
+
+
+    return 0
+    
+if __name__=="__main__":
     main()

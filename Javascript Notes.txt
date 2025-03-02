@@ -877,3 +877,473 @@ Flex-wrap: wrap; will allow things to get booted to the next row.
 Margin: auto; will center vert and horiz. Margin is just powerful
 Flex boxes can be nested
 Flex box is good for 1d, grid is good for 2d
+
+
+JAVASCRIPT 
+Ecma International in 1997 and called ECMAScript
+interpreter executes programming statements without first compiling the statements into machine language
+JavaScript engines use just-in-time (JIT) compilation to compile the JavaScript code at execution time
+variable declaration: let followed by the variable name. variable may also be declared with the var keyword
+  let score;
+  score = 2;
+  let maxValue = 5; 
+  hitCount = 10; (bad practice)
+name created for an item like a variable is called an identifier. rules for identifiers: 
+  letters, digits, underscores, or $
+  may not start with a digit
+  may not be a reserved word like let, function, or while
+  camel casing
+constant is an initialized variable whose value cannot change
+  const slicesPerPizza = 8;
+dynamic typing, which determines a variable's type at run-time. types:
+    string 	  Group of characters delimited with 'single' or "double" quotes 	let name = "Naya";
+    number 	  Numbers with or without decimal places 	                        let highScore = 950;
+    boolean 	true or false 	                                                let hungry = true;
+    array 	  List of items 	                                    let teams = ["Broncos", "Cowboys", "49ers"];
+    object 	  Collection of property and value pairs 	            let movie = { title:"Sing", rating:"PG" };
+    undefined 	Variable that has not been assigned a value 	                let message;
+    null 	    Intentionally absent of any object value 	                      let book = null;
+comment:
+  // Single line comment
+  /* Multiline Comment */
+semicolons are not required unless you have 2 statements on the same line. 
+
+prompt() function prompts the user with a dialog box that allows the user to type a single line of text and press OK or Cancel
+console.log(), which displays text or numbers in the console-  console is a location where text output is displayed.
+      let tvShow = "The Office";
+
+      tvShow = prompt("What is your favorite tv show?");
+
+      if (tvShow === null) {
+        console.log("You did not enter a TV show.");
+      }
+      else {
+        console.log(tvShow + "is your favorite tv show");
+      }
+expression is a combination of items that evaluates to a value
+  y = 2 * (x + 1)
+  Operators and Assignment Operators: 
+    + 	Add       or String concatenation
+    - 	Subtract 	
+    * 	Multiply 	
+    / 	Divide 	
+    % 	Modulus (remainder) 	
+    ** 	Exponentiation 	
+    ++ 	Increment 	
+    -- 	Decrement 	
+
+    += 	Add to 	
+    -= 	Subtract from 	
+    *= 	Multiply by 	
+    /= 	Divide by 	
+    %= 	Mod by 	
+parseInt() and parseFloat() convert strings into numbers
+  an arithmetic operater also does so
+  parseInt rounds down
+  NaN is a JavaScript value that means Not a Number   
+    parseInt("dog") is NaN. 
+    isNaN() returns true if the argument is not a number, false otherwise. isNaN("123") is false
+    true = 1, false = 0
+if statements:  Braces not required around single statements. can be nested.
+  if (condition) {
+   // Statements to execute when condition is true 
+  }
+  else if () {}
+  else {
+   // statements to execute when condition is false
+  }
+Comparison Operators and Logical Operators:
+      == 	Equality 	      3 == "3" is true because "3" is converted to 3 before the comparison
+      != 	Inequality 	
+      === 	Identity 	    strictly equal if the operands' data types and values are equal
+      !== 	Non-identity 	
+      < 	Less than 	
+      <= 	Less than or equal 	
+      > 	Greater than 	
+      >= 	Greater than or equal
+
+      && 	And 
+      || 	Or 	
+      ! 	Not
+truthy value is a non-Boolean value that evaluates to true in a Boolean context.
+falsy value is a non-Boolean value that evaluates to false in a Boolean context.
+  truthy: if (32) if ("cat") if (myObject)if (myArray) 
+  falsy: if (0) if ("") if (NaN) if (undefined) if (null)
+conditional operator (or ternary operator) has three operands separated by a question mark (?) and colon (:)
+  condition evaluates to true, then the value of expression1 is returned, otherwise the value of expression2 is returned
+  condition ? expression1 : expression2
+switch statement compares an expression's value to several cases using strict equality (===)
+  break statement stops executing a case's statements
+  case value1:
+  default
+while loop
+  checks if the loop's condition is true before executing the loop body
+    while (condition) {
+      body
+    }
+  avoid writing infinite loops- semicolon after the while condition creates an infinite loop
+do-while loop 
+  executes the loop body before checking the loop's condition
+    do {
+      body
+    } while (condition);
+for loop- for (i = 1; i <= 4; i++)
+    for (initialization; condition; finalExpression) {
+      body
+    }
+break statement breaks out of a loop prematurely
+continue statement causes a loop to iterate again without executing the remaining statements in the loop
+
+functions
+  you know functions 
+    function functionName(parameter1, parameter2, ...) {function body}
+return statement
+  A function that is missing a return statement returns undefined
+function expression is identical to a function declaration, except the function name may be omitted
+    let displaySum = function(x, y, z) {
+    console.log(x + y + z);
+    }
+
+    // Function call
+    displaySum(2, 5, 3);
+  you must call the function to assign the variable
+  function without a name is called an anonymous function
+arrow function is an anonymous function that uses an arrow => to create a compact function
+  parameter1=> expression
+  (parameter1, parameter2, ...) => expression
+  (parameter1, parameter2, ...) => { statements; }
+
+variable can be declared with the var keyword. Ex: var x = 6;
+  let and var declare variables but with differing scope
+    scope is the context in which the variable can be accessed. 
+    local variable- declared inside a function has local scope
+    global variable- declared outside a function has global scope
+  var has function scope
+  let has block scope
+  any variable declared with neither var nor let is a global variable
+  var or let that is not inside a function creates a global variable
+the global object: an object that stores certain global variables, functions, and other properties
+  be careful when assigning global variables, because a global variable could replace an existing window property
+  window.location contains the URL the browser is displaying. Assigning location = "Texas" causes the web 
+  browser to attempt to load a web page with the URL "Texas", which likely does not exist.
+
+array is an ordered collection of values called elements
+      let scores = [];
+
+      scores[0] = 6;
+      scores[1] = 15;
+      scores[2] = 8;
+
+      console.log(scores[0]);
+      console.log(scores[1]);
+      console.log(scores[2]);
+
+      let teams = ["Tigers", "Bisons", 
+                  "Eagles", "Cobras"];
+
+      console.log(teams);
+
+method is a function that is attached to an object and operates on data stored in the object
+Array Methods:
+push(value) 	  Adds a value to the end of the array 	
+pop() 	        Removes the last array element and returns the element 	
+unshift(value) 	Adds a value to the beginning of the array 	
+shift() 	      Removes the first array element and returns the element 	
+splice(startingIndex, numElemToDelete, valuesToAdd) 	
+                Adds or removes elements from anywhere in the array and returns the deleted elements (if any)
+                let nums = [2, 4, 6, 8, 10];
+
+                // Deletes all elements from index 3 to the end
+                nums.splice(3);   // nums = [2, 4, 6]
+
+                // Deletes 2 elements starting at index 0 
+                nums.splice(0, 2);   // nums = [6]
+
+                // Adds 3, 5 starting at index 0 
+                nums.splice(0, 0, 3, 5);   // nums = [3, 5, 6]
+
+                // Adds 7, 9, 11 starting at index 2 
+                nums.splice(2, 0, 7, 9, 11);   // nums = [3, 5, 7, 9, 11, 6]
+
+length contains the number of elements in the array
+  for (i = 0; i < groceries.length; i++) {
+    console.log(i + " - " + groceries[i]);
+  }
+for-of loop is a simplified for loop that loops through an entire array
+  for (let item of groceries) {
+    console.log(item);
+  }
+forEach() also loops through an array
+  groceries.forEach(function(item, index) {
+    console.log(index + " - " + item);
+  });
+
+indexOf() and lastIndexOf() search an array and 
+  return the index of the first found value or -1 if the value is not found
+  two arguments: searchValue, startingPosition
+sort() sorts an array in ascending order
+  may yield unsatisfactory results for arrays that store numbers
+   "10" is < "2" when comparing the Unicode values of "1" to "2"
+  sort() method can sort elements in other ways by passing a comparison function to sort()
+      let numbers = [200, 30, 1000, 4];
+
+      // Sort based on Unicode values: [1000, 200, 30, 4]
+      numbers.sort();     
+
+      // Sort numbers in ascending order: [4, 30, 200, 1000]
+      numbers.sort(function(a, b) {
+        return a - b;
+      });
+    maArray.sort(function(a,b) {return a-b})
+
+object is an unordered collection of properties
+  property is a name-value pair, where the name is an identifier and the value is any data type
+  object literal (also called an object initializer) is a comma-separated list of property name and value pairs
+  can be nested and referred to
+    book = {
+    title: "Outliers",
+    published: 2011,
+    keywords: ["success", "high-achievers"],
+    
+      author: {
+        firstName: "Malcolm",
+        lastName: "Gladwell"   
+      }
+    };
+
+    book.published = 2014;
+
+object's property name with an anonymous function creates a method
+Methods access the object's properties using the keyword this, followed by a period
+  //within the object literal
+  getAuthorName() {
+        return this.author.firstName + " " + this.author.lastName;
+    }
+
+  book.getAuthorName = function() {
+   return this.author.firstName + " " + this.author.lastName;
+  };
+getter is a function that is called when an object's property is retrieved
+  get property() { return someValue; }
+  object.property
+setter is a function that is called when an object's property is set to a value
+  set property(value) { ... }
+accessor property is an object property that has a getter or a setter or both
+
+      let game = {
+        lives: 3,
+        coins: 0,
+        get points() {return this.coins *10}, 
+        playerDies() {
+            if (this.lives > 0) {
+              this.lives -=1
+            }
+        },
+        newGame() {
+            this.lives = 3
+            this.coins = 0
+        }
+      };
+
+
+2 types of JavaScript Variables:
+ primitive is data that is not an object and includes no methods
+   primitive is passed to a function, Changing the parameter does not change the argument
+ reference is a logical memory address. Only objects are reference types. 
+   object is passed to a function, changing the parameter's properties does change the argument's properties
+
+map or associative array is a data structure that maps keys to values
+  Each key/value pair in a map is called an element
+  individual elements are accessed by key using brackets myMap["key"]
+      let stateCapitals = {
+        AR: "Little Rock",
+        CO: "Denver",
+        NM: "Sante Fe"
+      };
+
+      stateCapitals["TX"] = "Austin";
+
+  nested:
+    let contacts = {
+      Rosa: {
+          phone: "303-555-4321",
+          email: "rosa@gmail.com"
+      },
+      Dave: {
+          phone: "501-533-9988",
+          email: "dave@yahoo.com"
+      },
+      Li: {
+          phone: "213-511-6758",
+          email: "li@msn.com"
+      }
+    };
+
+    contacts["Dave"].email
+
+for-in loop iterates over an object's properties in arbitrary order and is ideal for maps
+    for (let variable in object) {
+      body
+    }
+Object.keys() method returns an array of an object's property names. (length)
+in operator returns true if an object contains the given property
+delete operator removes a key/property from a map or object
+
+Map object is a newer alternative to using objects for storing key/value pairs
+  set(key, value) method sets a key/value pair.
+  get(key) method gets a key's associated value.
+  has(key) method returns true if a map contains a key,
+  delete(key) method removes a map element
+  size property is the number of elements in the map.
+      let stateCapitals = new Map();
+      stateCapitals.set("AR", "Little Rock");
+      stateCapitals.set("CO", "Denver");
+      stateCapitals.set("NM", "Santa Fe");
+
+      console.log("Size of map is " + stateCapitals.size);
+
+      if (stateCapitals.has("CO")) {
+        console.log("CO capital is " + stateCapitals.get("CO"));
+      }
+
+      console.log("All capitals:");
+      for (let [state, capital] of stateCapitals) {
+        console.log(state + " is " + capital); 
+      }
+
+
+String object defines methods to manipulate strings, extract substrings, test for string inclusion, etc
+charAt() returns the character at the specified index as a string. "test".charAt(1)
+length returns the number of characters in a string
+indexOf() method returns the index of the search string's first occurrence inside the String object or -1 if the search string is not found.
+lastIndexOf() method returns the index of the search string's last occurrence inside the String object or -1 if the search string is not found.
+replace() method replaces one string with another and returns the string with the replacement string inside.
+substr() 	Returns the substring that begins at a given index and has an optional given length. 	
+    s = "As you wish.";
+    s.substr(3, 3);  // "you"
+    s.substr(3);   // "you wish." (length optional)
+substring() 	Returns the substring between two indices, not including the second index. 	
+    s = "As you wish.";
+    s.substring(3, 6);  // "you"
+    s.substring(3);   // "you wish." (2nd index optional)
+split() 	Returns an array of strings formed by splitting the string into substrings. The given delimiter separates substrings. 
+    s = "As you wish.";
+    s.split(" ");  // ["As", "you", "wish."]
+toLowerCase() 	Returns the string converted to lowercase characters. 	
+    s = "What?";
+    s.toLowerCase();  // "what?"
+toUpperCase() 	Returns the string converted to uppercase characters. 	
+    s = "What?";
+    s.toUpperCase();  // "WHAT?"
+trim() 	Returns the string with leading and trailing whitespace removed. 	
+    s = "   test  ";
+    s.trim();  // "test"
+
+Date Object
+Date object represents a single moment in time, based on the number of milliseconds since the 
+  Unix Epoch (January 1, 1970 UTC)
+  Date object is created with the new operator and a constructor
+  constructor is a function that creates an instance of an object
+      let currDateTime = new Date();
+      console.log(currDateTime);
+
+      let oneSecPastEpoch = new Date(1000);
+      console.log(oneSecPastEpoch);
+
+      // Feb 22, 1732
+      let georgeBirthday = new Date(1732, 1, 22);
+      console.log(georgeBirthday);
+
+      // Oct 21, 2035 at 7:28:00
+      let theFuture = new Date(2035, 9, 21, 7, 28, 0);
+      console.log(theFuture);
+getDate()
+setDate() 	Gets or sets the day relative to the current set month 	
+getDay() 	Returns the day of the week (0-6) 	
+getFullYear()
+setFullYear() 	Gets or sets the 4 digit year 	
+getHours()
+setHours() 	Gets or sets the hour (0-23) 	
+getMilliseconds()
+setMilliseconds() 	Gets or sets the milliseconds (0-999) 	
+getMinutes()
+setMinutes() 	Gets or sets the minutes (0-59) 	
+getMonth()
+setMonth() 	Gets or sets the month (0-11) 	
+getSeconds()
+setSeconds() 	Gets or sets the seconds (0-59) 	
+getTime()
+setTime() 	Gets or sets the number of milliseconds since Jan 1, 1970, 00:00:00 UTC 	
+
+Math Object 
+Math object provides properties for mathematical constants and methods to perform mathematical functions
+      abs(x) 	Returns the absolute value of x 	Math.abs(-5);  // 5
+      ceil(x) 	Returns x rounded up to the nearest integer 	Math.ceil(2.1);  // 3
+      cos(x) 	Returns the cosine of the radians x 	Math.cos(Math.PI)  // -1
+      floor(x) 	Returns x rounded down to the nearest integer 	Math.floor(2.9)  // 2
+      log(x) 	Returns the natural logarithm of x 	Math.log(Math.E)  // 1
+      max(n1, n2, n3, ...) 	Returns the largest number 	Math.max(5, 2, 8, 1)  // 8
+      min(n1, n2, n3, ...) 	Returns the smallest number 	Math.min(5, 2, 8, 1)  // 1
+      pow(x, y) 	Returns x to the power of y 	Math.pow(2, 3)  // 8
+      round(x) 	Returns x rounded to the nearest integer 	Math.round(3.5)  // 4
+      sin(x) 	Returns the sine of radians x 	Math.sin(Math.PI)  // 0
+      sqrt(x) 	Returns the square root of x 	Math.sqrt(25)  // 5
+      tan(x) 	Returns the tangent of radians x 	Math.tan(Math.PI / 4)  // 1
+
+Exception Handling
+exception is an error that disrupts the normal flow of program execution
+throw statement throws a user-defined exception. Syntax: throw expression. Ex: throw "number is negative" 
+try-catch statement has a try block to execute code that may throw an exception and a catch block that 
+  executes when an exception is thrown. 
+    try {
+      // Statements to try
+    } 
+    catch (exception) {
+      // Optionally handle exceptions
+    }
+    finally {
+      // Code that executes no matter what
+    }
+Error object represents a runtime error. has two properties: 
+    name - The error's name.
+    message - The error's message
+  Error constructor takes a message parameter. Ex: err = new Error("My error message.");
+RangeError - Thrown when a numeric variable or parameter is outside the valid range.
+InternalError - Thrown when an internal error occurs in the JavaScript interpreter.
+TypeError - Thrown when a variable or parameter is not the expected data type.
+
+
+function isStrongPassword(password) {
+
+   function hasUppercase(pasword) {
+      let mabool = false
+      for (let char of pasword) {
+         if (char === char.toUpperCase() && ("1234567890!@#$%^&*()".indexOf(char) == -1)) {
+            mabool = true
+         }
+      }
+      return mabool
+   }
+
+   if (password.length < 8) {
+      return false 
+   } else if (password.indexOf("password") >= 0) {
+      return false
+   }
+
+   if (hasUppercase(password)) {
+      return true
+   } else {return false}
+   
+}
+
+console.log("Testing isStrongPassword()...");
+
+console.log("Qwerty - " + isStrongPassword("Qwerty"));                  // false - Too short
+console.log("passwordQwerty - " + isStrongPassword("passwordQwerty"));  // false - Contains "password"
+console.log("qwerty123 - " + isStrongPassword("qwerty123"));            // false - No uppercase chars
+console.log("Qwerty123 - " + isStrongPassword("Qwerty123"));            // true
+
+
+// Do NOT remove the following line:
+export default isStrongPassword;

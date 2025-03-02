@@ -566,3 +566,57 @@ recursive linked list search:
          return null
       }
 
+STACK is an ADT in which items are only inserted on or removed from the top of a stack. 
+push operation inserts an item on the top of the stack
+pop operation removes and returns the item at the top of the stack
+last-in first-out ADT
+         route = new Stack
+         Push(route, Osaka)
+         Push(route, Nara)
+         Push(route, Tokyo)
+         print Pop(route)
+         print Pop(route)
+
+Stack operations:
+Push(stack, x) 	Inserts x on top of stack 	                        Push(stack, 44). Stack: 44, 99, 77
+Pop(stack) 	      Returns and removes item at top of stack 	         Pop(stack) returns: 99. Stack: 77
+Peek(stack) 	   Returns but does not remove item at top of stack 	Peek(stack) returns 99. Stack still: 99, 77
+IsEmpty(stack) 	Returns true if stack has no items 	               IsEmpty(stack) returns false.
+GetLength(stack) 	Returns the number of items in the stack 	         GetLength(stack) returns 2. 
+
+QUEUE is an ADT in which items are inserted at the end of the queue and removed from the front of the queue
+enqueue operation inserts an item at the end of the queue
+dequeue operation removes and returns the item at the front of the queue
+first-in first-out ADT. 
+
+Queue operations:
+Enqueue(queue, x) 	Inserts x at end of the queue 	            Enqueue(queue, 56). Queue: 43, 12, 77, 56
+Dequeue(queue) 	   Returns and removes item at front of queue 	Dequeue(queue) returns: 43. Queue: 12, 77
+Peek(queue) 	      Returns but does not remove item at the front of the queue 	Peek(queue) return 43. Queue: 43, 12, 77
+IsEmpty(queue) 	   Returns true if queue has no items 	         IsEmpty(queue) returns false.
+GetLength(queue) 	   Returns the number of items in the queue 	   GetLength(queue) returns 3. 
+
+DEQUE (pronounced "deck" and short for double-ended queue) 
+      is an ADT in which items can be inserted and removed at both the front and back.
+push-front operation inserts an item at the front of the deque
+push-back operation inserts at the back of the deque
+pop-front operation removes and returns the item at the front of the deque
+pop-back operation removes and returns the item at the back of the deque
+
+Deque operations: 
+PushFront(deque, x) 	Inserts x at the front of the deque 	      PushFront(deque, 41). Deque: 41, 59, 63, 19
+PushBack(deque, x) 	Inserts x at the back of the deque 	         PushBack(deque, 41). Deque: 59, 63, 19, 41
+PopFront(deque) 	   Returns and removes item at front of deque 	PopFront(deque) returns 59. Deque: 63, 19
+PopBack(deque) 	   Returns and removes item at back of deque 	PopBack(deque) returns 19. Deque: 59, 63
+PeekFront(deque) 	   Returns but does not remove the item at the front of deque 	PeekFront(deque) returns 59. Deque is still: 59, 63, 19
+PeekBack(deque) 	   Returns but does not remove the item at the back of deque 	PeekBack(deque) returns 19. Deque is still: 59, 63, 19
+IsEmpty(deque) 	   Returns true if the deque is empty 	         IsEmpty(deque) returns false.
+GetLength(deque) 	   Returns the number of items in the deque 	   GetLength(deque) returns 3.
+
+ARRAY-BASED LIST is a list ADT implemented using an array
+append operation for an array-based list of length X inserts the new element at the end of the list, or at index X
+must be resized if an item is added when the allocation size equals the list length
+Prepend operation for an array-based list inserts a new item at the start of the list
+InsertAfter operation for an array-based list inserts a new item after a specified index
+search operation returns the index for the first element whose data matches that key, or -1 if not found. 
+remove-at operation removes the item at that index
