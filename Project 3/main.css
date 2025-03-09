@@ -1,0 +1,178 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.body {
+    background-color: rgb(219, 245, 219);
+}
+
+.heading {
+    background-color: rgb(174, 231, 174);
+    display: flex;
+}
+
+.heading > img {
+    display: flex;
+    width: 12%;
+    height: 12%;
+    flex-basis: 20%;
+    padding: 10px;
+    margin: 10px;
+}
+
+h1 {
+    color:green;
+    margin: auto;
+    font-size: 40pt;
+}
+
+.middle {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 0;
+}
+
+.content {
+    color: darkslategrey;
+    padding: 80px;
+    margin-top: 0;
+    position:relative;
+    flex-basis: 80%;
+}
+
+.home {
+    padding: 70px;
+    font-size: larger;
+}
+
+.sh-button {
+    background-color: green;
+    height: 90px;
+    width: 200px;
+    border-radius: 10px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    font-weight: 500;
+    color: antiquewhite;
+}
+    
+
+.rules {
+    padding-left: 50px;
+}
+
+ol li, ul li {
+    list-style-type: disc;
+    padding-top: 15px;
+}
+
+h3 {
+    text-align: center;
+    margin: 5px;
+    font-size: 50pt; 
+    background-color: rgb(178, 196, 158);
+    width: 100%;
+    border-radius: 5px;
+}
+
+#floorplan {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+#floor_img {
+    width: 85%;
+    padding-left: 20%;
+}
+
+form {
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+label {
+    font-size: large;
+    flex-basis: 40px;
+}
+
+input {
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+.mission {
+    margin: 10%;
+}
+
+iframe {
+    margin-left: 12%;
+}
+
+#contact {
+    font-size: x-large;
+    text-align: center;
+    padding: 40px;
+}
+
+.navbar {
+    background: rgb(58, 102, 58);
+    height: 1800px;
+    width: 20%;  
+    position: static;
+    font-size: 18pt;
+    z-index: 5;
+}
+
+
+.navbar-item {
+    text-align: right;
+    padding: 5px 5px 5px 5px;
+    margin: 0px 10px auto auto;
+}
+
+li {
+    list-style-type: none;
+}
+
+a:link {
+    color: rgb(233, 232, 230);
+    background-color: transparent;
+    text-decoration: none;
+}
+  
+a:visited {
+    color: rgb(233, 232, 230);
+    background-color: transparent;
+    text-decoration: none;
+}
+  
+a:hover {
+    color: rgb(233, 232, 230);
+    background-color: transparent;
+    text-decoration: underline;
+}
+  
+a:active {
+    color: rgb(233, 232, 230);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+
+footer {
+    height: 50px;
+    width: 100%;
+    background-color: rgb(119, 141, 119);
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+}

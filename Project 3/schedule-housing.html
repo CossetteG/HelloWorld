@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>Project 3: Stepping Stone</title>
+    <link href="main.css" rel="stylesheet">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <header> 
+        <div class="heading">
+            <img src="img/stones.png" alt="stonepic">
+            <h1>Stepping Stone Temporary Living</h1>
+        </div>
+    </header>
+
+    <section class="middle">
+        <section class="content">
+            <p>
+                <h3>Room Application</h3>
+                <form>
+                    <label>Enter your information below to get a room.</label> <br>
+                    <label for="name">Full Name: </label>
+                    <input type="text" id="name"> <br>
+
+                    <label for="age">Age: </label>
+                    <input type="number" id="age"><br>
+
+                    <label for="id-type">ID Type: </label>
+                    <input type="text" id="id-type"><br>
+
+                    <label for="id-num">ID Number: </label>
+                    <input type="number" id="id-num"><br>
+
+                    <label>Book for Month or Day? </label>
+                    <div>
+                        <input type="radio" 
+                               id="Month" 
+                               name="time" 
+                               value="Month">
+                        <label for="Month">Month</label>
+                    </div>
+                    <div>
+                        <input type="radio" 
+                               id="Day" 
+                               name="time" 
+                               value="Day">
+                        <label for="Day">Day</label>
+                    </div>
+
+                    <label for="date">Check in Day? </label>
+                    <input type="text" id="day"><br>
+
+                    <button class="sh-button" onclick="schedule_booking()">Schedule</button>
+                </form>
+            </p>
+        </section>
+
+        <nav class="navbar">
+            <div class="navbar-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="navbar-menu"></ul>
+                <li class="navbar-item"> <a href="index.html" class="navbar-links">Home</a></li>
+                <li class="navbar-item"> <a href="Rules.html" class="navbar-links">Rules</a></li>
+                <li class="navbar-item"> <a href="schedule-housing.html" class="navbar-links">Schedule Housing</a></li>
+                <li class="navbar-item"> <a href="our-mission.html" class="navbar-links">Our Mission</a></li>
+                <li class="navbar-item"> <a href="contact-us.html" class="navbar-links">Contact Us</a></li>
+        </nav>
+    </section>
+
+    <footer>
+        <a href="https://www.youtube.com/watch?v=9MCiixIkzUk" class="button">
+            ©Cossette Gomez 2025 Created for Utah Valley University CS 2550</a>
+    </footer>
+
+</body>
+
+</html>

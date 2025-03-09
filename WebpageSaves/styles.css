@@ -1,62 +1,84 @@
+/* Add your styles here */
 
+/* Given CSS rules below */
 body {
-    text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: rgba(229, 198, 250, 100%);
-
-    background-image: url("se-sun.png"), url("se-moon.png");
-    background-repeat: repeat-y, repeat-y;
-    background-position: left, right;
-    background-size: 12%;
+   margin: 0;
+   font-family: Helvetica, sans-serif;
 }
 
-h1 {
-    color:blueviolet;
-    margin: 100px;
-    font-size: 60pt;
+header {
+   border-bottom: 2px solid #93B5C6;
+   background-color: #DDEDAA;
+   padding: 8px;
+
+   display: flex;
+   justify-content: space-between;
 }
 
-h2 {
-    text-decoration: underline;
+.logo {
+   color: #BD4F6C;
+   font-size: 18px;
 }
 
-section {
-    padding-left: 250px;
-    padding-right: 250px;
-    margin: 60px;
+.content {
+   margin-left: 30px;
+   display: flex;
+   flex-wrap: wrap;
 }
 
-li {
-    text-align: left;
+.main-content {
+   display: flex;
+   flex-wrap: wrap;
+   flex-grow: 1;
+   flex-basis: 70%
 }
 
-a::onmouseover {
-    text-decoration: underline;
+.title {
+   border-bottom: 1px dashed #93B5C6;
+   display: flex;
+   align-items: baseline;
+   display: flex;
+   align-items: baseline;
 }
 
-a::onmouseout {
-    text-decoration: none;
+.title h1 {
+   color: #BD4F6C;
 }
 
-#poem {
-    text-align: left;
+.title p {
+   color: #93B5C6;
+   margin-left: 30px;
 }
 
-#Haiku {
-    padding-left: 350px;
-    padding-right: 350px;
+.summary {
+   margin-top: 30px;
+   display: flex;
+   justify-content: space-evenly;
+   flex-grow: 1;
+   flex-basis: 100%
 }
 
-#Cossette {
-    border: 5px solid black;
+.summary > div {
+   background-color: #DDEDAA;
+   border: 2px solid #93B5C6;
+   border-radius: 5px;
+   color: #BD4F6C;
+   padding: 5px;
+   width: 210px;
 }
 
-table {
-    table-layout: fixed;
-    background-image: url(papertexture.jpg);
+.summary > div > div {
+   display: flex;
+   justify-content: space-between;
 }
 
-th, td {
-    padding: 5px;
+.ingredients, .directions {
+   flex-grow: 1;
+   flex-basis: 45%;
 }
 
+.related-content {
+   margin-left: 100px;
+   flex-grow: 1;
+   flex-basis: 20%;
+}
