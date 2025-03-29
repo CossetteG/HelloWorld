@@ -1347,3 +1347,100 @@ console.log("Qwerty123 - " + isStrongPassword("Qwerty123"));            // true
 
 // Do NOT remove the following line:
 export default isStrongPassword;
+
+
+mobile web browser is a web browser designed for mobile devices
+Implementing:
+  Separate websites: Two different websites are created, one for desktop and one for mobile.
+  Dynamic serving: The same URL is requested by both desktop and mobile web browsers, 
+    but the web server sends back a desktop version to desktop browsers and a mobile version to mobile browsers.
+  Responsive web design: The web server sends back the same HTML to both desktop and mobile browsers, 
+    but the browsers alter the appearance of the webpage to match the device size.
+Responsive web design (RWD) is a collection of techniques to create webpages that adapt to the browser's size. 
+RWD is characterized by three things: 
+    Elements are laid out on fluid, proportion-based grids that use relative units like percentages instead of absolute units like pixels.
+    Images are sized with relative units to adapt to various screen sizes.
+    CSS media queries apply different CSS styles depending on the browser's width.
+adaptive website adapts to the width of the browser at specific widths
+
+screen emulator is software that simulates how mobile device screens operate. 
+Developers access the DevTools screen emulator by typing Ctrl-Shift-I in Chrome (Windows) or Command-Option-I (Mac). 
+device pixel ratio (DPR) is the ratio between device pixels and logical pixels
+ logical pixel is also called a device-independent pixel (DIP). 
+ The CSS "px" unit is a logical pixel unit. Ex: <div style="width:20px"> makes the div 20 logical pixels wide. 
+Emulating "Network conditions" and "Sensors"
+    Caching - Disabling the cache forces the browser to download all webpage resources every time
+    Network throttling - Simulate slower networks like 2G or 3G or simulate being offline
+    User agent - Change the user agent string to any number of browser user agents
+    sensors include things such as location and orientation
+
+viewport is the visible area of a webpage, not including the address bar, bookmark bar, tabs, etc.
+viewport meta element specifies viewport properties that affect what the browser's viewport displays
+    width - The viewport width, which is typically set to device-width, the device's screen width.
+    initial-scale - The initial zoom level, which is typically set to 1 so the webpage is initially zoomed in at 100%.
+    user-scalable - A boolean value that, when set to no, prevents the user from zooming in and out.
+<meta name="viewport" content="width=device-width, initial-scale=1">
+viewport unit (vw and vh) is a percentage of the browser viewport's width or height, 
+  where 1vw = 1% of viewport width and 1vh = 1% of viewport height
+CSS also defines minimum and maximum viewport units vmin and vmax where 1vmin = 1vw or 1vh, 
+  whichever is smaller and 1vmax = 1vw or 1vh, whichever is larger. 
+
+Graceful degradation: Design the desktop website first and modify the design to fit smaller screens.
+Progressive enhancement: A "mobile first" design methodology that begins with designing the website for the smallest device and then adapts the design for larger screens.
+media query is a combination of media type and optionally one or more media feature expressions that evaluate to true or false. 
+  media type is a device category that a media query applies to. Ex: all, print, and screen.
+  media feature is a characteristic of a browser, device, or environment. Ex: aspect-ratio, height, and orientation.
+  all 	All devices (default value if no media type is listed)
+  print 	For printers and documents viewed on screen in print preview mode
+  screen 	Intended for screens 
+  aspect-ratio 	Viewport's width-to-height aspect ratio
+  height 	Viewport's height
+  width 	Viewport's width
+  orientation 	Viewport's orientation: portrait or landscape
+  resolution 	Device's pixel density
+  media query in a <link> is specified with the media attribute
+  @media at-rule. An at-rule is a CSS statement that starts with the @ character and instructs the CSS engine how to behave.
+    @media print { ... }
+  breakpoint is the screen width that activates a media query
+  Media query breakpoints do not work properly unless the viewport meta element sets the viewport width to the device width
+
+responsive image is an image that scales to fit different layouts in a responsive website
+    Responsive images need to scale to various sizes without looking pixelated or blocky.
+    Higher resolution images should be used for devices with higher DPRs to avoid images looking pixelated or blocky.
+    Images with the minimum DPR supported by a device should be used to avoid sending larger image files that waste network bandwidth.
+Scalable Vector Graphics (SVG) image is a vector image that is defined with XML. A vector image is an image defined with lines, curves, 
+  and points that scale nicely at any resolution and always appear crisp
+  SVG image may be stored a .svg file and displayed with an <img> tag. 
+  Or an <svg> element may define the SVG image parts in the HTML document. 
+display raster images like JPEG and PNG, developers create different versions of the same image at different resolutions
+ <img> srcset attribute specifies which image should be displayed for specific DPR values. 
+ <img src="dog-small.jpg"
+  srcset="dog-medium.jpg 2x,
+          dog-large.jpg 3x"
+  alt="Dog">
+sizes attribute specifies one or more pairs of media conditions and relative image sizes
+<img src="dog400.jpg"
+     sizes="(min-width: 600px) 25vw, 
+            (min-width: 400px) 50vw, 
+            100vw"
+     srcset="dog200.jpg 200w, 
+             dog400.jpg 400w,
+             dog800.jpg 800w">
+<picture> element is especially useful when implementing art direction
+  Art direction is the process of swapping out images with different proportions for different screen sizes
+  <picture> element contains one or more <source> elements that specify a media condition and image
+ polyfill is code that supports some functionality that is missing from a browser. 
+    <picture>
+      <source media="(min-width: 600px)" 
+        srcset="dog-wide.jpg,
+                dog-wide@1.5x.jpg 1.5x,  
+                dog-wide@2x.jpg 2x">
+      <source media="(min-width: 400px)" 
+        srcset="dog.jpg,
+                dog@1.5x.jpg 1.5x
+                dog@2x.jpg 2x">
+      <img src="dog-narrow.jpg" 
+        srcset="dog-narrow@1.5x.jpg 1.5x,
+                dog-narrow@2x.jpg 2x"
+        alt="Dog">
+      </picture>

@@ -1,188 +1,316 @@
 
-class Stack:
-
-    class StackNode:
+'''your bst here'''
+class BST:
+    
+    class Node:
         def __init__(self, value):
             self.value = value
-            self.next = None
+            self.left = None
+            self.right = None
+            self.depth = 0
+
+        def leaf(self):
+            if(self.left == None):
+                if (self.right == None):
+                    return True
+            return False
+
+        def __str__(self):
+            return self.value
 
     def __init__(self):
-        self._top = None
+        self._root = None 
         self._size = 0
-    
-    def push(self, item):
-        if (item == ' '):
-            pass
-        else:
-            init = self.StackNode(item)
-            if (self._size == 0):
-                self._top = init
-            else:
-                init.next = self._top 
-                self._top = init 
-            self._size +=1
+        self._height = -1
 
-    
-    def pop(self):
-        if (self._size <= 0):
-            raise IndexError("pop- Stack is empty")
-        else:
-            self._size -=1
-            popped = self._top
-            self._top = self._top.next
-            return popped.value
-    
-    def top(self):
-        if (self._size <= 0):
-            raise IndexError("top- Stack is empty")
-        else:
-            return self._top.value
-    
     def size(self):
         return self._size
-    
-    def clear(self):
-        self._top = None
-        self._size = 0
 
-    def __str__(self):
-        str_bld = ""
-        curr = self._top
-        for char in range(self._size):
-            str_bld += str(curr.value)
-            str_bld += " "
-            curr = curr.next
-        return str_bld
-        
-
-# from stack import Stack
-
-def eval_postfix(expr):
-    postack = Stack()
-
-    for char in expr:
-        if char in "0123456789":
-            postack.push(float(char))
-        elif(char == ' '):
-            pass
-        else:
-            oper1 = postack.pop()
-            oper2 = postack.pop()
-            match char:
-                case '+':
-                    postack.push(oper1 + oper2)
-                case '-':
-                    postack.push(oper2 - oper1)
-                case '*':
-                    postack.push(oper1 * oper2)
-                case '/':
-                    postack.push(oper2 / oper1)
-                
-    return postack.pop()
-
-def in2post(expr):
-    post = ""
-    pstack = Stack()
-
-    def check_prec(char):
-        if ((char == '/') or (char == '*')):
-            return False
-        elif ((pstack.top() == '/') or (pstack.top() == '*')):
+    def is_empty(self):
+        if (self._size == 0):
             return True
-        else:
-            return True 
+        return False
 
-    for char in expr:
-        if (char == '('):
-            pstack.push(char) 
-        elif (char in "0123456789"):
-            post += char
-            post += ' '
-        elif (char in "/*-+"):
-            while (pstack.size() > 0):
-                if ((pstack.top() != '(') & check_prec(char)):
-                    post += pstack.pop() 
-                    post += ' '
-                else:
-                    break
-            pstack.push(char)
-        elif (char == " "):
-            pass 
+    def height(self):
+        return self._height
+
+    def add(self, item):
+        curr = self.Node(item)
+
+        if (self.is_empty()):
+            self._root = curr 
         else: 
-            if (char == ')'): 
-                post += pstack.pop()
-                post += ' '
-                while (pstack.top() != '('):
-                    post += pstack.pop()
-                    post += ' '
-                pstack.pop()
+            compare = self._root
 
-    while (pstack.size() > 0):
-        post += pstack.pop()
-        post += ' '
+            while (True):
+                curr.depth += 1
+                if (curr.value <= compare.value):
+                    if (compare.left == None):
+                        compare.left = curr
+                        break
+                    else:
+                        compare = compare.left
+                elif (curr.value > compare.value):
+                    if (compare.right == None):
+                        compare.right = curr
+                        break
+                    else:
+                        compare = compare.right 
 
-    return post 
+
+        if (curr.depth > self._height):
+            self._height = curr.depth
+        self._size +=1
+
+    def recalculate_height(self):
+        start = self._root
+        self._height = -1
+
+        def inorder_dep(node):
+            if(node.left != None):
+                inorder_dep(node.left)
+            
+            if (node.depth > self._height):
+                self._height = node.depth
+
+            if(node.right != None):
+                inorder_dep(node.right)
+
+        inorder_dep(start)
+
+
+    def remove(self, item):
+        curr = self._root
+        parent = self._root
+        which_child = ""
+
+        while (curr.value != item):
+            if (curr.leaf() ):
+                break
+            elif(curr == None):
+                return
+            else: 
+                if (item < curr.value):
+                    parent = curr
+                    curr = curr.left
+                    which_child = "left"
+                elif (item > curr.value):
+                    parent = curr
+                    curr = curr.right 
+                    which_child = "right"
+
+        if (curr.leaf()):
+            if (which_child=="left"):
+                parent.left = None
+            elif (which_child=="right"):
+                parent.right = None 
+            elif (curr == self._root):
+                self._root = None
+            
+            self._size -= 1
+            self.recalculate_height() 
+        else:
+            sub = curr
+            if (curr.right != None):
+                sub = curr.right
+                while(sub.left != None):
+                    sub = sub.left
+            elif (curr.left != None): 
+                sub = curr.left 
+                while(sub.right != None):
+                    sub = sub.right
+            else: raise "Logic Error in Remove"
+            temp = sub.value
+            self.remove(sub.value)
+            curr.value = temp
+
+        return self
+
+    def find(self, item):
+        curr = self._root
+        if (self.is_empty()):
+            raise ValueError
+
+        while (curr.value != item):
+            # if (curr.leaf()):
+            #     raise ValueError
+            # else: 
+                if (item < curr.value):
+                    curr = curr.left
+                    if (curr == None):
+                        raise ValueError
+                elif (item > curr.value):
+                    curr = curr.right 
+                    if (curr == None):
+                        raise ValueError
+
+        return curr.value
+
+    def inorder(self):
+        result = []
+        start = self._root
+
+        def inorder_rec(node):
+            if(node.left != None):
+                inorder_rec(node.left)
+            
+            result.append(node.value)
+
+            if(node.right != None):
+                inorder_rec(node.right)
+
+        inorder_rec(start)
+        return result
+
+    def preorder(self):
+        result = []
+        start = self._root
+
+        def inorder_rec(node):
+            result.append(node.value)
+
+            if(node.left != None):
+                inorder_rec(node.left)
+
+            if(node.right != None):
+                inorder_rec(node.right)
+
+        inorder_rec(start)
+        return result
+
+    def postorder(self):
+        result = []
+        start = self._root
+
+        def inorder_rec(node):
+            if(node.left != None):
+                inorder_rec(node.left)
+
+            if(node.right != None):
+                inorder_rec(node.right)
+
+            result.append(node.value)
+
+        inorder_rec(start)
+        return result
+
+    def print_tree(self):
+        print(self.inorder())
+    
+
+#main.py
+'''
+Project 6: Binary Search Tree
+Author: Cossette Gomez
+Course: CS 2420
+Date: 3/24/25
+
+Description: class BST is to create a binary tree, then an implemation of it using Pair
+
+Lessons Learned: binary trees
+
+'''
+from pathlib import Path
+from string import whitespace, punctuation
+#from bst import BST
+
+
+class Pair:
+    ''' Encapsulate letter,count pair as a single entity.
+    
+    Realtional methods make this object comparable
+    using built-in operators. 
+    '''
+    def __init__(self, letter, count = 1):
+        self.letter = letter
+        self.count = count
+    
+    def __eq__(self, other):
+        return self.letter == other
+    
+    def __hash__(self):
+        return hash(self.letter)
+
+    def __ne__(self, other):
+        return self.letter != other
+
+    def __lt__(self, other):
+        return self.letter < other
+
+    def __le__(self, other):
+        return self.letter <= other
+
+    def __gt__(self, other):
+        return self.letter > other
+
+    def __ge__(self, other):
+        return self.letter >= other
+
+    def __repr__(self):
+        return f'({self.letter}, {self.count})'
+    
+    def __str__(self):
+        return f'({self.letter}, {self.count})'
+
+def make_tree():
+    ''' A helper function to build the tree.
+    
+    The test code depends on this function being available from main.
+    :param: None
+    :returns: A binary search tree
+    '''
+    atw_tree = BST()
+    with open("around-the-world-in-80-days-3.txt", 'r') as txt_file:
+        content = txt_file.read()
+        for char in content:
+            if (char.isspace()): 
+                pass
+            else:
+                char = char.lower()
+                try: 
+                    atw_tree.find(char).count += 1
+                except ValueError:
+                    new = Pair(char)
+                    atw_tree.add(new)
+
+    return atw_tree
+
 
 def main():
+    ''' Program kicks off here.
 
-    # with open("data.txt", "r") as read_file:
-        # for expression in read_file.readlines():
-        #     postfix = in2post(expression)
-        #     answer = eval_postfix(postfix)
-        #     print(f"infix: {expression}postfix: {postfix}")
-        #     print(f"answer: {answer}")
-        #     print()
+    '''
+    my_tree = make_tree()
+    print(my_tree.size())
+    print(my_tree.height())
+    print(my_tree.inorder())
+    print(my_tree.preorder())
+    print(my_tree.postorder())
 
+    #testing 
+    # mytree = BST()
+    # print(f"Is the tree empty? {mytree.is_empty()}")
 
-    # TESTING
-    # ma_stack = Stack()
+    # mytree.add(6)
+    # mytree.add(5)
+    # mytree.add(12)
+    # mytree.add(14)
+    # mytree.add(8)
+    # mytree.add(3)
+    # mytree.add(10)
 
-    # ma_stack.push(9)
-    # ma_stack.push(8)
-    # ma_stack.push('a')
+    # print(f"Is the tree empty? {mytree.is_empty()}")
+    # print(f"tree height? {mytree.height()}")
+    # print(f"tree size? {mytree.size()}")
 
-    # print(ma_stack)
-    # print(ma_stack.pop())
-    # print(ma_stack.pop())
+    # mytree.print_tree()
+    # print(mytree.preorder())
+    # print(mytree.postorder())
+
+    # mytree.remove(6)
+    # mytree.print_tree()
+    # print(f"tree height? {mytree.height()}")
+    # print(f"tree size? {mytree.size()}")
     
-    # print(ma_stack.top())
-    # print(ma_stack.top())
-
-    # print(ma_stack.size())
-
-    # ma_stack.clear()
-    # print(ma_stack.top())
-
-    expr1 = "((8+3)*(2-7))"
-    expr2 = "((8+3)*2)-7"
-    expr3 = "(8*5)+((3-2)-7*3)"
-    expr4 = "((8*5+3)-7)-(5*3)"
-    expr5 = "7*9+7-5*6+3-4"
-    expr6 = "8 * (5+3)"
-    
-    sol1= in2post(expr1)
-    sol2= in2post(expr2)
-    sol3= in2post(expr3)
-    sol4= in2post(expr4)
-    sol5= in2post(expr5)
-    sol6= in2post(expr6)
-
-    print(sol1)
-    print(sol2)
-    print(sol3)
-    print(sol4)
-    print(sol5)
-    print(sol6)
-
-    print(eval_postfix(sol1))
-    print(eval_postfix(sol2))
-    print(eval_postfix(sol3))
-    print(eval_postfix(sol4))
-    print(eval_postfix(sol5))
-    print(eval_postfix(sol6))
-
-
-    return 0
-    
-if __name__=="__main__":
+if __name__ == "__main__":
     main()

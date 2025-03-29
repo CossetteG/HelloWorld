@@ -620,3 +620,482 @@ Prepend operation for an array-based list inserts a new item at the start of the
 InsertAfter operation for an array-based list inserts a new item after a specified index
 search operation returns the index for the first element whose data matches that key, or -1 if not found. 
 remove-at operation removes the item at that index
+
+
+Binary Trees 
+
+binary tree, each node has up to two children, known as a left child and a right child. 
+Leaf: A tree node with no children.
+Internal node: A node with at least one child.
+Parent: A node with a child is said to be that child's parent. A node's ancestors include the node's parent, the parent's parent, etc., up to the tree's root.
+Root: The one tree node with no parent (the "top" node).
+link from a node to a child is called an edge.
+depth is the number of edges on the path from the root to the node. The root node thus has depth 0
+level- all nodes with the same depth
+height is the largest depth of any node. A tree with just one node has height 0.
+binary trees are
+   full if every node contains 0 or 2 children
+   complete if all levels, except possibly the last level, contain all possible nodes and all nodes in the last level are as far left as possible
+   perfect, if all internal nodes have 2 children and all leaf nodes are at the same level.
+
+binary search tree (BST), which has an ordering property that any node's left subtree keys ≤ the node's key, and the right subtree's keys ≥ the node's key. 
+ That property enables fast searching for an item, as will be shown later. 
+left <= parent <= right 
+search nodes
+   if (currentNode⇢key == desiredKey) { 
+      return currentNode; // The desired node was found
+   }
+   else if (desiredKey < currentNode⇢key) {
+      // Visit left child, repeat
+   }
+   else if (desiredKey > currentNode⇢key) {
+      // Visit right child, repeat
+   }
+Searching a BST in the worst case requires H + 1 comparisons, meaning O(H) comparisons, where H is the tree height
+binary tree's height can be minimized by keeping all levels full, except possibly the last level
+an "all-but-last-level-full" binary tree's height is floor(log2(N))
+BST defines an ordering among nodes
+ successor is the node that comes after in the BST
+ predecessor is the node that comes before in the BST
+
+search algorithm returns the first node found matching that key, or returns null if a matching node is not found
+insert operation inserts the new node in a proper location obeying the BST ordering property
+remove operation removes the first-found matching node, restructuring the tree to preserve the BST ordering property
+  to remove an internal node, you must find the leaf that preserves BST order and promote him 
+
+tree traversal algorithm visits all nodes in the tree once and performs an operation on each node.
+inorder traversal visits all nodes in a BST from smallest to largest
+height is the maximum edges from the root to any leaf
+   BSTGetHeight(node) {
+      if (node is null) {
+         return -1
+      }
+      leftHeight = BSTGetHeight(node⇢left)
+      rightHeight = BSTGetHeight(node⇢right)
+      return 1 + max(leftHeight, rightHeight)
+   }
+
+BST search can be implemented using recursion
+   BSTSearch(tree, key) {
+      return BSTSearchRecursive(tree⇢root, key)
+   }
+
+   BSTSearchRecursive(node, key) {
+      if (node is not null) {
+         if (key == node⇢key)
+            return node
+         else if (key < node⇢key)
+            return BSTSearchRecursive(node⇢left, key)
+         else
+            return BSTSearchRecursive(node⇢right, key)
+      }
+      return null
+   }
+get-parent algorithm searches for a parent in a way similar to the normal BST search algorithm
+   BSTGetParent(tree, node) {
+      return BSTGetParentRecursive(tree⇢root, node)
+   }
+
+   BSTGetParentRecursive(subtreeRoot, node) {
+      if (subtreeRoot is null)
+         return null
+
+      if (subtreeRoot⇢left == node or 
+         subtreeRoot⇢right == node) {
+         return subtreeRoot
+      }
+
+      if (node⇢key < subtreeRoot⇢key) {
+         return BSTGetParentRecursive(subtreeRoot⇢left, node)
+      }
+      return BSTGetParentRecursive(subtreeRoot⇢right, node)
+   }
+
+AVL tree is a BST with a height balance property
+a BST is height balanced if for any node, the heights of the node's left and right subtrees differ by only 0 or 1. 
+ balance factor is the left subtree height minus the right subtree height, which is 1, 0, or -1 in an AVL tree
+If any node's subtree heights differ by 2 or more, the entire tree is not an AVL tree.
+Minimizing binary tree height yields fastest searches, insertions, and removals
+
+A rotation is a local rearrangement of a BST that maintains the BST ordering property while rebalancing the tree. 
+Rotating is said to be done "at" a node. 
+A left rotation at a node causes the node's right child to take the node's place in the tree. 
+A right rotation at a node causes the node's left child to take the node's place in the tree.
+
+      AVLTreeUpdateHeight(node) {
+         leftHeight = -1
+         if (node⇢left != null)
+            leftHeight = node⇢left⇢height
+         rightHeight = -1
+         if (node⇢right != null)
+            rightHeight = node⇢right⇢height
+         node⇢height = max(leftHeight, rightHeight) + 1
+      }
+
+
+      AVLTreeSetChild(parent, whichChild, child) {
+         if (whichChild != "left" && whichChild != "right")
+            return false
+
+         if (whichChild == "left")
+            parent⇢left = child
+         else
+            parent⇢right = child
+         if (child != null)
+            child⇢parent = parent
+
+         AVLTreeUpdateHeight(parent)
+         return true
+      }
+
+
+      AVLTreeReplaceChild(parent, currentChild, newChild) {
+         if (parent⇢left == currentChild)
+            return AVLTreeSetChild(parent, "left", newChild)
+         else if (parent⇢right == currentChild)
+            return AVLTreeSetChild(parent, "right", newChild)
+         return false
+      }
+
+
+      AVLTreeGetBalance(node) {
+         leftHeight = -1
+         if (node⇢left != null)
+            leftHeight = node⇢left⇢height
+         rightHeight = -1
+         if (node⇢right != null)
+            rightHeight = node⇢right⇢height
+         return leftHeight - rightHeight
+      }
+
+AVLTreeRotateRight(tree, node) {
+   leftRightChild = node⇢left⇢right
+   if (node⇢parent != null)
+      AVLTreeReplaceChild(node⇢parent, node, node⇢left)
+   else { // node is root
+      tree⇢root = node⇢left
+      tree⇢root⇢parent = null
+   }
+   AVLTreeSetChild(node⇢left, "right", node)
+   AVLTreeSetChild(node, "left", leftRightChild)
+}
+
+AVLTreeRebalance(tree, node) {
+   AVLTreeUpdateHeight(node)        
+   if (AVLTreeGetBalance(node) == -2) {
+      if (AVLTreeGetBalance(node⇢right) == 1) {
+         // Double rotation case.
+         AVLTreeRotateRight(tree, node⇢right)
+      }
+      return AVLTreeRotateLeft(tree, node)
+   }
+   else if (AVLTreeGetBalance(node) == 2) {
+      if (AVLTreeGetBalance(node⇢left) == -1) {
+         // Double rotation case.
+         AVLTreeRotateLeft(tree, node⇢left)
+      }
+      return AVLTreeRotateRight(tree, node)
+   }        
+   return node
+}
+
+AVLTreeInsert(tree, node) {
+   if (tree⇢root == null) {
+      tree⇢root = node
+      node⇢parent = null
+      return
+   }
+
+   cur = tree⇢root
+   while (cur != null) {
+      if (node⇢key < cur⇢key) {
+         if (cur⇢left == null) {
+            cur⇢left = node
+            node⇢parent = cur
+            cur = null
+         }
+         else {
+            cur = cur⇢left
+         }
+      }
+      else {
+         if (cur⇢right == null) {
+            cur⇢right = node
+            node⇢parent = cur
+            cur = null
+         }
+         else
+            cur = cur⇢right
+      }
+   }
+
+   node = node⇢parent
+   while (node != null) {
+      AVLTreeRebalance(tree, node)
+      node = node⇢parent
+   }
+}
+
+AVLTreeRemoveKey(tree, key) {
+   node = BSTSearch(tree, key)
+   return AVLTreeRemoveNode(tree, node)
+}
+
+AVLTreeRebalance(tree, node) {
+   AVLTreeUpdateHeight(node)        
+   if (AVLTreeGetBalance(node) == -2) {
+      if (AVLTreeGetBalance(node⇢right) == 1) {
+         // Double rotation case.
+         AVLTreeRotateRight(tree, node⇢right)
+      }
+      return AVLTreeRotateLeft(tree, node)
+   }
+   else if (AVLTreeGetBalance(node) == 2) {
+      if (AVLTreeGetBalance(node⇢left) == -1) {
+         // Double rotation case.
+         AVLTreeRotateLeft(tree, node⇢left)
+      }
+      return AVLTreeRotateRight(tree, node)
+   }        
+   return node
+}
+
+AVLTreeRemoveNode(tree, node) {
+   if (node == null) {
+      return false
+   }
+
+   // Parent needed for rebalancing
+   parent = node⇢parent
+        
+   // Case 1: Internal node with 2 children
+   if (node⇢left != null && node⇢right != null) {
+      // Find successor
+      succNode = node⇢right
+      while (succNode⇢left != null) {
+         succNode = succNode⇢left
+      }
+
+      // Copy the key from the successor node
+      node⇢key = succNode⇢key
+            
+      // Recursively remove successor
+      AVLTreeRemoveNode(tree, succNode)
+            
+      // Nothing left to do since the recursive call will have rebalanced
+      return true
+   }
+
+   // Case 2: Root node (with 1 or 0 children)
+   else if (node == tree⇢root) {
+      if (node⇢left != null) {
+         tree⇢root = node⇢left
+      }
+      else {
+         tree⇢root = node⇢right
+      }
+      if (tree⇢root != null) {
+         tree⇢root⇢parent = null
+      }
+      return true
+   }
+
+   // Case 3: Internal with left child only
+   else if (node⇢left != null) {
+      AVLTreeReplaceChild(parent, node, node⇢left)
+   }
+   // Case 4: Internal with right child only OR leaf
+   else {
+      AVLTreeReplaceChild(parent, node, node⇢right)
+   }
+
+   // node is gone. Anything that was below node that has persisted is already correctly
+   // balanced, but ancestors of node may need rebalancing.
+   node = parent
+   while (node != null) {
+      AVLTreeRebalance(tree, node)            
+      node = node⇢parent
+   }
+   return true
+}
+
+red-black tree is a BST with two node types, red and black, 
+  and supporting operations that ensure the tree is balanced when a node is inserted or removed
+    Every node is colored either red or black.
+    The root node is black.
+    A red node's children cannot be red.
+    A null child is considered to be a black leaf node.
+    All paths from a node to any null leaf descendant node must have the same number of black nodes.
+
+
+RBTreeSetChild(parent, whichChild, child) {
+   if (whichChild != "left" && whichChild != "right")
+      return false
+
+   if (whichChild == "left")
+      parent⇢left = child
+   else
+      parent⇢right = child
+   if (child != null)
+      child⇢parent = parent
+   return true
+}
+
+RBTreeReplaceChild(parent, currentChild, newChild) {
+   if (parent⇢left == currentChild)
+      return RBTreeSetChild(parent, "left", newChild)
+   else if (parent⇢right == currentChild)
+      return RBTreeSetChild(parent, "right", newChild)
+   return false
+}
+
+RBTreeRotateLeft(tree, node) {
+   rightLeftChild = node⇢right⇢left
+   if (node⇢parent != null)
+      RBTreeReplaceChild(node⇢parent, node, node⇢right)
+   else { // node is root
+      tree⇢root = node⇢right
+      tree⇢root⇢parent = null
+   }
+   RBTreeSetChild(node⇢right, "left", node)
+   RBTreeSetChild(node, "right", rightLeftChild)
+}
+
+Red-black tree insertion begins by calling BSTInsert to insert the node using the BST insertion rules. 
+    The newly inserted node is colored red and then a balance operation is performed on this node. 
+    Assign parent with node's parent, uncle with node's uncle, which is a sibling of parent, and grandparent with node's grandparent.
+    If node is the tree's root, then color node black and return.
+    If parent is black, then return without any alterations.
+    If parent and uncle are both red, then color parent and uncle black, color grandparent red, recursively balance grandparent, then return.
+    If node is parent's right child and parent is grandparent's left child, then rotate left at parent, assign node with parent, assign parent with node's parent, and go to step 7.
+    If node is parent's left child and parent is grandparent's right child, then rotate right at parent, assign node with parent, assign parent with node's parent, and go to step 7.
+    Color parent black and grandparent red.
+    If node is parent's left child, then rotate right at grandparent, otherwise rotate left at grandparent.
+
+RBTreeGetGrandparent(node) {
+   if (node⇢parent == null)
+      return null
+   return node⇢parent⇢parent
+}
+
+RBTreeGetUncle(node) {
+   grandparent = null
+   if (node⇢parent != null)
+      grandparent = node⇢parent⇢parent
+   if (grandparent == null)
+      return null
+   if (grandparent⇢left == node⇢parent)
+      return grandparent⇢right
+   else
+      return grandparent⇢left
+}
+
+RBTreeBalance(tree, node) {
+   if (node⇢parent == null) {
+      node⇢color = black
+      return
+   }
+   if (node⇢parent⇢color == black)
+      return
+   parent = node⇢parent
+   grandparent = RBTreeGetGrandparent(node)
+   uncle = RBTreeGetUncle(node)
+   if (uncle != null && uncle⇢color == red) {
+      parent⇢color = uncle⇢color = black
+      grandparent⇢color = red
+      RBTreeBalance(tree, grandparent)
+      return
+   }
+   if (node == parent⇢right &&
+       parent == grandparent⇢left) {
+      RBTreeRotateLeft(tree, parent)
+      node = parent
+      parent = node⇢parent
+   }
+   else if (node == parent⇢left &&
+            parent == grandparent⇢right) {
+      RBTreeRotateRight(tree, parent)
+      node = parent
+      parent = node⇢parent
+   }
+   parent⇢color = black
+   grandparent⇢color = red
+   if (node == parent⇢left)
+      RBTreeRotateRight(tree, grandparent)
+   else
+      RBTreeRotateLeft(tree, grandparent)
+}
+
+RBTreeRemove(tree, key) {
+   node = BSTSearch(tree, key)
+   if (node != null)
+      RBTreeRemoveNode(tree, node)
+}
+
+RBTreeRemoveNode(tree, node) {
+   if (node⇢left != null && node⇢right != null) {
+      predecessorNode = RBTreeGetPredecessor(node)        
+      predecessorKey = predecessorNode⇢key
+      RBTreeRemoveNode(tree, predecessorNode)
+      node⇢key = predecessorKey
+      return
+   }
+
+   if (node⇢color == black)
+      RBTreePrepareForRemoval(node)
+   BSTRemove(tree, node⇢key)
+}
+
+RBTreeGetPredecessor(node) {
+   node = node⇢left
+   while (node⇢right != null) {
+      node = node⇢right
+   }
+   return node
+}
+
+RBTreeGetSibling(node) {
+   if (node⇢parent != null) {
+      if (node == node⇢parent⇢left)
+         return node⇢parent⇢right
+      return node⇢parent⇢left
+   }
+   return null
+}
+
+RBTreePrepareForRemoval(tree, node) {
+   if (RBTreeTryCase1(tree,node))
+      return
+
+   sibling = RBTreeGetSibling(node)
+   if (RBTreeTryCase2(tree, node, sibling))
+      sibling = RBTreeGetSibling(node)
+   if (RBTreeTryCase3(tree, node, sibling))
+      return
+   if (RBTreeTryCase4(tree, node, sibling))
+      return
+   if (RBTreeTryCase5(tree, node, sibling))
+      sibling = RBTreeGetSibling(node)
+   if (RBTreeTryCase6(tree, node, sibling))
+      sibling = RBTreeGetSibling(node)
+
+   sibling⇢color = node⇢parent⇢color
+   node⇢parent⇢color = black
+   if (node == node⇢parent⇢left) {
+      sibling⇢right⇢color = black
+      RBTreeRotateLeft(tree, node⇢parent)
+   }
+   else {
+      sibling⇢left⇢color = black
+      RBTreeRotateRight(tree, node⇢parent)
+   }
+}
+
+If the node is red or the node's parent is null, then return.
+If the node has a red sibling, then color the parent red and the sibling black. If the node is the parent's left child then rotate left at the parent, otherwise rotate right at the parent. Continue to the next step.
+If the node's parent is black and both children of the node's sibling are black, then color the sibling red, recursively call on the node's parent, and return.
+If the node's parent is red and both children of the node's sibling are black, then color the parent black, color the sibling red, then return.
+If the sibling's left child is red, the sibling's right child is black, and the node is the left child of the parent, then color the sibling red and the left child of the sibling black. Then rotate right at the sibling and continue to the next step.
+If the sibling's left child is black, the sibling's right child is red, and the node is the right child of the parent, then color the sibling red and the right child of the sibling black. Then rotate left at the sibling and continue to the next step.
+Color the sibling the same color as the parent and color the parent black.
+If the node is the parent's left child, then color the sibling's right child black and rotate left at the parent. Otherwise color the sibling's left child black and rotate right at the parent.
