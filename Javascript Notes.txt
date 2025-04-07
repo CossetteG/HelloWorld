@@ -1444,3 +1444,264 @@ sizes attribute specifies one or more pairs of media conditions and relative ima
                 dog-narrow@2x.jpg 2x"
         alt="Dog">
       </picture>
+
+Strict mode makes a JavaScript interpreter apply a set of restrictive syntax rules to JavaScript code.
+            requires all variables to be declared  
+To enable strict mode for an entire script, the statement "use strict" must be placed before any other statements.
+    "use strict";
+
+    let humanLivesRemaining = 3;
+
+    function strict() {
+      "use strict";
+      // All code in this function is strict
+    }
+
+    function notStrict() {
+      // Not in strict mode
+    }
+
+Document Object Model (or DOM) is a data structure that represents all parts of an HTML document
+The JavaScript object document represents the entire DOM and is created from the document's HTML
+document.writeln() method, which outputs HTML into the document and alters the DOM
+
+   // Possible 8 Ball responses
+   let responses = [ "Without a doubt", "Ask again later", "Don't count on it", "Say Goodbye" ];
+
+   // Display a randomly chosen response
+   let randomNum = Math.floor(Math.random() * responses.length);
+   document.writeln("<p>Magic 8 Ball says... <strong>" + responses[randomNum] + "</strong>.</p>");
+
+window object, which represents an open browser window. each tab has a window object
+document object is a property of the window object and can be accessed as window.document or just document
+window.location is a location object that contains information about the window's current URL. 
+  Ex: window.location.hostname is the URL's hostname.
+window.navigator is a navigator object that contains information about the browser. 
+  Ex: window.navigator.userAgent returns the browser's user agent string.
+window.innerHeight and window.innerWidth are the height and width in pixels of the window's content area. 
+  Ex: window.innerWidth returns 600 if the browser's content area is 600 pixels wide.
+window.alert() displays an alert dialog box. 
+  Ex: window.alert("Hello") displays a dialog box with the message "Hello".
+window.confirm() displays a confirmation dialog box with OK and Cancel buttons. confirm() returns true if OK is pressed and false if Cancel is pressed. 
+  Ex: window.confirm("Are you sure?") displays a dialog box with the question.
+window.open() opens a new browser window. 
+  Ex: window.open("https://www.twitter.com/") opens a new browser that loads the Twitter webpage.
+
+   let okPressed = window.confirm("Would you like to see a popup window?");
+
+   if (okPressed) {
+      let myWindow = window.open("", "", "width=250, height=100");
+      myWindow.document.writeln("<h1>Hello, Popup!</h1>"); }
+
+console that allows the JavaScript code to produce informational and debugging output for the web developer
+
+An API (Application Programming Interface) is a specification of the methods and objects that defines how a programmer should interact with software components
+    console.log() displays informational data to the console.
+    console.warn() displays warnings to the console. 
+      The browser usually has a special indicator to differentiate a warning from the standard log message. 
+      Ex: A yellow warning box.
+    console.error() displays errors to the console. The browser usually has a special indicator to differentiate 
+      an error from a warning or the standard log message. Ex: A red error box.
+    console.dir() displays a JavaScript object to the console. 
+      The browser usually supports a method for compactly representing the object. 
+      Ex: A hierarchical tree representation allowing a developer to expand and collapse the object contents.
+
+<script src="bootstrap.js"></script>
+Although the <script> element can be included anywhere in the head or body, 
+good practice is to include the <script> element in the head with the async or defer attributes set.
+async attribute allows the browser to process the webpage concurrently with loading and processing the JavaScript. 
+defer attribute allows the browser to load the webpage concurrently with loading the JavaScript, 
+ but the JavaScript is not processed until the webpage is completely loaded. 
+
+example of minified code:
+// Excerpt from bootstrap.min.js 
+a.fn.button=b,a.fn.button.Constructor=c,a.fn.button.noConflict=function(){
+return a.fn.button=d,this},a(document).on("click.bs.button.data-api",
+'[data-toggle^="button"]',function(c){let d=a(c.target).closest(".btn");
+b.call(d,"toggle"),a(c.target).is('input[type="radio"],
+
+JavaScript obfuscator is software that converts JavaScript into an unreadable form that is very difficult 
+to convert back into readable JavaScript. Developers obfuscate a website's JavaScript to prevent the code 
+from being read or re-purposed by others. Obfuscated code may also be minified and appear in a ".min.js" 
+file. 
+
+Document Object Model (DOM) is a data structure corresponding to the HTML document displayed in a web browser.
+DOM tree is a visualization of the DOM data structure
+A node is an individual object in the DOM tree. 
+  Nodes are created for each element, the text between an element's tags, and the element's attributes
+    The root node is the node at the top of the DOM.
+    A child node is the node directly under another node. A node can have zero, one, or more child nodes (children).
+    A parent node is the node directly above another node. All nodes, except the root node, have one parent node.
+
+search the DOM for specific nodes:
+    The document.getElementById() method returns the DOM node whose id attribute is the same as the method's parameter.
+    Ex: document.getElementById("early_languages") returns the p node in the HTML below.
+
+    The document.getElementsByTagName() method returns an array of all the DOM nodes whose type is the same as the method's parameter.
+    Ex: document.getElementsByTagName("li") returns an array containing the four li nodes from in the HTML below.
+
+    The document.getElementsByClassName() method returns an array containing all the DOM nodes whose class attribute matches the method's parameter.
+    Ex: document.getElementsByClassName("traditional") returns an array containing the ol node with the class attribute matching the word traditional.
+
+    The document.querySelectorAll() method returns an array containing all the DOM nodes that match the CSS selector passed as the method's parameter.
+    Ex: document.querySelectorAll("li a") returns an array containing the two anchor nodes in the HTML below.
+
+    The document.querySelector() method returns the first element found in the DOM that matches the CSS selector passed as the method's parameter. querySelector() expects the same types of parameters as querySelectorAll() but only returns the first element found while navigating the DOM tree in a depth-first traversal.
+    Ex: document.querySelector("li") returns the li node about Fortran.
+HTMLCollection is an interface representing a generic collection of elements. A NodeList is an object with a collection of nodes
+
+By modifying attributes, JavaScript programs can perform actions including:
+    Change which image is displayed by modifying an img element's src attribute.
+    Determine which image is currently displayed by reading the img element's src attribute.
+    Change an element's CSS styling by modifying an element's style attribute.
+    Getter: Using the property name to read the value allows a program to examine the attribute's value. 
+      Ex: nasaUrl = document.getElementById("nasa_link").href assigns nasaUrl the string 
+      "https://www.nasa.gov/" from the anchor element's href attribute.
+    Setter: Writing to a property allows a program to modify the attribute, which is reflected in the 
+      rendered webpage. Ex: document.getElementById("nasa_link").href = "https://www.spacex.com/" 
+      changes the element's hyperlink to the SpaceX URL.
+
+      let ta = document.querySelector("textarea")
+      ta.rows = "5"
+
+
+An element's attribute can be removed using the element method removeAttribute(). 
+  Ex: document.getElementById("nasa_link").removeAttribute("href") removes the link from the anchor element so that clicking on the HTML element no longer performs an action. 
+  
+  <body>
+     <img src="mountain.jpg"
+          alt="Mountain photo">
+     <p>
+        I love the outdoors!
+     </p>
+  </body>
+
+  let img = document.querySelector("img");
+  img.src = "mountain.jpg";
+  img.alt = "Mountain photo";
+
+  let p = document.querySelector("p");
+  p.style = "color: green";
+
+
+After searching the DOM for an element, JavaScript may be used to examine or change the element's content.
+Two common properties are used to get or set an element's content:
+    The textContent property gets or sets a DOM node's text content. Ex: document.querySelector("p").textContent = "$25.99"; changes the paragraph to <p>$25.99</p>.
+    The innerHTML property gets or sets a DOM node's content, including all of the node's children, using an HTML-formatted string. Ex: document.querySelector("p").innerHTML = "<strong>$25.99</strong>"; changes the paragraph to <p><strong>$25.99</strong></p>.
+
+
+
+The nodeValue property gets or sets the value of text nodes. As the DOM tree represents textual content separately from HTML elements, the textual content of an HTML element is the first child node of the HTML element's node. So, to access the textual content of an HTML element 
+  within the DOM, firstChild.nodeValue is used to access the value of the HTML's element's first child.
+Ex: document.getElementById("saleprice").firstChild.nodeValue = "$25.99":
+    Gets the DOM node for the element with id "saleprice".
+    Uses firstChild to access the textual content node for the element.
+    Uses nodeValue to update the content.
+The innerText property gets or sets a DOM node's rendered content. innerText is similar to textContent, 
+  but innerText is aware of how text is rendered in the browser. Ex: In <p>Testing   one</p>, textContent returns "Testing    one" with spaces, but innerText returns "Testing one" with the spaces collapsed into a single space.
+
+
+
+
+
+The JavaScript object document.documentElement is the root of the DOM tree. Ex: let html = document.documentElement; assigns the html variable 
+  with the HTML document's root node.
+DOM nodes have properties for accessing a node's parent, children, and siblings:
+    The parentNode property refers to the node's parent. Ex: In the figure below, the ol node is the parentNode for all li nodes.
+    The childNodes property is an array-like collection of objects for each of the node's children. Ex: In the figure below, the li nodes and 
+      whitespace text nodes are the ol node's childNodes.
+    The children property is similar to the childNodes except the array contains only element nodes and no text nodes. Ex: In the figure below, 
+      the li nodes are the ol node's children.
+    The nextElementSibling property refers to the element node with the same parent following the current node in the document. Ex: In the figure 
+      below, the ol node is the p node's nextElementSibling.
+    The previousElementSibling property refers to the element node with the same parent preceding the current node in the document. Ex: In the 
+      figure below, the p node is the ol node's previousElementSibling.
+A common error is to use the childNodes property instead of the children property when iterating through the items of a list. The children 
+  property only contains the list items, while the childNodes property also contains the whitespace text nodes between the list items.
+
+
+
+Various DOM node methods can change a node's location within the DOM or remove nodes:
+    The appendChild() method appends a DOM node to the object's child nodes. The code below moves the ordered list's first 
+      list item to the last list item of the same ordered list.
+      ol = document.getElementsByTagName("ol")[0];
+      li = ol.getElementsByTagName("li")[0];
+      ol.appendChild(li);
+
+    The insertBefore() method inserts a DOM node as a child node before an object's existing child node. The code below moves 
+      the ordered list's first list item before the fourth list item.
+      ol = document.getElementsByTagName("ol")[0];
+      items = ol.getElementsByTagName("li");
+      ol.insertBefore(items[0], items[3]);
+
+    The removeChild() method removes a node from the object's children. The most common usage pattern is to get a DOM node, 
+      n, and call removeChild() on n's parent passing n as an argument. Ex: n.parentNode.removeChild(n)
+
+The following methods are for creating new nodes or duplicating existing nodes:
+    The document method createElement() returns a new element node, created from a string argument that names the HTML element. 
+      Ex: document.createElement("p") creates a new paragraph node.
+    The document method createTextNode() returns a new text node containing the text specified by a string argument. 
+      Ex: document.createTextNode("Hello there!") creates the text node with "Hello there!", which can then be appended to an element node.
+    The node method cloneNode() returns an identical copy of a DOM node. The method's boolean argument indicates whether the method should 
+      also clone the node's children. Ex: x.cloneNode(true) creates an identical tree rooted at x, but x.cloneNode(false) creates only a single 
+      node identical to x. A common error is to forget to modify any id attributes in the cloned tree. The cloneNode() method does not ensure that 
+      new nodes have unique id attributes.
+After creating or cloning a node, the node does not appear in the webpage until the node is attached to the DOM tree. A programmer must use 
+  appendChild() or insertBefore() to add the new node to the existing DOM tree.
+
+let parentTag = document.getElementById("list")
+let newElement = document.createElement("li")
+let textNode = document.createTextNode("Terry")
+newElement.appendChild(textNode)
+parentTag.appendChild(newElement)
+
+
+
+
+JavaScript can manipulate a webpage's CSS to dynamically alter the looks of a webpage. Ex: JavaScript can change a background 
+  color when a button is clicked, or change the visibility of an error message when an input field is left blank. The CSS Object Model 
+  (CSSOM) is a set of APIs that allow JavaScript to manipulate CSS properties of a webpage.
+
+Every element in the DOM has a style property that holds the inline styles set on the element. The style object implements the CSSOM 
+  interface CSSStyleDeclaration, which provides methods for accessing, modifying, and removing CSS properties:
+    The getPropertyValue() method returns the value of an element's CSS property or an empty string if the property is not set. 
+      Ex: elem.style.getPropertyValue("color") gets the element's color value.
+    The setProperty() method sets the value of an element's CSS property. Ex: elem.style.setProperty("color", "blue") 
+      sets the element's color to blue.
+    The removeProperty() method removes an element's CSS property. Ex: elem.style.removeProperty("color") removes the element's color property.
+The style CSS properties can alternatively be accessed and modified using JavaScript property names. 
+  Ex: elem.style.color = "blue" is equivalent to elem.style.setProperty("color", "blue"). CSS property names that have dashes are converted into 
+  property names that use camel case. Ex: background-color becomes the JavaScript property backgroundColor.
+
+    let myDiv = document.getElementById("mydiv");
+    let width = myDiv.style.getPropertyValue("width");
+    width = parseInt(width) + 100;
+    myDiv.style.setProperty("width", width + "px");
+    myDiv.style.setProperty("background-color", "red");
+    myDiv.style.removeProperty("width");
+
+The document.styleSheets object is a list of the stylesheets used in the webpage. Each stylesheet in document.styleSheets is a CSSStyleSheet 
+  object, which maintains a list of the stylesheet's CSS rules in the property called cssRules. Two CSSStyleSheet methods allow CSS rules to 
+  be added or removed:
+    The insertRule() method inserts a new rule into the stylesheet. Ex: document.styleSheets[0].insertRule("p { color: blue; }") 
+      inserts a new paragraph rule that makes the text color blue.
+    The deleteRule() method deletes a rule at a given index number from the stylesheet. Ex: document.styleSheets[0].deleteRule(0) 
+      deletes the first CSS rule from the first stylesheet.
+The CSS properties from a CSS rule are accessible from the rule's style property, which implements the CSSStyleDeclaration interface. 
+  So a rule's CSS properties can be accessed, modified, and removed with getPropertyValue(), setProperty(), and removeProperty(). 
+  Ex: document.styleSheets[0].cssRules[0].style.setProperty("color", "blue") sets the stylesheet's first rule's color to blue.
+
+Every DOM node has a classList property that lists the classes assigned to the node. 
+  Ex: The div node created from <div class="account warning"> has a classList with items "account" and "warning". Methods exist to add 
+  and remove classList items:
+    The add() method adds a class to the node's classList. Ex: elem.classList.add("mystyle") adds the class mystyle to the element's list of classes.
+    The remove() method removes a class from the node's classList. Ex: elem.classList.remove("mystyle") removes the class mystyle from the 
+      element's list of classes.
+    The toggle() method adds the class to the node's classList if the class is not present. If the class is already present, the class is removed. 
+      Ex: elem.classList.toggle("mystyle") toggles the class mystyle on or off.
+A DOM node's class list can also be modified directly using the className property, which is a space-delimited list of the classes assigned to 
+  the node. Ex: elem.className = "cat adopted" assigns the cat and adopted classes to the element and removes any previously assigned classes 
+  from the node. All classes assigned to className are also added to the node's classList. Adding and removing properties with classList is often 
+  easier than using className. 
+
+

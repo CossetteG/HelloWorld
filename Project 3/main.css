@@ -5,42 +5,46 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.body {
-    background-color: rgb(219, 245, 219);
+body {
+    background-color: rgb(241, 241, 241);
 }
 
-.heading {
+.grid-container {
+    display: grid;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+    grid-template-columns: 20% 35% 40% 5%;
+}
+
+header {
     background-color: rgb(174, 231, 174);
-    display: flex;
+    grid-row: 1;
+    grid-column: 1 / 5;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
 }
 
-.heading > img {
-    display: flex;
-    width: 12%;
-    height: 12%;
-    flex-basis: 20%;
-    padding: 10px;
-    margin: 10px;
+header > img {
+    grid-row: 1;
+    grid-column: 1;
+    width: 100%;
+    height: 100%;
 }
 
 h1 {
     color:green;
     margin: auto;
-    font-size: 40pt;
-}
-
-.middle {
-    display: flex;
-    flex-direction: row-reverse;
-    margin-top: 0;
+    font-size: 45pt;
+    grid-row: 1;
+    grid-column: 2/4;
 }
 
 .content {
     color: darkslategrey;
-    padding: 80px;
-    margin-top: 0;
-    position:relative;
-    flex-basis: 80%;
+    padding: 50px;
+    grid-row: 2 / 5;
+    grid-column: 2 / 4;
 }
 
 .home {
@@ -51,17 +55,17 @@ h1 {
 .sh-button {
     background-color: green;
     height: 90px;
-    width: 200px;
+    width: 50%;
     border-radius: 10px;
-    display: flex;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
+    margin-left: 25%;
     font-size: larger;
     font-weight: 500;
     color: antiquewhite;
 }
     
+form {
+    background-color: none;
+}
 
 .rules {
     padding-left: 50px;
@@ -75,9 +79,8 @@ ol li, ul li {
 h3 {
     text-align: center;
     margin: 5px;
-    font-size: 50pt; 
+    font-size: 30pt; 
     background-color: rgb(178, 196, 158);
-    width: 100%;
     border-radius: 5px;
 }
 
@@ -87,26 +90,19 @@ h3 {
 }
 
 #floor_img {
-    width: 85%;
     padding-left: 20%;
-}
+    grid-row: 3;
+    grid-column: 3;
+    width: 100%;
+    height: auto;
+} 
 
-form {
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-}
 
 label {
     font-size: large;
-    flex-basis: 40px;
 }
 
 input {
-    flex-grow: 1;
     margin-bottom: 20px;
 }
 
@@ -126,11 +122,10 @@ iframe {
 
 .navbar {
     background: rgb(58, 102, 58);
-    height: 1800px;
-    width: 20%;  
-    position: static;
     font-size: 18pt;
     z-index: 5;
+    grid-row: 2 / 5;
+    grid-column: 1;
 }
 
 
@@ -138,6 +133,14 @@ iframe {
     text-align: right;
     padding: 5px 5px 5px 5px;
     margin: 0px 10px auto auto;
+}
+
+.navbar-links {
+    background-color: transparent;
+    color:antiquewhite;
+    margin: 5px;
+    font-size: x-large;
+    border: none;
 }
 
 li {
@@ -170,9 +173,122 @@ a:active {
 
 
 footer {
-    height: 50px;
-    width: 100%;
     background-color: rgb(119, 141, 119);
     text-align: center;
     padding: 20px 20px 20px 20px;
+    grid-row: 5;
+    grid-column: 1 / 5;
+} 
+
+#Home {
+    display: inline;
+}
+
+#Rules {
+    display: none;
+}
+
+#schedule-housing {
+    display: none;
+}
+
+#our-mission {
+    display: none;
+}
+
+#contact-us {
+    display: none;
+}
+
+@media (max-width: 790px) {
+    .grid-container {
+        display: grid;
+        grid-template-rows: 10% 10% auto 20% 20%;
+        grid-template-columns: auto;
+    }
+
+    header {
+        grid-row: 1 / 3;
+        grid-column: 1;
+
+        text-align: center;
+    
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+    }
+    
+    header > img {
+        grid-row: 1;
+        grid-column: 1;
+        width: 80%;
+        height: 100%;
+        margin:auto
+    }
+    
+    h1 {
+        margin: auto;
+        font-size: 35pt;
+        grid-row: 2;
+        grid-column: 1;
+    }
+
+    .content {
+        padding: 50px;
+        grid-row: 3;
+        grid-column: 1;
+    }
+
+    #floor_img {
+        padding-left: 20%;
+        grid-row: 3;
+        grid-column: 1;
+        width: 100%;
+        height: auto;
+    } 
+
+    .navbar {
+        font-size: 18pt;
+        z-index: 5;
+        grid-row: 4;
+        grid-column: 1;
+    }
+
+    .navbar-item {
+        text-align: center;
+        padding: 5px 5px 5px 5px;
+        margin: 0px 10px auto auto;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px 20px 20px 20px;
+        grid-row: 5;
+        grid-column: 1;
+    } 
+}
+
+#darkmode {
+    background-color: inherit;
+    background-image: url("img/toggle_dark.png");
+    color:rgb(128, 128, 128);
+    height: 32px;
+    width: 52px;
+    margin: 5px;
+    border: none;
+}
+
+.dark-mode-h {
+    background-color: rgb(41, 58, 36);
+    color: rgb(175, 221, 175)
+}
+
+.dark-mode-c {
+    background-color: rgb(4, 12, 1);
+    color: rgb(208, 238, 208)
+}
+
+.dark-mode-f {
+    background-color: rgb(41, 58, 36);
+    color: rgb(211, 221, 175)
 }
