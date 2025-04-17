@@ -1,6 +1,6 @@
 
 
-function schedule_booking() {
+function schedule_booking() { //will no longer be called
     console.log("name")
     var name = document.getElementById('name').value;
     var age = document.getElementById('age').value;
@@ -24,7 +24,7 @@ function schedule_booking() {
     }
 
     alert("Welcome " + name + ", we look forward to seeing you on " + day)
-}
+} 
 
 function reset_display() {
     console.log("Setting new page")
@@ -43,6 +43,9 @@ function reset_display() {
 
     var cupage = document.getElementById("contact-us")
     cupage.style.display = "none";
+
+    var typage = document.getElementById("thankyou")
+    typage.style.display = "none";
 
 }
 

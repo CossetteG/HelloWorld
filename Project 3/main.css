@@ -135,6 +135,10 @@ iframe {
     margin: 0px 10px auto auto;
 }
 
+.navbar-links:hover {
+    cursor: pointer;
+}
+
 .navbar-links {
     background-color: transparent;
     color:antiquewhite;
@@ -197,6 +201,10 @@ footer {
 }
 
 #contact-us {
+    display: none;
+}
+
+#thankyou {
     display: none;
 }
 
@@ -276,6 +284,10 @@ footer {
     width: 52px;
     margin: 5px;
     border: none;
+}
+
+#darkmode:hover {
+    cursor: pointer;
 }
 
 .dark-mode-h {

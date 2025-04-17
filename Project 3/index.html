@@ -1,3 +1,42 @@
+<!-- 
+CS 2550 Projects 3, 4, and 5 compounded.
+Cossette Gomez
+4/14/2025
+
+I hearby declare all of the following html, and the associated
+main.js, main.css, and validation.js code to be my own work or
+from resources provided by the instructor and occasionally 
+single lines pulled from reputable research.
+
+In project 3, I wrote the bulk of the html and css. The main 
+idea was there in a rough draft version of the website, a lot 
+of effort was put into the content of the website rather than the
+coding during this section. I added the default aesthitics and a
+basic form with javascript that makes sense for the content of 
+this project. All of the different pages were also in different 
+html files. There is an embedded video in one of the pages and a 
+secret link in the footer that leads to a different website. I 
+drew the floorplan image myself using Procreate, but do not 
+claim ownership or credit of the embedded video (found on YouTube).
+
+In project 4, I fixed much of the css formatting and other issues.
+Previously, the formatting was a strange frankenstein monster of 
+grid, flexbox, and floats that looked ok in the browser, but during
+this project I changed everything to follow a grid format so that 
+the grid could work as intended. I also consolidated the html files
+to be one file that used the display attribute in javascript to view
+the different pages.
+
+In project 5, I fixed the navbar so that the cursor will switch to
+pointer when clickable things are hovered over and I fixed the 
+schedule housing button on the homepage to load the page the updated
+way. I added a bunch of things to the schedule housing form, 
+including email phone number id type (selector) previous address, 
+comments (text area) and how did you hear about us? (radio) I 
+also made a few parts required and changed the submit to go to 
+the new validation.js and added a thank you page.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +45,8 @@
     <meta name="viewport">
     <title>Project 3: Stepping Stone</title>
     <link href="main.css" rel="stylesheet">
-    <script src="main.js"></script>
+    <script defer src="main.js"></script>
+    <script defer src="validation.js"></script>
 </head>
 
 <body>
@@ -22,8 +62,7 @@
                     <h3>Welcome to Stepping Stone Apartments!</h3>
                     <div class="home">We offer non-luxury housing for folks down on their luck, to help you get 
                         a roof over your head and a mailing address. Rent a room for one night or for a month.</div>
-                    <form action="schedule-housing.html">
-                        <button class="sh-button" type="submit"  >Schedule Housing</button></form>
+                    <button class="sh-button" onclick="set_display_sh()" >Schedule Housing</button>
                     <h3 id="floorplan">Floorplan</h3>
                     <img id="floor_img" src="img/floorplan.jpg" alt="floorplan picture">
                 </p>
@@ -71,18 +110,62 @@
                 <p>
                     <h3>Room Application</h3>
                     <form>
-                        <label>Enter your information below to get a room.</label> <br>
+                        <label>Enter your information below to get a room.</label> <br> <br>
+
                         <label for="name">Full Name: </label>
-                        <input type="text" id="name"> <br>
+                        <input type="text" id="name" name="name" required> <br>
     
                         <label for="age">Age: </label>
-                        <input type="number" id="age"><br>
+                        <input type="number" id="age" name="age" required><br>
+
+                        <label for="email">Email:</label>
+                        <input type="text" id="email" name="email"><br>
+
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" name="phone"><br>
     
                         <label for="id-type">ID Type: </label>
-                        <input type="text" id="id-type"><br>
+                        <select name="id-type" id="id-type">
+                            <option value=""></option>
+                            <option value="DriversLicense">Drivers License</option>
+                            <option value="StateID">State ID</option>
+                            <option value="DriversPriv">Drivers Privelage</option>
+                            <option value="birthCert">Birth Certificate</option>
+                            <option value="EmployAuth">Employment Authorization</option>
+                            <option value="USPass">US Passport</option>
+                            <option value="ForPass">Foreign Passport</option>
+                            <option value="ForID">Foreign ID other</option>
+                            <option value="ExpID">Expired ID</option>
+                            <option value="none">No ID</option>
+                        </select>
     
                         <label for="id-num">ID Number: </label>
-                        <input type="number" id="id-num"><br>
+                        <input type="text" id="id-num" name="id-num"><br>
+
+                        <label for="street">Previous Address:</label>
+                        <input type="text" id="street" name="street"> <br>
+
+                        <label for="state">State:</label>
+                        <select name="state" id="state">
+                            <option value="UT">UT</option> <option value="AL">AL</option> <option value="AK">AK</option> <option value="AS">AS</option> <option value="AZ">AZ</option> 
+                            <option value="AR">AR</option> <option value="CA">CA</option> <option value="CO">CO</option> <option value="CT">CT</option> 
+                            <option value="DE">DE</option> <option value="DC">DC</option> <option value="FL">FL</option> <option value="GA">GA</option> 
+                            <option value="GU">GU</option> <option value="HI">HI</option> <option value="ID">ID</option> <option value="IL">IL</option> 
+                            <option value="IN">IN</option> <option value="IA">IA</option> <option value="KS">KS</option> <option value="KY">KY</option> 
+                            <option value="LA">LA</option> <option value="ME">ME</option> <option value="MD">MD</option> <option value="MI">MI</option> 
+                            <option value="MN">MN</option> <option value="MS">MS</option> <option value="MO">MO</option> <option value="MT">MT</option> 
+                            <option value="NE">NE</option> <option value="NV">NV</option> <option value="NH">NH</option> <option value="NJ">NJ</option> 
+                            <option value="NM">NM</option> <option value="NY">NY</option> <option value="NC">NC</option> <option value="ND">ND</option>
+                            <option value="MP">MP</option> <option value="OH">OH</option> <option value="OK">OK</option> <option value="OR">OR</option>
+                            <option value="PA">PA</option> <option value="PR">PR</option> <option value="RI">RI</option> <option value="SC">SC</option>
+                            <option value="SD">SD</option> <option value="TN">TN</option> <option value="TX">TX</option> 
+                            <option value="VT">VT</option> <option value="VA">VA</option> <option value="VI">VI</option> <option value="WA">WA</option>
+                            <option value="WV">WV</option> <option value="WI">WI</option> <option value="WY">WY</option>  
+                            
+                        </select>
+
+                        <label for="zip">Zip Code:</label>
+                        <input type="text" id="zip" name="zip"> <br>
     
                         <label>Book for Month or Day? </label>
                         <div>
@@ -101,11 +184,70 @@
                         </div>
     
                         <label for="date">Check in Day? </label>
-                        <input type="text" id="day"><br>
+                        <input type="date" id="day"><br>
+
+                        <label>How did you hear about us?</label>
+                        <div>
+                            <input type="radio" 
+                                   id="TT" 
+                                   name="marketing" 
+                                   value="TT">
+                            <label for="TT">TikTok</label>
+                        </div>
+                        <div>
+                            <input type="radio" 
+                                   id="IG" 
+                                   name="marketing" 
+                                   value="IG">
+                            <label for="IG">Instagram</label>
+                        </div>
+                        <div>
+                            <input type="radio" 
+                                   id="FB" 
+                                   name="marketing" 
+                                   value="FB">
+                            <label for="FB">Facebook</label>
+                        </div>
+                        <div>
+                            <input type="radio" 
+                                   id="WM" 
+                                   name="marketing" 
+                                   value="WM">
+                            <label for="WM">Word of Mouth</label>
+                        </div>
+                        <div>
+                            <input type="radio" 
+                                   id="IP" 
+                                   name="marketing" 
+                                   value="IP">
+                            <label for="IP">In Person</label>
+                        </div>
+                        <div>
+                            <input type="radio" 
+                                   id="AD" 
+                                   name="marketing" 
+                                   value="AD">
+                            <label for="AD">Advertisement</label>
+                        </div>
+                        <div>
+                            <input type="radio" 
+                                   id="other" 
+                                   name="marketing" 
+                                   value="other">
+                            <label for="other">Other</label>
+                        </div>
+
+                        <label for="comments">Comments: </label> <br>
+                        <textarea name="comments" id="comments" rows="5" cols="50" placeholder="How are we doing?"></textarea> <br> <br>
     
-                        <button class="sh-button" onclick="schedule_booking()">Schedule</button>
+                        <button class="sh-button" type="submit" id="submit" onclick="ValidateInputs()">Schedule</button>
                     </form>
                 </p>
+            </section>
+
+            <section id="thankyou">
+                <h3>Thank you for registering! We look forward to serving you</h3>
+                <button class="sh-button" onclick="set_display_home()" >Home</button>
             </section>
 
             <section id="our-mission">

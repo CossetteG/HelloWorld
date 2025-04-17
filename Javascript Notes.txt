@@ -989,7 +989,7 @@ do-while loop
     } while (condition);
 for loop- for (i = 1; i <= 4; i++)
     for (initialization; condition; finalExpression) {
-      body
+      bodyz
     }
 break statement breaks out of a loop prematurely
 continue statement causes a loop to iterate again without executing the remaining statements in the loop
@@ -1704,4 +1704,1073 @@ A DOM node's class list can also be modified directly using the className proper
   from the node. All classes assigned to className are also added to the node's classList. Adding and removing properties with classList is often 
   easier than using className. 
 
+USING JS JAVASCRIPT TO ADD TO HTML 
 
+function parseScores(scoresString) {
+   let scoresArray = scoresString.split(" ");
+   // console.log(scoresArray);
+   return scoresArray;
+}
+
+function buildDistributionArray(scoresArray) {
+   var A = 0;
+   var B = 0;
+   var C = 0;
+   var D = 0;
+   var F = 0;
+   var len = scoresArray.length
+
+   for (var i=0; i < len; i++) {
+      let grad = Number(scoresArray[i]);
+      // console.log(grad);
+      if (grad >= 90) { A +=1 }
+      else if (80 <= grad && grad<= 89) { B +=1 }
+      else if (70 <= grad && grad <= 79) { C += 1 }
+      else if (60 <= grad && grad <= 69) { D += 1 }
+      else if (0 <= grad && grad <= 59) { F += 1 }
+      else {console.log("Value Error: " + grad)};
+   }
+
+   let gradesArray = [A, B, C, D, F]
+   // console.log(gradesArray)
+   return gradesArray
+}
+
+function setTableContent(userInput) {
+   var numgrades  = parseScores(userInput);
+   var lettergrades = buildDistributionArray(numgrades);
+   let parentTag = document.getElementById("first-row");
+   let uncleTag = document.getElementById("third-row")
+
+   for (var i = 0; i < 5; i++) {
+      let tdNode = document.createElement("td")
+      let divNode = document.createElement("div")
+      let height = lettergrades[i]*10
+      divNode.style.setProperty("height", height + "px");
+      className = "bar" + i;
+      divNode.classList.add(className);
+      tdNode.appendChild(divNode)
+      parentTag.appendChild(tdNode)
+
+      let newElement = document.createElement("td")
+      let textNode = document.createTextNode(lettergrades[i])
+      newElement.appendChild(textNode)
+      uncleTag.appendChild(newElement)
+   }
+}
+
+// TODO: Change the arguments for testing purposes
+setTableContent("45 78 98 83 86 99 90 59"); 
+
+
+An event is an action, usually caused by a user, that the web browser responds to.
+Typically, the occurrence and timing of an event are unpredictable, since the user or web server can 
+  perform an action at any time. 
+Event-driven programming is a programming style where code runs only in response to various events. 
+Code that runs in response to an event is called an event handler or event listener. 
+
+for (let i = 0; i < inputs.length; i++) {
+   let input = inputs[i];
+   input.style.border = "1px solid red";
+   input.addEventListener("focus", function() { //when clicked into
+      this.style.border = "1px solid green";
+   });
+   input.addEventListener("blur", function() { //when clicked out of
+      this.style.border = "1px solid blue";
+   });
+}
+
+events
+click       Caused by a mouse click.  
+mouseover   Caused by mouse entering the area defined by an HTML element.
+mouseout    Caused by mouse exiting the area defined by an HTML element.
+mousemove   Caused by mouse moving within the area defined by an HTML element.
+keydown     Caused by the user pushing down a key on the keyboard.
+keyup       Caused by the user releasing a key on the keyboard.
+change      caused by an element value being modified. Ex: Selecting an item in a radio button group causes a change event.
+input       caused when the value of an input or textarea element is changed.
+focus       caused when an element becomes the current receiver of keyboard input. Ex: Clicking in an input field causes a focus event.
+blur        caused when an element loses focus and the element will no longer receive future keyboard input.
+submit      caused when the user submits a form to the web server.
+
+load        caused when the browser completes loading a resource and dependent resources. 
+            Usually load is used with the body element to execute code once all the webpage's CSS, JavaScript, images, etc.
+            have finished loading.
+DOMContentLoaded     caused when the HTML file has been loaded and parsed, although other related resources such as CSS,
+            JavaScript, and image files may not yet be loaded.
+
+
+Handlers are written in three ways: 
+  Embedding the handler as part of the HTML. 
+    Ex: <button onclick="clickHandler()">Click Me</button> 
+    sets the click event handler for the button element by using the onclick attribute. 
+  Setting the DOM node event handler property directly using JavaScript. 
+    Ex: document.querySelector("#myButton").onclick = clickHandler 
+    sets the click event handler for the element with an id of "myButton" by overwriting the onclick JavaScript property
+  Using the JavaScript addEventListener() method to register an event handler for a DOM object. 
+    Ex: document.querySelector("#myButton").addEventListener("click", clickHandler) 
+    registers a click event handler for the element with the id "myButton"
+
+
+Every handler has an optional event object parameter that provides details of the event. Ex: For a keyup event, 
+the event object indicates which key was pressed and released, or for a click event, which element was clicked. 
+ When an event occurs, the browser follows a simple DOM traversal process to determine which handlers are relevant and need to be called. The DOM traversal process has three phases: capturing, at target, and bubbling.
+    In the event capturing phase, the browser traverses the DOM tree from the root to the event target node, at each node calling any event-specific handlers that were explicitly registered for activation during the capturing phase.
+    In the at target phase, the browser calls all event-specific handlers registered on the target node.
+    In the event bubbling phase, the browser traverses the DOM tree from the event target node back to the root node, at each node calling all event-specific handlers registered for the bubbling phase on the current node.
+The optional third parameter for the addEventListener() method indicates whether the handler is registered for the capturing phase or bubbling phase. If the third parameter is false or not specified, or if the event handler is registered using any other mechanism, the browser registers the handler for the event bubbling phase. If the parameter is true, the browser registers the handler for the capturing phase.
+Some events do not bubble, such as blur, focus, and change. When a non-bubbling event occurs, the browser will follow the event capturing phase, the at target phase, and then stop. 
+
+
+The event capturing and bubbling process can be stopped by calling the stopPropagation() method on the event object provided to the handler. Once stopPropagation() is called, the browser stops the traversal process but still calls relevant registered handlers on the current node.
+A web developer may want to prevent the browser from using a built-in handler for an event. Ex: Whenever a user clicks a form's submit button, the web browser sends the form data to the web server. The event object's preventDefault() method stops the web browser from performing the built-in handler. The built-in handlers that are often prevented are clicking elements, submitting forms, and moving the mouse into or out of an element.
+The example below uses two event handlers for the password textbox:
+    preventSpaces() is a keydown event handler that listens for key presses. If the space key is pressed, event.preventDefault() stops the space from appearing in the textbox.
+    checkPassword() is an input event handler that is called when the password input changes. checkPassword() displays Weak, Stronger, Moderate, or Strong in the <span> element depending on various criteria for the password.
+
+timer is a general name for techniques to execute JavaScript code after some amount of time has occurred. 
+A web browser is able to execute a function after a time delay using setTimeout(). 
+The setTimeout() method takes two arguments: a function and a time delay in milliseconds (1/1000th of a second). 
+The browser calls the function after the time delay. setTimeout() returns a unique integer identifier that refers
+to the timeout that was created, and the timeout can be canceled by passing the identifier to clearTimeout(). 
+
+A web browser is able to execute a function repeatedly with a time delay between calls using setInterval(). 
+The setInterval() method takes two arguments: a function and a time interval in milliseconds (t). 
+The browser calls the function every t milliseconds until the interval is canceled. 
+The setInterval() method returns the interval's unique integer identifier, and the interval identifier can be passed to 
+the clearInterval() method to cancel the interval. 
+
+
+
+Web Storage API provides storage objects that allow JavaScript programs to securely store key/value pairs in the web browser.
+The Web Storage API supports two storage objects:
+    The sessionStorage object stores key/value pairs for an origin that are only available for the duration of the session. 
+      Closing the browser or browser tab ends the session.
+    The localStorage object stores key/value pairs for an origin that are stored indefinitely.
+An origin is a combination of scheme, hostname, and port number in a URL. Each of the following are examples of different origins:
+    http://example.com/
+    http://www.example.com/
+    https://www.example.com/
+    http://www.example.com:8080/
+The browser stores the data for each origin separately and does not share the data between origins. 
+
+The localStorage and sessionStorage objects provide methods for storing data, retrieving data, and removing data:
+    setItem(key, value) stores the key string and associated value string in storage.
+    getItem(key) returns the value associated with the key in storage or null if the key does not exist.
+    removeItem(key) removes the key and associated value from storage.
+    clear() removes all keys and associated values from storage.
+
+let playerNameWidget = document.getElementById("playerName");
+let difficultyLevelWidget = document.getElementById("diffLevel");
+        
+if (localStorage.getItem("playerName")) {                
+   playerNameWidget.value = localStorage.getItem("playerName");
+   difficultyLevelWidget.value = localStorage.getItem("difficultyLevel");
+}
+        
+document.getElementById("saveBtn").addEventListener("click", function() {
+   localStorage.setItem("playerName", playerNameWidget.value);
+   localStorage.setItem("difficultyLevel", difficultyLevelWidget.value);
+});
+
+JSON (JASON)
+Communicating data between the server and browser is a significant task for modern web applications. 
+Initial attempts to do so included unstructured text documents and heavily structured XML documents, 
+both of which required significant effort to convert to a usable format. JavaScript Object Notation, 
+or JSON, is an efficient, structured format for data based on a subset of the JavaScript language.
+
+
+JSON structure and values
+
+JSON has six basic data types:
+    String - Unicode characters enclosed within double quotes ("). A few special characters must be escaped with a 
+      backslash (\). Ex: backslashes (\\), double quotes (\"), newlines (\n), and tabs (\t).
+    Number - Either an integer or decimal number. Ex: 42, 3.141, -1.1e-5.
+    Object - Unordered list of zero or more name/value pairs separated by commas and enclosed within braces ({}). 
+      A name in a JSON object must be a string in double quotes. A value can be any legal JSON value. Each name and value is separated by a colon. Ex: { "Name": "Joe", "Age": 35 }
+    Array - Ordered list of zero or more JSON values separated by commas and enclosed within brackets ([]). 
+      Ex: [] and [13,"blue"].
+    Boolean - Either true or false.
+    null - Represents "nothing".
+The JSON structure is defined recursively so that objects can contain arrays and arrays can contain objects to any 
+arbitrary depth.
+A common error when generating JSON programmatically is to include a trailing comma after the list of name/value pairs 
+in a JSON object or after the list of JSON values in a JSON array. Ex: [0, 1, 2,].
+{
+   "name": "John Doe",
+   "vehicles": [
+      {
+         "make": "Ford",
+         "model": "F-150",
+         "color": "white"
+      }, 
+      {
+         "make": "Toyota",
+         "model": "Camry",
+         "color": "red"
+      }
+   ],
+   "married": false,
+   "previous_customer": true,
+   "known_associates": [],
+   "notes": null
+}
+
+JavaScript provides a built-in JSON object that provides two methods for working with JSON:
+    The JSON.parse() method creates a JavaScript object from a string containing JSON. 
+      Ex: JSON.parse('[1,"two",null]') converts the string '[1,"two",null]'into the JavaScript array 
+      [1,"two",null]. Typically, JSON.parse() is used with data received from a server.
+    The JSON.stringify() method creates a string from a JavaScript object. Typically, JSON.stringify() 
+      is used with data sent to a server. JSON.stringify() creates a string representation of any passed 
+      object by either calling the object's toJSON() method if defined or recursively serializing all enumerable, 
+      non-function properties. Ex: JSON.stringify(new Date('2020-08-06')) converts the JavaScript Date object 
+      to the string 2020-08-06T00:00:00.000Z by calling the Date object's toJSON() method.
+Good practice is to use single quotes around JavaScript strings containing JSON notation so that the double quotes 
+  for strings and JSON object names do not need to be escaped. Ex: Use '{"name":"Bob"}' instead of "{\"name\":\"Bob\"}". 
+
+let bondStr = '{"name":"James","age":35}';
+console.log(bondStr);
+
+let bondObj = JSON.parse(bondStr);
+console.log("Happy birthday, " + bondObj.name); //Happy birthday, James
+
+bondObj.age += 1;
+bondStr = JSON.stringify(bondObj); //{"name":"James","age":36}
+
+console.log(bondStr);
+
+
+The JSON.parse() method's second parameter is an optional parameter for a reviver function. 
+A reviver function is used to modify parsed values before being returned, and is helpful when a 
+JSON string represents a data type not available in JSON. Ex: A reviver function can convert a 
+string representing a date, "2010-12-30", to a JavaScript Date object. 
+
+The JSON.stringify() method has two optional parameters: a replacer and a spacer. 
+The replacer enables customization of the generated string. If replacer is a function, 
+JSON.stringify() will use the value returned by the function as the string representation. 
+Ex: A replacer can convert a JavaScript type not directly supported in JSON to a string representation 
+of that data type. If replacer is an array, JSON.stringify() will filter the returned value by 
+converting only the properties listed in the replacer array. Ex: JSON.stringify({a:1,b:2,c:3},["a","b"]) 
+returns the string '{"a":1,"b":2}'.
+
+The spacer controls the indentation spacing of output JSON string, which indicates the depth of values 
+in the object. When the spacer parameter is specified and not an empty string, the output will also 
+include newlines. Ex: JSON.stringify({a:1,b:2}, null, "  ") returns the string below because the spacer 
+parameter is a string with two spaces.
+
+'{
+  "a": 1,
+  "b": 2
+}'
+
+
+By providing a reviver function, JSON.parse() converts the date string to a Date object.
+
+let data = { date:new Date("2010-10-10") };
+console.log(data);
+
+let json = JSON.stringify(data);
+console.log(json);
+
+console.log(JSON.parse(json));
+
+console.log(JSON.parse(json, function(k,v) {
+   if (k == "date") return new Date(v);
+   return v;
+}));
+
+
+    Object {date: Sat Oct 09 2010 20:00:00
+    GMT-0400 (EDT)}
+
+    {"date":"2010-10-10T00:00:00.000Z"}
+
+    Object {date: "2010-10-10T00:00:00.000Z"}
+
+    Object {date: Sat Oct 09 2010 20:00:00
+    GMT-0400 (EDT)}
+
+Ajax (Asynchronous JavaScript and XML) is a technique to asynchronously communicate with a server 
+and update a webpage once the response is received, without reloading the whole webpage. An asynchronous 
+request occurs when the web application sends a request to the server and continues running without waiting 
+for the server response. Although the "x" in Ajax stands for "XML", Ajax is used to transmit plain text, 
+HTML, XML, and JSON. 
+XMLHttpRequest is an object for communicating with web servers using Ajax. Using the XMLHttpRequest object 
+allows web browsers to hide the communication latency and continue to provide a responsive user interface 
+while waiting for a server response. The XMLHttpRequest object defines handlers for events that occur during 
+the request/response cycle. Ex: A response arrives at the browser, an error occurs during a request, etc. 
+Using event-driven programming, the web application can continue providing a responsive interface and does 
+not need to wait for a response from the server. The web application later updates the page once the response 
+is received.
+
+let movieinfo = document.getElementById("movieinfo");
+let xhr = new XMLHttpRequest();
+xhr.addEventListener("load", function() {
+   movieinfo.innerHTML = xhr.response;   
+});
+xhr.open("GET", "starwars.html");
+xhr.send();
+
+The steps for using the XMLHttpRequest API are:
+    Create a new XMLHttpRequest object.
+    Assign handlers to the desired events via the addEventListener() method. 
+      The addEventListener() method takes two arguments: the event name and the event handler, 
+      code that should execute when the event occurs. If the handlers are not set up prior to 
+      calling the open() method, the progress events will not execute.
+    Initialize a connection to a remote resource using the open() method. The open() method takes 
+      two arguments: the HTTP request type and the URL for the resource. Most browsers only support 
+      "GET" and "POST" request types.
+    Modify the default HTTP request headers if needed with the setRequestHeader() method. 
+      Ex: xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded") sets the 
+      Content-Type header so a URL-encoded string may be sent in a POST request.
+    Send the HTTP request via the send() method. For POST requests, the data to be sent with the request 
+      is passed as the argument to the send() method.
+
+The XMLHttpRequest result/progress handlers are:
+    load handler is called when the exchange between the browser and server has completed. 
+      From the browser's perspective, the server received the request and responded. However, the 
+      request might not have been successful because of a problem such as a non-existent webpage. The HTTP 
+      status code must be examined to check which type of response was received. Ex: 200 vs. 404. The load, 
+      error, and abort handlers are mutually exclusive and are called after any progress handlers.
+    error handler is called when the browser does not receive an appropriate response to a request. 
+      Ex: The browser is unable to connect to the server, the connection between browser and server is cut 
+      in the middle of a response, etc.
+    abort handler is called when the browser is told to stop a request/response that is still in progress. 
+      Ex: The user closes the webpage that made the request.
+    timeout handler is called if the browser takes too much time to fully receive a response to a request. 
+      The timeout is an optional value that can be provided before the request is made. By default, the 
+      browser does not provide a timeout for a request.
+    readystatechange handler relates to any change in the XMLHttpRequest. When XMLHttpRequest was originally 
+      defined, readystatechange was the only handler defined. As a result, many Ajax examples on the Internet 
+      only use readystatechange and do not include other handlers. Load, error, abort, and timeout are 
+      replacements for readystatechange. 
+    loadstart handler is called when the browser begins to send a request. The loadstart handler is called 
+      before any other XMLHttpRequest handler.
+    loadend handler is called after the browser receives the response. The loadend handler is called upon 
+      both response success and failure, and is called after all other XMLHttpRequest handlers.
+    progress handler is called one or more times while a response is being received by the client. 
+      Progress handlers are called before result handlers. The progress handler can be used to provide a 
+      data download progress indicator to the user. A similar handler is available to provide an indicator 
+      for uploaded data.
+
+The XMLHttpRequest object has attributes for checking the status of a response, which are usually used in the load handler and used to update the DOM.
+
+    The status attribute is the numeric status code returned in the response.
+    The statusText attribute is the descriptive text describing the status attribute.
+
+Checking the status attribute of a response is important because the status code identifies the specific 
+  reason for a failure response. Ex: 403 means the requestor does not have permission to access the requested 
+  resource, and 404 means the requested resource was not found. 
+  200 	HTTP request successful
+  3XX	General form for request redirection errors
+  301 	Resource permanently moved, the new URL is provided
+  4XX	General form for client errors
+  400 	Bad request. Ex: Incorrect request syntax
+  401 	Unauthorized request. Ex: Not properly authenticated.
+  403 	Request forbidden. Ex: User does not have necessary permissions.
+  404 	Not found. Ex: Requested resource does not exist.
+  5XX	General form for server error codes
+  500 	Internal server error. Ex: Server-side code crashed.
+  503 	Service unavailable. Ex: Webpage is temporarily unavailable due to site maintenance.
+
+The XMLHttpRequest object provides multiple ways to access the response data.
+    The response attribute is the response body, which is parsed by the browser according to 
+      the responseType attribute.
+    The responseText attribute is the plain text version of the response.
+    The responseXML attribute is the XML DOM version of the response. The responseXML attribute 
+      is only available as a DOM object if the response is a valid and correctly formatted XML document.
+
+The responseType attribute is set by the programmer to let the browser know the expected response data format.
+    If the responseType attribute is set to "json", then the browser parses the entire response as a 
+      JSON object and sets the response attribute to the JSON object.
+    If the responseType attribute is either "" or "text", the browser leaves the response unprocessed, 
+      and the response attribute contains the same value as responseText.
+    If the responseType attribute is "document", the browser assumes the response is an XML document, 
+      and the response attribute contains the same value as responseXML.
+
+let searchBtn = document.getElementById("search");
+searchBtn.addEventListener("click", function() {
+   let xhr = new XMLHttpRequest();
+   xhr.addEventListener("load", responseReceivedHandler);
+   xhr.responseType = "json";        
+   let title = document.getElementById("title");
+   let queryString = "title=" + 
+                     encodeURIComponent(title.value);
+   xhr.open("GET", "lookup.php?" + queryString);
+   xhr.send();
+});
+
+function responseReceivedHandler() {
+   let movieInfo = document.getElementById("movieinfo");
+   if (this.status === 200) {
+      let movie = this.response;
+      movieInfo.innerHTML = "<cite>" + movie.title +
+                   "</cite>: Rated " + movie.rating +
+                   ", released in " + movie.year;
+   } else {
+      movieInfo.innerHTML = "Movie data unavailable.";
+   }
+}
+
+getWeather(90210);
+
+function getWeather(zip) {
+   let endpoint = "https://api.openweathermap.org/data/2.5/weather";
+   let apiKey = "APIKEY";
+   let queryString = "zip=" + zip + "&units=imperial&appid=" + apiKey;
+   let url = endpoint + "?" + queryString;
+
+   let xhr = new XMLHttpRequest();
+   xhr.addEventListener("load", responseReceivedHandler);
+   xhr.responseType = "json";
+   xhr.open("GET", url);
+   xhr.send();
+}
+
+function responseReceivedHandler() {
+   let weatherInfo = document.getElementById("weather");
+   if (this.status === 200) {
+      weatherInfo.innerHTML = 
+       "<p>Current temp: " + this.response.main.temp + " &deg;F</p>" +
+       "<p>Desc: " + this.response.weather[0].description + "</p>" +
+       "<p>Humidity: " + this.response.main.humidity + "%</p>";
+   } else {
+      weatherInfo.innerHTML = "Weather data unavailable.";
+   }
+}
+
+
+GET
+zip=90210
+units=imperial
+appid=APIKEY
+
+
+OpenWeatherMap
+{ json }
+Current temp: 61 °F 
+Desc: clear sky
+Humidity: 71%
+
+
+
+
+<form> element allows the web browser to submit information from the user to the server. 
+  The <form> element has two primary attributes:
+    The action attribute indicates the URL where the form data should be sent.
+       Typically the URL uses HTTPS so the form data is encrypted.
+    The method attribute indicates the HTTP request type the browser will use to
+       communicate with the server. The method is either GET or POST. GET is the default 
+       method if no method is specified.
+
+<form action="https://example.com/apply" method="POST">
+   <p>
+      <label for="first">First Name:</label>
+      <input type="text" name="first" id="first">
+   </p>
+   <p>
+      <label for="last">Last Name:</label>
+      <input type="text" name="last" id="last">
+   </p>
+   <input type="submit">
+</form>
+
+ GET method is a technique used by a web browser to submit information to a web server by altering the 
+  URL of the HTTP request. When a user clicks the submit button in a form that uses the GET method, 
+  the browser performs the following steps:
+    Collect all data from the form fields into a query string. The query string is a set of name=value 
+      pairs separated by the ampersand character (&). Each name is specified as an attribute of the HTML 
+      field, and the value is the user-entered data. Ex: The first and last field names and values in the 
+      animation below become the string: first=Rick&last=Deckard
+    Create a URL with the server page and name=value pairs. The URL is composed of the action attribute 
+      specified in the form, the question mark character (?), and the query string. Ex: 
+      http://example.com/apply?first=Rick&last=Deckard
+    Use the newly created URL to create and send an HTTP GET request.
+    Display or update the webpage using the HTTP response received from the server.
+
+POST method is a technique used by a web browser to submit information to a web 
+  server by sending the information in the HTTP request body. When the user clicks the submit button in 
+  a form that uses the POST method, the browser performs the following:
+    Create an HTTP POST request using the URL from the form's action attribute.
+    Create a query string from the form data. Ex: first=Sarah&last=Connor
+    Place the query string in the HTTP request message body, and send the request.
+    Display or update the webpage using the HTTP response received from the server.
+The left side of the figure below shows a webpage opened in Chrome. The DevTools show the page's form, which 
+  is POSTing to a zyBooks URL. The user entered her name Sarah Connor before pressing Submit. On the right, 
+  the user has pressed Submit, and the DevTools show the details of the HTTP request. The Payload tab shows 
+  the query string created from the form data. 
+
+If a form field contains binary data such as an image, the normal format of the query string is not sufficient 
+to encode the binary data. To accommodate binary data, a POST request can be split into multiple parts. The 
+<form> element's enctype attribute value "multipart/form-data" indicates the web browser should split a POST 
+request into multiple parts, where each input field is sent as a separate part of the HTTP request message. 
+
+The &, ?, and = characters have special meaning in a query string. If a user enters characters like 
+&, ?, =, or white space characters like space, newline, or tab, the characters must be escaped, 
+meaning the characters must be transformed into other representations. The browser rules for escaping form 
+data are as follows:
+    Space → +
+    All other reserved characters, newline, and tab → %XX where XX is the ASCII hex value of the character
+Ex: If "1 + 2 = ?" is entered into a textbox, the browser escapes the values producing "1+%2B+2+%3D+%3F". 
+2B is the ASCII hex value for "+", 3D is the ASCII value for "=", and 3F is the ASCII value for "?".
+The web server unescapes the form data to determine what the original values are.
+
+widget is an interactive component (usually graphical) that the browser uses to interact with a user. 
+Ex: Buttons, drop-down menus, and data entry fields.
+The <input> element creates a widget for receiving user input. The <input> element is a void element with 
+five primary attributes:
+    type attribute indicates the widget type. Common types include text, password, submit, and button.
+    name attribute names the widget and sends the widget's value when the widget's form is submitted.
+    id attribute is used to give a widget a unique identifier.
+    placeholder attribute specifies text that first appears in a text widget, typically for giving the user a hint as to the expected value.
+    value attribute specifies a default value for a widget.
+A text box widget is an <input> element with the type attribute of "text" that allows users to enter a 
+single line of text.
+The web browser displays a submit button widget for an <input> tag with the type attribute of "submit", 
+which sends the associated form's data to the server when clicked. A submit button uses the value attribute 
+to specify the button's text.
+The HTML below asks for a message to tweet. The text box widget does not use the value attribute because 
+no default tweet message makes sense. The submit button does not use the name attribute because the submit 
+button's value is not needed by the web server.
+
+<form action="https://twitter.com/status" method="POST">
+  <input type="text" name="status" id="status" placeholder="Your status">
+  <input type="submit" value="Send status">
+</form>
+    //Text box displays &#39;Your status&#39; in light gray followed by &#39;Send status&#39; button.
+
+<label> element displays descriptive text associated with a specific widget. A label has a for attribute 
+whose value should match the id attribute for the widget being labeled. Labels help people using screen 
+readers understand what input is expected. 
+
+  <label for="username">Username:</label>
+  <input type="text" id="username">
+
+text area widget allows users to enter multiple lines of text and is created with the <textarea> element. 
+A <textarea> element has optional rows and cols attributes to specify the initial size of the text area. 
+
+  <textarea name="summary" rows="4" cols="50">To summarize...</textarea>
+
+checkbox is a widget for input elements with the type attribute of "checkbox", which allows users to check, 
+or select, a value. A checkbox initially appears selected if the checked attribute is set. Ex: 
+<input type="checkbox" checked> creates a checked checkbox. The checked attribute is an example of a boolean 
+attribute. A boolean attribute is an attribute that is true when present and false when absent. No value must 
+be assigned to a boolean attribute. 
+For each checkbox selected, the browser sends the checkbox's name and value to the server. If the value 
+attribute is not specified, the default value of "on" is sent. If a checkbox is not selected, the browser 
+does not send anything to the server. A common error on the server is failing to record all checkboxes in 
+the form as the browser doesn't report any values for checkboxes not selected by the use
+
+radio button is a widget for input elements with the type attribute of "radio", which allows users to select 
+exactly one value from possibly many values. The web browser groups radio buttons together with the same name 
+attribute, where each possible value in a group has an associated input. When submitting a form, the browser 
+sends the selected radio button's name and value attribute. Ex: If the radio button <input type="radio" 
+name="movie" value="ET"> is selected, "movie=ET" is sent to the server.
+The main difference between a radio button and checkbox is that only one radio button in a group can be 
+selected, while any number of checkboxes can be selected. 
+
+<select> element creates a drop-down menu (or drop-down list), which allows users to select one of several 
+predefined values. The <option> element creates a value, or option, the user can select within a drop-down 
+menu. When the user is not interacting with the menu, the drop-down menu usually displays the selected option.
+The difference between a drop-down menu and a radio button widget is that the drop-down menu only displays 
+the options when interacting with the user, while a radio button widget always displays all options.
+<select name="sport">
+  <option value="football">Football</option>
+  <option value="baseball">Baseball</option>
+  <option value="basketball">Basketball</option>
+  <option value="hockey">Hockey</option>
+  <option value="soccer">Soccer</option>
+</select>
+
+list box widget is created by specifying a size with the select element's size attribute. Ex: <select 
+size="4"> creates a list box that shows four options at a time. If the list box contains more than size 
+options, the browser adds a vertical scrollbar so the user can scroll through the list of options.
+The multiple attribute allows the user to select multiple options. On Windows, the user must hold down 
+the control (Ctrl) button to select multiple options, and on a Mac, the user must hold down the command 
+button. Many users are unaware of how to choose multiple options from a list box, so good practice is to 
+use checkboxes instead.
+<select name="flagcolors" size="4" multiple>
+  <option value="red">Red</option>
+  <option value="orange">Orange</option>
+  <option value="yellow">Yellow</option>
+  <option value="green">Green</option>
+  <option value="blue">Blue</option>
+  <option value="purple">Purple</option>
+  <option value="white">White</option>
+  <option value="black">Black</option>
+</select>
+
+button widget can be created using the <button> element or with <input type="button">. The <button> 
+element allows text and images to be displayed in a button, but an <input> button only allows text.
+The <button> element has a type attribute that can be set to various values like "button" or "submit". 
+The "button" type is typically used with JavaScript to perform an action when clicked. The "submit" type 
+creates a submit button for a form. If the type attribute is not specified, different browsers may choose 
+different default types, so good practice is to always specify the type.
+<input type="button" value="Home"> 
+<button type="button">
+  <img src="home.png" alt="home"><br>
+  <strong>Home</strong>
+</button>
+
+password field is a widget for input elements with the type attribute of "password", which allows users to 
+enter a password without the password contents being displayed on-screen. Web browsers usually provide 
+facilities to remember passwords at various websites to help users.
+Forms that submit passwords or any sensitive data should always submit with URLs that use HTTPS. 
+Form data submitted with HTTP are not encrypted, but HTTPS encrypts form data.
+The HTML below uses the size attribute to limit the password field's width and uses the maxlength attribute 
+to limit the maximum number of characters the user can enter. The size and maxlength attributes can be used 
+on text boxes as well
+
+<fieldset> element groups related form widgets together and draws a box around the related widgets. 
+The <legend> element defines a caption for a <fieldset>. 
+<fieldset>
+  <legend>Favorite Sitcom</legend>
+  <input type="radio" name="sitcom" value="The Office" id="theOffice">
+  <label for="theOffice">The Office</label>
+  <input type="radio" name="sitcom" value="Other" id="other">
+  <label for="other">Other</label>
+</fieldset>
+
+picker is a widget that allows the user to interactively pick a choice using a popup or other guided selection 
+method. The date picker is an input picker that allows the user to enter a date or choose a date from a calendar 
+popup.
+The basic syntax for the date picker is <input type="date">. Two common attributes for the date input are min 
+(the earliest date permitted) and max (the latest date permitted). 
+
+color picker creates a color selector popup that helps the user explore and choose a color.
+The basic syntax for the color picker is <input type="color">. 
+
+number input ensures user input is a valid number.
+
+The basic syntax for the number input is <input type="number">. The min and max attributes 
+are commonly used with the number input.
+
+range input widget allows the user to select a value by dragging a sliding control along the length of a line.
+The basic syntax for the range input is <input type="range">. Three commonly used attributes for the range 
+input are min, max, and value. 
+
+combo box is the combination of a text box and drop-down menu into a single widget. A combo box is created with 
+an <input> element, which creates the text box, and a <datalist> element, which provides the drop-down list 
+options. 
+<input list="sport">
+<datalist id="sport">
+   <option value="Baseball">
+   <option value="Basketball">
+   <option value="Football">
+   <option value="Hockey">
+   <option value="Soccer">
+</datalist>
+
+url - For typing a URL
+tel - For typing a telephone number
+email - For typing an email address
+search - For typing search terms
+<input type="tel" placeholder="(###) ###-####">
+<input type="email" placeholder="name@domain.com">
+
+Form validation is preventing incorrect form input from being submitted. 
+A form's input elements can use the attributes in the table below to restrict user input. 
+  maxlength 	Sets the maximum number of input characters. 	
+  minlength 	Sets the minimum number of input characters. 
+  max 	Sets the maximum value that the input can have. 	
+  min 	Sets the minimum value that the input can have. 	
+  pattern 	Provides a pattern (called a regular expression) that the input must match. 	
+  required 	States that the input is required and must not be left empty. 	
+  step 	Sets the amount by which the value can change (default is 1). 	
+
+fallback is a mechanism that allows a webpage element to function correctly even if the browser does 
+not support a particular element. Good practice is to implement a fallback mechanism if a particular 
+widget is not widely supported by browsers at the time.
+polyfill is a fallback using JavaScript code that makes certain HTML features (Ex: the date picker) 
+work on browsers that do not natively support those features. Developers often use a JavaScript library 
+such as Modernizr to detect which features the browser does not support, and then load one or more 
+polyfills to provide fallback mechanisms for the non-supported features.
+
+label {
+   width: 50px;
+   display: inline-block;
+   text-align: right;
+   margin-right: 8px;
+}
+input[type=text], input[type=email], select {
+   box-sizing: border-box;
+   width: 250px;
+   padding: 10px;
+   border: 1px solid #aaa;
+   border-radius: 4px;
+}
+input[type=submit] {
+   width: 200px;
+   background-color: #09f;
+   color: white;
+   padding: 15px;
+   margin: 10px 0;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+}
+input[type=submit]:hover {
+   background-color: #07d;
+}
+input:invalid {
+   border: 2px solid red;
+}
+input[type=text]:focus, input[type=email]:focus {
+   background-color: lightblue;  
+}
+input[type=search] {
+   float: right;
+   background-image: url("https://resources.zybooks.com/WebProgramming/searchiconv1.png");  
+   background-position: 5px 5px; 
+   background-repeat: no-repeat;
+   padding-left: 40px;
+}
+input[type=radio] + label {
+   cursor: pointer;
+}
+input[type=radio] {
+   appearance: none;
+   margin: 0;
+}
+input[type=radio] + label::before {
+   content: "\00a0";  /* Space */
+   border-radius: 10px;
+   display: inline-block;
+   width: 1em;  height: 1em; 
+   text-align: center;
+   line-height: 1em;
+   font-size: 0.8em;
+   margin-right: 10px;
+   background-color: #aaa;
+   border: 0.125em solid white;
+}
+input[type=radio]:checked + label::before {
+   content: "\2022";  /* Bullet */
+   color: white;
+   background: green;
+}
+input[type=radio]:focus + label::before {
+   box-shadow: 0 0 0 1px #888;
+}
+input[type=checkbox] + label {
+   cursor: pointer;
+   font-size: 1.3em;
+}
+input[type=checkbox] {
+   appearance: none;
+   margin: 0;
+}
+input[type=checkbox] + label::before {
+   content: "\00a0";   /* Non-breaking space */
+   display: inline-block; 
+   width: 16px;
+   height: 16px;
+   text-align: center;
+   line-height: 1em;
+   font-size: 0.8em; 
+   margin-right: 10px;
+   border: 0.125em solid white;   /* Push focus shadow away */
+   background-color: #aaa;
+}
+input[type=checkbox]:checked + label::before {
+   content: "\2713";  /* Checkmark */
+   color: white;
+   background: green;      
+}
+input[type=checkbox]:focus + label::before {
+   box-shadow: 0 0 0 1px gray;
+}
+
+
+Programs often need to determine if a string conforms to a pattern. Ex: A user is asked for their phone number, 
+and the program must recognize if the input is formatted like a phone number. Or perhaps a program needs to 
+search through a large collection of DNA sequences and replace defective gene sequences with correct sequences. 
+Developers use regular expressions to solve these types of problems.
+A regular expression (often shortened to regex) is a string pattern that is matched against a string. Regular 
+expressions may be defined with a RegExp object or between two forward slashes. Ex: let re = new RegExp("abc"); 
+or more simply: let re = /abc/; The pattern "abc" matches any string that contains "abc". Ex: "abcde" matches 
+but "abd" does not. The RegExp method test(str) returns true if the string str matches the regex, and false 
+otherwise.
+Regular expressions use characters with special meaning to create more sophisticated patterns. The + character 
+matches the preceding character at least once. Ex: /ab+c/ matches one "a" followed by at least one "b" and one 
+"c", so "abc" and "abbbbc" both match. However, "ac" does not match because the required "b" is missing.
+Parentheses are used in a regex to match consecutive characters with *, +, and ?. Ex: /(ab)+/ matches one or 
+more "ab", so "abab" and "abbb" both match. However, "acb" does not match because the "c" is between "a" and "b".
+
+* 	Match the preceding character 0 or more times. 	/ab*c/ matches "abc", "abbbbc", and "ac".
++ 	Match the preceding character 1 or more times. 	/ab+c/ matches "abc" and "abbbbc" but not "ac".
+? 	Match the preceding character 0 or 1 time. 	/ab?c/ matches "abc" and "ac", but not "abbc".
+^ 	Match at the beginning. 	/^ab/ matches "abc" but not "cab".
+$ 	Match at the end. 	/ab$/ matches "cab" but not "abc".
+| 	Match string on the left OR string on the right. 	/ab|cd/ matches "abc" and "bcd". 
+
+Square brackets are used in regular expressions to match any character in a range of characters. Ex: /[aeiou]/ 
+matches any vowel, and /[0-9]/ matches any digit. The not operator (^) negates a range. Ex: [^str] matches any 
+character except s, t, or r. 
+
+metacharacter is a character or character sequence that matches a class of characters in a regular expression. 
+Ex: The period character matches any single character except the newline character. So /ab.c/ matches "abZc" 
+and "ab2c", but not "abc" since the period must match a single character. Other metacharacters begin with a 
+backslash. 
+. 	Match any single character except newline. 	/a.b/ matches "aZb" and "a b".
+\w 	Match any word character (alphanumeric and underscore). 	/a\wb/ matches "aAb" and "a5b" but not "a b".
+\W 	Match any non-word character. 	/a\Wb/ matches "a-b" and "a b" but not "aZb".
+\d 	Match any digit. 	/a\db/ matches "a2b" and "a9b", but not "aZb".
+\D 	Match any non-digit. 	/a\Db/ matches "aZb" and "a b", but not "a2b".
+\s 	Match any whitespace character (space, tab, form feed, line feed). 	/a\sb/ matches "a b" but not "a4b".
+\S 	Match any non-whitespace character. 	/a\Sb/ matches "a!b" but not "a b". 
+
+mode modifier (sometimes called a flag) changes how a regex matches and is placed after the second slash in 
+a regex. Ex: /abc*/i specifies the mode modifier i, which performs case-insensitive matching. 
+i 	Case insensitivity - Pattern matches upper or lowercase. 	/aBc/i matches "abc" and "AbC".
+m 	Multiline - Pattern with ^ and $ match beginning and end of any line in a multiline string. 	
+/^ab/m matches the second line of "cab\nabc", and /ab$/m matches the first line.
+g 	Global search - Pattern is matched repeatedly instead of just once. 	/ab/g matches "ab" twice in "cababc".
+
+RegExp method exec(str) determines what part of the string str matches a regex. The exec() method returns a 
+result array, or returns null if the pattern does not match. 
+let re = /t.+r/;
+let result = re.exec("Raise the bar high.");
+if (result === null) {
+   console.log("No match.");
+}
+else {
+   // Index 0 is the full string that matched
+   console.log(result[0]);   // the bar
+}Parentheses in a regex are used to "remember" different parts of a matched string. Ex: /a(b+)c/ remembers 
+anything matching (b+), so "bbb" is remembered when applying the regex to "abbbc". The remembered parts are 
+accessible from the result array returned by exec(). The first array element is the complete matched string, 
+and the following elements are the remembered parts. If the regex contains no parentheses, the returned array 
+contains only the complete string that matches. 
+let re = /(B.+)'s (.+day)/;
+let result = re.exec("When is Becky's birthday?");
+// Index 0 is the full string that matched
+console.log(result[0]);   // Becky's birthday
+// Index 1 is the first remembered part
+console.log(result[1]);   // Becky
+// Index 2 is the second remembered part
+console.log(result[2]);   // birthday
+match() returns an array of the matches made when matching the string against a regex.
+replace() returns a new string that replaces matching strings with a replacement string.
+search() returns the index of the first match between the regex and the given string, or -1 if no match is found.
+split() returns an array of strings created by separating the string into substrings based on a regex.
+
+Data validation is checking input for correctness. While a web server must perform data validation on 
+submitted data, a better user experience occurs when the web browser performs the same data validation 
+before submitting. Any invalid data in the webpage can be immediately flagged as needing modifications 
+without waiting for the server to respond.
+Data validation can either be performed while the user enters form data by adding a JavaScript function 
+as the change handler for the appropriate field, or immediately prior to submitting the entire form by adding 
+a function as the form's submit handler. 
+function checkForm(event) {
+   let tosWidget = document.querySelector("#tos");
+
+   // Cancel form submission if tos not checked
+   if (!tosWidget.checked) {
+      event.preventDefault();
+   }
+}
+let tosForm = document.querySelector("#tosForm"); //alternate example
+tosForm.addEventListener("submit", checkForm);
+function checkZipCode() {
+   let regex = /^\d\d\d\d\d$/;
+   let zip = zipCodeWidget.value.trim();
+   zipCodeValid = zip.match(regex);
+}
+
+Various element attributes allow the browser to do validation without using JavaScript:
+  The required attribute indicates that the field must have a value (text or selection) prior to submitting the form.
+  The max and min attributes indicate the maximum and minimum values respectively that can be entered in an input field with ranges, such as a date or number.
+  The maxlength and minlength attributes indicate the maximum and minimum length of input allowed by an input field.
+  The pattern attribute provides a regular expression that valid input must match.
+  The title attribute can be used to provide a description of valid input when using the pattern attribute.
+<form>
+  <input type="range" name="age" min="5" max="120">
+  <input type="checkbox" name="agree" required>
+  <input type="password" name="password" minlength="10" maxlength="16">
+  <input type="text" name="credit" pattern="^\d{16}$" title="exactly 16 digits">
+  <input type="submit">
+</form>
+
+CSS pseudo-classes exist to style input and form elements:
+:valid pseudo-class is active on an element when the element meets all the stated requirements in field attributes.
+:invalid pseudo-class is active on an element when one or more of the attributes in the field are not fully met.
+:required pseudo-class is active on an element if the element has the required attribute set.
+:optional pseudo-class is active on an element if the element does not have the required attribute set.
+
+<audio> element plays an audio file in a webpage. The <source> element is used inside the <audio> element to 
+specify an audio file to play. Some common <audio> attributes include:
+  autoplay - Boolean attribute that makes the audio begin playing automatically.
+  controls - Boolean attribute that displays audio controls for the user to play, pause, and control the volume.
+  loop - Boolean attribute that replays the audio upon reaching the end of the audio.
+  muted - Boolean attribute that initially mutes the audio.
+Note: Some browsers block <audio autoplay> from autoplaying so users are not jolted with sound when visiting a 
+webpage. 
+AAC (Advanced Audio Coding) 	      .aac 	Designed to be the successor of the MP3 format with better sound quality.
+MP3 	                              .mp3 	The sound portion of an MPEG file. Most popular format for music players.
+Ogg Vorbis 	                        .ogg 	Open-source audio coding format developed by Xiph.Org Foundation.
+Wave (Waveform Audio File Format) 	.wav 	Developed by Microsoft and IBM, mainly for storing uncompressed audio on Windows.
+
+developers used <embed> and <object> elements to embed audio or video in a webpage. The embedded audio or video 
+required browser plug-in to play the media. A browser plug-in is software that can properly read and interpret 
+a file format that the browser cannot.
+
+<video> element displays a video in a webpage. The <source> element is used in a <video> element to 
+specify the name of the video file to play. Some common <video> attributes include: 
+  autoplay - Boolean attribute that makes the video begin playing automatically.
+  controls - Boolean attribute that displays video controls for the user to play, pause, and control the volume.
+  loop - Boolean attribute that replays upon reaching the end of the video.
+  muted - Boolean attribute that initially mutes the video.
+  width - Specifies the pixel width of the video's display area.
+Some browsers will not autoplay a video unless the video is muted. Ex: <video autoplay muted> will 
+play a muted video successfully in all browsers. Muted video is less jarring to users when visiting a webpage. 
+MPEG-4 or MP4 	.m4a .mp4 	Developed by the Moving Pictures Expert Group. m4a is audio only, but mp4 may contain video.
+Ogg Theora 	    .ogg .ogv .ogm 	Open video compression format developed by Xiph.Org Foundation.
+WebM 	          .webm 	Open media format developed by Mozilla, Opera, Adobe, and Google for the web.
+
+A YouTube video may be embedded in a webpage with the <iframe> element. The <iframe> element allows a 
+webpage to be embedded in a rectangular area of the current webpage. The <iframe> element uses the src 
+attribute to specify the URL of the webpage to display and the width and height attributes to define the 
+width and height in pixels of the rectangular iframe. 
+The YouTube Help pages give instructions for uploading a video to YouTube and embedding a video into a webpage. 
+
+<script> element allows a webpage to include executable code, which the browser assumes to be JavaScript 
+unless indicated otherwise. The optional type attribute specifies the content type when the content is not 
+JavaScript. The src attribute provides the URL of an external file containing JavaScript code. If a <script> 
+element does not have the src attribute, then the JavaScript code is contained directly within the element. 
+The HTML below shows two ways the <script> element can be used.
+<script src="https://example.com/interactive_content.js"></script>
+<script type="text/javascript">
+  alert("Hello, World!");
+</script>
+
+PASSWORD VALIDATION LAB 
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>User Registration</title>
+      <link href="style.css" rel="stylesheet">
+      <script src="register.js" defer></script>
+   </head>
+
+   <body>
+      <form>
+         <h1>User Registration</h1>
+         <div>
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName">
+         </div>
+         <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" >
+         </div>
+         <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" >
+         </div>
+         <div>
+            <label for="passwordConfirm">Confirm Password</label>
+            <input type="password" id="passwordConfirm" name="passwordConfirm" >
+         </div>
+         <div id="formErrors"></div>
+         <div>
+            <input type="submit" id="submit" value="Register">
+         </div>
+      </form>
+   </body>
+</html>
+
+function checkForm(fname, email, password, passwordC) {
+   let parentNode = document.getElementById("formErrors")
+   errorList = []
+
+   if (fname.length >= 1) {
+      document.getElementById("fullName").style.setProperty("border-color", "black")
+   }
+   else {
+      let nameError = "Missing full name"
+      errorList.push(nameError)
+      document.getElementById("fullName").style.setProperty("border-color", "red")
+   }
+
+   let eRE = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$/
+   if (eRE.test(email)) {
+      document.getElementById("email").style.setProperty("border-color", "black")
+   }
+   else {
+      let emError = "Invalid or missing email address."
+      errorList.push(emError)
+      document.getElementById("email").style.setProperty("border-color", "red")
+   }
+
+   let lowerRE = /[a-z]/
+   let upperRE = /[A-Z]/
+   let digitRE = /[0-9]/
+   document.getElementById("password").style.setProperty("border-color", "black")
+   if (password.length < 10) {
+      let pError = "Password must be between 10 and 20 characters."
+      errorList.push(pError)
+      document.getElementById("password").style.setProperty("border-color", "red")
+   }
+   else if (password.length > 20) {
+      let pError = "Password must be between 10 and 20 characters."
+      errorList.push(pError)
+      document.getElementById("password").style.setProperty("border-color", "red")
+   }
+   else if (!(upperRE.test(password))) {
+      let pError = "Password must contain at least one uppercase character."
+      errorList.push(pError)
+      document.getElementById("password").style.setProperty("border-color", "red")
+   }
+   else if (!(lowerRE.test(password))) {
+      let pError = "Password must contain at least one lowercase character."
+      errorList.push(pError)
+      document.getElementById("password").style.setProperty("border-color", "red")
+   }
+   else if (!(digitRE.test(password))) {
+      let pError = "Password must contain at least one digit."
+      errorList.push(pError)
+      document.getElementById("password").style.setProperty("border-color", "red")
+   }
+
+   if (passwordC === password) {
+      document.getElementById("passwordConfirm").style.setProperty("border-color", "black")
+   }
+   else {
+      let pError = "Password and confirmation password don't match."
+      errorList.push(pError)
+      document.getElementById("passwordConfirm").style.setProperty("border-color", "red")
+   }
+
+
+   //adding in the errors
+   while (parentNode.firstChild != null) {
+      parentNode.removeChild(parentNode.lastChild)
+   }
+
+   for (i=0; i<errorList.length; i++) {
+      newNode = document.createTextNode(errorList[i])
+      parentNode.appendChild(newNode)
+      parentNode.appendChild(document.createElement("br"));
+   }
+
+   console.log(fname)
+   console.log(email)
+   console.log(password)
+   console.log(passwordC)
+
+}
+
+document.getElementById("submit").addEventListener("click", function(event) {
+   const fullName = document.getElementById("fullName").value
+   const email = document.getElementById("email").value
+   const password = document.getElementById("password").value
+   const passwordConfirm = document.getElementById("passwordConfirm").value
+
+   checkForm(fullName, email, password, passwordConfirm);
+
+   // Prevent default form action. DO NOT REMOVE THIS LINE
+   event.preventDefault();
+});
