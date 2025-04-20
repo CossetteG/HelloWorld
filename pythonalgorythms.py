@@ -1,316 +1,269 @@
+# import whatever you need here
+import time
+import sys
 
-'''your bst here'''
-class BST:
-    
-    class Node:
-        def __init__(self, value):
+class HashMap:
+    class HashNode:
+        def __init__(self, key, value):
+            self.key = key
             self.value = value
-            self.left = None
-            self.right = None
-            self.depth = 0
+            self.next = None
 
-        def leaf(self):
-            if(self.left == None):
-                if (self.right == None):
-                    return True
-            return False
+    def __init__(self, size=7):
+        self._size = size
+        self.vals = [None]*size
 
-        def __str__(self):
-            return self.value
+    def hash(self, key):
+        r = key[0]
+        c = key[1] + 1
+        return (r*c)%self._size
+    
+    def capacity(self):
+        filled = 0
 
-    def __init__(self):
-        self._root = None 
-        self._size = 0
-        self._height = -1
+        for i in range(self._size):
+            if (self.vals[i]==None):
+                pass
+            else: filled +=1
 
+        return filled/self._size
+
+    def get(self, key):
+        index = self.hash(key) 
+
+        if (self.vals[index]==None):
+            return None
+        elif (self.vals[index].key == key):
+            return self.vals[index].value
+        
+        elif (self.vals[index].next ==None):
+            return None
+        elif (self.vals[index].next.key == key):
+            return self.vals[index].next.value
+        
+        elif (self.vals[index].next.next ==None):
+            return None
+        elif (self.vals[index].next.next.key == key):
+            return self.vals[index].next.next.value
+        
+        else: 
+            return None
+        
+
+    def set(self, key, value, existing=None):
+        index = self.hash(key)
+
+        if (existing==None):
+            newnode = self.HashNode(key, value)
+        else:
+            newnode = existing
+
+        if (self.vals[index]==None):
+            self.vals[index] = newnode
+        elif (self.vals[index].next == None):
+            self.vals[index].next = newnode
+        elif (self.vals[index].next.next == None):
+            self.vals[index].next.next = newnode
+        else:
+            self.vals[index].next.next.next = newnode
+            self.rehash()
+
+        if (self.capacity() >= .8):
+            self.rehash()
+
+    def remove(self, key):
+        index = self.hash(key) 
+        mnode = None
+
+        if (self.vals[index].key == key):
+            mnode = self.vals[index]
+            self.vals[index] = mnode.next
+            mnode.next = None
+        elif (self.vals[index].next.key == key):
+            mnode = self.vals[index].next
+            self.vals[index].next = mnode.next
+            mnode.next = None
+        elif (self.vals[index].next.next.key == key):
+            mnode = self.vals[index].next.next
+            self.vals[index].next = mnode.next
+            mnode.next = None
+        else: 
+            raise ValueError("key not found")
+    
+        return mnode
+
+    def clear(self):
+        self._size = 7
+        self.vals = [None]*7
+    
     def size(self):
         return self._size
-
-    def is_empty(self):
-        if (self._size == 0):
-            return True
-        return False
-
-    def height(self):
-        return self._height
-
-    def add(self, item):
-        curr = self.Node(item)
-
-        if (self.is_empty()):
-            self._root = curr 
-        else: 
-            compare = self._root
-
-            while (True):
-                curr.depth += 1
-                if (curr.value <= compare.value):
-                    if (compare.left == None):
-                        compare.left = curr
-                        break
-                    else:
-                        compare = compare.left
-                elif (curr.value > compare.value):
-                    if (compare.right == None):
-                        compare.right = curr
-                        break
-                    else:
-                        compare = compare.right 
-
-
-        if (curr.depth > self._height):
-            self._height = curr.depth
-        self._size +=1
-
-    def recalculate_height(self):
-        start = self._root
-        self._height = -1
-
-        def inorder_dep(node):
-            if(node.left != None):
-                inorder_dep(node.left)
-            
-            if (node.depth > self._height):
-                self._height = node.depth
-
-            if(node.right != None):
-                inorder_dep(node.right)
-
-        inorder_dep(start)
-
-
-    def remove(self, item):
-        curr = self._root
-        parent = self._root
-        which_child = ""
-
-        while (curr.value != item):
-            if (curr.leaf() ):
-                break
-            elif(curr == None):
-                return
-            else: 
-                if (item < curr.value):
-                    parent = curr
-                    curr = curr.left
-                    which_child = "left"
-                elif (item > curr.value):
-                    parent = curr
-                    curr = curr.right 
-                    which_child = "right"
-
-        if (curr.leaf()):
-            if (which_child=="left"):
-                parent.left = None
-            elif (which_child=="right"):
-                parent.right = None 
-            elif (curr == self._root):
-                self._root = None
-            
-            self._size -= 1
-            self.recalculate_height() 
-        else:
-            sub = curr
-            if (curr.right != None):
-                sub = curr.right
-                while(sub.left != None):
-                    sub = sub.left
-            elif (curr.left != None): 
-                sub = curr.left 
-                while(sub.right != None):
-                    sub = sub.right
-            else: raise "Logic Error in Remove"
-            temp = sub.value
-            self.remove(sub.value)
-            curr.value = temp
-
-        return self
-
-    def find(self, item):
-        curr = self._root
-        if (self.is_empty()):
-            raise ValueError
-
-        while (curr.value != item):
-            # if (curr.leaf()):
-            #     raise ValueError
-            # else: 
-                if (item < curr.value):
-                    curr = curr.left
-                    if (curr == None):
-                        raise ValueError
-                elif (item > curr.value):
-                    curr = curr.right 
-                    if (curr == None):
-                        raise ValueError
-
-        return curr.value
-
-    def inorder(self):
-        result = []
-        start = self._root
-
-        def inorder_rec(node):
-            if(node.left != None):
-                inorder_rec(node.left)
-            
-            result.append(node.value)
-
-            if(node.right != None):
-                inorder_rec(node.right)
-
-        inorder_rec(start)
-        return result
-
-    def preorder(self):
-        result = []
-        start = self._root
-
-        def inorder_rec(node):
-            result.append(node.value)
-
-            if(node.left != None):
-                inorder_rec(node.left)
-
-            if(node.right != None):
-                inorder_rec(node.right)
-
-        inorder_rec(start)
-        return result
-
-    def postorder(self):
-        result = []
-        start = self._root
-
-        def inorder_rec(node):
-            if(node.left != None):
-                inorder_rec(node.left)
-
-            if(node.right != None):
-                inorder_rec(node.right)
-
-            result.append(node.value)
-
-        inorder_rec(start)
-        return result
-
-    def print_tree(self):
-        print(self.inorder())
     
+    def keys(self):
+        keylist = []
 
-#main.py
-'''
-Project 6: Binary Search Tree
-Author: Cossette Gomez
-Course: CS 2420
-Date: 3/24/25
+        for i in range(self._size):
+            bucket = self.vals[i]
 
-Description: class BST is to create a binary tree, then an implemation of it using Pair
+            while(bucket != None):
+                keylist.append(self.remove(bucket.key))
+                bucket = self.vals[i]
 
-Lessons Learned: binary trees
+        for k in keylist:
+            if (k==None):
+                raise ValueError("invalid key in list")
 
-'''
-from pathlib import Path
-from string import whitespace, punctuation
-#from bst import BST
+        return keylist
 
+    def rehash(self):
+        newsize = self._size*2-1 
+        nodes = self.keys()
+        
+        self._size = newsize
+        self.vals = [None]*newsize
 
-class Pair:
-    ''' Encapsulate letter,count pair as a single entity.
+        for node in nodes:
+            self.set(node.key, node.value)
+
+count = 0
+# Part 1 -- Write weight_on_cacheless() method
+def weight_on_cacheless(r,c): 
+    global count
+
+    if ((c < 0) or (c > r)):
+        return 0
+
+    if (r==0):
+        count = count+1
+        return 200
     
-    Realtional methods make this object comparable
-    using built-in operators. 
-    '''
-    def __init__(self, letter, count = 1):
-        self.letter = letter
-        self.count = count
+    left = weight_on_cacheless(r-1, c-1)
+    right = weight_on_cacheless(r-1, c)
     
-    def __eq__(self, other):
-        return self.letter == other
-    
-    def __hash__(self):
-        return hash(self.letter)
+    count = count+1
+    return 200 + (left + right)/2
 
-    def __ne__(self, other):
-        return self.letter != other
+cache = HashMap()
+hits = 0
+# Part 3 -- Write weight_on_with_caching() method
+def weight_on_with_caching(r,c):
+    global cache
+    global count
+    global hits
+    got = cache.get((r,c))
 
-    def __lt__(self, other):
-        return self.letter < other
+    if (got==None):
+        if ((c < 0) or (c > r)):
+            return 0
 
-    def __le__(self, other):
-        return self.letter <= other
-
-    def __gt__(self, other):
-        return self.letter > other
-
-    def __ge__(self, other):
-        return self.letter >= other
-
-    def __repr__(self):
-        return f'({self.letter}, {self.count})'
-    
-    def __str__(self):
-        return f'({self.letter}, {self.count})'
-
-def make_tree():
-    ''' A helper function to build the tree.
-    
-    The test code depends on this function being available from main.
-    :param: None
-    :returns: A binary search tree
-    '''
-    atw_tree = BST()
-    with open("around-the-world-in-80-days-3.txt", 'r') as txt_file:
-        content = txt_file.read()
-        for char in content:
-            if (char.isspace()): 
-                pass
-            else:
-                char = char.lower()
-                try: 
-                    atw_tree.find(char).count += 1
-                except ValueError:
-                    new = Pair(char)
-                    atw_tree.add(new)
-
-    return atw_tree
+        if (r==0):
+            count = count+1
+            cache.set((r,c),200)
+            return 200
+        
+        left = weight_on_with_caching(r-1, c-1)
+        right = weight_on_with_caching(r-1, c)
+        
+        count = count+1
+        newval = 200 + (left + right)/2
+        cache.set((r,c),newval)
+        return newval
+    else:
+        hits +=1
+        count += 1
+        return got
 
 
 def main():
-    ''' Program kicks off here.
+    # Part 2 -- Use weight_on_cacheless() method
+    # Cacheless
+    print("Cacheless:")
+    start = time.perf_counter()
+    global count
+    i = 0
+    num = 7
+    # num = int(sys.argv[1])
+    f = open("cacheless.txt","w")
+    while i < num:
+        j = 0
+        row = ""
+        while j <= i:
+            row += '{:.2f}'.format((weight_on_cacheless(i,j)-200)) + " "
+            j+=1
+        print(row)
+        f.write(row + '\n')
+        i+=1
+    elapsed = time.perf_counter() - start
+    print("\nElapsed time: " + str(elapsed) + " seconds.")
+    f.write("\nElapsed time: " + str(elapsed) + " seconds." + '\n')
+    print("Number of function calls: " + str(count) )
+    f.write("Number of function calls: " + str(count) )
+    f.close()
 
-    '''
-    my_tree = make_tree()
-    print(my_tree.size())
-    print(my_tree.height())
-    print(my_tree.inorder())
-    print(my_tree.preorder())
-    print(my_tree.postorder())
+    # Part 3 -- Use weight_on_with_caching() method, with your HashMap ADT
+    print("\nWith Cache:")
+    start = time.perf_counter()
+    i = 0
+    f = open("with_caching.txt","w")
+    global hits
+    count = 0
+    while i < num:
+        j = 0
+        row = ""
+        while j <= i:
+            row += '{:.2f}'.format((weight_on_with_caching(i,j)-200)) + " "
+            j+=1
+        print(row)
+        f.write(row + '\n')
+        i+=1
+    elapsed = time.perf_counter() - start
+    print("\nElapsed time: " + str(elapsed) + " seconds.")
+    f.write("\nElapsed time: " + str(elapsed) + " seconds." + '\n')
+    print("Number of function calls: " + str(count) )
+    f.write("Number of function calls: " + str(count) )
+    print("Number of cache hits: " + str(hits) )
+    f.write("Number of cache hits: " + str(hits) )
+    f.close()
 
-    #testing 
-    # mytree = BST()
-    # print(f"Is the tree empty? {mytree.is_empty()}")
+    # Part 2.5 write and test the Hash ADT
+    # print('\n')
+    # teth = HashMap()            #init, HashNode, set, get // 'A'
+    # teth.set((0,0), 'A') 
+    # print(teth.get((0,0)))
 
-    # mytree.add(6)
-    # mytree.add(5)
-    # mytree.add(12)
-    # mytree.add(14)
-    # mytree.add(8)
-    # mytree.add(3)
-    # mytree.add(10)
+    # print(teth.hash((0, 0)))    #hash // 0, 4, 3
+    # print(teth.hash((2, 1)))
+    # print(teth.hash((3, 0)))
 
-    # print(f"Is the tree empty? {mytree.is_empty()}")
-    # print(f"tree height? {mytree.height()}")
-    # print(f"tree size? {mytree.size()}")
+    # print(teth.capacity())      #capacity, keys, size, clear
+    # print(teth.keys())
+    # print(teth.size())
+    # teth.clear()
+    # print(teth.capacity())      
+    # print(teth.keys())
 
-    # mytree.print_tree()
-    # print(mytree.preorder())
-    # print(mytree.postorder())
+    # teth.set((3,0), 'A')        #set, rehash(chain), capacity, get(after rehash), keys(after rehash), remove(keynot found)
+    # teth.set((1,0), 'B')        #found a bug in my remove function here- i forgot to reset the chains
+    # teth.set((1,0), 'C')
+    # teth.set((8,0), 'D')
+    # print(teth.capacity())
+    # # print(teth.get((0,0)))
+    # print(teth.get((1,0)))
+    # # print(teth.keys()) 
 
-    # mytree.remove(6)
-    # mytree.print_tree()
-    # print(f"tree height? {mytree.height()}")
-    # print(f"tree size? {mytree.size()}")
-    
-if __name__ == "__main__":
+    # teth.clear()                #rehash(capacity)
+    # teth.set((1,0), 'p')
+    # teth.set((2,0), 'o')
+    # teth.set((3,0), 'i')
+    # teth.set((4,0), 'u')
+    # teth.set((5,0), 'y')
+    # print(teth.capacity())
+    # print(teth.size())
+    # teth.set((6,0), 't')
+    # print(teth.capacity())
+    # print(teth.size())
+
+
+
+if __name__=="__main__":
     main()

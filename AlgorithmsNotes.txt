@@ -1099,3 +1099,385 @@ If the sibling's left child is red, the sibling's right child is black, and the 
 If the sibling's left child is black, the sibling's right child is red, and the node is the right child of the parent, then color the sibling red and the right child of the sibling black. Then rotate left at the sibling and continue to the next step.
 Color the sibling the same color as the parent and color the parent black.
 If the node is the parent's left child, then color the sibling's right child black and rotate left at the parent. Otherwise color the sibling's left child black and rotate right at the parent.
+
+HEAPS 
+
+A max-heap is a complete binary tree that maintains the simple property that a node's key is greater than or 
+  equal to the node's children's keys. 
+An insert into a max-heap starts by inserting the node in the tree's last level, and then swapping the node 
+  with its parent until no max-heap property violation occurs. Inserts fill a level (left-to-right) before 
+  adding another level, so the tree's height is always the minimum possible. The upward movement of a node 
+  in a max-heap is called percolating.
+A remove from a max-heap is always a removal of the root, and is done by replacing the root with the last 
+  level's last node, and swapping that node with its greatest child until no max-heap property violation occurs. 
+  Because upon completion that node will occupy another node's location (which was swapped upwards), the tree 
+  height remains the minimum possible.
+A min-heap is similar to a max-heap, but a node's key is less than or equal to its children's keys
+
+idexes for some reason 
+0 	N/A 	1, 2
+1 	0 	   3, 4
+2 	0 	   5, 6
+3 	1 	   7, 8
+4 	1 	   9, 10
+5 	2 	   11, 12
+... 	... 	...
+i 	 floor i-1 /2    2 * i + 1, 2 * i + 2
+
+MaxHeapPercolateUp(nodeIndex, heapArray) {
+   while (nodeIndex > 0) {
+      parentIndex = (nodeIndex - 1) / 2
+      if (heapArray[nodeIndex] <= heapArray[parentIndex])
+         return
+      else {
+         swap heapArray[nodeIndex] and heapArray[parentIndex]
+         nodeIndex = parentIndex
+      }
+   }
+}
+
+MaxHeapPercolateDown(nodeIndex, heapArray, arraySize) {
+   childIndex = 2 * nodeIndex + 1
+   value = heapArray[nodeIndex]
+
+   while (childIndex < arraySize) {
+      // Find the max among the node and all the node's children
+      maxValue = value
+      maxIndex = -1
+      for (i = 0; i < 2 && i + childIndex < arraySize; i++) {
+         if (heapArray[i + childIndex] > maxValue) {
+            maxValue = heapArray[i + childIndex]
+            maxIndex = i + childIndex
+         }
+      }
+
+      if (maxValue == value) {
+         return
+      }
+      else {
+         swap heapArray[nodeIndex] and heapArray[maxIndex]
+         nodeIndex = maxIndex
+         childIndex = 2 * nodeIndex + 1
+      }
+   }
+}
+
+Heapsort is a sorting algorithm that takes advantage of a max-heap's properties by repeatedly removing the max 
+and building a sorted array in reverse order. An array of unsorted values must first be converted into a heap. 
+The heapify operation is used to turn an array into a heap. Since leaf nodes already satisfy the max heap property, 
+heapifying to build a max-heap is achieved by percolating down on every non-leaf node in reverse order.
+
+Heapsort begins by heapifying the array into a max-heap and initializing an end index value to the size of the 
+array minus 1. Heapsort repeatedly removes the maximum value, stores that value at the end index, and decrements 
+the end index. The removal loop repeats until the end index is 0.
+
+Heapsort uses 2 loops to sort an array. The first loop heapifies the array using MaxHeapPercolateDown. The second 
+loop removes the maximum value, stores that value at the end index, and decrements the end index, until the end index is 0.
+
+Heapsort(numbers, numbersSize) {
+   // Heapify numbers array
+   for (i = numbersSize / 2 - 1; i >= 0; i--) {
+      MaxHeapPercolateDown(i, numbers, numbersSize)
+   }
+
+   for (i = numbersSize - 1; i > 0; i--) {
+      Swap numbers[0] and numbers[i]
+      MaxHeapPercolateDown(0, numbers, i)
+   }
+}
+
+
+
+The heap sort algorithm can be implemented in Python to sort a list in place. 
+Only the percolate down function is needed, not a full heap implementation.
+The max_heap_percolate_down() function takes the following arguments:
+    node_index: index of the node to be percolated down
+    heap_list: list that stores the heap's contents
+    list_size: an integer representing the heap's size
+The heap sort algorithm requires operating on a subset of the heap contents, so the list_size argument 
+is required and may not be equal to len(heap_list).
+
+The heap_sort() function takes a single argument: the list of items to be sorted. The list is heapified 
+first, then the maximum is removed repeatedly, and the sorted list is built in reverse order.
+
+
+def max_heap_percolate_down(node_index, heap_list, list_size):
+    child_index = 2 * node_index + 1
+    value = heap_list[node_index]
+
+    while child_index < list_size:
+        # Find the max among the node and all the node's children
+        max_value = value
+        max_index = -1
+        i = 0
+        while i < 2 and i + child_index < list_size:
+            if heap_list[i + child_index] > max_value:
+                max_value = heap_list[i + child_index]
+                max_index = i + child_index
+            i = i + 1
+                                    
+        if max_value == value:
+            return
+
+        # Swap heap_list[node_index] and heap_list[max_index]
+        temp = heap_list[node_index]
+        heap_list[node_index] = heap_list[max_index]
+        heap_list[max_index] = temp
+        
+        node_index = max_index
+        child_index = 2 * node_index + 1
+
+
+# Sorts the list of numbers using the heap sort algorithm
+def heap_sort(numbers):
+    # Heapify numbers list
+    i = len(numbers) // 2 - 1
+    while i >= 0:
+        max_heap_percolate_down(i, numbers, len(numbers))
+        i = i - 1
+                
+    i = len(numbers) - 1
+    while i > 0:
+        # Swap numbers[0] and numbers[i]
+        temp = numbers[0]
+        numbers[0] = numbers[i]
+        numbers[i] = temp
+
+        max_heap_percolate_down(0, numbers, i)
+        i = i - 1
+
+A priority queue is a queue where each item has a priority, and items with higher priority are 
+closer to the front of the queue than items with lower priority. The priority queue enqueue 
+operation inserts an item such that the item is closer to the front than all items of lower priority, 
+and closer to the end than all items of equal or higher priority. The priority queue dequeue operation 
+removes and returns the item at the front of the queue, which has the highest priority.
+
+Enqueue(PQueue, x) 	Inserts x after all equal or higher priority items 	Enqueue(PQueue, 87). PQueue: 42, 61, 87, 98
+Dequeue(PQueue) 	Returns and removes the item at the front of PQueue 	Dequeue(PQueue) returns 42. PQueue: 61, 98
+Peek(PQueue) 	Returns but does not remove the item at the front of PQueue 	Peek(PQueue) returns 42. PQueue: 42, 61, 98
+IsEmpty(PQueue) 	Returns true if PQueue has no items 	IsEmpty(PQueue) returns false.
+GetLength(PQueue) 	Returns the number of items in PQueue 	GetLength(PQueue) returns 3.
+
+A priority queue can be implemented such that each item's priority can be determined from the item itself. 
+Ex: A customer object may contain information about a customer, including the customer's name and a service 
+priority number. In this case, the priority resides within the object.
+A priority queue may also be implemented such that all priorities are specified during a call to 
+EnqueueWithPriority: An enqueue operation that includes an argument for the enqueued item's priority.
+
+Enqueue 	Insert 	O(log N)
+Dequeue 	Remove 	O(log N)
+Peek 	Return value in root node 	O(1)
+IsEmpty 	Return true if no nodes in heap, false otherwise 	O(1)
+GetLength 	Return number of nodes (expected to be stored in the heap's member data) 	O(1)
+
+HASH
+ hash table is a data structure that stores unordered items by mapping (or hashing) each item to a location in 
+ an array (or vector). Ex: Given an array with indices 0..9 to store integers from 0..500, the modulo (remainder) 
+ operator can be used to map 25 to index 5 (25 % 10 = 5), and 149 to index 9 (149 % 10 = 9). A hash table's main 
+ advantage is that searching (or inserting / removing) an item may require only O(1), in contrast to O(N) for 
+ searching a list or to O(log N) for binary search. 
+In a hash table, an item's key is the value used to map to an index. For all items that might possibly be stored 
+in the hash table, every key is ideally unique, so that the hash table's algorithms can search for a specific 
+item by that key.
+Each hash table array element is called a bucket. A hash function computes a bucket index from the item's key.
+
+A common hash function uses the modulo operator %, which computes the integer remainder when dividing two numbers.
+Ex: For a 20 element hash table, a hash function of key % 20 will map keys to bucket indices 0 to 19.
+A hash table's operations of insert, remove, and search each use the hash function to determine an item's bucket. 
+Ex: Inserting 113 first determines the bucket to be 113 % 10 = 3.
+collision occurs when an item being inserted into a hash table maps to the same bucket as an existing item in the 
+hash table. Ex: For a hash function of key % 10, 55 would be inserted in bucket 55 % 10 = 5; later inserting 75 would 
+yield a collision because 75 % 10 is also 5. Various techniques are used to handle collisions during insertions, 
+such as chaining or open addressing. Chaining is a collision resolution technique where each bucket has a list of 
+items (so bucket 5's list would become 55, 75). Open addressing is a collision resolution technique where collisions 
+are resolved by looking for an empty bucket elsewhere in the table (so 75 might be stored in bucket 6). Such techniques 
+are discussed later in this material. 
+
+Chaining:
+HashInsert(hashTable, item) {
+   if (HashSearch(hashTable, item⇢key) == null) {
+      bucketList = hashTable[Hash(item⇢key)]
+      node = Allocate new linked list node
+      node⇢next = null
+      node⇢data = item
+      ListAppend(bucketList, node)
+   }
+}
+
+HashRemove(hashTable, item) {
+   bucketList = hashTable[Hash(item⇢key)]
+   itemNode = ListSearch(bucketList, item⇢key)
+   if (itemNode is not null) {
+      ListRemove(bucketList, itemNode)
+   } 
+}
+
+HashSearch(hashTable, key) {
+   bucketList = hashTable[Hash(key)]
+   itemNode = ListSearch(bucketList, key)
+   if (itemNode is not null)
+      return itemNode⇢data
+   else
+      return null
+}
+
+linear probing handles a collision by starting at the key's mapped bucket, 
+and then linearly searches subsequent buckets until an empty bucket is found.
+Actually, linear probing distinguishes two types of empty buckets. An empty-since-start bucket has been empty 
+since the hash table was created. An empty-after-removal bucket had an item removed that caused the bucket to now be empty. 
+The distinction will be important during searches, since searching only stops for empty-since-start, not for 
+empty-after-removal. 
+HashRemove(hashTable, key) {  
+   // Hash function determines initial bucket
+   bucket = Hash(key)
+   bucketsProbed = 0
+
+   while ((hashTable[bucket] is not EmptySinceStart) and
+         (bucketsProbed < N)) {
+
+      if ((hashTable[bucket] is not Empty) and
+         (hashTable[bucket]⇢key == key)) {
+         hashTable[bucket] = EmptyAfterRemoval
+         return
+      }
+
+      // Increment bucket index
+      bucket = (bucket + 1) % N
+
+      // Increment number of buckets probed
+      ++bucketsProbed
+   }
+}
+HashSearch(hashTable, key) {
+   // Hash function determines initial bucket
+   bucket = Hash(key)
+   bucketsProbed = 0
+
+   while ((hashTable[bucket] is not EmptySinceStart) and
+         (bucketsProbed < N)) {
+
+      if ((hashTable[bucket] is not Empty) and
+         (hashTable[bucket]⇢key == key)) {
+         return hashTable[bucket]
+      }
+
+      // Increment bucket index
+      bucket = (bucket + 1) % N
+
+      // Increment number of buckets probed
+      ++bucketsProbed
+   }
+
+   return null  // Item not found
+}
+
+Double hashing is an open-addressing collision resolution technique that uses 2 different hash functions to compute bucket indices. 
+Using hash functions h1 and h2, a key's index in the table is computed with the formula . Inserting a key uses the formula, starting with i = 0, 
+to repeatedly search hash table buckets until an empty bucket is found. Each time an empty bucket is not found, i is incremented by 1. 
+Iterating through sequential i values to obtain the desired table index is called the probing sequence.
+resize operation increases the number of buckets, while preserving all existing items. A hash table with N buckets is commonly resized to the 
+next prime number ≥ N * 2. A new array is allocated, and all items from the old array are re-inserted into the new array, making the resize 
+operation's time complexity .
+
+load factor is the number of items in the hash table divided by the number of buckets. Ex: A hash table with 18 items and 31 buckets has a load factor 
+of 18/31=.58 . The load factor may be used to decide when to resize the hash table.
+An implementation may choose to resize the hash table when one or more of the following values exceeds a certain threshold:
+    Load factor
+    When using open-addressing, the number of collisions during an insertion
+    When using chaining, the size of a bucket's linked-list
+
+ hash table is fast if the hash function minimizes collisions.
+
+A perfect hash function maps items to buckets with no collisions. A perfect hash function can be created if the number of items and all possible 
+item keys are known beforehand. The runtime for insert, search, and remove is O(1) with a perfect hash function.
+A good hash function should uniformly distribute items into buckets. With chaining, a good hash function results in short bucket lists and thus fast 
+inserts, searches, and removes. With linear probing, a good hash function will avoid hashing multiple items to consecutive buckets and thus minimize 
+the average linear probing length to achieve fast inserts, searches, and removes. On average, a good hash function will achieve O(1) inserts, searches, 
+and removes, but in the worst-case may require O(N).
+A hash function's performance depends on the hash table size and knowledge of the expected keys. Ex: The hash function key % 10 will perform poorly if 
+the expected keys are all multiples of 10, because inserting 10, 20, 30, ..., 90, and 100 will all collide at bucket 0. 
+
+modulo hash uses the remainder from division of the key by hash table size N
+HashRemainder(int key) {
+   return key % N
+}
+
+mid-square hash squares the key, extracts R digits from the result's middle, and returns the remainder of the middle digits divided by hash table size N. 
+Ex: For a hash table with 100 entries and a key of 453, the decimal (base 10) mid-square hash function computes 453 * 453 = 205209, and returns the middle 
+two digits 52. For N buckets, R must be greater than or equal to to index all buckets. The process of squaring and extracting middle digits reduces the 
+likelihood of keys mapping to just a few buckets. 
+HashMidSquare(int key) {
+   squaredKey = key * key
+   
+   lowBitsToRemove = (32 - R) / 2
+   extractedBits = squaredKey >> lowBitsToRemove
+   extractedBits = extractedBits & (0xFFFFFFFF >> (32 - R)) 
+
+   return extractedBits % N
+}
+
+multiplicative string hash repeatedly multiplies the hash value and adds the ASCII (or Unicode) value of each character in the string. A multiplicative hash 
+function for strings starts with a large initial value. For each character, the hash function multiplies the current hash value by a multiplier (often prime) 
+and adds the character's value. Finally, the function returns the remainder of the sum divided by the hash table size N. 
+
+HashMultiplicative(string key) {
+   stringHash = InitialValue 
+
+   for (each character strChar in key) {
+      stringHash = (stringHash * HashMultiplier) + strChar
+   }
+
+   return stringHash % N
+}
+
+A	65		N	78
+B	66		O	79
+C	67		P	80
+D	68		Q	81
+E	69		R	82
+F	70		S	83
+G	71		T	84
+H	72		U	85
+I	73		V	86
+J	74		W	87
+K	75		X	88
+L	76		Y	89
+M	77		Z	90
+
+direct hash function uses the item's key as the bucket index. Ex: If the key is 937, the index is 937. A hash table with a direct hash function is called 
+a direct access table. Given a key, a direct access table search algorithm returns the item at index key if the bucket is not empty, and returns null 
+(indicating item not found) if empty.
+
+HashInsert(hashTable, item) {
+   hashTable[item⇢key] = item 
+}
+
+HashRemove(hashTable, item) {
+   hashTable[item⇢key] = Empty
+}
+
+HashSearch(hashTable, key) {
+   if (hashTable[key] is not Empty) {
+      return hashTable[key]
+   }
+   else  {
+      return null
+   }
+}
+
+
+
+A direct access table has the advantage of no collisions: Each key is unique (by definition of a key), and each gets a unique bucket, 
+so no collisions can occur. However, a direct access table has two main limitations.
+    All keys must be non-negative integers, but for some applications keys may be negative.
+    The hash table's size equals the largest key value plus 1, which may be very large.
+
+Cryptography is a field of study focused on transmitting data securely. Secure data transmission commonly starts with encryption: 
+alteration of data to hide the original meaning. The counterpart to encryption is decryption: reconstruction of original data from encrypted data.
+
+cryptographic hash function is a hash function designed specifically for cryptography. Such a function is commonly used for encrypting and decrypting data.
+
+A password hashing function is a cryptographic hashing function that produces a hash value for a password. Databases for online services commonly store a 
+user's password hash as opposed to the actual password. When the user attempts a login, the supplied password is hashed, and the hash is compared against 
+the database's hash value. Because the passwords are not stored, if a database with password hashes is breached, attackers may still have a difficult time 
+determining a user's password.
