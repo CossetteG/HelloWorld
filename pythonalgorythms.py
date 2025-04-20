@@ -267,3 +267,179 @@ def main():
 
 if __name__=="__main__":
     main()
+
+
+
+#VERSION 2
+
+# class HashMap:
+#     class HashNode:
+#         def __init__(self, key, value):
+#             self.key = key
+#             self.value = value
+#             self.next = None
+
+#     def __init__(self, size=7):
+#         self._size = size
+#         self.vals = [None]*size
+#         self.osize = 0
+
+#     def hash(self, key):
+#         r = key[0]
+#         c = key[1] + 1
+#         return (r*c)%self._size
+    
+#     def calccapacity(self):
+#         filled = 0
+
+#         for i in range(self._size):
+#             if (self.vals[i]==None):
+#                 pass
+#             else: filled +=1
+
+#         return filled/self._size
+        
+#     def capacity(self):
+#         if (self._size == 7):
+#             return self._size
+#         else:
+#             return self._size + 1
+
+#     def getb(self, key):
+#         index = self.hash(key) 
+
+#         if (self.vals[index]==None):
+#             return None
+#         elif (self.vals[index].key == key):
+#             return self.vals[index].value
+        
+#         elif (self.vals[index].next ==None):
+#             return None
+#         elif (self.vals[index].next.key == key):
+#             return self.vals[index].next.value
+        
+#         elif (self.vals[index].next.next ==None):
+#             return None
+#         elif (self.vals[index].next.next.key == key):
+#             return self.vals[index].next.next.value
+        
+#         else: 
+#             return None
+
+
+#     def get(self, key):
+#         index = self.hash(key) 
+#         interest = 0
+
+#         if (self.vals[index]==None):
+#             raise KeyError
+#         elif (self.vals[index].key == key):
+#             interest = self.vals[index].value
+        
+#         elif (self.vals[index].next ==None):
+#             raise KeyError
+#         elif (self.vals[index].next.key == key):
+#             interest = self.vals[index].next.value
+        
+#         elif (self.vals[index].next.next ==None):
+#             raise KeyError
+#         elif (self.vals[index].next.next.key == key):
+#             interest = self.vals[index].next.next.value 
+        
+#         return interest -200
+
+#     def set(self, key, value, existing=None):
+#         index = self.hash(key)
+
+#         if (existing==None):
+#             newnode = self.HashNode(key, value)
+#         else:
+#             newnode = existing
+
+#         if (self.vals[index]==None):
+#             self.vals[index] = newnode
+#         elif (self.vals[index].next == None):
+#             self.vals[index].next = newnode
+#         elif (self.vals[index].next.next == None):
+#             self.vals[index].next.next = newnode
+#         else:
+#             self.vals[index].next.next.next = newnode
+#             self.rehash()
+
+#         self.osize += 1
+#         if (self.calccapacity() >= .8):
+#             self.rehash()
+
+#     def remove(self, key):
+#         index = self.hash(key) 
+#         mnode = None
+
+#         if (self.vals[index].key == key):
+#             mnode = self.vals[index]
+#             self.vals[index] = mnode.next
+#             mnode.next = None
+#         elif (self.vals[index].next.key == key):
+#             mnode = self.vals[index].next
+#             self.vals[index].next = mnode.next
+#             mnode.next = None
+#         elif (self.vals[index].next.next.key == key):
+#             mnode = self.vals[index].next.next
+#             self.vals[index].next = mnode.next
+#             mnode.next = None
+#         else: 
+#             raise ValueError("key not found")
+    
+#         self.osize -=1
+#         return mnode
+        
+
+#     def clear(self):
+#         self._size = 7
+#         self.vals = [None]*7
+    
+#     def size(self):
+#         return self.osize
+    
+#     def keysb(self):
+#         keylist = []
+
+#         for i in range(self._size):
+#             bucket = self.vals[i]
+
+#             while(bucket != None):
+#                 keylist.append(self.remove(bucket.key))
+#                 bucket = self.vals[i]
+
+#         for k in keylist:
+#             if (k==None):
+#                 raise ValueError("invalid key in list")
+
+#         return keylist
+    
+#     def keys(self):
+#         keylist = []
+
+#         for i in range(self._size):
+#             bucket = self.vals[i]
+
+#             while(bucket != None):
+#                 keylist.append(self.remove(bucket.key).key)
+#                 bucket = self.vals[i]
+
+#         for k in keylist:
+#             if (k==None):
+#                 raise ValueError("invalid key in list")
+
+#         return keylist
+
+#     def rehash(self):
+#         newsize = self._size*2-1 
+#         nodes = self.keysb()
+        
+#         self._size = newsize
+#         self.vals = [None]*newsize
+
+#         for node in nodes:
+#             self.set(node.key, node.value)
+
+
