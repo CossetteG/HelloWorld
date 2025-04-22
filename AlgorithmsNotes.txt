@@ -1481,3 +1481,261 @@ A password hashing function is a cryptographic hashing function that produces a 
 user's password hash as opposed to the actual password. When the user attempts a login, the supplied password is hashed, and the hash is compared against 
 the database's hash value. Because the passwords are not stored, if a database with password hashes is breached, attackers may still have a difficult time 
 determining a user's password.
+
+
+
+graphs
+
+A graph is a data structure for representing connections among items, and consists of vertices connected by edges.
+    A vertex (or node) represents an item in a graph.
+    An edge represents a connection between two vertices in a graph.
+    Two vertices are adjacent if connected by an edge.
+    A path is a sequence of edges leading from a source (starting) vertex to a destination (ending) vertex. The path 
+    length is the number of edges in the path.
+    The distance between two vertices is the number of edges on the shortest path between those vertices.
+
+adjacency list. 
+Recall that two vertices are adjacent if connected by an edge. In an adjacency list graph representation, each 
+vertex has a list of adjacent vertices, each list item representing an edge.
+A key advantage of an adjacency list graph representation is a size of O(V + E), because each vertex appears once, 
+and each edge appears twice. V refers to the number of vertices, E the number of edges.
+However, a disadvantage is that determining whether two vertices are adjacent is O(V), because one vertex's adjacency 
+list must be traversed looking for the other vertex, and that list could have V items. However, in most applications, 
+a vertex is only adjacent to a small fraction of the other vertices, yielding a sparse graph. A sparse graph has 
+far fewer edges than the maximum possible. Many graphs are sparse, like those representing a computer network, 
+flights between cities, or friendships among people (every person isn't friends with every other person). Thus, 
+the adjacency list graph representation is very common.
+
+adjacency matrix. Recall that two vertices are adjacent if connected by an edge. In an adjacency matrix graph 
+representation, each vertex is assigned to a matrix row and column, and a matrix element is 1 if the corresponding 
+two vertices have an edge or is 0 otherwise. 
+Assuming the common implementation as a two-dimensional array whose elements are accessible in O(1), then an 
+adjacency matrix's key benefit is O(1) determination of whether two vertices are adjacent: The corresponding element 
+is just checked for 0 or 1.
+A key drawback is O(V^2) size. Ex: A graph with 1000 vertices would require a 1000 x 1000 matrix, meaning 1,000,000 
+elements. An adjacency matrix's large size is inefficient for a sparse graph, in which most elements would be 0's.
+An adjacency matrix only represents edges among vertices; if each vertex has data, like a person's name and address, 
+then a separate list of vertices is needed. 
+
+graph traversal. 
+
+A breadth-first search (BFS) is a traversal that visits a starting vertex, then all vertices of 
+distance 1 from that vertex, then of distance 2, and so on, without revisiting a vertex. 
+An algorithm for breadth-first search enqueues the starting vertex in a queue. While the queue is not empty, 
+the algorithm dequeues a vertex from the queue, visits the dequeued vertex, enqueues that vertex's adjacent 
+vertices (if not already discovered), and repeats. 
+
+When the BFS algorithm first encounters a vertex, that vertex is said to have been discovered. In the BFS 
+algorithm, the vertices in the queue are called the frontier, being vertices thus far discovered but not yet 
+visited. Because each vertex is visited at most once, an already-discovered vertex is not enqueued again.
+A "visit" may mean to print the vertex, append the vertex to a list, compare vertex data to a value and return 
+the vertex if found, etc.
+
+BFS(startV) {
+   Enqueue startV in frontierQueue
+   Add startV to discoveredSet
+
+   while ( frontierQueue is not empty ) {
+      currentV = Dequeue from frontierQueue
+      "Visit" currentV
+      for each vertex adjV adjacent to currentV {
+         if ( adjV is not in discoveredSet ) {
+            Enqueue adjV in frontierQueue
+            Add adjV to discoveredSet
+         }
+      }
+   }
+}
+
+depth-first search (DFS) is a traversal that visits a starting vertex, then visits every vertex along each 
+path starting from that vertex to the path's end before backtracking.
+An algorithm for depth-first search pushes the starting vertex to a stack. While the stack is not empty, 
+the algorithm pops the vertex from the top of the stack. If the vertex has not already been visited, the 
+algorithm visits the vertex and pushes the adjacent vertices to the stack.
+
+DFS(startVertex) {
+   Create new, empty stack named vertexStack
+   Create new, empty set named visitedSet
+
+   Push startVertex to vertexStack
+
+   while (vertexStack is not empty) {
+      currentV = Pop vertexStack
+
+      if (currentV is not in visitedSet) {
+         Visit currentV
+         Add currentV to visitedSet
+         for each vertex adjV adjacent to currentV {
+            Push adjV to vertexStack
+         }
+      }
+   }
+}
+
+A recursive DFS can be implemented using the program stack instead of an explicit stack. The recursive DFS 
+algorithm is first called with the starting vertex. If the vertex has not already been visited, the recursive 
+algorithm visits the vertex and performs a recursive DFS call for each adjacent vertex.
+
+RecursiveDFS(currentV) {
+   if ( currentV is not in visitedSet ) {
+      Add currentV to visitedSet
+      "Visit" currentV
+      for each vertex adjV adjacent to currentV {
+         RecursiveDFS(adjV)
+      }
+   }
+}
+
+directed graph, or digraph, consists of vertices connected by directed edges. A directed edge is a connection 
+ between a starting vertex and a terminating vertex. In a directed graph, a vertex Y is adjacent to a vertex X, 
+ if there is an edge from X to Y.
+Many graphs are directed, like those representing links between web pages, maps for navigation, or college course 
+prerequisites. 
+    A path is a sequence of directed edges leading from a source (starting) vertex to a destination (ending) vertex.
+    A cycle is a path that starts and ends at the same vertex. A directed graph is cyclic if the graph contains a cycle, and acyclic if the graph does not contain a cycle.
+
+weighted graph associates a weight with each edge. A graph edge's weight, or cost, represents some numerical value 
+between vertex items, such as flight cost between airports, connection speed between computers, or travel time between 
+cities. A weighted graph may be directed or undirected.
+In a weighted graph, the path length is the sum of the edge weights in the path.
+
+cycle length is the sum of the edge weights in a cycle. A negative edge weight cycle has a cycle length less than 0. 
+A shortest path does not exist in a graph with a negative edge weight cycle, because each loop around the negative 
+edge weight cycle further decreases the cycle length, so no minimum exists. 
+
+Dijkstra's shortest path algorithm, created by Edsger Dijkstra, determines the shortest path from a start vertex to 
+each vertex in a graph. For each vertex, Dijkstra's algorithm determines the vertex's distance and predecessor pointer. 
+A vertex's distance is the shortest path distance from the start vertex. A vertex's predecessor pointer points to 
+the previous vertex along the shortest path from the start vertex.
+Dijkstra's algorithm initializes all vertices' distances to infinity (∞), initializes all vertices' predecessors to 
+null, and enqueues all vertices into a queue of unvisited vertices. The algorithm then assigns the start vertex's 
+distance with 0. While the queue is not empty, the algorithm dequeues the vertex with the shortest distance. For each 
+adjacent vertex, the algorithm computes the distance of the path from the start vertex to the current vertex and 
+continuing on to the adjacent vertex. If that path's distance is shorter than the adjacent vertex's current distance, 
+a shorter path has been found. The adjacent vertex's current distance is updated to the distance of the newly found 
+shorter path's distance, and vertex's predecessor pointer is pointed to the current vertex. 
+
+DijkstraShortestPath(startV) {
+   for each vertex currentV in graph {
+      currentV⇢distance = Infinity
+      currentV⇢predV = 0
+      Enqueue currentV in unvisitedQueue
+   }
+
+   // startV has a distance of 0 from itself
+   startV⇢distance = 0
+
+   while (unvisitedQueue is not empty) {
+      // Visit vertex with minimum distance from startV
+      currentV = DequeueMin unvisitedQueue
+
+      for each vertex adjV adjacent to currentV {
+         edgeWeight = weight of edge from currentV to adjV
+         alternativePathDistance = currentV⇢distance + edgeWeight
+          
+         // If shorter path from startV to adjV is found,
+         // update adjV's distance and predecessor
+         if (alternativePathDistance < adjV⇢distance) {
+            adjV⇢distance = alternativePathDistance
+            adjV⇢predV = currentV
+         }
+      }
+   }
+}
+
+After running Dijkstra's algorithm, the shortest path from the start vertex to a destination vertex can be 
+determined using the vertices' predecessor pointers. If the destination vertex's predecessor pointer is not 0, 
+the shortest path is traversed in reverse by following the predecessor pointers until the start vertex is reached. 
+If the destination vertex's predecessor pointer is null, then a path from the start vertex to the destination vertex 
+does not exist.
+
+Dijkstra's shortest path algorithm can be used for unweighted graphs (using a uniform edge weight of 1) and weighted 
+graphs with non-negative edges weights. For a directed graph with negative edge weights, Dijkstra's algorithm may 
+not find the shortest path for some vertices, so the algorithm should not be used if a negative edge weight exists. 
+
+
+
+topological sort of a directed, acyclic graph produces a list of the graph's vertices such that for every edge from 
+a vertex X to a vertex Y, X comes before Y in the list.
+For a directed, acyclic graph, only one possible topological sort output exists.
+Graphs can be used to indicate a sequence of steps, where an edge from X to Y indicates that X must be done before Y. 
+A topological sort of such a graph provides one possible ordering for performing the steps. Ex: Given a graph 
+representing course prerequisites, a topological sort of the graph provides an ordering in which the courses can be 
+taken.
+
+The topological sort algorithm uses three lists: a results list that will contain a topological sort of vertices, a 
+no-incoming-edges list of vertices with no incoming edges, and a remaining-edges list. The result list starts as an 
+empty list of vertices. The no-incoming-edges vertex list starts as a list of all vertices in the graph with no 
+incoming edges. The remaining-edges list starts as a list of all edges in the graph.
+
+The algorithm executes while the no-incoming-edges vertex list is not empty. For each iteration, a vertex is removed 
+from the no-incoming-edges list and added to the result list. Next, a temporary list is built by removing all edges 
+in the remaining-edges list that are outgoing from the removed vertex. For each edge currentE in the temporary list, 
+the number of edges in the remaining-edges list that are incoming to currentE's terminating vertex are counted. If 
+the incoming edge count is 0, then currentE's terminating vertex is added to the no-incoming-edges vertex list.
+
+Because each loop iteration can remove any vertex from the no-incoming-edges list, the algorithm's output is not 
+guaranteed to be the graph's only possible topological sort.
+
+GraphTopologicalSort(graph) {
+   resultList = empty list of vertices
+   noIncoming = list of all vertices with no incoming edges
+   remainingEdges = list of all edges in the graph
+
+   while (noIncoming is not empty) {
+      currentV = remove any vertex from noIncoming
+      Add currentV to resultList
+      outgoingEdges = remove currentV's outgoing edges from remainingEdges
+      for each edge currentE in outgoingEdges {
+         inCount = GraphGetIncomingEdgeCount(remainingEdges, currentE⇢toVertex)
+         if (inCount == 0)
+            Add currentE⇢toVertex to noIncoming
+      }
+   }
+   return resultList
+}
+
+GraphGetIncomingEdgeCount(edgeList, vertex) {
+   count = 0
+   for each edge currentE in edgeList {
+      if (edge⇢toVertex == vertex) {
+         count = count + 1
+      }
+   }
+   return count
+}
+
+A graph's minimum spanning tree is a subset of the graph's edges that connect all vertices in the graph together 
+with the minimum sum of edge weights. The graph must be weighted and connected. A connected graph contains a path 
+between every pair of vertices.
+Kruskal's minimum spanning tree algorithm determines the subset of a graph's edges that connect all the graph's 
+vertices with the minimum possible sum of edge weights. Kruskal's minimum spanning tree algorithm uses three 
+collections:
+    edgeQueue: A priority queue of edges, initially containing all graph edges. Edge weights are priorities.
+    result: A collection of edges comprising the minimum spanning tree, initially empty.
+    vertexSets: A collection of vertex sets. Each set represents vertices connected by edges in result. 
+    Initially, vertexSets contains one set for each vertex.
+The algorithm executes while edgeQueue has at least one edge. In each iteration, the edge with the lowest 
+weight is removed from the edge queue. If the removed edge connects two different vertex sets, then the edge 
+is added to the resulting minimum spanning tree, and the two vertex sets are merged.
+
+KruskalsMinimumSpanningTree(graph) {
+   edgeList = list containing all edges from graph
+   vertexSets = collection of vertex sets, empty initially
+   for each vertex V in graph
+      Add new set containing only V to vertexSets
+   resultList = new, empty set of edges
+
+   while (vertexSets⇢length > 1 && edgeList⇢length > 0) {
+      nextEdge = remove edge with minimum weight from edgeList
+      vSet1 = set in vertexSets containing nextEdge⇢vertex1
+      vSet2 = set in vertexSets containing nextEdge⇢vertex2
+      if (vSet1 != vSet2) {
+         Add nextEdge to resultList
+         Remove vSet1 and vSet2 from vertexSets
+         merged = union(vSet1, vSet2)
+         Add merged to vertexSets
+      }
+   }
+   return resultList
+}
