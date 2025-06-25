@@ -1,0 +1,27 @@
+
+
+React goes right into the html and creates custom components that can be edited with typescript
+
+React apps are made out of components. A component is a piece of the UI (user interface) 
+that has its own logic and appearance. A component can be as small as a button, or as large 
+as an entire page.
+
+React components are JavaScript functions that return markup:
+
+
+
+
+
+NodeJS is something to host the code and i think it compiles it? backend stuff
+
+
+
+
+
+Typescript: like JS, and with static typing 
+- must be compiled
+
+declaring variables:
+
+let x: number = 10; 
+let variablename: variabletype = value; 

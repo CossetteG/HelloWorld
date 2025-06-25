@@ -1843,10 +1843,10 @@ the clearInterval() method to cancel the interval.
 
 
 Web Storage API provides storage objects that allow JavaScript programs to securely store key/value pairs in the web browser.
-The Web Storage API supports two storage objects:
+The Web Storge API supports two storage objects:
     The sessionStorage object stores key/value pairs for an origin that are only available for the duration of the session. 
       Closing the browser or browser tab ends the session.
-    The localStorage object stores key/value pairs for an origin that are stored indefinitely.
+    The localStorage object stores key/value pairs for an origin that are stored indefinitely.a
 An origin is a combination of scheme, hostname, and port number in a URL. Each of the following are examples of different origins:
     http://example.com/
     http://www.example.com/
